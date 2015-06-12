@@ -20,7 +20,7 @@ Level::act() {
     actors[i]->act();
 }
 
-Level::render() {
+Level::render(sf::RenderWindow& window) {
   for (unsigned int i=0;i<actors.size();i++)
-    actors[i]->render();
+    actors[i]->render(window);
 }

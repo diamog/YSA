@@ -42,5 +42,14 @@ typedef enum EVENT_CODE {
   RED_2 = 12,
   RED_3 = 13,
   RED_4 = 14,
-  RED_5 = 15
+  RED_5 = 15,
+  SPEECH_1 = 16,
+  SPEECH_2 = 17,
+  SPEECH_3 = 18,
+  SPEECH_4 = 19,
+  MISCE_1 = 20,
+  MISCE_2 = 21,
+  MISCE_3 = 22,
+  MISCE_4 = 23,
+  MISCE_5 = 24
 } EVE_CODE;

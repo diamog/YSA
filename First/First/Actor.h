@@ -16,8 +16,8 @@ public:
 	virtual float getY1() const {return y;}
 	virtual float getY2() const {return y+height;}
 
-	void act();
-	void render(sf::RenderWindow& window);
+	virtual void act() = 0;
+	virtual void render(sf::RenderWindow& window) = 0;
 
 protected:
 	float x,y;
