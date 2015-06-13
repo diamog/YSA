@@ -10,6 +10,7 @@ class Level {
  public:
   Level();
   Level(You* yo, float enterx, float entery, ENT_CODE ent);
+  virtual ~Level();
 
   float getX() {return x;}
   float getY() {return y;}
@@ -17,7 +18,7 @@ class Level {
   virtual void act();
   virtual void render(sf::RenderWindow& window);
 
-  virtual void event(EVE_CODE eve)=0;
+  virtual void event(EVE_CODE eve, Actor* sender)=0;
 
  protected:
   virtual void makePlatforms() = 0;

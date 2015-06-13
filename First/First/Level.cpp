@@ -15,6 +15,10 @@ Level::Level(You* yo, float enterx, float entery, ENT_CODE ent) {
   makeSwitches();
 }
 
+Level::~Level() {
+  for (unsinged int i=0;i<actors.size();i++)
+    delete actors[i];
+}
 Level::act() {
   for (unsigned int i =0;i<actors.size();i++)
     actors[i]->act();

@@ -14,12 +14,19 @@ Level1::Level1(You* yo, float enterx, float entery, ENT_CODE ent) : Level1(yo) {
     THROW_ENTRANCE_ERROR
 }
 
-void Level1::event(EVE_CODE eve) {
-  if (eve==SPEECH_1) {
-    //Tutorial on moving
-  }
-  else if (eve==SPEECH_2) {
-    //Tutorial on jumping
+void Level1::event(EVE_CODE eve, Actor* sender) {
+  if (eve==SPEECH) {
+    //Tutorial on moving or jumping
+    /*
+    all.off();
+    actors.push_back(new SpeechBubble(sender->getMessage(),GREEN));
+    */
+    int i;
+    for (i=0;i<actors.size();i++)
+      if (*(actors[i])==*sender)
+	break;
+    actors.erase(actors.begin()+i);
+    delete sender;
   }
   else if (eve==SAVE_1) {
     //Save savepoint 0

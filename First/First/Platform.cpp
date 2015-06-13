@@ -17,19 +17,19 @@ Platform::Platform(float x_,float y_,float w,float h,You* yo) : Actor(x_,y_,w,h)
 }
 
 void Platform::act() {
-	if (isRectangularHit(*you,*this)) {
-		int dir = getApproachDirection(*you,*this);
-		if (dir==0)
-			you->ceiling(y+height);
-		else if (dir==1)
-			you->hitRightWall(x,y,y+height);
-		else if (dir==2)
-			you->land(y,x,x+width);
-		else if (dir==3)
-			you->hitLeftWall(x+width,y,y+height);
-	}
+  if (isRectangularHit(*you,*this)) {
+    int dir = getApproachDirection(*you,*this);
+    if (dir==0)
+      you->ceiling(y+height);
+    else if (dir==1)
+      you->hitRightWall(x,y,y+height);
+    else if (dir==2)
+      you->land(y,x,x+width);
+    else if (dir==3)
+      you->hitLeftWall(x+width,y,y+height);
+  }
 }
 void Platform::render(sf::RenderWindow& window) {
 	
-	window.draw(shape);
+  window.draw(shape);
 }
