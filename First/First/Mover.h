@@ -1,6 +1,9 @@
 
 #include "Actor.h"
 
+#ifndef __MOVER__H__
+#define __MOVER__H__
+
 class Mover : public Actor {
 public:
 	Mover();
@@ -17,3 +20,4 @@ protected:
 	float lastx,lasty;
 };
 
+#endif

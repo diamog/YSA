@@ -1,6 +1,9 @@
 /* Defined codes for entrances 
    North, south, east, west are when entering from that side of the screen
  */
+#ifndef __CODES__H__
+#define __CODES__H__
+
 typedef enum ENTRANCE_CODE {
   LOAD_4 = -4,
   LOAD_3 = -3,
@@ -46,3 +49,5 @@ typedef enum EVENT_CODE {
   MISCE_4,
   MISCE_5
 } EVE_CODE;
+
+#endif

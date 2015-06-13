@@ -3,6 +3,7 @@
 
 #include "Collectable.h"
 
+
 class Hint : public Collectable {
  public:
   Hint();
@@ -12,6 +13,6 @@ class Hint : public Collectable {
  private:
   std::string message;
 
-}
+};
 
 #endif

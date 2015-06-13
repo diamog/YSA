@@ -1,5 +1,6 @@
 #include "Actor.h"
 #include "Codes.h"
+#include "You.h"
 
 #ifndef __COLLECTABLE__H__
 #define __COLLECTABLE__H__
@@ -15,6 +16,6 @@ class Collectable : public Actor {
  protected:
   You* you;
   EVENT_CODE eve;
-}
+};
 
 #endif

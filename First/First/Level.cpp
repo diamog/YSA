@@ -6,25 +6,29 @@ Level::Level() {
   x=y=0;
 }
 
-Level::Level(You* yo, float enterx, float entery, ENT_CODE ent) {
+Level::Level(You* yo) {
   you = yo;
   x=y=0;
-  makePlatforms();
+  
+}
+
+void Level::setup() {
+	makePlatforms();
   makeEnemies();
   makeCollectables();
   makeSwitches();
 }
 
 Level::~Level() {
-  for (unsinged int i=0;i<actors.size();i++)
+  for (unsigned int i=0;i<actors.size();i++)
     delete actors[i];
 }
-Level::act() {
+void Level::act() {
   for (unsigned int i =0;i<actors.size();i++)
     actors[i]->act();
 }
 
-Level::render(sf::RenderWindow& window) {
+void Level::render(sf::RenderWindow& window) {
   for (unsigned int i=0;i<actors.size();i++)
     actors[i]->render(window);
 }

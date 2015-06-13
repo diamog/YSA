@@ -17,8 +17,8 @@ Platform::Platform(float x_,float y_,float w,float h,You* yo) : Actor(x_,y_,w,h)
 }
 
 void Platform::act() {
-  if (isRectangularHit(*you,*this)) {
-    int dir = getApproachDirection(*you,*this);
+  if (isRectangularHit(you,this)) {
+    int dir = getApproachDirection(you,this);
     if (dir==0)
       you->ceiling(y+height);
     else if (dir==1)
