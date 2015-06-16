@@ -2,6 +2,7 @@
 // or project specific include files that are used frequently, but
 // are changed infrequently
 //
+#ifndef COMPILE_NO_VB
 
 #pragma once
 
@@ -10,6 +11,7 @@
 #include <stdio.h>
 #include <tchar.h>
 
+#endif
 
 
 // TODO: reference additional headers your program requires here

@@ -5,19 +5,21 @@
 #include "Actor.h"
 
 class Platform : public Actor {
-public:
-	Platform();
-	Platform(float x_,float y_,float w,float h,You* yo);
+ public:
+  Platform();
+  Platform(Level* l, float x_,float y_,float w,float h,You* yo);
 
-	void act();
-	void render(sf::RenderWindow& window);
-
-private:
+  void act();
+#ifndef COMPILE_NO_SF
+  void render(sf::RenderWindow& window);
+#endif
+ private:
 	
-	bool isUp,isLeft,isRight,isDown;
-	You* you;
-	sf::RectangleShape shape;
-
+  bool isUp,isLeft,isRight,isDown;
+  You* you;
+#ifndef COMPILE_NO_SF
+  sf::RectangleShape shape;
+#endif
 };
 
 #endif

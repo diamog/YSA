@@ -11,6 +11,7 @@ class Level1 : public Level {
   Level1(You* yo, float enterx, float entery, ENT_CODE ent);
 
   void event(EVE_CODE eve, Actor* sender);
+
  protected:
   void makePlatforms();
   // void makeEnemies();

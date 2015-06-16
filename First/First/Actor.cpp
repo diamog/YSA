@@ -1,12 +1,17 @@
+
+#ifndef COMPILE_NO_VB
 #include "stdafx.h"
+#endif
 #include "Actor.h"
 
 Actor::Actor() {
-	x=y=width=height=0;
+  x=y=width=height=0;
+  level = NULL;
 }
-Actor::Actor(float x_,float y_,float w,float h) {
-	x = x_;
-	y = y_;
-	width = w;
-	height = h;
+Actor::Actor(Level* l, float x_,float y_,float w,float h) {
+  level = l;
+  x = x_;
+  y = y_;
+  width = w;
+  height = h;
 }

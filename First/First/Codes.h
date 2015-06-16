@@ -26,10 +26,7 @@ typedef enum ENTRANCE_CODE {
 
  */
 typedef enum EVENT_CODE {
-  SAVE_4 = -4,
-  SAVE_3 = -3,
-  SAVE_2 = -2,
-  SAVE_1 = -1,
+  SAVE = -1,
   GREEN = 0,
   PURPLE = 1,
   ORANGE = 2,
@@ -49,5 +46,23 @@ typedef enum EVENT_CODE {
   MISCE_4,
   MISCE_5
 } EVE_CODE;
+
+typedef enum SAVE_CODE {
+  GAME_START,
+  ROOM_1,
+  ROOM_2,
+  ROOM_3,
+  CROSS_ROADS,
+  BOTTOM_PIT,
+  THIN_EYE,
+  PRE_BOSS_2,
+  REVERSE_ROOM,
+  PRE_WALL_KICK,
+  WALL_KICK_1,
+  WALL_KICK_2,
+  WALL_KICK_3,
+  BOSS_SPLIT,
+  
+} S_CODE;
 
 #endif

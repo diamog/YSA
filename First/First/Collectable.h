@@ -8,11 +8,12 @@
 class Collectable : public Actor {
  public:
   Collectable();
-  Collectable(float x_, float y_, float w, float h, You* yo);
+  Collectable(Level* l, float x_, float y_, float w, float h, You* yo);
 
   void act();
+#ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
-
+#endif
  protected:
   You* you;
   EVENT_CODE eve;
