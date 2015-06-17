@@ -13,13 +13,13 @@ Switch::Switch(Level* l, float x_, float y_, float w, float h, You* yo) :
   you = yo;
 }
 
-void Switch::act() {
+#ifndef COMPILE_NO_SF
+void Switch::act(sf::Event& event) {
   if (isRectangularHit(you,this)) {
     level.event(eve,this);
   }
 }
 
-#ifndef COMPILE_NO_SF
 void Switch::render(sf::RenderWindow& window) {
   
 } 

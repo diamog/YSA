@@ -32,11 +32,11 @@ void Level1::makePlatforms() {
 
 void Level1::makeCollectables() {
   //Make the hints
-  actors.push_back(new Hint(this,0,0,0,0,you,"Something about moving"));
-  actors.push_back(new Hint(this,0,0,0,0,you,"Something about jumping"));
-  actors.push_back(new Hint(this,0,0,0,0,you,"Something about double jumping"));
+  actors.push_back(new Hint(this,0,0,0,0,you,"Use the left and right arrow keys to move."));
+  actors.push_back(new Hint(this,0,0,0,0,you,"Use the up arrow key to jump."));
+  actors.push_back(new Hint(this,0,0,0,0,you,"In mid air use the up arrow key to jump again."));
   actors.push_back(new Hint(this,0,0,0,0,you,
-			    "Something about double jumping higher"));
+			    "The sooner you double jump the higher you will go."));
 
 }
 

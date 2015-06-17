@@ -12,13 +12,16 @@ Platform::Platform() : Actor() {
 
 Platform::Platform(Level* l, float x_,float y_,float w,float h,You* yo) : Actor(l,x_,y_,w,h){
   you = yo;
+#ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(0,255,0));
   shape.setSize(sf::Vector2f(width,height));
   shape.setPosition(x,y);
+#endif
   isLeft = isRight= isUp = isDown = true;
 }
 
-void Platform::act() {
+#ifndef COMPILE_NO_SF
+void Platform::act(sf::Event& event) {
   if (isRectangularHit(you,this)) {
     int dir = getApproachDirection(you,this);
     if (dir==0&& isUp)
@@ -32,7 +35,6 @@ void Platform::act() {
   }
 }
 
-#ifndef COMPILE_NO_SF
 void Platform::render(sf::RenderWindow& window) {
 	
   window.draw(shape);

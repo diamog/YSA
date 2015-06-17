@@ -20,19 +20,25 @@ int main() {
   sf::RenderWindow window(sf::VideoMode(width, height), "YSA");
   window.setFramerateLimit(300);
 #endif
+  
   // Definition of you
+  bool* isDead = new bool;
+  *isDead = false;
   You* you = new You(100,height-100.0f,20,20,width,height);
   S_CODE s = GAME_START;
-  Level* level = makeLevels(you, s);
-  Level* level = new Level1(you,0,0,MISC_1);
+  Level* level = loadLevel(you, s);
+  
 #ifndef COMPILE_NO_SF
   while (window.isOpen()) {
     sf::Event event;
-    you->act();
-    level->act();
+    you->act(event);
+    if (*isDead==false)
+      level->act(event);
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed)
 	window.close();
+      //if r key is hit
+      //   reset world
     }
 		
     window.clear();
@@ -41,8 +47,9 @@ int main() {
     window.display();
   }
 #endif
-  delete you;
   delete level;
+  delete you;
+  delete isDead;
   return 0;
 }
 

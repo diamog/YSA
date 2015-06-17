@@ -13,8 +13,10 @@ You::You() : Mover() {
 You::You(float x_, float y_, float w, float h, int screenW, int screenH) : Mover(NULL,x_,y_,w,h) {
   sWidth = screenW;
   sHeight = screenH;
+#ifndef COMPILE_NO_SF
   shape.setSize(sf::Vector2f(width,height));
   shape.setFillColor(sf::Color(255,255,0));
+#endif
   isJump = 2;
   dx = .7f;
   dy=0;
@@ -23,8 +25,9 @@ You::You(float x_, float y_, float w, float h, int screenW, int screenH) : Mover
   platx1=platx2=0;
 }
 
-void You::act() {
-  Mover::act();
+#ifndef COMPILE_NO_SF
+void You::act(sf::Event& event) {
+  Mover::act(event);
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
     if (isJump==0) {
       platx1=platx2=0;
@@ -73,7 +76,6 @@ void You::act() {
     dy=downLimit;	
 }
 
-#ifndef COMPILE_NO_SF
 void You::render(sf::RenderWindow& window) {
   shape.setPosition(x,y);
   window.draw(shape);
@@ -100,4 +102,13 @@ void You::hitLeftWall(float x_,float y1, float y2,bool isKick) {
 
 void You::hitRightWall(float x_,float y1, float y2,bool isKick) {
   x = x_-width;
+}
+
+void You::die() {
+  deaths++;
+  dy=0;
+  isJump=1;
+  platx1=platx2;
+  *isDead = true;
+  //begin death animation
 }

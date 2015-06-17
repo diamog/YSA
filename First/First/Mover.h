@@ -13,7 +13,9 @@ class Mover : public Actor {
   float getLastY1() const {return lasty;}
   float getLastY2() const {return lasty+height;}
 	
-  void act();
+#ifndef COMPILE_NO_SF
+  void act(sf::Event& event);
+#endif
 
  protected:
   float lastx,lasty;

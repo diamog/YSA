@@ -19,8 +19,8 @@ class Level {
   float getX() {return x;}
   float getY() {return y;}
 
-  virtual void act();
 #ifndef COMPILE_NO_SF
+  virtual void act(sf::Event& event);
   virtual void render(sf::RenderWindow& window);
 #endif
   virtual void event(EVE_CODE eve, Actor* sender)=0;

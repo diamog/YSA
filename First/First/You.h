@@ -8,8 +8,8 @@ public:
   You();
   You(float x_, float y, float w, float h, int screenW, int screenH);
 
-  void act();
 #ifndef COMPILE_NO_SF
+  void act(sf::Event& event);
   void render(sf::RenderWindow& window);
 #endif
 
@@ -17,8 +17,12 @@ public:
   void ceiling(float y_);
   void hitLeftWall(float x_,float y1, float y2,bool isKick=false);
   void hitRightWall(float x_,float y1, float y2,bool isKick=false);
+  
+  void die();
  private:
   int sWidth,sHeight;
+  S_CODE savepoint;
+  int deaths;
 #ifndef COMPILE_NO_SF
   sf::RectangleShape shape;
 #endif
@@ -28,7 +32,7 @@ public:
   float downLimit;
   float grav;
   float platx1,platx2;
-	
+  bool* isDead;
 };
 
 #endif

@@ -45,12 +45,12 @@ voic Level::event(EVE_CODE eve, Actor* sender) {
     delete sender;
   }
 }
-void Level::act() {
+#ifndef COMPILE_NO_SF
+void Level::act(sf::Event& event) {
   for (unsigned int i =0;i<actors.size();i++)
-    actors[i]->act();
+    actors[i]->act(event);
 }
 
-#ifndef COMPILE_NO_SF
 void Level::render(sf::RenderWindow& window) {
   for (unsigned int i=0;i<actors.size();i++)
     actors[i]->render(window);

@@ -13,13 +13,13 @@ Collectable::Collectable(Level* l, float x_, float y_, float w, float h, You* yo
   you = yo;
 }
 
-void Collectable::act() {
+#ifndef COMPILE_NO_SF
+void Collectable::act(sf::Event& event) {
   if (isRectangularHit(you,this)) {
     //level.event(eve,this);
   }
 }
 
-#ifndef COMPILE_NO_SF
 void Collectable::render(sf::RenderWindow& window) {
   
 } 
