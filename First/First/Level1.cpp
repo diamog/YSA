@@ -32,8 +32,20 @@ void Level1::makePlatforms() {
 
 void Level1::makeCollectables() {
   //Make the hints
+  actors.push_back(new Hint(this,0,0,0,0,you,"Something about moving"));
+  actors.push_back(new Hint(this,0,0,0,0,you,"Something about jumping"));
+  actors.push_back(new Hint(this,0,0,0,0,you,"Something about double jumping"));
+  actors.push_back(new Hint(this,0,0,0,0,you,
+			    "Something about double jumping higher"));
+
 }
 
 void Level1::makeSwitches() {
   //Make the save point 
+  actors.push_back(new Save(this, 0,0,0,0,you));
+}
+
+
+Level* makeLevel1(You* yo, float x, float y, ENT_CODE ent) {
+  return new Level1(yo,x,y,ent);
 }

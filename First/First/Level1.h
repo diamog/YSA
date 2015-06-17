@@ -20,4 +20,6 @@ class Level1 : public Level {
   
 
 };
+
+Level* makeLevel1(You* yo, float x, float y, ENT_CODE ent);
 #endif
