@@ -37,8 +37,12 @@ int main() {
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed)
 	window.close();
-      //if r key is hit
-      //   reset world
+      /*if r key is hit {
+	level->destroy();
+	delete level;
+	level = loadLevel(you,you->getSave());
+      }
+      */
     }
 		
     window.clear();

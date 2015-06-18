@@ -14,7 +14,7 @@ class Level {
  public:
   Level();
   Level(You* yo);
-  virtual ~Level();
+  virtual ~Level() {destory();}
 
   float getX() {return x;}
   float getY() {return y;}
@@ -24,7 +24,7 @@ class Level {
   virtual void render(sf::RenderWindow& window);
 #endif
   virtual void event(EVE_CODE eve, Actor* sender)=0;
-
+  void destroy();
  protected:
   void setup();
   virtual void makePlatforms() {std::cout<<"meow";};

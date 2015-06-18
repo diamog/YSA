@@ -104,6 +104,10 @@ void You::hitRightWall(float x_,float y1, float y2,bool isKick) {
   x = x_-width;
 }
 
+void You::save(S_CODE s) {
+  savepoint = s;
+}
+
 void You::die() {
   deaths++;
   dy=0;

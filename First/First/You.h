@@ -13,11 +13,14 @@ public:
   void render(sf::RenderWindow& window);
 #endif
 
+  S_CODE getSave() {return savepoint;}
+
   void land(float y_,float x1, float x2);
   void ceiling(float y_);
   void hitLeftWall(float x_,float y1, float y2,bool isKick=false);
   void hitRightWall(float x_,float y1, float y2,bool isKick=false);
   
+  void save(S_CODE s);
   void die();
  private:
   int sWidth,sHeight;
