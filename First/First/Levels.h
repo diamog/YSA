@@ -4,7 +4,7 @@
 #include "Level.h"
 #include "Level1.h"
 
-Level* loadLevels(You* you, S_CODE save) {
+Level* loadLevel(You* you, S_CODE save) {
   if (save == GAME_START)
     return makeLevel1(you,0,0,MISC_1);
   else if (save == ROOM_1)

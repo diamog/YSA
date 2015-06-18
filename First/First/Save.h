@@ -6,7 +6,7 @@
 #define __SAVE__H__
 
 class Save : public Switch {
- public:
+public:
   Save();
   Save(Level* l, float x_, float y_, float w, float h, You* yo, S_CODE num);
 
@@ -15,7 +15,8 @@ class Save : public Switch {
   #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
   #endif
-
+protected:
+	S_CODE identity;	
 };
 
 #endif

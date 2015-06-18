@@ -1,7 +1,7 @@
 
-#ifndef COMPILE_NO_VB
+
 #include "stdafx.h"
-#endif
+
 #include "Actor.h"
 
 Actor::Actor() {

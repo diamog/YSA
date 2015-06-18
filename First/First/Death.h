@@ -1,5 +1,5 @@
 #include "Actor.h"
-
+#include "You.h"
 #ifndef __DEATH__H__
 #define __DEATH__H__
 
