@@ -1,4 +1,6 @@
+#include "stdafx.h"
 #include "Enemy.h"
+#include "utilities.h"
 
 Enemy::Enemy() : Mover(), Death() {
   hp = 0;
@@ -14,16 +16,16 @@ void Enemy::hit() {
 
 #ifndef COMPILE_NO_SF
 
-Enemy::act(sf::Event& event) {
+void Enemy::act(sf::Event& event) {
   Mover::act(event);
   Death::act(event);
   //Check if hit by you's bullets
-  for (unsigned int i=0;i<you->getBullets().size();i++) {
-    if (isRectangularHit(this,you->getBullets()[i])) {
-      if (you->getBullet()[i]->getType()=="you") {
-	hit();
-	you->removeBullet(i);
-	i--;
+  for (unsigned int i=0;i<you->getBullets().size();i++)
+    if (isRectangularHit(this,you->getBullets()[i])) 
+      if (you->getBullets()[i]->getType()=="you") {
+				hit();
+				you->removeBullet(i);
+				i--;
       }
   
 }

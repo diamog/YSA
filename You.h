@@ -2,6 +2,12 @@
 #define __YOU__H__
 
 #include "Mover.h"
+#include <vector>
+
+class Bullet : public Actor {
+public:
+	std::string getType() {return "";}	
+};
 
 class You  : public Mover{
 public:
@@ -22,6 +28,10 @@ public:
   
   void save(S_CODE s);
   void die();
+
+	const std::vector<Bullet*>& getBullets() {return bullets;}
+	void removeBullet(int i) {};	
+
  private:
   int sWidth,sHeight;
   S_CODE savepoint;
@@ -36,6 +46,8 @@ public:
   float grav;
   float platx1,platx2;
   bool* isDead;
+
+	std::vector<Bullet*> bullets;
 };
 
 #endif

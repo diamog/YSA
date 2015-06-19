@@ -23,7 +23,7 @@ int main() {
   // Definition of you
   bool* isDead = new bool;
   *isDead = false;
-  You* you = new You(100,height-100.0f,20,20,width,height);
+  You* you = new You(100,height-400.0f,20,20,width,height);
   S_CODE s = GAME_START;
   Level* level = loadLevel(you, s);
   

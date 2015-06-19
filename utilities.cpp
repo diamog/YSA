@@ -21,3 +21,8 @@ int getApproachDirection(Mover* a1, Actor* a2) {
     return 3;
   return -1;
 }
+
+void getObjectCenter(Actor* a,float& cx,float& cy) {
+	cx = (a->getX1()+a->getX2())/2;
+	cy = (a->getY1()+a->getY2())/2;
+}

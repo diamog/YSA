@@ -1,19 +1,21 @@
+#include "stdafx.h"
 #include "ColorBoss.h"
 #include "utilities.h"
 
 ColorBoss::ColorBoss() : Enemy() {
-  vx=vy=accel=r=g=b=hit_amount=0;
+  vx=vy=accel=0.0f;
+	r=g=b=hit_amount=0;
 }
 
 ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) : Enemy(l,x_,y_,w,h,yo,16*3) {
   r=g=b=255;
-  accel=.1;
+  accel=.1f;
   vx=vy=0;
   hit_amount=15;
 }
 
 #ifndef COMPILE_NO_SF
-ColorBoss::act(sf::Event& event) {
+void ColorBoss::act(sf::Event& event) {
 
   x+=vx;
   y+=vy;
@@ -21,11 +23,11 @@ ColorBoss::act(sf::Event& event) {
   //check if hit by color bullets
   for (unsigned int i=0;i<you->getBullets().size();i++) {
     if (isRectangularHit(this,you->getBullets()[i])) {
-      if (you->getBullet()[i]->getType()=="red")
+      if (you->getBullets()[i]->getType()=="red")
 	color_hit(r);
-      else if (you->getBullet()[i]->getType()=="green")
+      else if (you->getBullets()[i]->getType()=="green")
 	color_hit(g);
-      else if (you->getBullet()[i]->getType()=="blue")
+      else if (you->getBullets()[i]->getType()=="blue")
 	color_hit(b);
       else
 	continue;
