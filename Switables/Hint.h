@@ -12,6 +12,7 @@ class Hint : public Collectable {
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
 #endif
+  void activate() {};
  private:
   std::string message;
 

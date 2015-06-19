@@ -14,6 +14,8 @@ class Collectable : public Actor {
   void act(sf::Event& event);
   void render(sf::RenderWindow& window);
 #endif
+
+  virtual void activate() = 0;
  protected:
   You* you;
   EVENT_CODE eve;
