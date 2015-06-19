@@ -7,10 +7,15 @@
 class Enemy : public Death, public Mover{
  public:
   Enemy();
-  Enemy(Level* l, float x_,float y_,float w,float h, You* yo);
+  Enemy(Level* l, float x_,float y_,float w,float h, You* yo, int health);
   
-
+#ifndef COMPILE_NO_SF
+  void act(sf::Event& event);
+#endif
+  virtual void hit();
  protected:
+  int hp;
+  
 };
 
 #endif
