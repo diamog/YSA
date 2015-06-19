@@ -11,6 +11,9 @@ Level* loadLevel(You* you, S_CODE save) {
     return makeLevel1(you,0,0,LOAD_1);
   else if (save == ROOM_2) ;
   else if (save == ROOM_3) ;
+  else
+    throw "NO SUCH LEVEL!!!";
+  return NULL;
 }
 
 #endif 

@@ -4,7 +4,7 @@
 #ifndef __ENEMY__H__
 #define __ENEMY__H__
 
-class Enemy : public Death, public Mover{
+class Enemy : public Mover, public Death{
  public:
   Enemy();
   Enemy(Level* l, float x_,float y_,float w,float h, You* yo, int health);
