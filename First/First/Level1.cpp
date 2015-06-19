@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Level1.h"
 #include "Platform.h"
+#include "Hint.h"
+#include "Save.h"
 #include <iostream>
 
 Level1::Level1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
@@ -42,7 +44,7 @@ void Level1::makeCollectables() {
 
 void Level1::makeSwitches() {
   //Make the save point 
-  actors.push_back(new Save(this, 0,0,0,0,you));
+  actors.push_back(new Save(this, 0,0,0,0,you,ROOM_1));
 }
 
 

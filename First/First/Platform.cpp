@@ -1,6 +1,4 @@
-#ifndef COMPILE_NO_VB
 #include "stdafx.h"
-#endif
 #include "Platform.h"
 #include "utilities.h"
 

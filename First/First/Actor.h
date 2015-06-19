@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #endif
 
+#include "Codes.h"
 #include <iostream>
 
 class Level;

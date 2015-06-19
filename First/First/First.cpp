@@ -1,8 +1,7 @@
 // First.cpp : Defines the entry point for the console application.
 //
-#ifndef COMPILE_NO_VB
 #include "stdafx.h"
-#endif
+
 #include <iostream>
 #ifndef COMPILE_NO_SF
 #include <SFML/Graphics.hpp>

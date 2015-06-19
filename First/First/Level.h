@@ -14,7 +14,7 @@ class Level {
  public:
   Level();
   Level(You* yo);
-  virtual ~Level() {destory();}
+  virtual ~Level() {destroy();}
 
   float getX() {return x;}
   float getY() {return y;}

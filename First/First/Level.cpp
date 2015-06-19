@@ -1,6 +1,5 @@
-#ifndef COMPILE_NO_VB
 #include "stdafx.h"
-#endif
+
 #include "Level.h"
 
 Level::Level() {
@@ -21,12 +20,12 @@ void Level::setup() {
   makeSwitches();
 }
 
-Level::~Level() {
+void Level::destroy() {
   for (unsigned int i=0;i<actors.size();i++)
     delete actors[i];
 }
 
-voic Level::event(EVE_CODE eve, Actor* sender) {
+void Level::event(EVE_CODE eve, Actor* sender) {
   if (eve == SAVE) {
     S_CODE s = sender->getSave();
     you->save(s);

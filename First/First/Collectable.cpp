@@ -1,6 +1,4 @@
-#ifndef COMPILE_NO_VB
 #include "stdafx.h"
-#endif
 #include "Collectable.h"
 #include "utilities.h"
 
