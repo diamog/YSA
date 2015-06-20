@@ -48,7 +48,10 @@ void You::act(sf::Event& event) {
       if (dy<0)
 	dy=0;
       dy+=.5;
+      
     }
+    if (isJump==0)
+	isJump=1;
     downLimit=2;
   }
   else 

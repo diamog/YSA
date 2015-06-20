@@ -30,6 +30,7 @@ void Level1::makePlatforms() {
   actors.push_back(new Platform(this,0,0,30,height-30.0f,you));
   actors.push_back(new Platform(this,width-30.0f,0,30,height-30.0f,you));
   actors.push_back(new Platform(this,width-130.0f,height-100.0f,100,25,you));
+  actors.push_back(new ThinPlat(this,width/2.0f-25,height/2.0f,50,you);
 }
 
 void Level1::makeCollectables() {

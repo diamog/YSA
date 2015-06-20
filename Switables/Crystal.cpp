@@ -1,19 +1,20 @@
 #include "stdafx.h"
 
-#include "Hint.h"
+#include "Crystal.h"
 
-Hint::Hint() : Collectable() {
-  message = "EMPTY";
+Crystal::Crystal() : Collectable() {
+  type = "NULL";
 }
 
-Hint::Hint(Level* l, float x_, float y_, float w, float h, You* yo, std::string m) 
+Crystal::Crystal(Level* l, float x_, float y_, float w, float h, You* yo, std::string t) 
   : Collectable(l,x_,y_,w,h,yo) {
-  message = m;
-  eve = SPEECH;
+  type = t;
+  eve = MISCE_1;
 }
+
 
 #ifndef COMPILE_NO_SF
-void Hint::render(sf::RenderWindow & window) {
+void Crystal::render(sf::RenderWindow & window) {
 
 }
 #endif

@@ -13,7 +13,8 @@ class Platform : public Actor {
   void act(sf::Event& event);
   void render(sf::RenderWindow& window);
 #endif
- private:
+
+ protected:
 	
   bool isUp,isLeft,isRight,isDown;
   You* you;

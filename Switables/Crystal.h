@@ -14,6 +14,8 @@ class Crystal : public Collectable {
   void render(sf::RenderWindow& window);
 #endif
 
+  //void activate();
+  
  private:
   std::string type;
 
