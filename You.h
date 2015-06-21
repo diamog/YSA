@@ -8,7 +8,7 @@ class Level;
 
 class Bullet : public Actor {
 public:
-	std::string getType() {return "";}	
+  std::string getType() {return "";}
 };
 
 class You  : public Mover{
@@ -16,7 +16,7 @@ public:
   You();
   You(float x_, float y, float w, float h, bool* isD);
 	
-	void setPosition(float x_, float y_) {x=x_;y=y_;}
+  void setPosition(float x_, float y_) {x=x_;y=y_;}
 #ifndef COMPILE_NO_SF
   void act(sf::Event& event);
   void render(sf::RenderWindow& window);
@@ -40,6 +40,9 @@ public:
   int deaths;
 #ifndef COMPILE_NO_SF
   sf::RectangleShape shape;
+  sf::Font font;
+  sf::Text you_died;
+  sf::Text text_restart;
 #endif
   int isJump;
   float dx;
@@ -48,11 +51,9 @@ public:
   float grav;
   float platx1,platx2;
   bool* isDead;
-	int alpha;
-	std::vector<Bullet*> bullets;
-	sf::Font font;
-	sf::Text you_died;
-	sf::Text text_restart;
+  int alpha;
+  std::vector<Bullet*> bullets;
+  
 };
 
 #endif
