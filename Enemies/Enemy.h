@@ -1,4 +1,4 @@
-#include "Mover.h"
+#include "../Mover.h"
 #include "Death.h"
 
 #ifndef __ENEMY__H__

@@ -1,8 +1,8 @@
 #ifndef __PLATFORM__H__
 #define __PLATFORM__H__
 
-#include "You.h"
-#include "Actor.h"
+#include "../You.h"
+#include "../Actor.h"
 
 class Platform : public Actor {
  public:

@@ -1,7 +1,6 @@
-#ifndef __PLATFORM__H__
-#define __PLATFORM__H__
+#ifndef __THIN_PLATFORM__H__
+#define __THIN_PLATFORM__H__
 
-#include "You.h"
 #include "Platform.h"
 
 class ThinPlat : public Platform {

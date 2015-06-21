@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Death.h"
-#include "utilities.h"
+#include "../Extras/utilities.h"
+#include "../You.h"
 
 Death::Death() : Actor() {
   you = NULL;

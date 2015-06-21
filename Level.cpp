@@ -21,11 +21,13 @@ void Level::setup() {
 }
 
 void Level::destroy() {
-  for (unsigned int i=0;i<actors.size();i++)
+  for (unsigned int i=0;i<actors.size();i++) {
     delete actors[i];
+	}
+	actors.clear();
 }
 
-void Level::event(EVE_CODE eve, Actor* sender) {
+void Level::sendEvent(EVE_CODE eve, Actor* sender) {
   if (eve == SAVE) {
     S_CODE s = sender->getSave();
     you->save(s);
@@ -36,10 +38,12 @@ void Level::event(EVE_CODE eve, Actor* sender) {
     all.off();
     actors.push_back(new SpeechBubble(sender->getMessage(),GREEN));
     */
+		std::cout<<sender->getMessage()<<std::endl;
     unsigned int i;
     for (i=0;i<actors.size();i++)
-      if (*(actors[i])==*sender)
-	    break;
+      if (*(actors[i])==*sender) {
+				break;
+			}
     actors.erase(actors.begin()+i);
     delete sender;
   }
@@ -48,6 +52,10 @@ void Level::event(EVE_CODE eve, Actor* sender) {
 void Level::act(sf::Event& event) {
   for (unsigned int i =0;i<actors.size();i++)
     actors[i]->act(event);
+	if (you->getX2()<0) {
+		//change room 
+
+	}
 }
 
 void Level::render(sf::RenderWindow& window) {

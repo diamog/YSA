@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Collectable.h"
-#include "utilities.h"
+#include "../Extras/utilities.h"
+#include "../Level.h"
 
 Collectable::Collectable() : Actor(){
   you = NULL;
@@ -15,7 +16,7 @@ Collectable::Collectable(Level* l, float x_, float y_, float w, float h, You* yo
 void Collectable::act(sf::Event& event) {
   if (isRectangularHit(you,this)) {
     activate();
-    level->event(eve,this);
+    level->sendEvent(eve,this);
   }
 }
 

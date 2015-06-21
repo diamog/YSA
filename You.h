@@ -4,6 +4,8 @@
 #include "Mover.h"
 #include <vector>
 
+class Level;
+
 class Bullet : public Actor {
 public:
 	std::string getType() {return "";}	
@@ -12,8 +14,9 @@ public:
 class You  : public Mover{
 public:
   You();
-  You(float x_, float y, float w, float h, int screenW, int screenH);
-
+  You(float x_, float y, float w, float h, bool* isD);
+	
+	void setPosition(float x_, float y_) {x=x_;y=y_;}
 #ifndef COMPILE_NO_SF
   void act(sf::Event& event);
   void render(sf::RenderWindow& window);
@@ -28,12 +31,11 @@ public:
   
   void save(S_CODE s);
   void die();
-
+	void reload();
 	const std::vector<Bullet*>& getBullets() {return bullets;}
 	void removeBullet(int i) {};	
 
  private:
-  int sWidth,sHeight;
   S_CODE savepoint;
   int deaths;
 #ifndef COMPILE_NO_SF
@@ -46,8 +48,11 @@ public:
   float grav;
   float platx1,platx2;
   bool* isDead;
-
+	int alpha;
 	std::vector<Bullet*> bullets;
+	sf::Font font;
+	sf::Text you_died;
+	sf::Text text_restart;
 };
 
 #endif

@@ -1,6 +1,6 @@
-#include "Actor.h"
-#include "Codes.h"
-#include "You.h"
+#include "../Actor.h"
+#include "../Codes.h"
+#include "../You.h"
 
 #ifndef __SWITCH__H__
 #define __SWITCH__H__

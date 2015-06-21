@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Platform.h"
-#include "utilities.h"
+#include "../Extras/utilities.h"
 
 Platform::Platform() : Actor() {
   you = NULL;
@@ -26,7 +26,7 @@ void Platform::act(sf::Event& event) {
       you->ceiling(y+height);
     else if (dir==1 && isRight)
       you->hitRightWall(x,y,y+height);
-    else if (dir==2 && isLeft)
+    else if (dir==2 && isDown)
       you->land(y,x,x+width);
     else if (dir==3 && isLeft)
       you->hitLeftWall(x+width,y,y+height);

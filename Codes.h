@@ -65,4 +65,23 @@ typedef enum SAVE_CODE {
   
 } S_CODE;
 
+typedef enum LEVEL_CODE {
+	START,
+	DIE,
+	MOVING,
+	COLOR,
+	SPLIT,
+	FALL,
+	EYE,
+	RISING_EYE,
+	PUZZLE,
+	PREBOSS2,
+	CLOUD,
+	FOLLOW,
+	REVERSE,
+	KICK,
+	CLIMB,
+	COLLECTOR,
+	PUMPKIN
+} L_CODE;
 #endif

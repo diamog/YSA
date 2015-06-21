@@ -1,8 +1,8 @@
 #include "stdafx.h"
 
 #include "Switch.h"
-#include "utilities.h"
-#include "Level.h"
+#include "../Extras/utilities.h"
+#include "../Level.h"
 
 Switch::Switch() : Actor(){
   you = NULL;
@@ -16,7 +16,7 @@ Switch::Switch(Level* l, float x_, float y_, float w, float h, You* yo) :
 #ifndef COMPILE_NO_SF
 void Switch::act(sf::Event& event) {
   if (isRectangularHit(you,this)) {
-    level->event(eve,this);
+    level->sendEvent(eve,this);
   }
 }
 

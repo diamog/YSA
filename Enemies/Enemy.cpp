@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Enemy.h"
-#include "utilities.h"
+#include "../Extras/utilities.h"
 
 Enemy::Enemy() : Mover(), Death() {
   hp = 0;

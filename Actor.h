@@ -14,7 +14,7 @@ class Actor {
  public:
   Actor();
   Actor(Level* l,float x_,float y_,float w,float h);
-
+	virtual ~Actor() {}
   virtual S_CODE getSave() {throw "ERROR: is not a save object\n";}
 
   virtual float getX1() const {return x;}
@@ -25,7 +25,7 @@ class Actor {
   friend bool operator==(const Actor& a1, const Actor& a2) {
     return a1.x==a2.x && a1.y == a2.y && a1.width==a2.width && a1.height==a2.height; 
   }
-
+	virtual std::string getMessage() {return "";};
 #ifndef COMPILE_NO_SF
   virtual void act(sf::Event& event) = 0;
   virtual void render(sf::RenderWindow& window) = 0;

@@ -5,14 +5,28 @@ Hint::Hint() : Collectable() {
   message = "EMPTY";
 }
 
-Hint::Hint(Level* l, float x_, float y_, float w, float h, You* yo, std::string m) 
-  : Collectable(l,x_,y_,w,h,yo) {
+Hint::Hint(Level* l, float x_, float y_, float w, You* yo, std::string m) 
+  : Collectable(l,x_,y_,w,2,yo) {
+	x = x_; y= y_;width=height =w;
   message = m;
   eve = SPEECH;
+	shape.setRadius(width/2);
+	shape.setFillColor(sf::Color(0,206,209));
+	shape.setPosition(sf::Vector2f(x,y));
+
+	font.loadFromFile("../YSA_VB/YSA/Fonts/arial.ttf");
+	mark.setFont(font);
+	mark.setString("?");
+	mark.setCharacterSize(width);
+	mark.setColor(sf::Color(160,32,240));
+	mark.setPosition(x+width/4,y-width/10);
+	
+	
 }
 
 #ifndef COMPILE_NO_SF
 void Hint::render(sf::RenderWindow & window) {
-
+	window.draw(shape);
+	window.draw(mark);
 }
 #endif

@@ -3,17 +3,29 @@
 
 You::You() : Mover() {
   isJump=0;
-  sWidth = 0;
-  sHeight = 0;
   platx1=platx2=0;
+	alpha=100;
 }
 
-You::You(float x_, float y_, float w, float h, int screenW, int screenH) : Mover(NULL,x_,y_,w,h) {
-  sWidth = screenW;
-  sHeight = screenH;
+You::You(float x_, float y_, float w, float h, bool* isD) : Mover(NULL,x_,y_,w,h), Actor(NULL,x_,y_,w,h) {
+  savepoint = ROOM_2;
+	isDead = isD;
+	alpha=255;
 #ifndef COMPILE_NO_SF
   shape.setSize(sf::Vector2f(width,height));
   shape.setFillColor(sf::Color(255,255,0));
+
+	font.loadFromFile("../YSA_VB/YSA/Fonts/arial.ttf");
+	you_died.setFont(font);
+	you_died.setString("You Died");
+	you_died.setCharacterSize(120);
+	you_died.setColor(sf::Color(255,200,0,0));
+	you_died.setPosition(120,100);
+	text_restart.setFont(font);
+	text_restart.setString("Press the r key to recolor yourself");
+	text_restart.setCharacterSize(18);
+	text_restart.setColor(sf::Color(255,200,0,0));
+	text_restart.setPosition(230,220);
 #endif
   isJump = 2;
   dx = .7f;
@@ -21,6 +33,7 @@ You::You(float x_, float y_, float w, float h, int screenW, int screenH) : Mover
   downLimit = 1;
   grav = 0.005f;
   platx1=platx2=0;
+
 }
 
 #ifndef COMPILE_NO_SF
@@ -29,13 +42,13 @@ void You::act(sf::Event& event) {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
     if (isJump==0) {
       platx1=platx2=0;
-      dy=-1;
+      dy=-.95;
       isJump=1;
     }
     else if (isJump==2) {
       if (dy>0)
-	dy=0;
-      dy-=.7f;
+				dy=0;
+      dy-=.65f;
       isJump=3;
     }
   }
@@ -44,6 +57,7 @@ void You::act(sf::Event& event) {
       isJump=2;
   }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+		platx1=platx2=0;
     if (downLimit==1) {
       if (dy<0)
 	dy=0;
@@ -69,17 +83,24 @@ void You::act(sf::Event& event) {
   y+=dy;
   if (isJump!=0)
     dy+=grav;
-  if (y+height>sHeight) {
-    y = sHeight-height;
-    isJump=0;
-  }
   if (dy>downLimit)
     dy=downLimit;	
 }
 
 void You::render(sf::RenderWindow& window) {
   shape.setPosition(x,y);
+	if ((*isDead&&alpha>0)||alpha==256) {
+		alpha--;
+		shape.setFillColor(sf::Color(255,255,0,alpha));
+		you_died.setColor(sf::Color(255,255,0,255-alpha));
+		text_restart.setColor(sf::Color(255,255,0,255-alpha));
+	}
   window.draw(shape);
+	if (alpha<255) {
+		window.draw(you_died);
+		window.draw(text_restart);
+	}
+	
 }
 #endif
 
@@ -111,9 +132,13 @@ void You::save(S_CODE s) {
 
 void You::die() {
   deaths++;
-  dy=0;
-  isJump=1;
   platx1=platx2;
   *isDead = true;
   //begin death animation
+}
+
+void You::reload() {
+	alpha=256;
+	isJump=1;
+	dy=0;
 }

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ColorBoss.h"
-#include "utilities.h"
+#include "../Extras/utilities.h"
 
 ColorBoss::ColorBoss() : Enemy() {
   vx=vy=accel=0.0f;

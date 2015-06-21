@@ -23,8 +23,10 @@ class Level {
   virtual void act(sf::Event& event);
   virtual void render(sf::RenderWindow& window);
 #endif
-  virtual void event(EVE_CODE eve, Actor* sender)=0;
+  virtual void sendEvent(EVE_CODE eve, Actor* sender);
   void destroy();
+
+	virtual bool isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type)=0;
  protected:
   void setup();
   virtual void makePlatforms() {std::cout<<"meow";};
