@@ -1,0 +1,24 @@
+#ifndef __VERTICLE_PLATFORM__H__
+#define __VERTICLE_PLATFORM__H__
+
+#include "ThinPlat.h"
+#include "../Mover.h"
+
+class VertPlat : public ThinPlat, public Mover {
+public:
+  VertPlat();
+  VertPlat(Level* l, float x_,float y_,float w,You* yo,bool isV);
+
+#ifndef COMPILE_NO_SF
+	void act(sf::Event& event);
+	void render(sf::RenderWindow& window);
+#endif
+
+	void hitDetector(int dir);
+
+private:
+	bool isVert;
+	float vel;
+};
+
+#endif

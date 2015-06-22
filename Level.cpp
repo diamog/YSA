@@ -18,12 +18,17 @@ void Level::setup() {
   makeEnemies();
   makeCollectables();
   makeSwitches();
+	makeDetectors();
 }
 
 void Level::destroy() {
   for (unsigned int i=0;i<actors.size();i++) {
     delete actors[i];
 	}
+	for (unsigned int i=0;i<detectors.size();i++) {
+    delete detectors[i];
+	}
+	detectors.clear();
 	actors.clear();
 }
 
@@ -52,14 +57,20 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
 void Level::act(sf::Event& event) {
   for (unsigned int i =0;i<actors.size();i++)
     actors[i]->act(event);
-	if (you->getX2()<0) {
-		//change room 
-
-	}
+	for (unsigned int i =0;i<actors2.size();i++)
+    actors2[i]->act(event);
+	for (unsigned int i=0;i<detectors.size();i++)
+		detectors[i]->act(event);
 }
 
 void Level::render(sf::RenderWindow& window) {
   for (unsigned int i=0;i<actors.size();i++)
     actors[i]->render(window);
+	for (unsigned int i=0;i<actors2.size();i++)
+    actors2[i]->render(window);
+	/*
+	for (unsigned int i=0;i<detectors.size();i++)
+		detectors[i]->render(window);
+		*/
 }
 #endif

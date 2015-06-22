@@ -42,6 +42,9 @@ int main() {
 				*isDead=false;
 				you->reload();
 			}
+			if (event.type == sf::Event::KeyPressed&&event.key.code ==sf::Keyboard::P) {
+				you->print();
+			}
     }
 		L_CODE next_level;
 		ENT_CODE ent;

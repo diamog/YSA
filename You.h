@@ -16,7 +16,10 @@ public:
   You();
   You(float x_, float y, float w, float h, bool* isD);
 	
-  void setPosition(float x_, float y_) {x=x_;y=y_;}
+	float getPlatX1() {return platx1;}	
+	float getPlatX2() {return platx2;}		
+	
+  void setPosition(float x_, float y_);
 #ifndef COMPILE_NO_SF
   void act(sf::Event& event);
   void render(sf::RenderWindow& window);
@@ -35,6 +38,7 @@ public:
 	const std::vector<Bullet*>& getBullets() {return bullets;}
 	void removeBullet(int i) {};	
 
+	void print();
  private:
   S_CODE savepoint;
   int deaths;

@@ -17,9 +17,12 @@ Level2::Level2(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   else if (ent== LOAD_1) {
     //Load into savepoint 1
 		you->setPosition(60,110);
-  }  
+  } 
+	else if(ent==EAST) {
+		you->setPosition(690,entery);
+	}
   else
-    THROW_ENTRANCE_ERROR;
+    throw THROW_ENTRANCE_ERROR;
 }
 
 
@@ -38,7 +41,7 @@ void Level2::makePlatforms() {
 	actors.push_back(new Platform(this,230,270,80,30,you));
 	actors.push_back(new Platform(this,300,30,30,120,you));
 	actors.push_back(new Platform(this,550,30,30,100,you));
-	actors.push_back(new ThinPlat(this,450,127,100,you));
+	actors.push_back(new ThinPlat(this,450,127,70,you));
   
 }
 void Level2::makeEnemies() {

@@ -8,7 +8,7 @@ You::You() : Mover() {
 }
 
 You::You(float x_, float y_, float w, float h, bool* isD) : Mover(NULL,x_,y_,w,h), Actor(NULL,x_,y_,w,h) {
-  savepoint = ROOM_2;
+  savepoint = ROOM_3;
 	isDead = isD;
 	alpha=255;
 #ifndef COMPILE_NO_SF
@@ -103,7 +103,15 @@ void You::render(sf::RenderWindow& window) {
 	
 }
 #endif
-
+void You::print() {
+	std::cout<<getLastY1()<<" "<<getLastY2()<<" "<<getY1()<<" "<<getY2()<<std::endl;
+}
+void You::setPosition(float x_, float y_) {
+	x=x_;
+	y=y_;
+	lastx=x_;
+	lasty=y_;
+}
 void You::land(float y_,float x1, float x2) {
   y = y_-height;
   dy=0;
@@ -141,4 +149,5 @@ void You::reload() {
 	alpha=256;
 	isJump=1;
 	dy=0;
+	platx1=platx2=0;
 }

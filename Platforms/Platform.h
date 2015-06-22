@@ -4,7 +4,7 @@
 #include "../You.h"
 #include "../Actor.h"
 
-class Platform : public Actor {
+class Platform : virtual public Actor {
  public:
   Platform();
   Platform(Level* l, float x_,float y_,float w,float h,You* yo);
@@ -14,7 +14,7 @@ class Platform : public Actor {
   void render(sf::RenderWindow& window);
 #endif
 
- protected:
+protected:
 	
   bool isUp,isLeft,isRight,isDown;
   You* you;

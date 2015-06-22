@@ -3,6 +3,7 @@
 #endif
 #include <vector>
 #include "Actor.h"
+#include "Detector.h"
 #include "Codes.h"
 #include "You.h"
 #include <iostream>
@@ -27,15 +28,19 @@ class Level {
   void destroy();
 
 	virtual bool isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type)=0;
- protected:
+
+protected:
   void setup();
-  virtual void makePlatforms() {std::cout<<"meow";};
+  virtual void makePlatforms() {};
   virtual void makeEnemies() {};
   virtual void makeCollectables() {};
   virtual void makeSwitches() {};
+	virtual void makeDetectors() {};
   
   float x,y;
   std::vector<Actor*> actors;
+	std::vector<Actor*> actors2; //to be sent to detectors
+	std::vector<Detector*> detectors;
   You* you;
 
 };
