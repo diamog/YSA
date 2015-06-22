@@ -2,7 +2,7 @@
 #define __COLORBULLET__H__
 
 #include <cmath>
-#include "Bullet.h"
+#include "../Bullet.h"
 #include "../Extras/utilities.h"
 
 class ColorBoss;
