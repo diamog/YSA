@@ -1,7 +1,12 @@
 include_directories(..)
 include_directories(../Extras)
 
-file(GLOB Platforms_SRC "*.cpp")
+set(PLATFORM_SRC
+  Platform.cpp
+  ThinPlat.cpp
+  VerticalPlat.cpp
+  ColorPlat.cpp
+)
 
-add_library(plats ${Platforms_SRC})
+add_library(plats ${PLATFORM_SRC})
 target_link_libraries(plats  extra)

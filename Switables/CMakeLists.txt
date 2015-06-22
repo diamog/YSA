@@ -1,6 +1,15 @@
 include_directories(../Extras)
 include_directories(..)
 
-file(GLOB Switable_SRC "*.h" "*.cpp")
+set (SWITCH_SRC
+  Switch.cpp
+  Save.cpp
+)
 
-add_library(switable ${Switable_SRC})
+set (COLLECTABLE_SRC
+  Collectable.cpp
+  Hint.cpp
+  Crystal.cpp
+)
+
+add_library(switable ${SWITCH_SRC} ${COLLECTABLE_SRC})

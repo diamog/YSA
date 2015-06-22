@@ -1,7 +1,11 @@
 include_directories(..)
 include_directories(../Extras)
 
-file(GLOB Enemy_SRC "*.cpp")
+set(ENEMY_SRC 
+  Enemy.cpp
+  Death.cpp
+  DeathArea.cpp
+  ColorBoss.cpp)
 
-add_library(enemy ${Enemy_SRC})
+add_library(enemy ${ENEMY_SRC})
 target_link_libraries(enemy extra)
