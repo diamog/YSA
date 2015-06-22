@@ -2,22 +2,18 @@
 #define __YOU__H__
 
 #include "Mover.h"
+#include "Bullet.h"
 #include <vector>
 
 class Level;
-
-class Bullet : public Actor {
-public:
-  std::string getType() {return "";}
-};
 
 class You  : public Mover{
 public:
   You();
   You(float x_, float y, float w, float h, bool* isD);
-	
-	float getPlatX1() {return platx1;}	
-	float getPlatX2() {return platx2;}		
+  ~You();
+  float getPlatX1() {return platx1;}	
+  float getPlatX2() {return platx2;}		
 	
   void setPosition(float x_, float y_);
 #ifndef COMPILE_NO_SF
@@ -34,11 +30,12 @@ public:
   
   void save(S_CODE s);
   void die();
-	void reload();
-	const std::vector<Bullet*>& getBullets() {return bullets;}
-	void removeBullet(int i) {};	
-
-	void print();
+  void reload();
+  void addBullet(Bullet* b) {bullets.push_back(b);}
+  const std::vector<Bullet*>& getBullets() {return bullets;}
+  void removeBullet(int i) {delete bullets[i];bullets.erase(bullets.begin()+i);};	
+    
+  void print();
  private:
   S_CODE savepoint;
   int deaths;

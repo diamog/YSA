@@ -16,6 +16,8 @@ class Boss1 : public Level {
 #ifndef COMPILE_NO_SF
   void act(sf::Event& event);
 #endif
+
+  void sendEvent(EVE_CODE eve, Actor* sender);
  protected:
   void makePlatforms();
   void makeEnemies();

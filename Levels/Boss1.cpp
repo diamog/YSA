@@ -1,7 +1,10 @@
 #include "stdafx.h"
 #include "Boss1.h"
+#include "../Switables/Crystal.h"
 #include "../Platforms/ColorPlat.h"
 #include "../Enemies/ColorBoss.h"
+#include "../Bullets/ColorBullet.h"
+#include "../Extras/utilities.h"
 #include <iostream>
 
 Boss1::Boss1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
@@ -30,14 +33,14 @@ void Boss1::makePlatforms() {
   actors.push_back(new ColorPlat(this,590,200,40,you));
 }
 void Boss1::makeEnemies() {
-  //boss = new ColorBoss(this,700,-50,50,50);
+  boss = new ColorBoss(this,700,-50,50,50,you);
   actors.push_back(boss);
 }
 void Boss1::makeCollectables() {
   int dx = 740/4;
-//actors.push_back(new Crystal(this,30+dx,500,20,70,you));
-//actors.push_back(new Crystal(this,30+dx*2,500,20,70,you));
-//actors.push_back(new Crystal(this,30+dx*3,500,20,70,you));
+  actors.push_back(new Crystal(this,30+dx,500,20,70,you,"red"));
+  actors.push_back(new Crystal(this,30+dx*2,500,20,70,you,"green"));
+  actors.push_back(new Crystal(this,30+dx*3,500,20,70,you,"blue"));
 }
 
 
@@ -74,4 +77,17 @@ bool Boss1::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
     return true;
   }
   return false;
+}
+
+
+void Boss1::sendEvent(EVE_CODE eve, Actor* sender) {
+  if (eve==MISCE_1) {
+    //create color bullet for you
+    float cx,cy;
+    getObjectCenter(sender,cx,cy);
+    you->addBullet(new ColorBullet(this,cx,cy,5,5,sender->getMessage(),boss));
+  }
+  else
+    Level::sendEvent(eve,sender);
+
 }

@@ -36,6 +36,12 @@ You::You(float x_, float y_, float w, float h, bool* isD) : Mover(NULL,x_,y_,w,h
 
 }
 
+You::~You() {
+  for (unsigned int i=0;i<bullets.size();i++)
+    delete bullets[i];
+  bullets.clear();
+}
+
 #ifndef COMPILE_NO_SF
 void You::act(sf::Event& event) {
   Mover::act(event);

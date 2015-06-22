@@ -12,7 +12,10 @@ class ColorBoss : public Enemy{
   void act(sf::Event& event);
   void render(sf::RenderWindow& window);
 #endif
-  
+  bool isAlive() {return r>0||g>0||b>0;}
+  int getR() {return r;}
+  int getG() {return g;}
+  int getB() {return b;}
   void hit();
   void color_hit(int& color);
 
