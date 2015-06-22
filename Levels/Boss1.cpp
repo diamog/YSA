@@ -1,0 +1,77 @@
+#include "stdafx.h"
+#include "Boss1.h"
+#include "../Platforms/ColorPlat.h"
+#include "../Enemies/ColorBoss.h"
+#include <iostream>
+
+Boss1::Boss1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
+  setup();
+  if (ent== WEST) {
+    //Move from room 2
+    you->setPosition(-18,entery);
+		
+  }
+  else if (ent==SOUTH) {
+    //Move from split room
+    you->setPosition(enterx,598);
+  }
+  else
+    throw THROW_ENTRANCE_ERROR;
+}
+
+
+void Boss1::makePlatforms() {
+  int width = 700;int height = 600;
+  actors.push_back(new ColorPlatform(this,0,0,700,30,you)); //top wall
+  actors.push_back(new ColorPlatform(this,0,150,30,450,you)); //left wall
+  actors.push_back(new ColorPlatform(this,670,30,30,570,you)); //right wall
+  actors.push_back(new ColorPlat(this,30,570,740,you));
+  actors.push_back(new ColorPlat(this,250,500,40,you));
+  actors.push_back(new ColorPlat(this,590,200,40,you));
+}
+void Boss1::makeEnemies() {
+  //boss = new ColorBoss(this,700,-50,50,50);
+  actors.push_back(boss);
+}
+void Boss1::makeCollectables() {
+  int dx = 740/4;
+//actors.push_back(new Crystal(this,30+dx,500,20,70,you));
+//actors.push_back(new Crystal(this,30+dx*2,500,20,70,you));
+//actors.push_back(new Crystal(this,30+dx*3,500,20,70,you));
+}
+
+
+Level* makeBoss1(You* yo, float x, float y, ENT_CODE ent) {
+  return new Boss1(yo,x,y,ent);
+}
+
+#ifndef COMPILE_NO_SF
+void Boss1::act(sf::Event& event) {
+  Level::act();
+  if (boss!=NULL) {
+    bool isAlive = boss->isAlive();
+    if (isAlive) {
+      if (you->getX1()<0)
+	you->setPosition(0,you->getY1());
+      else if (you->getY2()>600)
+	you->setPosition(you->getX1(),600-(you->getY2()-you->getY1()));
+      for (unsigned int i=0;i<actors.size();i++)
+	actors[i]->setColor(boss->getR(),boss->getG(),boss->getB());
+    }
+  }
+}
+
+#endif
+bool Boss1::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
+  if (you->getX2()<0) {
+    next_level=MOVING;
+    ent_type=EAST;
+    return true;
+  }
+  if (you->getY1()>600) {
+    next_level=SPLIT;
+    ent_type=NORTH;
+    return true;
+  }
+  return false;
+}

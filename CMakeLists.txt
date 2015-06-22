@@ -19,12 +19,14 @@ set(ROOT_HEADERS
   Actor.h
   Mover.h
   Level.h
+  Detector.h
 )
 
 set(ROOT_SOURCES
   Actor.cpp
   Mover.cpp
   Level.cpp
+  Detector.cpp
 )
 
 add_executable(YSA ${ROOT_HEADERS} ${ROOT_SOURCES} You.h You.cpp First.cpp)

@@ -3,7 +3,7 @@
 #include "stdafx.h"
 
 #include "Detector.h"
-#include "Extras\utilities.h"
+#include "Extras/utilities.h"
 
 Detector::Detector() : Actor() {
   actors = NULL;

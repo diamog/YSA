@@ -2,6 +2,7 @@
 #define __LEVELS__H__
 
 #include "../Level.h"
+#include "Boss1.h"
 #include "Level3.h"
 #include "Level2.h"
 #include "Level1.h"
@@ -21,18 +22,18 @@ Level* loadLevel(You* you, S_CODE save) {
 }
 
 Level* makeLevel(You* you, L_CODE l, ENT_CODE ent) {
-	if (l==START) {
-		return makeLevel1(you,you->getX1(),you->getY1(),ent);
-	}
-	else if (l==DIE) {
-		return makeLevel2(you,you->getX1(),you->getY1(),ent);
-	}
-	else if (l==MOVING) {
-		return makeLevel3(you,you->getX1(),you->getY1(),ent);
-	}
-	else if (l==COLOR) {
-		//return makeBoss1(you,you->getX1(),you->getY2(),ent);
-	}
-	return NULL;
+  if (l==START) {
+    return makeLevel1(you,you->getX1(),you->getY1(),ent);
+  }
+  else if (l==DIE) {
+    return makeLevel2(you,you->getX1(),you->getY1(),ent);
+  }
+  else if (l==MOVING) {
+    return makeLevel3(you,you->getX1(),you->getY1(),ent);
+  }
+  else if (l==COLOR) {
+    return makeBoss1(you,you->getX1(),you->getY1(),ent);
+  }
+  return NULL;
 }
 #endif 

@@ -22,7 +22,7 @@ class Actor {
   virtual float getY1() const {return y;}
   virtual float getY2() const {return y+height;}
 
-	virtual float getLastX1() const {return getX1();}
+  virtual float getLastX1() const {return getX1();}
   virtual float getLastX2() const {return getX2();}
   virtual float getLastY1() const {return getY1();}
   virtual float getLastY2() const {return getY2();}
@@ -30,13 +30,16 @@ class Actor {
   friend bool operator==(const Actor& a1, const Actor& a2) {
     return a1.x==a2.x && a1.y == a2.y && a1.width==a2.width && a1.height==a2.height; 
   }
-	virtual void hitDetector(int dir) {}
-	virtual std::string getMessage() {return "";};
+  virtual void setColor(int r, int g, int b) {};
+  virtual void hitDetector(int dir) {}
+  virtual std::string getMessage() {return "";};
+
 #ifndef COMPILE_NO_SF
   virtual void act(sf::Event& event) = 0;
   virtual void render(sf::RenderWindow& window) = 0;
 #endif
- protected:
+
+protected:
   float x,y;
   float width,height;
   Level* level;

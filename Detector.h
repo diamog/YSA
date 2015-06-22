@@ -1,7 +1,7 @@
 #ifndef __DETECTOR__H__
 #define __DETECTOR__H__
 
-
+#include <vector>
 #include "Actor.h"
 
 class Detector : public Actor{
@@ -17,7 +17,7 @@ class Detector : public Actor{
   void render(sf::RenderWindow& window);
 #endif
  protected:
-	 std::vector<Actor*>* actors;
+  std::vector<Actor*>* actors;
 };
 
 #endif

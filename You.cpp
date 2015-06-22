@@ -9,23 +9,23 @@ You::You() : Mover() {
 
 You::You(float x_, float y_, float w, float h, bool* isD) : Mover(NULL,x_,y_,w,h), Actor(NULL,x_,y_,w,h) {
   savepoint = ROOM_3;
-	isDead = isD;
-	alpha=255;
+  isDead = isD;
+  alpha=255;
 #ifndef COMPILE_NO_SF
   shape.setSize(sf::Vector2f(width,height));
   shape.setFillColor(sf::Color(255,255,0));
 
-	font.loadFromFile("../YSA_VB/YSA/Fonts/arial.ttf");
-	you_died.setFont(font);
-	you_died.setString("You Died");
-	you_died.setCharacterSize(120);
-	you_died.setColor(sf::Color(255,200,0,0));
-	you_died.setPosition(120,100);
-	text_restart.setFont(font);
-	text_restart.setString("Press the r key to recolor yourself");
-	text_restart.setCharacterSize(18);
-	text_restart.setColor(sf::Color(255,200,0,0));
-	text_restart.setPosition(230,220);
+  font.loadFromFile("../YSA_VB/YSA/Fonts/arial.ttf");
+  you_died.setFont(font);
+  you_died.setString("You Died");
+  you_died.setCharacterSize(120);
+  you_died.setColor(sf::Color(255,200,0,0));
+  you_died.setPosition(120,100);
+  text_restart.setFont(font);
+  text_restart.setString("Press the r key to recolor yourself");
+  text_restart.setCharacterSize(18);
+  text_restart.setColor(sf::Color(255,200,0,0));
+  text_restart.setPosition(230,220);
 #endif
   isJump = 2;
   dx = .7f;
@@ -47,7 +47,7 @@ void You::act(sf::Event& event) {
     }
     else if (isJump==2) {
       if (dy>0)
-				dy=0;
+	dy=0;
       dy-=.65f;
       isJump=3;
     }
@@ -89,12 +89,12 @@ void You::act(sf::Event& event) {
 
 void You::render(sf::RenderWindow& window) {
   shape.setPosition(x,y);
-	if ((*isDead&&alpha>0)||alpha==256) {
-		alpha--;
-		shape.setFillColor(sf::Color(255,255,0,alpha));
-		you_died.setColor(sf::Color(255,255,0,255-alpha));
-		text_restart.setColor(sf::Color(255,255,0,255-alpha));
-	}
+  if ((*isDead&&alpha>0)||alpha==256) {
+    alpha--;
+    shape.setFillColor(sf::Color(255,255,0,alpha));
+    you_died.setColor(sf::Color(255,255,0,255-alpha));
+    text_restart.setColor(sf::Color(255,255,0,255-alpha));
+  }
   window.draw(shape);
 	if (alpha<255) {
 		window.draw(you_died);
@@ -107,10 +107,10 @@ void You::print() {
 	std::cout<<getLastY1()<<" "<<getLastY2()<<" "<<getY1()<<" "<<getY2()<<std::endl;
 }
 void You::setPosition(float x_, float y_) {
-	x=x_;
-	y=y_;
-	lastx=x_;
-	lasty=y_;
+  x=x_;
+  y=y_;
+  lastx=x_;
+  lasty=y_;
 }
 void You::land(float y_,float x1, float x2) {
   y = y_-height;
