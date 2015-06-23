@@ -27,7 +27,7 @@ class Level {
   virtual void sendEvent(EVE_CODE eve, Actor* sender);
   void destroy();
 
-	virtual bool isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type)=0;
+  virtual bool isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type)=0;
 
 protected:
   void setup();
@@ -35,14 +35,14 @@ protected:
   virtual void makeEnemies() {};
   virtual void makeCollectables() {};
   virtual void makeSwitches() {};
-	virtual void makeDetectors() {};
-  
+  virtual void makeDetectors() {};
+  bool hasExtra();
   float x,y;
   std::vector<Actor*> actors;
-	std::vector<Actor*> actors2; //to be sent to detectors
-	std::vector<Detector*> detectors;
+  std::vector<Actor*> actors2; //to be sent to detectors
+  std::vector<Detector*> detectors;
   You* you;
-
+  L_CODE me;
 };
 
 #endif

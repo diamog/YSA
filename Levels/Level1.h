@@ -10,7 +10,7 @@ class Level1 : public Level {
   Level1() : Level() {};
   Level1(You* yo, float enterx, float entery, ENT_CODE ent);
 
-	bool isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type);
+  bool isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type);
  protected:
   void makePlatforms();
   // void makeEnemies();

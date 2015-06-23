@@ -18,18 +18,18 @@ void Level::setup() {
   makeEnemies();
   makeCollectables();
   makeSwitches();
-	makeDetectors();
+  makeDetectors();
 }
 
 void Level::destroy() {
   for (unsigned int i=0;i<actors.size();i++) {
     delete actors[i];
-	}
-	for (unsigned int i=0;i<detectors.size();i++) {
+  }
+  for (unsigned int i=0;i<detectors.size();i++) {
     delete detectors[i];
-	}
-	detectors.clear();
-	actors.clear();
+  }
+  detectors.clear();
+  actors.clear();
 }
 
 void Level::sendEvent(EVE_CODE eve, Actor* sender) {
@@ -40,15 +40,25 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
   else if (eve == SPEECH) {
     //Tutorial on moving or jumping
     /*
-    all.off();
-    actors.push_back(new SpeechBubble(sender->getMessage(),GREEN));
+      all.off();
+      actors.push_back(new SpeechBubble(sender->getMessage(),GREEN));
     */
-		std::cout<<sender->getMessage()<<std::endl;
+    std::cout<<sender->getMessage()<<std::endl;
     unsigned int i;
     for (i=0;i<actors.size();i++)
       if (*(actors[i])==*sender) {
-				break;
-			}
+	break;
+      }
+    actors.erase(actors.begin()+i);
+    delete sender;
+  }
+  else if (eve == EXTRA) {
+    you->getExtra(me);
+    unsigned int i;
+    for (i=0;i<actors.size();i++)
+      if (*(actors[i])==*sender) {
+	break;
+      }
     actors.erase(actors.begin()+i);
     delete sender;
   }
@@ -57,20 +67,27 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
 void Level::act(sf::Event& event) {
   for (unsigned int i =0;i<actors.size();i++)
     actors[i]->act(event);
-	for (unsigned int i =0;i<actors2.size();i++)
+  for (unsigned int i =0;i<actors2.size();i++)
     actors2[i]->act(event);
-	for (unsigned int i=0;i<detectors.size();i++)
-		detectors[i]->act(event);
+  for (unsigned int i=0;i<detectors.size();i++)
+    detectors[i]->act(event);
 }
 
 void Level::render(sf::RenderWindow& window) {
   for (unsigned int i=0;i<actors.size();i++)
     actors[i]->render(window);
-	for (unsigned int i=0;i<actors2.size();i++)
+  for (unsigned int i=0;i<actors2.size();i++)
     actors2[i]->render(window);
-	/*
-	for (unsigned int i=0;i<detectors.size();i++)
-		detectors[i]->render(window);
-		*/
+  /*
+    for (unsigned int i=0;i<detectors.size();i++)
+    detectors[i]->render(window);
+  */
+}
+void Level::hasExtra() {
+  return you->hasExtra(me);
+}
+void Level::buildExtra(float x,float y) {
+  if (!hasExtra())
+    actors.push_back(new Extra(this,x,y,25,25,you);
 }
 #endif

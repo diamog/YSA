@@ -4,7 +4,7 @@
 #include "Mover.h"
 #include "Bullet.h"
 #include <vector>
-
+#include <set>
 class Level;
 
 class You  : public Mover{
@@ -22,7 +22,8 @@ public:
 #endif
 
   S_CODE getSave() {return savepoint;}
-
+  bool hasExtra(L_CODE l) {return extras.find(l)!=extras.end();}
+  void getExtra(L_CODE l) {extras.insert(l);}
   void land(float y_,float x1, float x2);
   void ceiling(float y_);
   void hitLeftWall(float x_,float y1, float y2,bool isKick=false);
@@ -54,6 +55,7 @@ public:
   bool* isDead;
   int alpha;
   std::vector<Bullet*> bullets;
+  std::set<L_CODE> extras;
   
 };
 

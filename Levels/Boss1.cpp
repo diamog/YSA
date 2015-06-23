@@ -9,6 +9,7 @@
 
 Boss1::Boss1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   setup();
+  me = COLOR;
   if (ent== WEST) {
     //Move from room 2
     you->setPosition(-18,entery);

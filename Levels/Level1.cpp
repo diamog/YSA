@@ -7,10 +7,11 @@
 #include <iostream>
 
 Level1::Level1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
-	setup();
+  setup();
+  me = START;
   if (ent == MISC_1) {
     //Enter through beginning of game
-		you->setPosition(enterx,entery);
+    you->setPosition(enterx,entery);
   }
   else if (ent== NORTH) {
     //Fall from Level 2

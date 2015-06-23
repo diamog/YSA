@@ -40,6 +40,7 @@ typedef enum EVENT_CODE {
   RED_4,
   RED_5,
   SPEECH,
+  EXTRA,
   MISCE_1,
   MISCE_2,
   MISCE_3,
