@@ -14,8 +14,8 @@ ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) : Ene
   vx=vy=0;
   hit_amount=15;
 #ifndef COMPILE_NO_SF
-	shape.setFillColor(sf::Color(r,g,b));
-	shape.setRadius(width/2);
+  shape.setFillColor(sf::Color(r,g,b));
+  shape.setRadius(width/2);
 #endif
 }
 
@@ -81,8 +81,8 @@ void ColorBoss::act(sf::Event& event) {
 }
 
 void ColorBoss::render(sf::RenderWindow& window) {
-	shape.setPosition(x,y);
-	window.draw(shape);
+  shape.setPosition(x,y);
+  window.draw(shape);
 }
 #endif
 
@@ -90,17 +90,21 @@ void ColorBoss::hit() {
   r-=hit_amount/3;
   g-=hit_amount/3;
   b-=hit_amount/3;
-	if (r<0)
-		r=0;
-	if (g<0)
-		g=0;
-	if (b<0)
-		b=0;
-	shape.setFillColor(sf::Color(r,g,b));
+  if (r<0)
+    r=0;
+  if (g<0)
+    g=0;
+  if (b<0)
+    b=0;
+#ifndef COMPILE_NO_SF
+  shape.setFillColor(sf::Color(r,g,b));
+#endif
 }
 void ColorBoss::color_hit(int& color) {
   color-=hit_amount;
-	if (color<0)
-		color=0;
-	shape.setFillColor(sf::Color(r,g,b));
+  if (color<0)
+    color=0;
+#ifndef COMPILE_NO_SF
+  shape.setFillColor(sf::Color(r,g,b));
+#endif
 }
