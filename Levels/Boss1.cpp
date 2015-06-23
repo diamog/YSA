@@ -85,7 +85,7 @@ void Boss1::sendEvent(EVE_CODE eve, Actor* sender) {
     //create color bullet for you
     float cx,cy;
     getObjectCenter(sender,cx,cy);
-    you->addBullet(new ColorBullet(this,cx,cy,5,5,sender->getMessage(),boss));
+    you->addBullet(new ColorBullet(this,cx,cy,5,5,sender->getMessage(),boss,sender->getVal()));
   }
   else
     Level::sendEvent(eve,sender);

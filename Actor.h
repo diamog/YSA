@@ -33,7 +33,7 @@ class Actor {
   virtual void setColor(int r, int g, int b) {};
   virtual void hitDetector(int dir) {}
   virtual std::string getMessage() {return "";};
-
+  virtual int getVal() {};
 #ifndef COMPILE_NO_SF
   virtual void act(sf::Event& event) = 0;
   virtual void render(sf::RenderWindow& window) = 0;

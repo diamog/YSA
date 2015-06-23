@@ -10,14 +10,14 @@ class ColorBullet : public Bullet {
 public:
   ColorBullet();
   ColorBullet(Level* l,float x_, float y_, float w, float h,
-              std::string t,ColorBoss* b);
+              std::string t,ColorBoss* b, int c);
 #ifndef COMPILE_NO_SF
   void act(sf::Event& event);
 #endif
 
 protected:
   ColorBoss* target;
-	int color;
+  int color;
 };
 
 #endif

@@ -15,7 +15,7 @@ class Crystal : public Collectable {
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
 #endif
-
+  int getVal() {return color;}
   
 private:
   std::string type;
