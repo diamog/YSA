@@ -21,7 +21,7 @@ private:
   std::string type;
   int color;
 #ifndef COMPILE_NO_SF
-  shape;
+  sf::CircleShape shape;
 #endif
 };
 

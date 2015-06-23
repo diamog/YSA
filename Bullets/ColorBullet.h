@@ -4,8 +4,7 @@
 #include <cmath>
 #include "../Bullet.h"
 #include "../Extras/utilities.h"
-
-class ColorBoss;
+#include "../Enemies/ColorBoss.h"
 
 class ColorBullet : public Bullet {
 public:
@@ -18,6 +17,7 @@ public:
 
 protected:
   ColorBoss* target;
+	int color;
 };
 
 #endif

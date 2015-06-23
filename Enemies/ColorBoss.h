@@ -3,6 +3,7 @@
 #ifndef __COLORBOSS__H__
 #define __COLORBOSS__H__
 
+
 class ColorBoss : public Enemy{
  public:
   ColorBoss();
@@ -24,6 +25,9 @@ class ColorBoss : public Enemy{
   float accel;
   int  r,g,b;
   int hit_amount;
+#ifndef COMPILE_NO_SF
+	sf::CircleShape shape;
+#endif
 };
 
 #endif

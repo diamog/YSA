@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "ColorBullet.h"
+#include "../Bullets/ColorBullet.h"
 
 ColorBullet::ColorBullet() : Bullet(), Actor() {
   target=NULL;
@@ -10,13 +10,13 @@ ColorBullet::ColorBullet(Level* l,float x_, float y_, float w, float h,
   Actor(l,x_,y_,w,h) {
   target=b;
 #ifndef COMPILE_NO_SF
-  shape.fillColor(sf::Color(color*(type=="red"),color*(type=="green"),
+  shape.setFillColor(sf::Color(color*(type=="red"),color*(type=="green"),
                             color*(type=="blue")));
 #endif
 }
 
 #ifndef COMPILE_NO_SF
-void act(sf::Event& event) {
+void ColorBullet::act(sf::Event& event) {
   float cx,cy;
   getObjectCenter(this,cx,cy);
   float bx,by;

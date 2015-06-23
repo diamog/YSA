@@ -38,9 +38,9 @@ void Boss1::makeEnemies() {
 }
 void Boss1::makeCollectables() {
   int dx = 740/4;
-  actors.push_back(new Crystal(this,30+dx,500,20,70,you,"red"));
-  actors.push_back(new Crystal(this,30+dx*2,500,20,70,you,"green"));
-  actors.push_back(new Crystal(this,30+dx*3,500,20,70,you,"blue"));
+  actors.push_back(new Crystal(this,30.0f+dx,500,10,30,you,"red"));
+  actors.push_back(new Crystal(this,30.0f+dx*2,500,10,30,you,"green"));
+  actors.push_back(new Crystal(this,30.0f+dx*3,500,10,30,you,"blue"));
 }
 
 
@@ -50,7 +50,7 @@ Level* makeBoss1(You* yo, float x, float y, ENT_CODE ent) {
 
 #ifndef COMPILE_NO_SF
 void Boss1::act(sf::Event& event) {
-  Level::act();
+  Level::act(event);
   if (boss!=NULL) {
     bool isAlive = boss->isAlive();
     if (isAlive) {
