@@ -65,6 +65,7 @@ void render(sf::RenderWindow& window) {
   text.setFont(message.subStr(start_index,index));
   window.draw(shape);
   window.draw(text);
+  window.draw(next_text);
   if (message[start_index+index+1]==';') {
     isPaused=true;
   }  
