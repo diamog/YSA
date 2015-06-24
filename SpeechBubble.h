@@ -1,12 +1,13 @@
 #ifndef ___SPEECHBUBBLE_H__
 #define ___SPEECHBUBBLE_H__
 #include "Actor.h"
+#include "Codes.h"
 
 #ifndef COMPILE_NO_SF
 class SpeechBubble : public Actor{
  public:
   SpeechBubble();
-  SpeechBubble(std::string s,sf::Color c);
+  SpeechBubble(Level* l,std::string s,sf::Color c,EVE_CODE e = END_SPEECH);
 
   bool doesPause() {return false;}
   void act();
@@ -22,6 +23,7 @@ class SpeechBubble : public Actor{
   sf::Font font;
   sf::Text text;
   sf::RectangleShape shape;
+  EVE_CODE eve;
 
 };
 #endif

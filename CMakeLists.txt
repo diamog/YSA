@@ -1,7 +1,9 @@
 cmake_minimum_required (VERSION 2.6)
 project (YSA)
-
-add_definitions(-DCOMPILE_NO_SF)
+option(ENABLE_SF "ENABLE_SF" OFF)
+IF(NOT ENABLE_SF)
+  add_definitions(-DCOMPILE_NO_SF)
+ENDIF()
 add_definitions(-DCOMPILE_NO_VB)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
@@ -33,3 +35,14 @@ target_link_libraries(YSA enemy)
 target_link_libraries(YSA plats)
 target_link_libraries(YSA switable)
 target_link_libraries(YSA level)
+
+IF (ENABLE_SF)
+  set(SFML_ROOT /home/diamog)
+  set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/modules")
+  find_package(SFML REQUIRED system window graphics audio)
+
+  if (SFML_FOUND)
+    include_directories(${SFML_INCLUDE_DIR})
+    target_link_libraries(YSA ${SFML_LIBRARIES})
+  endif()
+ENDIF()

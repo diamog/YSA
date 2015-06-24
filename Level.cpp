@@ -6,6 +6,8 @@
 #else
 #include "Extra.h"
 #endif
+#include "SpeechBubble.h"
+
 Level::Level() {
   you = NULL;
   x=y=0;
@@ -46,9 +48,8 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
     
 #ifndef COMPILE_NO_SF
     you->messagePause();
-    actors.push_back(new SpeechBubble(sender->getMessage(),GREEN));
+    actors.push_back(new SpeechBubble(sender->getMessage(),sf::Color(0,255,0)));
 #endif
-    std::cout<<sender->getMessage()<<std::endl;
     unsigned int i;
     for (i=0;i<actors.size();i++)
       if (*(actors[i])==*sender) {

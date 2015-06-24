@@ -8,11 +8,12 @@ SpeechBubble::SpeechBubble() : Actor() {
   start_index=0;
 }
 
-SpeechBubble::SpeechBubble(Level* l, std::string s,sf::Color c) : Actor(l,0,500,700,100) {
+SpeechBubble::SpeechBubble(Level* l, std::string s,sf::Color c,EVE_CODE e) : Actor(l,0,500,700,100) {
   message = s;
   index = 0;
   start_index = 0;
   col = c;
+  eve = e;
   font.loadFromFile("../YSA_VB/YSA/Fonts/arial.ttf");
   text.setFont(font);
   text.setString("");
@@ -29,7 +30,7 @@ void windowEvent(sf::Event& event) {
     if (event.type==sf::Event::KeyPressed) {
       if (isPaused) {
 	isPaused=false;
-	start_index=index;
+	start_index+=index+2;
 	index=0;
 	if (start_index>=message.size()-1) {
 	  level->sendEvent(END_SPEECH,this);
@@ -37,23 +38,22 @@ void windowEvent(sf::Event& event) {
       }
       else {
 	isPaused=true;
-	while(message[index]!='.'&&message[index]!='?'&&message[index]!='!')
+	while(message[start_index+index+1]!=';')
 	  index++;
       }
     } 
   }
 }
+
 void render(sf::RenderWindow& window) {
   if (!isPaused)
     index++;
   text.setFont(message.subStr(start_index,index));
   window.draw(shape);
   window.draw(text);
-  if (message[start_index+index]=='.'||message[start_index+index]=='?'||
-      message[start_index+index]=='!') {
+  if (message[start_index+index+1]==';') {
     isPaused=true;
-  }
-    
-  
+  }  
 }
+
 #endif
