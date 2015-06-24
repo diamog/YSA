@@ -30,8 +30,12 @@ void Boss1::makePlatforms() {
   actors.push_back(new ColorPlatform(this,0,150,30,450,you)); //left wall
   actors.push_back(new ColorPlatform(this,670,30,30,570,you)); //right wall
   actors.push_back(new ColorPlat(this,30,570,740,you));
-  actors.push_back(new ColorPlat(this,250,500,40,you));
-  actors.push_back(new ColorPlat(this,590,200,40,you));
+  actors.push_back(new ColorPlat(this,130,290,40,you));
+  actors.push_back(new ColorPlat(this,220,420,40,you));
+  actors.push_back(new ColorPlat(this,380,95,40,you));
+  actors.push_back(new ColorPlat(this,380,370,40,you));
+  actors.push_back(new ColorPlat(this,550,480,40,you));
+  actors.push_back(new ColorPlat(this,570,250,40,you));
 }
 void Boss1::makeEnemies() {
   boss = new ColorBoss(this,700,-50,50,50,you);

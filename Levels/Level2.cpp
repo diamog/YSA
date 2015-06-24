@@ -17,11 +17,11 @@ Level2::Level2(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   }
   else if (ent== LOAD_1) {
     //Load into savepoint 1
-		you->setPosition(60,110);
+    you->setPosition(60,110);
   } 
-	else if(ent==EAST) {
-		you->setPosition(690,entery);
-	}
+  else if(ent==EAST) {
+    you->setPosition(690,entery);
+  }
   else
     throw THROW_ENTRANCE_ERROR;
 }
@@ -30,24 +30,24 @@ Level2::Level2(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
 void Level2::makePlatforms() {
   int width = 700;int height = 600;
   actors.push_back(new Platform(this,0,0,700,30,you));
-	actors.push_back(new ThinPlat(this,30,580,640,you));
+  actors.push_back(new ThinPlat(this,30,580,640,you));
   actors.push_back(new Platform(this,0,30,30,570,you));
   actors.push_back(new Platform(this,670,150,30,450,you));
-	actors.push_back(new Platform(this,30,510,400,30,you));
-	actors.push_back(new ThinPlat(this,30,430,70,you));
-	actors.push_back(new ThinPlat(this,30,360,70,you));
-	actors.push_back(new ThinPlat(this,30,290,70,you));
-	actors.push_back(new ThinPlat(this,30,220,70,you));
-	actors.push_back(new Platform(this,130,160,80,30,you));
-	actors.push_back(new Platform(this,230,270,80,30,you));
-	actors.push_back(new Platform(this,300,30,30,120,you));
-	actors.push_back(new Platform(this,550,30,30,100,you));
-	actors.push_back(new ThinPlat(this,450,127,70,you));
+  actors.push_back(new Platform(this,30,510,400,30,you));
+  actors.push_back(new ThinPlat(this,30,430,70,you));
+  actors.push_back(new ThinPlat(this,30,360,70,you));
+  actors.push_back(new ThinPlat(this,30,290,70,you));
+  actors.push_back(new ThinPlat(this,30,220,70,you));
+  actors.push_back(new Platform(this,130,160,80,30,you));
+  actors.push_back(new Platform(this,230,270,80,30,you));
+  actors.push_back(new Platform(this,300,30,30,120,you));
+  actors.push_back(new Platform(this,550,30,30,100,you));
+  actors.push_back(new ThinPlat(this,450,127,100,you));
   
 }
 void Level2::makeEnemies() {
-	actors.push_back(new DeathArea(this,30,540,400,40,you));
-	actors.push_back(new DeathArea(this,200,300,470,40,you));
+  actors.push_back(new DeathArea(this,30,540,400,40,you));
+  actors.push_back(new DeathArea(this,200,300,470,40,you));
 }
 void Level2::makeCollectables() {
   //Make the hints

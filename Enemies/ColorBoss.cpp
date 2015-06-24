@@ -21,7 +21,7 @@ ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) : Ene
 
 #ifndef COMPILE_NO_SF
 void ColorBoss::act(sf::Event& event) {
-	x+=vx;
+  x+=vx;
   y+=vy;
   Enemy::act(event);
 
@@ -29,13 +29,13 @@ void ColorBoss::act(sf::Event& event) {
   for (unsigned int i=0;i<you->getBullets().size();i++) {
     if (isRectangularHit(this,you->getBullets()[i])) {
       if (you->getBullets()[i]->getType()=="red")
-	color_hit(r);
+        color_hit(r);
       else if (you->getBullets()[i]->getType()=="green")
-	color_hit(g);
+        color_hit(g);
       else if (you->getBullets()[i]->getType()=="blue")
-	color_hit(b);
+        color_hit(b);
       else
-	continue;
+        continue;
       you->removeBullet(i);
       i--;      
     }
@@ -44,33 +44,34 @@ void ColorBoss::act(sf::Event& event) {
   getObjectCenter(you,youx,youy);
   float centerx,centery;
   getObjectCenter(this,centerx,centery);
-	
+        
   float dx = centerx-youx;
   float dy = centery-youy;
-	if (fabs(dx)<5)
+  if (fabs(dx)<5)
     dx=0;
   if (fabs(dy)<5)
     dy=0;
-	
-	float adx = fabs(dx)/50000;
-	float ady = fabs(dy)/50000;
-	if (dx<0)
-		vx+=adx;
-	else
-		vx-=adx;
-	if (dy<0)
-		vy+=ady;
-	else
-		vy-=ady;
-	if (vx>1)
+  
+  float adx = fabs(dx)/50000;
+  float ady = fabs(dy)/50000;
+  float damp = .01;
+  if (dx<0)
+    vx+=adx+(vx<0)*damp;
+  else
+    vx-=adx+(vx>0)*damp;
+  if (dy<0)
+    vy+=ady+(vy<0)*damp;
+  else
+    vy-=ady+(vy>0)*damp;
+  if (vx>1)
     vx=1;
-	else if (vx<-1)
-		vx=-1;
+  else if (vx<-1)
+    vx=-1;
   if (vy>1)
     vy=1;
-	else if (vy<-1)
-		vy=-1;
-	float accel_part = accel/fabs(dx+dy);
+  else if (vy<-1)
+    vy=-1;
+  float accel_part = accel/fabs(dx+dy);
   return;
   if (dx+dy==0)
     return;
