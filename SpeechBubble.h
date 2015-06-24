@@ -17,6 +17,7 @@ class SpeechBubble : public Actor{
  private:
   bool isPaused;
   std::string message;
+  int tick;
   int index;
   int start_index;
   sf::Color col;
