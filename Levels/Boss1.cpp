@@ -46,6 +46,7 @@ void Boss1::makeCollectables() {
   actors.push_back(new Crystal(this,30.0f+dx,500,10,30,you,"red"));
   actors.push_back(new Crystal(this,30.0f+dx*2,500,10,30,you,"green"));
   actors.push_back(new Crystal(this,30.0f+dx*3,500,10,30,you,"blue"));
+  buildExtra(35,635);
 }
 
 

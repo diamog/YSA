@@ -49,7 +49,7 @@ void Level1::makeCollectables() {
   actors.push_back(new Hint(this,540,350,30,you,"In mid air use the up arrow key to jump again.;"));
   actors.push_back(new Hint(this,250,150,30,you,
                             "The sooner you double jump the higher you will go.;"));
-
+  buildExtra(635,10);
 }
 
 void Level1::makeSwitches() {

@@ -29,7 +29,8 @@ class Level {
   void destroy();
 
   virtual bool isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type)=0;
-
+  
+  
 protected:
   void setup();
   virtual void makePlatforms() {};
@@ -38,7 +39,7 @@ protected:
   virtual void makeSwitches() {};
   virtual void makeDetectors() {};
   bool hasExtra();
-	void buildExtra(float x,float y);
+  void buildExtra(float x,float y);
   float x,y;
   std::vector<Actor*> actors;
   std::vector<Actor*> actors2; //to be sent to detectors

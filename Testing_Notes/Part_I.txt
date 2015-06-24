@@ -13,8 +13,13 @@ You
  --double jump (up in air)
  --drop beneath thin platforms (down on thin platform) 
  --descend faster (down in air)
+   **terminal velocity increases
+   **slight push downwards when down is hit
+   **If ascending will start descending
  --restart (R)
-
+   **return to last hit save point (or beginning if no save has been hit)
+ --pause (P)
+   **everything should lock up until P is hit again
 Save
  --locally (return to last save point when restarting)
 
@@ -24,12 +29,16 @@ Hints
  --pauses you until message is finished
 
 Platforms
- --Platforms stop motion through in all directions
+ --Platforms stop motion in all directions 
+ --Begin descending if walked off
+   **Can only double jump after this
  --Thin platforms can only be landed on and can be dropped through using down
- --Vertical Moving plaftforms can be landed on only and descended through 
+ --Vertical Moving platforms can be landed on only and descended through 
 
 Red Regions
- --Kill You on contact
+ --Kills You on contact
+ --Stops your motion and you dissapear
+ --death screen appears and you can only restart
 
 Color Boss
  --Color changing platforms change color with boss

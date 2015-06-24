@@ -105,11 +105,12 @@ void Level::render(sf::RenderWindow& window) {
     detectors[i]->render(window);
   */
 }
+#endif
 bool Level::hasExtra() {
   return you->hasExtra(me);
 }
+
 void Level::buildExtra(float x,float y) {
   if (!hasExtra())
     actors.push_back(new Extra(this,x,y,25,25,you));
 }
-#endif

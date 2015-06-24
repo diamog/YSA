@@ -51,6 +51,7 @@ void Level3::makeCollectables() {
   //Make the hints
   actors.push_back(new Hint(this,670,120,30,you,"Warning! Danger ahead proceed with caution.;"));
   actors.push_back(new Hint(this,425,200,30,you,"Hold the down key is mid air to fall faster.;"));
+  buildExtra(345,510);
 }
 
 void Level3::makeSwitches() {
