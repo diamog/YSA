@@ -2,13 +2,14 @@
 #include "ColorBoss.h"
 #include "../Extras/utilities.h"
 #include <cmath>
-
+#include "../Level.h"
 ColorBoss::ColorBoss() : Enemy(), Actor() {
   vx=vy=accel=0.0f;
   r=g=b=hit_amount=0;
 }
 
-ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) : Enemy(l,x_,y_,w,h,yo,16*3), Actor(l,x_,y_,w,h) {
+ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) : 
+  Enemy(l,x_,y_,w,h,yo,16*3), Actor(l,x_,y_,w,h) {
   r=g=b=255;
   accel=.001f;
   vx=vy=0;
@@ -17,11 +18,16 @@ ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) : Ene
   shape.setFillColor(sf::Color(r,g,b));
   shape.setRadius(width/2);
 #endif
+  hasMessaged=false;
 }
 
 void ColorBoss::act() {
   x+=vx;
   y+=vy;
+  if (getX2()<640&&getY1()>30&&!hasMessaged) {
+    level->sendEvent(MISCE_2,NULL);
+    hasMessaged=true;
+  }
   Enemy::act();
 
   //check if hit by color bullets

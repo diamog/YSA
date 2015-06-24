@@ -21,6 +21,7 @@ class ColorBoss : public Enemy{
   void color_hit(int& color);
 
  protected:
+  bool hasMessaged;
   float vx,vy;
   float accel;
   int  r,g,b;

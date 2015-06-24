@@ -90,6 +90,19 @@ void Boss1::sendEvent(EVE_CODE eve, Actor* sender) {
     getObjectCenter(sender,cx,cy);
     you->addBullet(new ColorBullet(this,cx,cy,5,5,sender->getMessage(),boss,sender->getVal()));
   }
+  else if (eve==MISCE_2) {
+#ifndef COMPILE_NO_SF
+    you->messagePause();
+    actors.push_back(new SpeechBubble(this,"Erk! What is THAT?!;",
+				      sf::Color(255,255,0),MISCE_3));
+#endif
+  }
+  else if (eve==MISCE_3) {
+#ifndef COMPILE_NO_SF
+    actors.push_back(new SpeechBubble(this,"COLOR!!! MUST EAT COLOR!!!;",
+				      sf::Color(255,255,255)));
+#endif
+  }
   else
     Level::sendEvent(eve,sender);
 
