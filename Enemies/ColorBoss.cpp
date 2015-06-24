@@ -19,11 +19,10 @@ ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) : Ene
 #endif
 }
 
-#ifndef COMPILE_NO_SF
-void ColorBoss::act(sf::Event& event) {
+void ColorBoss::act() {
   x+=vx;
   y+=vy;
-  Enemy::act(event);
+  Enemy::act();
 
   //check if hit by color bullets
   for (unsigned int i=0;i<you->getBullets().size();i++) {
@@ -80,7 +79,7 @@ void ColorBoss::act(sf::Event& event) {
   vy -=accel_part*dy;
   
 }
-
+#ifndef COMPILE_NO_SF
 void ColorBoss::render(sf::RenderWindow& window) {
   shape.setPosition(x,y);
   window.draw(shape);

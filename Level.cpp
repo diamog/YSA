@@ -71,20 +71,19 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
     delete sender;
   }
 }
-#ifndef COMPILE_NO_SF
-void Level::act(sf::Event& event) {
-  
+void Level::act() {
   for (unsigned int i =0;i<actors.size();i++)
     if (!you->isPauseM()||!actors[i]->doesPause())
-      actors[i]->act(event);
+      actors[i]->act();
   for (unsigned int i =0;i<actors2.size();i++)
     if (!you->isPauseM()||!actors[i]->doesPause())
-      actors2[i]->act(event);
+      actors2[i]->act();
   for (unsigned int i=0;i<detectors.size();i++)
     if (!you->isPauseM()||!actors[i]->doesPause())
-      detectors[i]->act(event);
+      detectors[i]->act();
 }
 
+#ifndef COMPILE_NO_SF
 void Level::render(sf::RenderWindow& window) {
   for (unsigned int i=0;i<actors.size();i++)
     actors[i]->render(window);

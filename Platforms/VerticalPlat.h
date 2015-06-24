@@ -9,9 +9,9 @@ public:
   VertPlat();
   VertPlat(Level* l, float x_,float y_,float w,You* yo,bool isV);
 
+  void act();
 #ifndef COMPILE_NO_SF
-	void act(sf::Event& event);
-	void render(sf::RenderWindow& window);
+  void render(sf::RenderWindow& window);
 #endif
 
 	void hitDetector(int dir);

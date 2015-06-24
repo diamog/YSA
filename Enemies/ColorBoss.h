@@ -8,9 +8,9 @@ class ColorBoss : public Enemy{
  public:
   ColorBoss();
   ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo);
-  
+
+  void act();  
 #ifndef COMPILE_NO_SF
-  void act(sf::Event& event);
   void render(sf::RenderWindow& window);
 #endif
   bool isAlive() {return r>0||g>0||b>0;}

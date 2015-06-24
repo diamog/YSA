@@ -18,8 +18,7 @@ Platform::Platform(Level* l, float x_,float y_,float w,float h,You* yo) : Actor(
   isLeft = isRight= isUp = isDown = true;
 }
 
-#ifndef COMPILE_NO_SF
-void Platform::act(sf::Event& event) {
+void Platform::act() {
   if (isRectangularHit(you,this)) {
     int dir = getApproachDirection(you,this);
     if (dir==0&& isUp)
@@ -33,6 +32,7 @@ void Platform::act(sf::Event& event) {
   }
 }
 
+#ifndef COMPILE_NO_SF
 void Platform::render(sf::RenderWindow& window) {
 	
   window.draw(shape);

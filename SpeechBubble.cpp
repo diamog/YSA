@@ -24,7 +24,7 @@ SpeechBubble::SpeechBubble(Level* l, std::string s,sf::Color c) : Actor(l,0,500,
   shape.setPosition(x,y);
   shape.setSize(width,height);
 }
-void act(sf::RenderWindow& window, sf::Event& event) {
+void windowEvent(sf::Event& event) {
   while (window.pollEvent(event)) {
     if (event.type==sf::Event::KeyPressed) {
       if (isPaused) {

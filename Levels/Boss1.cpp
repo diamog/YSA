@@ -53,9 +53,8 @@ Level* makeBoss1(You* yo, float x, float y, ENT_CODE ent) {
   return new Boss1(yo,x,y,ent);
 }
 
-#ifndef COMPILE_NO_SF
-void Boss1::act(sf::Event& event) {
-  Level::act(event);
+void Boss1::act() {
+  Level::act();
   if (boss!=NULL) {
     bool isAlive = boss->isAlive();
     if (isAlive) {
@@ -69,7 +68,6 @@ void Boss1::act(sf::Event& event) {
   }
 }
 
-#endif
 bool Boss1::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
   if (you->getX2()<0) {
     next_level=MOVING;

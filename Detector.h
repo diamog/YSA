@@ -11,9 +11,9 @@ class Detector : public Actor{
 
   virtual S_CODE getSave() {throw "ERROR: is not a save object\n";}
 
-	
+  void act();
+  	
 #ifndef COMPILE_NO_SF
-  void act(sf::Event& event);
   void render(sf::RenderWindow& window);
 #endif
  protected:

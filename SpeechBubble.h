@@ -9,6 +9,8 @@ class SpeechBubble : public Actor{
   SpeechBubble(std::string s,sf::Color c);
 
   bool doesPause() {return false;}
+  void act();
+  void windowEvent(sf::Event& event);
   void render(sf::RenderWindow& window);
 
  private:

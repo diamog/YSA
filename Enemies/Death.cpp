@@ -11,10 +11,8 @@ Death::Death(Level* l, float x_,float y_,float w,float h, You* yo) : Actor(l,x_,
   you = yo;
 }
 
-#ifndef COMPILE_NO_SF
-void Death::act(sf::Event& event) {
+void Death::act() {
   if (isRectangularHit(you,this)) {
     you->die();
   }
 }
-#endif

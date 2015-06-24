@@ -16,8 +16,7 @@ ColorBullet::ColorBullet(Level* l,float x_, float y_, float w, float h,
 #endif
 }
 
-#ifndef COMPILE_NO_SF
-void ColorBullet::act(sf::Event& event) {
+void ColorBullet::act() {
   float cx,cy;
   getObjectCenter(this,cx,cy);
   float bx,by;
@@ -34,4 +33,3 @@ void ColorBullet::act(sf::Event& event) {
     y-=1;
 }
 
-#endif

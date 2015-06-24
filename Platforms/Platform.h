@@ -9,8 +9,8 @@ class Platform : virtual public Actor {
   Platform();
   Platform(Level* l, float x_,float y_,float w,float h,You* yo);
 
+  void act();
 #ifndef COMPILE_NO_SF
-  void act(sf::Event& event);
   void render(sf::RenderWindow& window);
 #endif
 

@@ -13,9 +13,7 @@ class Boss1 : public Level {
 
   bool isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type);
 
-#ifndef COMPILE_NO_SF
-  void act(sf::Event& event);
-#endif
+  void act();
 
   void sendEvent(EVE_CODE eve, Actor* sender);
  protected:

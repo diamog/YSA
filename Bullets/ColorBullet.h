@@ -11,9 +11,7 @@ public:
   ColorBullet();
   ColorBullet(Level* l,float x_, float y_, float w, float h,
               std::string t,ColorBoss* b, int c);
-#ifndef COMPILE_NO_SF
-  void act(sf::Event& event);
-#endif
+  void act();
 
 protected:
   ColorBoss* target;

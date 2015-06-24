@@ -44,9 +44,9 @@ You::~You() {
   bullets.clear();
 }
 
+void You::act() {
+  Mover::act();
 #ifndef COMPILE_NO_SF
-void You::act(sf::Event& event) {
-  Mover::act(event);
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
     if (isJump==0) {
       platx1=platx2=0;
@@ -83,7 +83,7 @@ void You::act(sf::Event& event) {
     x-=dx;
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     x+=dx;
-
+#endif
   if ((x>platx2 || x+width<platx1)&&platx1!=platx2) {
     isJump=2;
     platx1=platx2=0;
@@ -95,6 +95,7 @@ void You::act(sf::Event& event) {
     dy=downLimit;	
 }
 
+#ifndef COMPILE_NO_SF
 void You::render(sf::RenderWindow& window) {
   shape.setPosition(x,y);
   if ((*isDead&&alpha>0)||alpha==256) {

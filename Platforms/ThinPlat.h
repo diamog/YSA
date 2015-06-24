@@ -8,9 +8,7 @@ class ThinPlat : public Platform {
   ThinPlat();
   ThinPlat(Level* l, float x_,float y_,float w,You* yo);
 
-#ifndef COMPILE_NO_SF
-  void act(sf::Event& event);
-#endif
+  void act();
 };
 
 #endif

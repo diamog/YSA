@@ -14,19 +14,16 @@ void Enemy::hit() {
   hp--;
 }
 
-#ifndef COMPILE_NO_SF
-
-void Enemy::act(sf::Event& event) {
-  Mover::act(event);
-  Death::act(event);
+void Enemy::act() {
+  Mover::act();
+  Death::act();
   //Check if hit by you's bullets
   for (unsigned int i=0;i<you->getBullets().size();i++)
     if (isRectangularHit(this,you->getBullets()[i])) 
       if (you->getBullets()[i]->getType()=="you") {
-				hit();
-				you->removeBullet(i);
-				i--;
+        hit();
+        you->removeBullet(i);
+        i--;
       }
   
 }
-#endif

@@ -34,9 +34,9 @@ int main() {
     sf::Event event;
     if (!you->isPause()) {
       if (*isDead==false) {
-	you->act(event);
+	you->act();
       }
-      level->act(event);
+      level->act();
     }
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed)

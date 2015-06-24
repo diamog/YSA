@@ -16,8 +16,8 @@ public:
   float getPlatX2() {return platx2;}		
 	
   void setPosition(float x_, float y_);
+  void act();
 #ifndef COMPILE_NO_SF
-  void act(sf::Event& event);
   void render(sf::RenderWindow& window);
 #endif
 

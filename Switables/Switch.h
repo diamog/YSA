@@ -10,11 +10,8 @@ class Switch : public Actor {
   Switch();
   Switch(Level* l, float x_, float y_, float w, float h, You* yo);
 
-  #ifndef COMPILE_NO_SF
-  void act(sf::Event& event);
-  void render(sf::RenderWindow& window);
-  #endif
- protected:
+  void act();
+protected:
   You* you;
   EVENT_CODE eve;
 };

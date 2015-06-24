@@ -14,9 +14,7 @@ class Mover : public virtual Actor {
   float getLastY1() const {return lasty;}
   float getLastY2() const {return lasty+height;}
 	
-#ifndef COMPILE_NO_SF
-  void act(sf::Event& event);
-#endif
+  void act();
 
  protected:
   float lastx,lasty;

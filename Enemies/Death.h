@@ -8,9 +8,7 @@ class Death : public virtual Actor {
   Death();
   Death(Level* l, float x_,float y_,float w,float h, You* yo);
 
-#ifndef COMPILE_NO_SF  
-  void act(sf::Event& event);
-#endif
+  void act();
  protected:
   You* you;
 };
