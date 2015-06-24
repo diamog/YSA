@@ -84,6 +84,16 @@ void Level::act() {
 }
 
 #ifndef COMPILE_NO_SF
+
+void windowEvent(sf::Event& event) {
+  for (unsigned int i=0;i<actors.size();i++)
+    actors[i]->windowEvent(event);
+  for (unsigned int i=0;i<actors2.size();i++)
+    actors2[i]->windowEvent(event);
+  for (unsigned int i=0;i<detectors.size();i++)
+    detectors[i]->windowEvent(event);
+  
+}
 void Level::render(sf::RenderWindow& window) {
   for (unsigned int i=0;i<actors.size();i++)
     actors[i]->render(window);

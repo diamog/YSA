@@ -1,0 +1,8 @@
+ROOM_1
+What? Where am I? Why is the world so bland?; AND WHY AM I A YELLOW SQUARE?!;
+(Creature flies by)
+Woah... What was that? I guess I should follow it and ask it what is going on.;
+
+BOSS_1
+Erk! What is THAT?!;
+CB - COLOR!!! MUST EAT COLOR!!!;

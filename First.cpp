@@ -34,7 +34,7 @@ int main() {
     sf::Event event;
     if (!you->isPause()) {
       if (*isDead==false) {
-	you->act();
+        you->act();
       }
       level->act();
     }
@@ -56,6 +56,7 @@ int main() {
           event.key.code ==sf::Keyboard::P) {
         you->pause();
       }
+      level->windowEvent(event);
       
     }
     L_CODE next_level;

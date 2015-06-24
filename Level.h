@@ -22,6 +22,7 @@ class Level {
   virtual void act();
 
 #ifndef COMPILE_NO_SF
+  void windowEvent(sf::Event& event); 
   virtual void render(sf::RenderWindow& window);
 #endif
   virtual void sendEvent(EVE_CODE eve, Actor* sender);
