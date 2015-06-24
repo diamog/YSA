@@ -23,6 +23,7 @@ class SpeechBubble : public Actor{
   sf::Color col;
   sf::Font font;
   sf::Text text;
+  sf::Text next_text;
   sf::RectangleShape shape;
   EVE_CODE eve;
 

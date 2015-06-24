@@ -16,13 +16,20 @@ SpeechBubble::SpeechBubble(Level* l, std::string s,sf::Color c,EVE_CODE e) : Act
   col = c;
   eve = e;
   tick=0;
+
   font.loadFromFile("../YSA_VB/YSA/Fonts/arial.ttf");
   text.setFont(font);
   text.setString("");
   text.setCharacterSize(15);
   text.setColor(col);
-  text.setPosition(10,510);
-  
+  text.setPosition(x+10,y+10);
+
+  next_text.setFont(font);
+  next_text.setString("Press any key to continue\n");
+  next_text.setCharacterSize(12);
+  next_text.setColor(sf::Color(0,0,0));
+  next_text.setPosition(x+10,getY2()-22);
+
   shape.setFillColor(sf::Color(0,0,150,255/2));
   shape.setPosition(x,y);
   shape.setSize(width,height);

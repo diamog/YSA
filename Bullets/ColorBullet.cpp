@@ -6,8 +6,8 @@ ColorBullet::ColorBullet() : Bullet(), Actor() {
 }
 
 ColorBullet::ColorBullet(Level* l,float x_, float y_, float w, float h,
-			 std::string t,ColorBoss* b, int c) : Bullet(l,x_,y_,w,h,t), 
-  Actor(l,x_,y_,w,h) {
+			 std::string t,ColorBoss* b, int c) : 
+  Bullet(l,x_,y_,w,h,t), Actor(l,x_,y_,w,h) {
   target=b;
   color=c;
 #ifndef COMPILE_NO_SF
