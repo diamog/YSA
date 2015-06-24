@@ -1,0 +1,54 @@
+------------------------Features Completed------------------------------
+Room 1-3 & Boss room
+ --all movements between rooms (cannot leave Boss room)
+ --no way to escape outside of the rooms
+   * by changing rooms
+   * by going through objects
+ --no visible slowdown as moving in and out of rooms many times 
+   * ensures no memory leaks
+
+You
+ --run (left and right)
+ --jump (up)
+ --double jump (up in air)
+ --drop beneath thin platforms (down on thin platform) 
+ --descend faster (down in air)
+ --restart (R)
+
+Save
+ --locally (return to last save point when restarting)
+
+Hints
+ --dissapear on contact
+ --create a message that is escapable
+ --pauses you until message is finished
+
+Platforms
+ --Platforms stop motion through in all directions
+ --Thin platforms can only be landed on and can be dropped through using down
+ --Vertical Moving plaftforms can be landed on only and descended through 
+
+Red Regions
+ --Kill You on contact
+
+Color Boss
+ --Color changing platforms change color with boss
+ --Crystals when hit shoot bullet at boss which reduces correct color
+ --Color Boss is not too sadistically chasing you 
+     *basically is within reason of difficulty
+
+Story
+ --Message appears when starting game
+ --Message appears when boss is visible
+ --Messages can be rushed and continued with any key
+  
+----------------------Known Bugs------------------------
+ --Vertical moving platforms cannot be dropped beneath if moving downward
+   ***Is this a bug or a feature?! I'm not even sure.
+
+-------------------Unfinished Features-------------------------
+ --creature does not come out that is referenced in first story messages
+ --extra collectables in each room
+ 
+----------------------Final Notes---------------------------
+Any design notes on motion and game style would be best now while its easy to change. If anything is too difficult please note it, its only the first part of the game it shouldn't be that bad (except maybe the boss). Levels should be traversable in both directions (although may be much harder backwards). 
