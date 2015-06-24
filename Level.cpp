@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 #include "Level.h"
-
+#include "Switables\Extra.h"
 Level::Level() {
   you = NULL;
   x=y=0;
@@ -83,11 +83,11 @@ void Level::render(sf::RenderWindow& window) {
     detectors[i]->render(window);
   */
 }
-void Level::hasExtra() {
+bool Level::hasExtra() {
   return you->hasExtra(me);
 }
 void Level::buildExtra(float x,float y) {
   if (!hasExtra())
-    actors.push_back(new Extra(this,x,y,25,25,you);
+    actors.push_back(new Extra(this,x,y,25,25,you));
 }
 #endif

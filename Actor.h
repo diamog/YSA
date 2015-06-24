@@ -30,10 +30,10 @@ class Actor {
   friend bool operator==(const Actor& a1, const Actor& a2) {
     return a1.x==a2.x && a1.y == a2.y && a1.width==a2.width && a1.height==a2.height; 
   }
-  virtual void setColor(int r, int g, int b) {};
+	virtual void setColor(int r, int g, int b) {}
   virtual void hitDetector(int dir) {}
-  virtual std::string getMessage() {return "";};
-  virtual int getVal() {};
+  virtual std::string getMessage() {return "";}
+  virtual int getVal() {return 0;}
 #ifndef COMPILE_NO_SF
   virtual void act(sf::Event& event) = 0;
   virtual void render(sf::RenderWindow& window) = 0;

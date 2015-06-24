@@ -37,6 +37,7 @@ protected:
   virtual void makeSwitches() {};
   virtual void makeDetectors() {};
   bool hasExtra();
+	void buildExtra(float x,float y);
   float x,y;
   std::vector<Actor*> actors;
   std::vector<Actor*> actors2; //to be sent to detectors
