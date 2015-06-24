@@ -32,8 +32,10 @@ int main() {
 #ifndef COMPILE_NO_SF
   while (window.isOpen()) {
     sf::Event event;
-    if (*isDead==false) {
-      you->act(event);
+    if (!you->isPause()) {
+      if (*isDead==false) {
+	you->act(event);
+      }
       level->act(event);
     }
     while (window.pollEvent(event)) {
@@ -47,9 +49,14 @@ int main() {
         you->reload();
       }
       if (event.type == sf::Event::KeyPressed&&
-          event.key.code ==sf::Keyboard::P) {
+          event.key.code ==sf::Keyboard::O) {
         you->print();
       }
+      if (event.type == sf::Event::KeyPressed&&
+          event.key.code ==sf::Keyboard::P) {
+        you->pause();
+      }
+      
     }
     L_CODE next_level;
     ENT_CODE ent;

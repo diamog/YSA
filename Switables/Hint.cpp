@@ -1,13 +1,12 @@
 #include "stdafx.h"
 #include "Hint.h"
 
-Hint::Hint() : Collectable() {
+Hint::Hint() : Collectable(){
   message = "EMPTY";
 }
 
 Hint::Hint(Level* l, float x_, float y_, float w, You* yo, std::string m) 
-  : Collectable(l,x_,y_,w,2,yo) {
-	x = x_; y= y_;width=height =w;
+  : Collectable(l,x_,y_,w,w,yo) {
   message = m;
   eve = SPEECH;
 #ifndef COMPILE_NO_SF
@@ -27,7 +26,7 @@ Hint::Hint(Level* l, float x_, float y_, float w, You* yo, std::string m)
 
 #ifndef COMPILE_NO_SF
 void Hint::render(sf::RenderWindow & window) {
-	window.draw(shape);
-	window.draw(mark);
+  window.draw(shape);
+  window.draw(mark);
 }
 #endif

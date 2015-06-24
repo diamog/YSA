@@ -1,7 +1,11 @@
 #include "stdafx.h"
 
 #include "Level.h"
-#include "Switables\Extra.h"
+#ifndef COMPILE_NO_VB
+#include "Switables/Extra.h"
+#else
+#include "Extra.h"
+#endif
 Level::Level() {
   you = NULL;
   x=y=0;
@@ -39,10 +43,11 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
   }
   else if (eve == SPEECH) {
     //Tutorial on moving or jumping
-    /*
-      all.off();
-      actors.push_back(new SpeechBubble(sender->getMessage(),GREEN));
-    */
+    
+#ifndef COMPILE_NO_SF
+    you->messagePause();
+    actors.push_back(new SpeechBubble(sender->getMessage(),GREEN));
+#endif
     std::cout<<sender->getMessage()<<std::endl;
     unsigned int i;
     for (i=0;i<actors.size();i++)
@@ -51,6 +56,9 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
       }
     actors.erase(actors.begin()+i);
     delete sender;
+  }
+  else if (eve==END_SPEECH) {
+    you->messagePause();
   }
   else if (eve == EXTRA) {
     you->getExtra(me);
@@ -65,12 +73,16 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
 }
 #ifndef COMPILE_NO_SF
 void Level::act(sf::Event& event) {
+  
   for (unsigned int i =0;i<actors.size();i++)
-    actors[i]->act(event);
+    if (!you->isPauseM()||!actors[i]->doesPause())
+      actors[i]->act(event);
   for (unsigned int i =0;i<actors2.size();i++)
-    actors2[i]->act(event);
+    if (!you->isPauseM()||!actors[i]->doesPause())
+      actors2[i]->act(event);
   for (unsigned int i=0;i<detectors.size();i++)
-    detectors[i]->act(event);
+    if (!you->isPauseM()||!actors[i]->doesPause())
+      detectors[i]->act(event);
 }
 
 void Level::render(sf::RenderWindow& window) {

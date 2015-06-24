@@ -4,13 +4,15 @@
 You::You() : Mover() {
   isJump=0;
   platx1=platx2=0;
-	alpha=100;
+  alpha=255;
+  isPaused=isMessagePaused=false;
 }
 
 You::You(float x_, float y_, float w, float h, bool* isD) : Mover(NULL,x_,y_,w,h), Actor(NULL,x_,y_,w,h) {
   savepoint = ROOM_3;
   isDead = isD;
   alpha=255;
+  isPaused=isMessagePaused=false;
 #ifndef COMPILE_NO_SF
   shape.setSize(sf::Vector2f(width,height));
   shape.setFillColor(sf::Color(255,255,0));

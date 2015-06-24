@@ -21,6 +21,10 @@ public:
   void render(sf::RenderWindow& window);
 #endif
 
+  void pause() {isPaused=!isPaused;}
+  void messagePause() {isMessagePaused=!isMessagePaused;}
+  bool isPause() {return isPaused;}
+  bool isPauseM() {return isMessagePaused;}
   S_CODE getSave() {return savepoint;}
   bool hasExtra(L_CODE l) {return extras.find(l)!=extras.end();}
   void getExtra(L_CODE l) {extras.insert(l);}
@@ -38,6 +42,8 @@ public:
     
   void print();
  private:
+  bool isPaused;
+  bool isMessagePaused;
   S_CODE savepoint;
   int deaths;
 #ifndef COMPILE_NO_SF

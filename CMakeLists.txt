@@ -6,6 +6,7 @@ add_definitions(-DCOMPILE_NO_VB)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(Levels)
+include_directories(Switables)
 
 add_subdirectory(Extras)
 add_subdirectory(Bullets)
@@ -22,6 +23,7 @@ set(ROOT_SOURCES
   Bullet.cpp
   You.cpp
   First.cpp
+  SpeechBubble.cpp
 )
 
 add_executable(YSA ${ROOT_SOURCES})
