@@ -6,6 +6,7 @@ You::You() : Mover() {
   platx1=platx2=0;
   alpha=255;
   isPaused=isMessagePaused=false;
+  isColor=isCloud=isPump=isCat=isFire=isColor2=false;
 }
 
 You::You(float x_, float y_, float w, float h, bool* isD) : Mover(NULL,x_,y_,w,h), Actor(NULL,x_,y_,w,h) {
@@ -13,6 +14,7 @@ You::You(float x_, float y_, float w, float h, bool* isD) : Mover(NULL,x_,y_,w,h
   isDead = isD;
   alpha=255;
   isPaused=isMessagePaused=false;
+  isColor=isCloud=isPump=isCat=isFire=isColor2=false;
 #ifndef COMPILE_NO_SF
   shape.setSize(sf::Vector2f(width,height));
   shape.setFillColor(sf::Color(255,255,0));

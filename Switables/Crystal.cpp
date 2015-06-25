@@ -23,7 +23,12 @@ Crystal::Crystal(Level* l, float x_, float y_, float w, float h, You* yo, std::s
 
 }
 
-
+void Crystal::setPosition(float x_, float y_) {
+  Actor::setPosition(x_,y_);
+#ifndef COMPILE_NO_SF
+  shape.setPosition(x,y);
+#endif
+}
 #ifndef COMPILE_NO_SF
 void Crystal::render(sf::RenderWindow & window) {
 	window.draw(shape);

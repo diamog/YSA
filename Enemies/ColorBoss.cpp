@@ -89,13 +89,13 @@ void ColorBoss::act() {
 #ifndef COMPILE_NO_SF
 void ColorBoss::render(sf::RenderWindow& window) {
 	
-	float cx,cy;
-	getObjectCenter(this,cx,cy);
-	float mag = sqrt(vx*vx+vy*vy)*100;
-	float angle = atan2(vy,vx);
-	float x2 = cx-mag*cos(angle);
-	float y2 = cy-mag*sin(angle);
-	sf::Vertex line[] =
+  float cx,cy;
+  getObjectCenter(this,cx,cy);
+  float mag = sqrt(vx*vx+vy*vy)*100;
+  float angle = atan2(vy,vx);
+  float x2 = cx-mag*cos(angle);
+  float y2 = cy-mag*sin(angle);
+  sf::Vertex line[] =
   {
     sf::Vertex(sf::Vector2f(cx, cy)),
     sf::Vertex(sf::Vector2f(x2, y2))

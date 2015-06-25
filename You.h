@@ -40,6 +40,20 @@ public:
   const std::vector<Bullet*>& getBullets() {return bullets;}
   void removeBullet(int i) {delete bullets[i];bullets.erase(bullets.begin()+i);};	
     
+
+  bool boss1() {return isColor;}
+  bool boss2() {return isCloud;}
+  bool boss3() {return isPump;}
+  bool boss4() {return isCat;}
+  bool boss5() {return isFire;}
+  bool boss6() {return isColor2;}
+  void beatBoss1() {isColor=true;}
+  void beatBoss2() {isCloud=true;}
+  void beatBoss3() {isPump=true;}
+  void beatBoss4() {isCat=true;}
+  void beatBoss5() {isFire=true;}
+  void beatBoss6() {isColor2=true;}
+
   void print();
  private:
   bool isPaused;
@@ -62,7 +76,7 @@ public:
   int alpha;
   std::vector<Bullet*> bullets;
   std::set<L_CODE> extras;
-  
+  bool isColor,isCloud,isPump,isCat,isFire,isColor2;
 };
 
 #endif

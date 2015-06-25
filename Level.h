@@ -28,6 +28,7 @@ class Level {
   virtual void sendEvent(EVE_CODE eve, Actor* sender);
   void destroy();
 
+  void remove(Actor* actor);
   virtual bool isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type)=0;
   
   

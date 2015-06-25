@@ -38,6 +38,15 @@ void Level::destroy() {
   actors.clear();
 }
 
+void Level::remove(Actor* actor) {
+  unsigned int i;
+  for (i=0;i<actors.size();i++) 
+    if (*(actors[i])==*actor)
+      break;
+  actors.erase(actors.begin()+i);
+  delete actor;
+}
+  
 void Level::sendEvent(EVE_CODE eve, Actor* sender) {
   if (eve == SAVE) {
     S_CODE s = sender->getSave();
@@ -51,32 +60,16 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
     actors.push_back(new SpeechBubble(this,sender->getMessage(),sf::Color(0,255,0)));
 #endif
     unsigned int i;
-    for (i=0;i<actors.size();i++)
-      if (*(actors[i])==*sender) {
-	break;
-      }
-    actors.erase(actors.begin()+i);
-    delete sender;
+    remove(sender);
   }
   else if (eve==END_SPEECH) {
     you->messagePause();
-		unsigned int i=0;
-		for (i=0;i<actors.size();i++)
-      if (*(actors[i])==*sender) {
-	break;
-      }
-    actors.erase(actors.begin()+i);
-    delete sender;
+    remove(sender);
   }
   else if (eve == EXTRA) {
     you->getExtra(me);
     unsigned int i;
-    for (i=0;i<actors.size();i++)
-      if (*(actors[i])==*sender) {
-	break;
-      }
-    actors.erase(actors.begin()+i);
-    delete sender;
+    remove(sender);
   }
 }
 void Level::act() {
