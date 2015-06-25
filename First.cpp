@@ -34,7 +34,8 @@ int main() {
     sf::Event event;
     if (!you->isPause()) {
       if (*isDead==false) {
-        you->act();
+				if (!you->isPauseM())
+					you->act();
       }
       level->act();
     }
@@ -42,7 +43,7 @@ int main() {
       if (event.type == sf::Event::Closed)
         window.close();
       if (event.type == sf::Event::KeyPressed&&
-          event.key.code ==sf::Keyboard::R) {
+          event.key.code ==sf::Keyboard::R&&!you->isPause()&& !you->isPauseM()) {
         delete level;
         level = loadLevel(you,you->getSave());
         *isDead=false;

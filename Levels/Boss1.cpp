@@ -5,6 +5,7 @@
 #include "../Enemies/ColorBoss.h"
 #include "../Bullets/ColorBullet.h"
 #include "../Extras/utilities.h"
+#include "../SpeechBubble.h"
 #include <iostream>
 
 Boss1::Boss1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
@@ -43,10 +44,10 @@ void Boss1::makeEnemies() {
 }
 void Boss1::makeCollectables() {
   int dx = 740/4;
-  actors.push_back(new Crystal(this,30.0f+dx,500,10,30,you,"red"));
-  actors.push_back(new Crystal(this,30.0f+dx*2,500,10,30,you,"green"));
-  actors.push_back(new Crystal(this,30.0f+dx*3,500,10,30,you,"blue"));
-  buildExtra(35,635);
+  actors.push_back(new Crystal(this,30.0f+dx,500,20,60,you,"red"));
+  actors.push_back(new Crystal(this,30.0f+dx*2,500,20,60,you,"green"));
+  actors.push_back(new Crystal(this,30.0f+dx*3,500,20,60,you,"blue"));
+  buildExtra(635,35);
 }
 
 
@@ -90,6 +91,10 @@ void Boss1::sendEvent(EVE_CODE eve, Actor* sender) {
     float cx,cy;
     getObjectCenter(sender,cx,cy);
     you->addBullet(new ColorBullet(this,cx,cy,5,5,sender->getMessage(),boss,sender->getVal()));
+		
+		float xnew = rand()%600+50;
+		float ynew = rand()%400+100;
+		sender->setPosition(xnew,ynew);
   }
   else if (eve==MISCE_2) {
 #ifndef COMPILE_NO_SF
@@ -99,6 +104,13 @@ void Boss1::sendEvent(EVE_CODE eve, Actor* sender) {
 #endif
   }
   else if (eve==MISCE_3) {
+		unsigned int i;
+    for (i=0;i<actors.size();i++)
+      if (*(actors[i])==*sender) {
+	break;
+      }
+    actors.erase(actors.begin()+i);
+    delete sender;
 #ifndef COMPILE_NO_SF
     actors.push_back(new SpeechBubble(this,"COLOR!!! MUST EAT COLOR!!!;",
 				      sf::Color(255,255,255)));

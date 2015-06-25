@@ -13,7 +13,7 @@ ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) :
   r=g=b=255;
   accel=.001f;
   vx=vy=0;
-  hit_amount=15;
+  hit_amount=20;
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(r,g,b));
   shape.setRadius(width/2);
@@ -59,7 +59,7 @@ void ColorBoss::act() {
   
   float adx = fabs(dx)/50000;
   float ady = fabs(dy)/50000;
-  float damp = .01;
+  float damp = .005;
   if (dx<0)
     vx+=adx+(vx<0)*damp;
   else
@@ -68,14 +68,15 @@ void ColorBoss::act() {
     vy+=ady+(vy<0)*damp;
   else
     vy-=ady+(vy>0)*damp;
-  if (vx>1)
-    vx=1;
-  else if (vx<-1)
-    vx=-1;
-  if (vy>1)
-    vy=1;
-  else if (vy<-1)
-    vy=-1;
+	float limit=.8;
+  if (vx>limit)
+    vx=limit;
+  else if (vx<-limit)
+    vx=-limit;
+  if (vy>limit)
+    vy=limit;
+  else if (vy<-limit)
+    vy=-limit;
   float accel_part = accel/fabs(dx+dy);
   return;
   if (dx+dy==0)
@@ -87,6 +88,20 @@ void ColorBoss::act() {
 }
 #ifndef COMPILE_NO_SF
 void ColorBoss::render(sf::RenderWindow& window) {
+	
+	float cx,cy;
+	getObjectCenter(this,cx,cy);
+	float mag = sqrt(vx*vx+vy*vy)*100;
+	float angle = atan2(vy,vx);
+	float x2 = cx-mag*cos(angle);
+	float y2 = cy-mag*sin(angle);
+	sf::Vertex line[] =
+  {
+    sf::Vertex(sf::Vector2f(cx, cy)),
+    sf::Vertex(sf::Vector2f(x2, y2))
+  };
+
+  window.draw(line, 2, sf::Lines);
   shape.setPosition(x,y);
   window.draw(shape);
 }

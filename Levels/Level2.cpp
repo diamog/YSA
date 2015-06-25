@@ -53,7 +53,7 @@ void Level2::makeCollectables() {
   //Make the hints
   actors.push_back(new Hint(this,440,540,30,you,"Becareful these red portions will kill you!;"));
   actors.push_back(new Hint(this,50,330,30,you,"Thin platforms can be jumped through;"));
-  actors.push_back(new Hint(this,520,135,30,you,"Press down on thin platforms to drop beneath them.;"));
+  actors.push_back(new Hint(this,490,135,30,you,"Press down on thin platforms to drop beneath them.;"));
   buildExtra(635,345);
 }
 

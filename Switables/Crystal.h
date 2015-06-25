@@ -11,7 +11,7 @@ class Crystal : public Collectable {
 
   std::string getMessage() {return type;}
   void activate();
-
+	void setPosition(float x_, float y_) {Actor::setPosition(x_,y_);shape.setPosition(x,y);}
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
 #endif

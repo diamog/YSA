@@ -10,7 +10,7 @@ class SpeechBubble : public Actor{
   SpeechBubble(Level* l,std::string s,sf::Color c,EVE_CODE e = END_SPEECH);
 
   bool doesPause() {return false;}
-  void act();
+	void act() {};
   void windowEvent(sf::Event& event);
   void render(sf::RenderWindow& window);
 
@@ -26,7 +26,7 @@ class SpeechBubble : public Actor{
   sf::Text next_text;
   sf::RectangleShape shape;
   EVE_CODE eve;
-
+	int total_tick;
 };
 #endif
 #endif

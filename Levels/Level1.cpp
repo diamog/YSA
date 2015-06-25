@@ -4,6 +4,7 @@
 #include "../Platforms/ThinPlat.h"
 #include "../Switables/Hint.h"
 #include "../Switables/Save.h"
+#include "../SpeechBubble.h"
 #include <iostream>
 
 Level1::Level1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {

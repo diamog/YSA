@@ -14,6 +14,6 @@ void ThinPlat::act() {
 #ifndef COMPILE_NO_SF
   if (you->getPlatX1()==getX1()&& you->getPlatX2()==getX2())
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-      you->setPosition(you->getX1(),getY2()-(you->getY2()-you->getY1());
+      you->setPosition(you->getX1(),getY2()-(you->getY2()-you->getY1()));
 #endif
 }

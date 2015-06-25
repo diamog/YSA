@@ -1,7 +1,8 @@
-------------------------Features Completed------------------------------
+-----------------Features Completed-----------------------
 Room 1-3 & Boss room
- --all movements between rooms (cannot leave Boss room)
- --no way to escape outside of the rooms
+ --all movements between rooms (cannot leave Boss room) 
+	***untested after killing him
+ --no way to escape outside of the designated path
    * by changing rooms
    * by going through objects
  --no visible slowdown as moving in and out of rooms many times 
@@ -20,6 +21,7 @@ You
    **return to last hit save point (or beginning if no save has been hit)
  --pause (P)
    **everything should lock up until P is hit again
+   **Can do it when dead
 Save
  --locally (return to last save point when restarting)
 
@@ -52,12 +54,13 @@ Story
  --Messages can be rushed and continued with any key
   
 ----------------------Known Bugs------------------------
- --Vertical moving platforms cannot be dropped beneath if moving downward
-   ***Is this a bug or a feature?! I'm not even sure.
+ --Bounce when dropping through vertical platforms that are descending
+
 
 -------------------Unfinished Features-------------------------
  --creature does not come out that is referenced in first story messages
- --extra collectables in each room
+ --extra collectables are not saved when collected
+ --Hints reappear everytime the room is entered
  
 ----------------------Final Notes---------------------------
 Any design notes on motion and game style would be best now while its easy to change. If anything is too difficult please note it, its only the first part of the game it shouldn't be that bad (except maybe the boss). Levels should be traversable in both directions (although may be much harder backwards). 

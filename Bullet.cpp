@@ -16,6 +16,7 @@ Bullet::Bullet(Level* l,float x_, float y_, float w, float h, std::string t) :
 
 #ifndef COMPILE_NO_SF
 void Bullet::render(sf::RenderWindow& window) {
+	
   shape.setPosition(x,y);
   window.draw(shape);
 }

@@ -9,7 +9,7 @@ You::You() : Mover() {
 }
 
 You::You(float x_, float y_, float w, float h, bool* isD) : Mover(NULL,x_,y_,w,h), Actor(NULL,x_,y_,w,h) {
-  savepoint = ROOM_3;
+  savepoint = GAME_START;
   isDead = isD;
   alpha=255;
   isPaused=isMessagePaused=false;
@@ -17,7 +17,7 @@ You::You(float x_, float y_, float w, float h, bool* isD) : Mover(NULL,x_,y_,w,h
   shape.setSize(sf::Vector2f(width,height));
   shape.setFillColor(sf::Color(255,255,0));
 
-  font.loadFromFile("../YSA_VB/YSA/Fonts/arial.ttf");
+  font.loadFromFile("Fonts/arial.ttf");
   you_died.setFont(font);
   you_died.setString("You Died");
   you_died.setCharacterSize(120);
@@ -45,6 +45,8 @@ You::~You() {
 }
 
 void You::act() {
+	for (unsigned int i=0;i<bullets.size();i++)
+		bullets[i]->act();
   Mover::act();
 #ifndef COMPILE_NO_SF
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
@@ -97,6 +99,8 @@ void You::act() {
 
 #ifndef COMPILE_NO_SF
 void You::render(sf::RenderWindow& window) {
+	for (unsigned int i=0;i<bullets.size();i++)
+		bullets[i]->render(window);
   shape.setPosition(x,y);
   if ((*isDead&&alpha>0)||alpha==256) {
     alpha--;
@@ -120,6 +124,7 @@ void You::setPosition(float x_, float y_) {
   y=y_;
   lastx=x_;
   lasty=y_;
+	platx1=platx2=0;
 }
 void You::land(float y_,float x1, float x2) {
   y = y_-height;
@@ -159,4 +164,7 @@ void You::reload() {
 	isJump=1;
 	dy=0;
 	platx1=platx2=0;
+	for (unsigned int i=0;i<bullets.size();i++)
+		delete bullets[i];
+  bullets.clear();
 }

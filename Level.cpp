@@ -48,7 +48,7 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
     
 #ifndef COMPILE_NO_SF
     you->messagePause();
-    actors.push_back(new SpeechBubble(sender->getMessage(),sf::Color(0,255,0)));
+    actors.push_back(new SpeechBubble(this,sender->getMessage(),sf::Color(0,255,0)));
 #endif
     unsigned int i;
     for (i=0;i<actors.size();i++)
@@ -60,6 +60,13 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
   }
   else if (eve==END_SPEECH) {
     you->messagePause();
+		unsigned int i=0;
+		for (i=0;i<actors.size();i++)
+      if (*(actors[i])==*sender) {
+	break;
+      }
+    actors.erase(actors.begin()+i);
+    delete sender;
   }
   else if (eve == EXTRA) {
     you->getExtra(me);
@@ -86,7 +93,7 @@ void Level::act() {
 
 #ifndef COMPILE_NO_SF
 
-void windowEvent(sf::Event& event) {
+void Level::windowEvent(sf::Event& event) {
   for (unsigned int i=0;i<actors.size();i++)
     actors[i]->windowEvent(event);
   for (unsigned int i=0;i<actors2.size();i++)

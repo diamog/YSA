@@ -13,12 +13,15 @@ VertPlat::VertPlat(Level* l, float x_,float y_,float w,You* yo,bool isV) :
 void VertPlat::act() {
   Platform::act();
   Mover::act();
-  if (isVert)
+	if (vel>0)
+		ThinPlat::act();
+	if (isVert)
     y-=vel;
   else
     y+=vel;
   if (you->getPlatX1()==getX1() && you->getPlatX2()==getX2())
     you->land(getY1(),getX1(),getX2());
+	
 }
 #ifndef COMPILE_NO_SF
 
