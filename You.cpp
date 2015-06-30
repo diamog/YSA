@@ -13,7 +13,7 @@ You::You() : Actor(),Mover() {
 
 You::You(float x_, float y_, float w, float h, bool* isD) :  
   Actor(NULL,x_,y_,w,h), Mover(NULL,x_,y_,w,h) {
-  savepoint = ROOM_3;
+  savepoint = CROSS_ROADS;
   isDead = isD;
   alpha=255;
   isPaused=isMessagePaused=false;

@@ -16,49 +16,50 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   }
   else if (ent== LOAD_1) {
     //Load into savepoint 1
-    you->setPosition(60,110);
+    you->setPosition(610,120);
   } 
   else if(ent==EAST) {
     you->setPosition(698,entery);
   }
-	else if (ent==NORTH) {
-		you->setPosition(enterx,-18);
-	}
+  else if (ent==NORTH) {
+    you->setPosition(enterx,-18);
+  }
   else
     throw THROW_ENTRANCE_ERROR;
 }
 
 
 void Level4::makePlatforms() {
-  actors.push_back(new Platform(this,0,0,700,30,you));
-  actors.push_back(new ThinPlat(this,30,580,640,you));
-  actors.push_back(new Platform(this,0,30,30,570,you));
-  actors.push_back(new Platform(this,670,150,30,450,you));
-  actors.push_back(new Platform(this,30,510,400,30,you));
-  actors.push_back(new ThinPlat(this,30,430,70,you));
-  actors.push_back(new ThinPlat(this,30,360,70,you));
-  actors.push_back(new ThinPlat(this,30,290,70,you));
-  actors.push_back(new ThinPlat(this,30,220,70,you));
-  actors.push_back(new Platform(this,130,160,80,30,you));
-  actors.push_back(new Platform(this,230,270,80,30,you));
-  actors.push_back(new Platform(this,300,30,30,120,you));
-  actors.push_back(new Platform(this,550,30,30,100,you));
-  actors.push_back(new ThinPlat(this,450,127,100,you));
+  actors.push_back(new Platform(this,0,0,30,600,you));
+  actors.push_back(new Platform(this,670,0,30,400,you));
+  actors.push_back(new Platform(this,30,80,500,40,you));
+  actors.push_back(new Platform(this,170,250,500,50,you));
+  actors.push_back(new Platform(this,275,380,150,30,you));
+  actors.push_back(new Platform(this,30,500,225,30,you));
+  actors.push_back(new Platform(this,450,500,250,30,you));
   
 }
 void Level4::makeEnemies() {
-  actors.push_back(new DeathArea(this,30,540,400,40,you));
-  actors.push_back(new DeathArea(this,200,300,470,40,you));
+  actors.push_back(new DeathArea(this,480,120,50,50,you));
+  actors.push_back(new DeathArea(this,170,200,60,50,you));
+  actors.push_back(new DeathArea(this,30,120,60,70,you));
+  actors.push_back(new DeathArea(this,120,250,50,80,you));
+  actors.push_back(new DeathArea(this,30,380,80,60,you));
+  actors.push_back(new DeathArea(this,375,340,50,40,you));
+  actors.push_back(new DeathArea(this,490,300,30,80,you));
+  actors.push_back(new DeathArea(this,570,400,100,30,you));
+  actors.push_back(new DeathArea(this,255,530,30,70,you));
+  actors.push_back(new DeathArea(this,420,530,30,70,you));
 }
 void Level4::makeCollectables() {
   //Make the hints
   //actors.push_back(new Hint(this,440,540,30,you,"Becareful these red portions will kill you!;"));
-  buildExtra(635,345);
+  buildExtra(630,310);
 }
 
 void Level4::makeSwitches() {
   //Make the save point 
-  actors.push_back(new Save(this,50,100,40,you,CROSS_ROADS));
+  actors.push_back(new Save(this,600,110,40,you,CROSS_ROADS));
 }
 
 
@@ -67,13 +68,18 @@ Level* makeLevel4(You* yo, float x, float y, ENT_CODE ent) {
 }
 
 bool Level4::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
+  if (you->getY2()<0) {
+    next_level=COLOR;
+    ent_type=SOUTH;
+    return true;
+  }
   if (you->getY1()>600) {
-    next_level=START;
+    next_level=FALL;
     ent_type=NORTH;
     return true;
   }
   if (you->getX1()>700) {
-    next_level=MOVING;
+    next_level=FOLLOW;
     ent_type=WEST;
     return true;
   }
