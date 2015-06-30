@@ -51,6 +51,7 @@ protected:
   float width,height;
   Level* level;
   Reverser* rev;
+  float frame_diff;
 };
 
 #endif

@@ -3,14 +3,14 @@
 #include "../Extras/utilities.h"
 #include <cassert>
 #include <cmath>
-Slope::Slope() : Actor() {
+Slope::Slope() : Actor(), Platform() {
   you = NULL;
   isLeft = isRight= isUp = isDown = true;
 
 }
 
 Slope::Slope(Level* l, float x_,float y_,float w,float h,You* yo,
-             float angle_in_degrees) : Platform(l,x_,y_,w,h,yo), Actor(l,x_,y_,w,h){
+             float angle_in_degrees) : Actor(l,x_,y_,w,h), Platform(l,x_,y_,w,h,yo){
   assert(fabs(angle_in_degrees)<90);
   angle=angle_in_degrees*3.14/180;
   

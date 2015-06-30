@@ -28,7 +28,6 @@ Level2::Level2(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
 
 
 void Level2::makePlatforms() {
-  int width = 700;int height = 600;
   actors.push_back(new Platform(this,0,0,700,30,you));
   actors.push_back(new ThinPlat(this,30,580,640,you));
   actors.push_back(new Platform(this,0,30,30,570,you));

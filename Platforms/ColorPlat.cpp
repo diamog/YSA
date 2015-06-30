@@ -2,10 +2,10 @@
 #include "ColorPlat.h"
 
 
-ColorPlatform::ColorPlatform() : Platform(), Actor() {
+ColorPlatform::ColorPlatform() : Actor(),Platform() {
 }
 
-ColorPlatform::ColorPlatform(Level* l, float x_,float y_,float w,float h,You* yo) : Platform(l,x_,y_,w,h,yo), Actor(l,x_,y_,w,h){
+ColorPlatform::ColorPlatform(Level* l, float x_,float y_,float w,float h,You* yo) :  Actor(l,x_,y_,w,h), Platform(l,x_,y_,w,h,yo){
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(255,255,255));
 #endif
@@ -17,11 +17,11 @@ void ColorPlatform::setColor(int r, int g, int b) {
 #endif
 }
 
-ColorPlat::ColorPlat() : ThinPlat(), Actor() {
+ColorPlat::ColorPlat() : Actor(),ThinPlat() {
   
 }
 
-ColorPlat::ColorPlat(Level* l, float x_,float y_,float w,You* yo) : ThinPlat(l,x_,y_,w,yo), Actor(l,x_,y_,w,3){
+ColorPlat::ColorPlat(Level* l, float x_,float y_,float w,You* yo) : Actor(l,x_,y_,w,3),ThinPlat(l,x_,y_,w,yo) {
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(255,255,255));
 #endif

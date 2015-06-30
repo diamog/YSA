@@ -37,30 +37,30 @@ SpeechBubble::SpeechBubble(Level* l, std::string s,sf::Color c,EVE_CODE e) : Act
   shape.setSize(sf::Vector2f(width,height));
 }
 void SpeechBubble::windowEvent(sf::Event& event) {
-  if (total_tick<400)
-		return;
-	if (event.type==sf::Event::KeyPressed) {
-		if (isPaused) {
-			isPaused=false;
-			start_index+=index+2;
-			index=0;
-			if (start_index>=message.size()-1) {
-				level->sendEvent(eve,this);
-			}
+  if (total_tick<400/frame_diff)
+    return;
+  if (event.type==sf::Event::KeyPressed) {
+    if (isPaused) {
+      isPaused=false;
+      start_index+=index+2;
+      index=0;
+      if (start_index>=message.size()-1) {
+	level->sendEvent(eve,this);
+      }
     }
     else {
-			isPaused=true;
-				while(message[start_index+index]!=';')
-					index++;
+      isPaused=true;
+      while(message[start_index+index]!=';')
+	index++;
     }
   } 
 }
 
 void SpeechBubble::render(sf::RenderWindow& window) {
-	total_tick++;
+  total_tick++;
   if (!isPaused) {
     tick++;
-    if (tick>=15) {
+    if (tick>=15/frame_diff) {
       tick=0;
       index++;
     }

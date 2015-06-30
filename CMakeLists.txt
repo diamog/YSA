@@ -5,7 +5,7 @@ IF(NOT ENABLE_SF)
   add_definitions(-DCOMPILE_NO_SF)
 ENDIF()
 add_definitions(-DCOMPILE_NO_VB)
-
+file(COPY Fonts DESTINATION ${CMAKE_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(Levels)
 include_directories(Switables)

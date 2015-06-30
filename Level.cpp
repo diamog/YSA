@@ -59,7 +59,6 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
     you->messagePause();
     actors.push_back(new SpeechBubble(this,sender->getMessage(),sf::Color(0,255,0)));
 #endif
-    unsigned int i;
     remove(sender);
   }
   else if (eve==END_SPEECH) {
@@ -68,7 +67,6 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
   }
   else if (eve == EXTRA) {
     you->getExtra(me);
-    unsigned int i;
     remove(sender);
   }
 }

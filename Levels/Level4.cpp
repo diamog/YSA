@@ -30,7 +30,6 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
 
 
 void Level4::makePlatforms() {
-  int width = 700;int height = 600;
   actors.push_back(new Platform(this,0,0,700,30,you));
   actors.push_back(new ThinPlat(this,30,580,640,you));
   actors.push_back(new Platform(this,0,30,30,570,you));
@@ -67,16 +66,16 @@ Level* makeLevel4(You* yo, float x, float y, ENT_CODE ent) {
   return new Level4(yo,x,y,ent);
 }
 
-bool Level2::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
-	if (you->getY1()>600) {
-		next_level=START;
-		ent_type=NORTH;
-		return true;
-	}
-	if (you->getX1()>700) {
-		next_level=MOVING;
-		ent_type=WEST;
-		return true;
-	}
-	return false;
+bool Level4::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
+  if (you->getY1()>600) {
+    next_level=START;
+    ent_type=NORTH;
+    return true;
+  }
+  if (you->getX1()>700) {
+    next_level=MOVING;
+    ent_type=WEST;
+    return true;
+  }
+  return false;
 }

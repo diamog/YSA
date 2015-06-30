@@ -23,7 +23,7 @@ int main() {
   int height = 600;
 #ifndef COMPILE_NO_SF
   sf::RenderWindow window(sf::VideoMode(width, height), "YSA");
-  window.setFramerateLimit(250);
+  window.setFramerateLimit(60);
 #endif
   
   // Definition of you

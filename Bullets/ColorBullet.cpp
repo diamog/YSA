@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "../Bullets/ColorBullet.h"
 
-ColorBullet::ColorBullet() : Bullet(), Actor() {
+ColorBullet::ColorBullet() : Actor(),Bullet() {
   target=NULL;
 }
 
 ColorBullet::ColorBullet(Level* l,float x_, float y_, float w, float h,
 			 std::string t,ColorBoss* b, int c) : 
-  Bullet(l,x_,y_,w,h,t), Actor(l,x_,y_,w,h) {
+  Actor(l,x_,y_,w,h),Bullet(l,x_,y_,w,h,t) {
   target=b;
   color=c;
 #ifndef COMPILE_NO_SF
@@ -21,15 +21,16 @@ void ColorBullet::act() {
   getObjectCenter(this,cx,cy);
   float bx,by;
   getObjectCenter(target,bx,by);
+  float vel=1*frame_diff;
   if (fabs(cx-bx)<5) ;
   else if (cx<bx)
-    x+=1;
+    x+=vel;
   else
-    x-=1;
+    x-=vel;
   if (fabs(cy-by)<5) ;
   else if (cy<by)
-    y+=1;
+    y+=vel;
   else
-    y-=1;
+    y-=vel;
 }
 

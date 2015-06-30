@@ -30,7 +30,6 @@ Level3::Level3(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
 
 
 void Level3::makePlatforms() {
-  int width = 700;int height = 600;
   actors.push_back(new Platform(this,0,0,700,30,you)); //top wall
   actors.push_back(new Platform(this,0,150,30,450,you)); //left wall
   actors.push_back(new Platform(this,670,150,30,450,you)); //right wall

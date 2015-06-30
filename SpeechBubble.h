@@ -17,16 +17,16 @@ class SpeechBubble : public Actor{
  private:
   bool isPaused;
   std::string message;
-  int tick;
-  int index;
-  int start_index;
+  unsigned int tick;
+  unsigned int index;
+  unsigned int start_index;
   sf::Color col;
   sf::Font font;
   sf::Text text;
   sf::Text next_text;
   sf::RectangleShape shape;
   EVE_CODE eve;
-	int total_tick;
+  unsigned int total_tick;
 };
 #endif
 #endif

@@ -2,7 +2,7 @@
 #include "You.h"
 #include <cmath>
 
-You::You() : Mover() {
+You::You() : Actor(),Mover() {
   isJump=0;
   platx1=platx2=0;
   alpha=255;
@@ -11,7 +11,8 @@ You::You() : Mover() {
   vx =0;
 }
 
-You::You(float x_, float y_, float w, float h, bool* isD) : Mover(NULL,x_,y_,w,h), Actor(NULL,x_,y_,w,h) {
+You::You(float x_, float y_, float w, float h, bool* isD) :  
+  Actor(NULL,x_,y_,w,h), Mover(NULL,x_,y_,w,h) {
   savepoint = ROOM_3;
   isDead = isD;
   alpha=255;
@@ -35,10 +36,10 @@ You::You(float x_, float y_, float w, float h, bool* isD) : Mover(NULL,x_,y_,w,h
   text_restart.setPosition(230,220);
 #endif
   isJump = 2;
-  dx = .7f;
+  dx = .7f*frame_diff;
   dy=0;
   downLimit = 1;
-  grav = 0.005f;
+  grav = 0.005f*frame_diff*frame_diff;
   platx1=platx2=0;
 
 }
@@ -57,13 +58,13 @@ void You::act() {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
     if (isJump==0) {
       platx1=platx2=0;
-      dy=-.95;
+      dy=-.95*frame_diff;
       isJump=1;
     }
     else if (isJump==2) {
       if (dy>0)
 	dy=0;
-      dy-=.65f;
+      dy-=.65f*frame_diff;
       isJump=3;
     }
   }
@@ -72,7 +73,7 @@ void You::act() {
       isJump=2;
   }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		platx1=platx2=0;
+    platx1=platx2=0;
     if (downLimit==1) {
       if (dy<0)
 	dy=0;
@@ -88,16 +89,18 @@ void You::act() {
 #endif
   float temp_dx=0;
 #ifndef COMPILE_NO_SF
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) 
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) { 
     if (vx>0)
       vx-=.005;
     else
       temp_dx=-dx;
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+  }
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
     if (vx<0)
       vx+=.005;
     else
       temp_dx=+dx;
+  }
 #endif
   if (fabs(vx)<.005)
     vx=0;
@@ -111,8 +114,8 @@ void You::act() {
   y+=dy;
   if (isJump!=0)
     dy+=grav;
-  if (dy>downLimit)
-    dy=downLimit;	
+  if (dy>downLimit*frame_diff)
+    dy=downLimit*frame_diff;	
 }
 
 #ifndef COMPILE_NO_SF

@@ -3,15 +3,15 @@
 #include "../Extras/utilities.h"
 #include <cmath>
 #include "../Level.h"
-ColorBoss::ColorBoss() : Enemy(), Actor() {
+ColorBoss::ColorBoss() : Actor(),Enemy() {
   vx=vy=accel=0.0f;
   r=g=b=hit_amount=0;
 }
 
 ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) : 
-  Enemy(l,x_,y_,w,h,yo,16*3), Actor(l,x_,y_,w,h) {
+  Actor(l,x_,y_,w,h), Enemy(l,x_,y_,w,h,yo,16*3) {
   r=g=b=255;
-  accel=.001f;
+  accel=.001f*frame_diff*frame_diff;
   vx=vy=0;
   hit_amount=20;
 #ifndef COMPILE_NO_SF
@@ -57,9 +57,9 @@ void ColorBoss::act() {
   if (fabs(dy)<5)
     dy=0;
   
-  float adx = fabs(dx)/50000;
-  float ady = fabs(dy)/50000;
-  float damp = .005;
+  float adx = fabs(dx)/50000*frame_diff*frame_diff;
+  float ady = fabs(dy)/50000*frame_diff*frame_diff;
+  float damp = .005*frame_diff;
   if (dx<0)
     vx+=adx+(vx<0)*damp;
   else
@@ -68,7 +68,7 @@ void ColorBoss::act() {
     vy+=ady+(vy<0)*damp;
   else
     vy-=ady+(vy>0)*damp;
-	float limit=.8;
+  float limit=.8*frame_diff;
   if (vx>limit)
     vx=limit;
   else if (vx<-limit)

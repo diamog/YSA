@@ -14,4 +14,5 @@ Actor::Actor(Level* l, float x_,float y_,float w,float h) {
   y = y_;
   width = w;
   height = h;
+  frame_diff=250.0/60;
 }

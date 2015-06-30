@@ -43,8 +43,8 @@ bool isLineHit(Line l1, Line l2) {
 bool testLines(Actor* a1,Actor* a2) {
   std::vector<Line> l1 = a1->getLines();
   std::vector<Line> l2 = a2->getLines();
-  for (int i=0;i<l1.size();i++)
-    for (int j=0;j<l2.size();j++)
+  for (unsigned int i=0;i<l1.size();i++)
+    for (unsigned int j=0;j<l2.size();j++)
       if (isLineHit(l1[i],l2[j]))
         return true;
   return false;

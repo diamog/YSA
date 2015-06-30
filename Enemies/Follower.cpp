@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "Follower.h"
 
-Follower::Follower() : Enemy(), Actor() {
+Follower::Follower() : Actor(),Enemy() {
   hp = 0;
 }
 
 Follower::Follower(Level* l, float x_,float y_, You* yo,int num,
-		   std::vector<Actor*>* actors) : Enemy(l,x_,y_,20,20,yo,3), Actor(l,x_,y_,20,20) {
+		   std::vector<Actor*>* actors) :  Actor(l,x_,y_,20,20),Enemy(l,x_,y_,20,20,yo,3) {
   level_actors = actors;
   alpha=0;
   num_left=num;
