@@ -6,7 +6,7 @@ class Reverser : public Enemy, You{
  public:
   Reverser();
   Reverser(Level* l,You* yo,bool isVMirror);
-
+	void act() {}
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
 #endif

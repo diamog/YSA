@@ -12,7 +12,7 @@ RedSwitch::RedSwitch(Level* l, float x_, float y_, float w, You* yo,EVE_CODE num
 #ifndef COMPILE_NO_SF
   shape.setPosition(x,y);
   shape.setFillColor(sf::Color(255,0,0));
-  shape.setSize(width,height);
+  shape.setSize(sf::Vector2f(width,height));
 #endif
 }
 

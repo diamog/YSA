@@ -10,8 +10,8 @@
 #include <cstdlib>
 
 Boss1::Boss1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
-  setup();
   boss=NULL;
+	setup();
   me = COLOR;
   if (ent== WEST) {
     //Move from room 2
@@ -67,22 +67,23 @@ void Boss1::act() {
     bool isAlive = boss->isAlive();
     if (isAlive) {
       if (you->getX1()<0)
-	you->setPosition(0,you->getY1());
+        you->setPosition(0,you->getY1());
       else if (you->getY2()>600)
-	you->setPosition(you->getX1(),600-(you->getY2()-you->getY1()));
+        you->setPosition(you->getX1(),600-(you->getY2()-you->getY1()));
       for (unsigned int i=0;i<actors.size();i++)
-	actors[i]->setColor(boss->getR(),boss->getG(),boss->getB());
+        actors[i]->setColor(boss->getR(),boss->getG(),boss->getB());
     }
     else  {
+			std::cout<<"MEOW\n";
       you->beatBoss1();
       remove(boss);
       boss=NULL;
       for (unsigned int i=0; i<actors.size();i++) {
-	if (dynamic_cast<ThinPlat*>(actors[i])) {
-	  delete actors[i];
-	  actors.erase(actors.begin()+i);
-	  i--;
-	}
+        if (dynamic_cast<ThinPlat*>(actors[i])) {
+          delete actors[i];
+          actors.erase(actors.begin()+i);
+          i--;
+        }
       }
     }
   }

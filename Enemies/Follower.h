@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include <list>
-#include <utilities.h>
+#include <utility>
 #ifndef __FOLLOWER__H__
 #define __FOLLOWER__H__
 
@@ -13,7 +13,7 @@ class Follower : public Enemy{
   void act();
 
 #ifndef COMPILE_NO_SF
-  void render(sf::RenderWindow& window);
+	void render(sf::RenderWindow& window) {}
 #endif
  protected:
   std::vector<Actor*>* level_actors;
