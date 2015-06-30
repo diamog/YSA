@@ -11,6 +11,8 @@ set (COLLECTABLE_SRC
   Hint.cpp
   Crystal.cpp
   Extra.cpp
+  RedSwitch.cpp
+  Portal.cpp
 )
 
 add_library(switable ${SWITCH_SRC} ${COLLECTABLE_SRC})

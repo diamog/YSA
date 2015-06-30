@@ -6,6 +6,7 @@ set(PLATFORM_SRC
   ThinPlat.cpp
   VerticalPlat.cpp
   ColorPlat.cpp
+  Slope.cpp
 )
 
 add_library(plats ${PLATFORM_SRC})

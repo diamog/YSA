@@ -12,9 +12,10 @@ public:
   You();
   You(float x_, float y, float w, float h, bool* isD);
   ~You();
+
   float getPlatX1() {return platx1;}	
   float getPlatX2() {return platx2;}		
-	
+  std::vector<Line> getLines();
   void setPosition(float x_, float y_);
   void act();
 #ifndef COMPILE_NO_SF
@@ -29,6 +30,7 @@ public:
   bool hasExtra(L_CODE l) {return extras.find(l)!=extras.end();}
   void getExtra(L_CODE l) {extras.insert(l);}
   void land(float y_,float x1, float x2);
+  void landSlope(float y_,float x1, float x2, float angle);
   void ceiling(float y_);
   void hitLeftWall(float x_,float y1, float y2,bool isKick=false);
   void hitRightWall(float x_,float y1, float y2,bool isKick=false);
@@ -55,7 +57,7 @@ public:
   void beatBoss6() {isColor2=true;}
 
   void print();
- private:
+protected:
   bool isPaused;
   bool isMessagePaused;
   S_CODE savepoint;
@@ -67,6 +69,7 @@ public:
   sf::Text text_restart;
 #endif
   int isJump;
+  float vx;
   float dx;
   float dy;
   float downLimit;

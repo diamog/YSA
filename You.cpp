@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "You.h"
+#include <cmath>
 
 You::You() : Mover() {
   isJump=0;
@@ -7,6 +8,7 @@ You::You() : Mover() {
   alpha=255;
   isPaused=isMessagePaused=false;
   isColor=isCloud=isPump=isCat=isFire=isColor2=false;
+  vx =0;
 }
 
 You::You(float x_, float y_, float w, float h, bool* isD) : Mover(NULL,x_,y_,w,h), Actor(NULL,x_,y_,w,h) {
@@ -15,6 +17,7 @@ You::You(float x_, float y_, float w, float h, bool* isD) : Mover(NULL,x_,y_,w,h
   alpha=255;
   isPaused=isMessagePaused=false;
   isColor=isCloud=isPump=isCat=isFire=isColor2=false;
+  vx=0;
 #ifndef COMPILE_NO_SF
   shape.setSize(sf::Vector2f(width,height));
   shape.setFillColor(sf::Color(255,255,0));
@@ -47,8 +50,8 @@ You::~You() {
 }
 
 void You::act() {
-	for (unsigned int i=0;i<bullets.size();i++)
-		bullets[i]->act();
+  for (unsigned int i=0;i<bullets.size();i++)
+    bullets[i]->act();
   Mover::act();
 #ifndef COMPILE_NO_SF
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
@@ -82,12 +85,25 @@ void You::act() {
   }
   else 
     downLimit=1;
-
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) 
-    x-=dx;
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-    x+=dx;
 #endif
+  float temp_dx=0;
+#ifndef COMPILE_NO_SF
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) 
+    if (vx>0)
+      vx-=.005;
+    else
+      temp_dx=-dx;
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    if (vx<0)
+      vx+=.005;
+    else
+      temp_dx=+dx;
+#endif
+  if (fabs(vx)<.005)
+    vx=0;
+  x+=temp_dx+vx;
+  if (fabs(vx)>0)
+    vx-=(vx/fabs(vx))*.005;
   if ((x>platx2 || x+width<platx1)&&platx1!=platx2) {
     isJump=2;
     platx1=platx2=0;
@@ -101,8 +117,8 @@ void You::act() {
 
 #ifndef COMPILE_NO_SF
 void You::render(sf::RenderWindow& window) {
-	for (unsigned int i=0;i<bullets.size();i++)
-		bullets[i]->render(window);
+  for (unsigned int i=0;i<bullets.size();i++)
+    bullets[i]->render(window);
   shape.setPosition(x,y);
   if ((*isDead&&alpha>0)||alpha==256) {
     alpha--;
@@ -111,10 +127,10 @@ void You::render(sf::RenderWindow& window) {
     text_restart.setColor(sf::Color(255,255,0,255-alpha));
   }
   window.draw(shape);
-	if (alpha<255) {
-		window.draw(you_died);
-		window.draw(text_restart);
-	}
+  if (alpha<255) {
+    window.draw(you_died);
+    window.draw(text_restart);
+  }
 	
 }
 #endif
@@ -126,7 +142,7 @@ void You::setPosition(float x_, float y_) {
   y=y_;
   lastx=x_;
   lasty=y_;
-	platx1=platx2=0;
+  platx1=platx2=0;
 }
 void You::land(float y_,float x1, float x2) {
   y = y_-height;
@@ -134,6 +150,13 @@ void You::land(float y_,float x1, float x2) {
   isJump=0;
   platx1 = x1;
   platx2 = x2;
+}
+
+void You::landSlope(float y_,float x1,float x2,float angle) {
+  platx1=x1;
+  platx2=x2;
+  isJump=0;
+  //DO MORE HERE
 }
 
 void You::ceiling(float y_) {
@@ -162,11 +185,20 @@ void You::die() {
 }
 
 void You::reload() {
-	alpha=256;
-	isJump=1;
-	dy=0;
-	platx1=platx2=0;
-	for (unsigned int i=0;i<bullets.size();i++)
-		delete bullets[i];
+  alpha=256;
+  isJump=1;
+  dy=0;
+  platx1=platx2=0;
+  for (unsigned int i=0;i<bullets.size();i++)
+    delete bullets[i];
   bullets.clear();
+}
+
+std::vector<Line> You::getLines() {
+  std::vector<Line> lines;
+  lines.push_back(Line(getX1(),getX2(),getY1(),getY1()));
+  lines.push_back(Line(getX1(),getX2(),getY2(),getY2()));
+  lines.push_back(Line(getX1(),getX1(),getY1(),getY2()));
+  lines.push_back(Line(getX2(),getX2(),getY1(),getY2()));
+  return lines;
 }
