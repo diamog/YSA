@@ -9,18 +9,22 @@ Save::Save() : Switch(){
 
 Save::Save(Level* l, float x_, float y_, float w, You* yo,S_CODE save) : 
   Switch(l,x_,y_,w,w,yo) {
-	x=x_;y=y_;width=height=w;
+  x=x_;y=y_;width=height=w;
   eve = SAVE;
-	identity = save;
+  identity = save;
 #ifndef COMPILE_NO_SF
-	shape.setPosition(x,y);
-	shape.setFillColor(sf::Color(0,0,255));
-	shape.setRadius(width/2);
+  shape.setPosition(x,y);
+  shape.setFillColor(sf::Color(0,0,255));
+  shape.setRadius(width/2);
 #endif
 }
 
 #ifndef COMPILE_NO_SF
 void Save::render(sf::RenderWindow& window) {
+  if (!you->boss1()) 
+    shape.setFillColor(sf::Color(255*.07,255*.07,255*.07));
+  else
+    shape.setFillColor(sf::Color(0,0,255));
   window.draw(shape);
 } 
 #endif

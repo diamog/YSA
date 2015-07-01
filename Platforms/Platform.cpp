@@ -34,7 +34,10 @@ void Platform::act() {
 
 #ifndef COMPILE_NO_SF
 void Platform::render(sf::RenderWindow& window) {
-	
+  if (!you->boss1())
+    shape.setFillColor(sf::Color(255,255,255));
+  else
+    shape.setFillColor(sf::Color(0,255,0));
   window.draw(shape);
 }
 #endif

@@ -18,6 +18,8 @@ bool isLineHit(Line l1, Line l2) {
   bool isUp2 = x2==l2.p2.first;
   float x;
   float m2=0;
+  float y;
+  float m1;
   if (isUp1&&isUp2)
     if (x1==x2)
       x=x1;
@@ -27,16 +29,21 @@ bool isLineHit(Line l1, Line l2) {
     x=x1;
     m2 = l2.m();
   }
-  else if (isUp2)
+  else if (isUp2) {
     x=x2;
+    m1=l1.m();
+  }
   else {
-    float m1 = l1.m();
+    m1 = l1.m();
     m2 = l2.m();
     if (m1==m2)
       return false;
     x = (y2-y1+m1*x1-m2*x2)/(m1-m2);
   }
-  float y = m2*(x-x2)+y2;
+  if (m2==0)
+    y = m1*(x-x1)+y1;
+  else
+    y = m2*(x-x2)+y2;
   return l1.isOn(x,y)&&l2.isOn(x,y);
 }
 

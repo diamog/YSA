@@ -16,7 +16,7 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   }
   else if (ent== LOAD_1) {
     //Load into savepoint 1
-    you->setPosition(610,120);
+    you->setPosition(610,500);
   } 
   else if(ent==EAST) {
     you->setPosition(698,entery);
@@ -36,7 +36,8 @@ void Level4::makePlatforms() {
   actors.push_back(new Platform(this,170,250,500,50,you));
   actors.push_back(new Platform(this,275,380,150,30,you));
   actors.push_back(new Platform(this,30,500,225,30,you));
-  actors.push_back(new Platform(this,450,500,250,30,you));
+  actors.push_back(new Platform(this,450,500,150,30,you));
+  actors.push_back(new Platform(this,600,530,100,30,you));
   
 }
 void Level4::makeEnemies() {

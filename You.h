@@ -16,6 +16,12 @@ public:
   float getPlatX1() {return platx1;}	
   float getPlatX2() {return platx2;}		
   std::vector<Line> getLines();
+#ifndef COMPILE_NO_SF
+  float getAngle() {return shape.getRotation();}
+#else
+  float getAngle() {return 0;}
+#endif
+
   void setPosition(float x_, float y_);
   void act();
 #ifndef COMPILE_NO_SF
@@ -75,6 +81,7 @@ protected:
   float downLimit;
   float grav;
   float platx1,platx2;
+  float base_y;
   bool* isDead;
   int alpha;
   std::vector<Bullet*> bullets;

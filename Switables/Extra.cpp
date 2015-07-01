@@ -18,6 +18,10 @@ Extra::Extra(Level* l, float x_, float y_, float w, float h, You* yo)
 
 #ifndef COMPILE_NO_SF
 void Extra::render(sf::RenderWindow & window) {
+  if (!you->boss1())
+    shape.setFillColor(sf::Color(180,180,180));
+  else
+    shape.setFillColor(sf::Color(255,0,255));
   window.draw(shape);
 }
 #endif

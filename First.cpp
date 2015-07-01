@@ -37,8 +37,8 @@ int main() {
     sf::Event event;
     if (!you->isPause()) {
       if (*isDead==false) {
-				if (!you->isPauseM())
-					you->act();
+        if (!you->isPauseM())
+          you->act();
       }
       level->act();
     }
@@ -70,7 +70,7 @@ int main() {
       level = makeLevel(you,next_level,ent);
       delete temp;
     }
-    window.clear();
+    window.clear(sf::Color(100,100,100));
     level->render(window);
     you->render(window);
     window.display();

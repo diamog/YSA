@@ -15,6 +15,10 @@ DeathArea::DeathArea(Level* l, float x_,float y_,float w,float h, You* yo) :  Ac
 
 #ifndef COMPILE_NO_SF
 void DeathArea::render(sf::RenderWindow& window) {
+  if (!you->boss1())
+    shape.setFillColor(sf::Color(0,0,0));
+  else
+    shape.setFillColor(sf::Color(255,0,0));
   window.draw(shape);
 }
 #endif

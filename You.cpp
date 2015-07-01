@@ -18,6 +18,7 @@ You::You(float x_, float y_, float w, float h, bool* isD) :
   alpha=255;
   isPaused=isMessagePaused=false;
   isColor=isCloud=isPump=isCat=isFire=isColor2=false;
+  //isColor=true;
   vx=0;
 #ifndef COMPILE_NO_SF
   shape.setSize(sf::Vector2f(width,height));
@@ -41,7 +42,7 @@ You::You(float x_, float y_, float w, float h, bool* isD) :
   downLimit = 1;
   grav = 0.005f*frame_diff*frame_diff;
   platx1=platx2=0;
-
+  base_y=0;
 }
 
 You::~You() {
@@ -58,8 +59,13 @@ void You::act() {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
     if (isJump==0) {
       platx1=platx2=0;
-      dy=-.95*frame_diff;
+      float angle = shape.getRotation()*3.1415926535/180;
+      
+	
+      dy=-.95*frame_diff*cos(angle);
+      vx=.95*frame_diff*sin(angle);
       isJump=1;
+      shape.setRotation(0);
     }
     else if (isJump==2) {
       if (dy>0)
@@ -91,15 +97,29 @@ void You::act() {
 #ifndef COMPILE_NO_SF
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) { 
     if (vx>0)
-      vx-=.005;
-    else
-      temp_dx=-dx;
+      vx-=.005*frame_diff;
+    else {
+      float angle = -shape.getRotation()*3.14/180;
+      temp_dx=-dx*cos(angle);
+      if (angle>0)
+	y=base_y-sin(angle)*(x-platx1)-height;
+      else if (angle<0)
+	y=base_y-sin(angle)*(x-platx2)-height;
+  
+    }
   }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
     if (vx<0)
-      vx+=.005;
-    else
-      temp_dx=+dx;
+      vx+=.005*frame_diff;
+    else {
+      float angle = -shape.getRotation()*3.14/180;
+      temp_dx=dx*cos(angle);
+      if (angle>0)
+	y=base_y-sin(angle)*(x-platx1)-height;
+      else if (angle<0)
+	y=base_y-sin(angle)*(x-platx2)-height;
+  
+    }
   }
 #endif
   if (fabs(vx)<.005)
@@ -110,6 +130,7 @@ void You::act() {
   if ((x>platx2 || x+width<platx1)&&platx1!=platx2) {
     isJump=2;
     platx1=platx2=0;
+    shape.setRotation(0);
   }
   y+=dy;
   if (isJump!=0)
@@ -138,7 +159,7 @@ void You::render(sf::RenderWindow& window) {
 }
 #endif
 void You::print() {
-	std::cout<<getLastY1()<<" "<<getLastY2()<<" "<<getY1()<<" "<<getY2()<<std::endl;
+  std::cout<<getLastY1()<<" "<<getLastY2()<<" "<<getY1()<<" "<<getY2()<<std::endl;
 }
 void You::setPosition(float x_, float y_) {
   x=x_;
@@ -151,15 +172,24 @@ void You::land(float y_,float x1, float x2) {
   y = y_-height;
   dy=0;
   isJump=0;
+  vx=0;
   platx1 = x1;
   platx2 = x2;
+  shape.setRotation(0);
 }
 
 void You::landSlope(float y_,float x1,float x2,float angle) {
   platx1=x1;
   platx2=x2;
+  dy=0;
+  vx=0;
   isJump=0;
-  //DO MORE HERE
+  base_y=y_;
+  if (angle>0)
+    y=y_-sin(angle)*(x-x1)-height;
+  else 
+    y=y_-sin(angle)*(x-x2)-height;
+  shape.setRotation(-(angle*180/3.14));
 }
 
 void You::ceiling(float y_) {

@@ -16,6 +16,7 @@ class Slope : public Platform {
   std::vector<Line> getLines();
 protected:
   float angle;
+  unsigned int disable;
 };
 
 #endif

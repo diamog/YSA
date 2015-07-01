@@ -26,6 +26,16 @@ Hint::Hint(Level* l, float x_, float y_, float w, You* yo, std::string m)
 
 #ifndef COMPILE_NO_SF
 void Hint::render(sf::RenderWindow & window) {
+  if (!you->boss1()) {
+    int color1 = 206*.72+209*.07;
+    int color2 = 160*.21+32*.72+240*.07;
+    shape.setFillColor(sf::Color(color1,color1,color1));
+    mark.setColor(sf::Color(color2,color2,color2));
+  }
+  else {
+    shape.setFillColor(sf::Color(0,206,209));
+    mark.setColor(sf::Color(160,32,240));
+  }
   window.draw(shape);
   window.draw(mark);
 }
