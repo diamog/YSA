@@ -16,7 +16,8 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   }
   else if (ent== LOAD_1) {
     //Load into savepoint 1
-    you->setPosition(610,500);
+    you->setPosition(610,120);
+    //you->setPosition(610,500);
   } 
   else if(ent==EAST) {
     you->setPosition(698,entery);
@@ -51,6 +52,8 @@ void Level4::makeEnemies() {
   actors.push_back(new DeathArea(this,570,400,100,30,you));
   actors.push_back(new DeathArea(this,255,530,30,70,you));
   actors.push_back(new DeathArea(this,420,530,30,70,you));
+  actors.push_back(new DeathArea(this,285,570,135,30,you)); //TO BE REMOVED
+
 }
 void Level4::makeCollectables() {
   //Make the hints

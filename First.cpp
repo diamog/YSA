@@ -45,20 +45,26 @@ int main() {
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed)
         window.close();
-      if (event.type == sf::Event::KeyPressed&&
-          event.key.code ==sf::Keyboard::R&&!you->isPause()&& !you->isPauseM()) {
-        delete level;
-        level = loadLevel(you,you->getSave());
-        *isDead=false;
-        you->reload();
-      }
-      if (event.type == sf::Event::KeyPressed&&
-          event.key.code ==sf::Keyboard::O) {
-        you->print();
-      }
-      if (event.type == sf::Event::KeyPressed&&
-          event.key.code ==sf::Keyboard::P) {
-        you->pause();
+      if (event.type == sf::Event::KeyPressed) {
+        if(event.key.code ==sf::Keyboard::R&&!you->isPause()&& !you->isPauseM()) {
+          delete level;
+          level = loadLevel(you,you->getSave());
+          *isDead=false;
+          you->reload();
+        }
+        if (event.key.code ==sf::Keyboard::O) {
+          you->print();
+        }
+        if (event.key.code ==sf::Keyboard::P) {
+          you->pause();
+        }
+        if (event.key.code == sf::Keyboard::Num1) {
+          you->save(ROOM_1);
+        }
+        if (event.key.code==sf::Keyboard::Num2) {
+          you->save(CROSS_ROADS);
+          you->beatBoss1();
+        }
       }
       level->windowEvent(event);
       
@@ -66,9 +72,8 @@ int main() {
     L_CODE next_level;
     ENT_CODE ent;
     if (level->isChangeRoom(next_level,ent)) {
-      Level* temp = level;
+      delete level;
       level = makeLevel(you,next_level,ent);
-      delete temp;
     }
     window.clear(sf::Color(100,100,100));
     level->render(window);
