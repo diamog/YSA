@@ -106,14 +106,18 @@ bool Boss1::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
 void Boss1::sendEvent(EVE_CODE eve, Actor* sender) {
   if (eve==MISCE_1) {
     //create color bullet for you
+   
     float cx,cy;
     getObjectCenter(sender,cx,cy);
-    you->addBullet(new ColorBullet(this,cx,cy,5,5,sender->getMessage(),boss,sender->getVal()));
-		
+    you->addBullet(new ColorBullet(this,cx,cy,5,5,sender->getMessage(),
+				   boss,sender->getVal()));
     float xnew = rand()%600+50;
     float ynew = rand()%400+100;
     sender->setPosition(xnew,ynew);
+    if (sender->getVal()<=0)
+      remove(sender);
   }
+   
   else if (eve==MISCE_2) {
 #ifndef COMPILE_NO_SF
     you->messagePause();

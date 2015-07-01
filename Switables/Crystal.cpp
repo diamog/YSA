@@ -31,7 +31,7 @@ void Crystal::setPosition(float x_, float y_) {
 }
 #ifndef COMPILE_NO_SF
 void Crystal::render(sf::RenderWindow & window) {
-	window.draw(shape);
+  window.draw(shape);
 }
 #endif
 
@@ -41,6 +41,6 @@ void Crystal::activate() {
     color=0;
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(color*(type=="red"),color*(type=="green"),
-                            color*(type=="blue")));
+                               color*(type=="blue")));
 #endif
 }
