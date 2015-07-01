@@ -32,9 +32,14 @@ public:
   void messagePause() {isMessagePaused=!isMessagePaused;}
   bool isPause() {return isPaused;}
   bool isPauseM() {return isMessagePaused;}
+  
   S_CODE getSave() {return savepoint;}
   bool hasExtra(L_CODE l) {return extras.find(l)!=extras.end();}
   void getExtra(L_CODE l) {extras.insert(l);}
+  bool hasHint(int i) {return hints.find(i)!=hints.end();}
+  void getHint(int i) {hints.insert(i);}
+  
+
   void land(float y_,float x1, float x2);
   void landSlope(float y_,float x1, float x2, float angle);
   void ceiling(float y_);
@@ -86,6 +91,7 @@ protected:
   int alpha;
   std::vector<Bullet*> bullets;
   std::set<L_CODE> extras;
+  std::set<int> hints;
   bool isColor,isCloud,isPump,isCat,isFire,isColor2;
 };
 

@@ -48,8 +48,8 @@ void Level3::makeEnemies() {
 }
 void Level3::makeCollectables() {
   //Make the hints
-  actors.push_back(new Hint(this,670,120,30,you,"Warning! Danger ahead proceed with caution.;"));
-  actors.push_back(new Hint(this,425,200,30,you,"Hold the down key is mid air to fall faster.;"));
+  buildHint(670,120,7,"Warning! Danger ahead proceed with caution.;");
+  buildHint(425,200,8,"Hold the down key is mid air to fall faster.;");
   buildExtra(345,510);
 }
 

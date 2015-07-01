@@ -5,8 +5,9 @@ Hint::Hint() : Collectable(){
   message = "EMPTY";
 }
 
-Hint::Hint(Level* l, float x_, float y_, float w, You* yo, std::string m) 
+Hint::Hint(Level* l, float x_, float y_, float w, You* yo, std::string m, int c) 
   : Collectable(l,x_,y_,w,w,yo) {
+  code=c;
   message = m;
   eve = SPEECH;
 #ifndef COMPILE_NO_SF

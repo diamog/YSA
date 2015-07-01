@@ -44,11 +44,10 @@ void Level1::makePlatforms() {
 
 void Level1::makeCollectables() {
   //Make the hints
-  actors.push_back(new Hint(this,340,540,30,you,"Use the left and right arrow keys to move.;"));
-  actors.push_back(new Hint(this,585,470,30,you,"Use the up arrow key to jump.;"));
-  actors.push_back(new Hint(this,540,350,30,you,"In mid air use the up arrow key to jump again.;"));
-  actors.push_back(new Hint(this,250,150,30,you,
-                            "The sooner you double jump the higher you will go.;"));
+  buildHint(340,450,0,"Use the left and right arrow keys to move.;");
+  buildHint(585,470,1,"Use the up arrow key to jump.;");
+  buildHint(540,350,2,"In mid air use the up arrow key to jump again.;");
+  buildHint(250,150,3,"The sooner you double jump the higher you will go.;");
   buildExtra(635,10);
 }
 

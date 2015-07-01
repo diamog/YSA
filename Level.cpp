@@ -5,6 +5,7 @@
 #include "Switables/Extra.h"
 #else
 #include "Extra.h"
+#include "Hint.h"
 #endif
 #include "SpeechBubble.h"
 
@@ -53,8 +54,7 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
     you->save(s);
   }
   else if (eve == SPEECH) {
-    //Tutorial on moving or jumping
-    
+    you->getHint(sender->getVal());
 #ifndef COMPILE_NO_SF
     you->messagePause();
     actors.push_back(new SpeechBubble(this,sender->getMessage(),sf::Color(0,255,0)));
@@ -104,11 +104,12 @@ void Level::render(sf::RenderWindow& window) {
   */
 }
 #endif
-bool Level::hasExtra() {
-  return you->hasExtra(me);
-}
 
 void Level::buildExtra(float x,float y) {
-  if (!hasExtra())
+  if (!you->hasExtra(me))
     actors.push_back(new Extra(this,x,y,25,25,you));
+}
+void Level::buildHint(float x,float y,int code,std::string m) {
+  if (!you->hasHint(code))
+    actors.push_back(new Hint(this,x,y,30,you,m,code));
 }

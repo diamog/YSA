@@ -39,7 +39,7 @@ protected:
   virtual void makeCollectables() {};
   virtual void makeSwitches() {};
   virtual void makeDetectors() {};
-  bool hasExtra();
+  void buildHint(float x, float y, int code, std::string m);
   void buildExtra(float x,float y);
   float x,y;
   std::vector<Actor*> actors;

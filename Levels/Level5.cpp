@@ -42,7 +42,7 @@ void Level5::makeEnemies() {
 }
 void Level5::makeCollectables() {
   //Make the hints
-  actors.push_back(new Hint(this,30,500,30,you,"RUN you FOOL!;"));
+  buildHint(30,500,9,"RUN you FOOL!;");
   buildExtra(630,220);
 }
 
