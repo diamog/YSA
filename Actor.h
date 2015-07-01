@@ -36,7 +36,7 @@ class Actor {
   friend bool operator==(const Actor& a1, const Actor& a2) {
     return a1.x==a2.x && a1.y == a2.y && a1.width==a2.width && a1.height==a2.height; 
   }
-  virtual void setPosition(float x_, float y_) {x=x_;y=y_;}
+  virtual void setPosition(float x_, float y_,bool keepLast=false) {x=x_;y=y_;}
   virtual void setColor(int r, int g, int b) {}
   virtual void hitDetector(int dir) {}
   virtual std::string getMessage() {return "";}

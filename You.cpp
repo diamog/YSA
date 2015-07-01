@@ -161,11 +161,13 @@ void You::render(sf::RenderWindow& window) {
 void You::print() {
   std::cout<<getLastY1()<<" "<<getLastY2()<<" "<<getY1()<<" "<<getY2()<<std::endl;
 }
-void You::setPosition(float x_, float y_) {
+void You::setPosition(float x_, float y_,bool keepLast) {
   x=x_;
   y=y_;
-  lastx=x_;
-  lasty=y_;
+  if (!keepLast) {
+    lastx=x_;
+    lasty=y_;
+  }
   platx1=platx2=0;
 }
 void You::land(float y_,float x1, float x2) {

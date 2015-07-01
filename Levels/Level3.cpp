@@ -13,12 +13,12 @@ Level3::Level3(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   setup();
   if (ent== WEST) {
     //Move from room 2
-    you->setPosition(-18,entery);
+    you->setPosition(-18,entery,true);
     
   }
   else if (ent==EAST) {
     //Move from Boss 1
-    you->setPosition(698,entery);
+    you->setPosition(698,entery,true);
   }
   else if (ent== LOAD_1) {
     //Load into savepoint 2

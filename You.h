@@ -22,7 +22,7 @@ public:
   float getAngle() {return 0;}
 #endif
 
-  void setPosition(float x_, float y_);
+  void setPosition(float x_, float y_,bool keepLast=false);
   void act();
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);

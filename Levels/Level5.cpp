@@ -13,10 +13,10 @@ Level5::Level5(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   me = FOLLOW;
   setup();
   if (ent== WEST) {
-    you->setPosition(-18,entery);		
+    you->setPosition(-18,entery,true);
   } 
   else if(ent==EAST) {
-    you->setPosition(698,entery);
+    you->setPosition(698,entery,true);
   }
   else
     throw THROW_ENTRANCE_ERROR;

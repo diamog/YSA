@@ -12,7 +12,7 @@ Level2::Level2(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   setup();
   if (ent== SOUTH) {
     //Fall from Level 2
-    you->setPosition(enterx,598);
+    you->setPosition(enterx,598,true);
 		
   }
   else if (ent== LOAD_1) {
@@ -20,7 +20,7 @@ Level2::Level2(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
     you->setPosition(60,110);
   } 
   else if(ent==EAST) {
-    you->setPosition(690,entery);
+    you->setPosition(690,entery,true);
   }
   else
     throw THROW_ENTRANCE_ERROR;

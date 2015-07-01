@@ -15,12 +15,11 @@ Boss1::Boss1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   setup();
   if (ent== WEST) {
     //Move from room 2
-    you->setPosition(-18,entery);
-		
+    you->setPosition(-18,entery,true);
   }
   else if (ent==SOUTH) {
     //Move from split room
-    you->setPosition(enterx,598);
+    you->setPosition(enterx,598,true);
   }
   else
     throw THROW_ENTRANCE_ERROR;

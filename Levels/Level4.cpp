@@ -11,8 +11,7 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   me = SPLIT;
   setup();
   if (ent== SOUTH) {
-    you->setPosition(enterx,598);
-		
+    you->setPosition(enterx,598,true);
   }
   else if (ent== LOAD_1) {
     //Load into savepoint 1
@@ -20,10 +19,10 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
     //you->setPosition(610,500);
   } 
   else if(ent==EAST) {
-    you->setPosition(698,entery);
+    you->setPosition(698,entery,true);
   }
   else if (ent==NORTH) {
-    you->setPosition(enterx,-18);
+    you->setPosition(enterx,-18,true);
   }
   else
     throw THROW_ENTRANCE_ERROR;

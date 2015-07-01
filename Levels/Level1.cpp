@@ -20,7 +20,7 @@ Level1::Level1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   }
   else if (ent== NORTH) {
     //Fall from Level 2
-    you->setPosition(you->getX1(),2);
+    you->setPosition(you->getX1(),2,true);
   }
   else if (ent== LOAD_1) {
     //Load into savepoint 0
