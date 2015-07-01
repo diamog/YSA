@@ -10,8 +10,8 @@
 #include <iostream>
 
 Level5::Level5(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
-  setup();
   me = FOLLOW;
+  setup();
   if (ent== WEST) {
     you->setPosition(-18,entery);		
   } 

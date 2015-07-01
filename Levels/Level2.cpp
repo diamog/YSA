@@ -8,8 +8,8 @@
 #include <iostream>
 
 Level2::Level2(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
-  setup();
   me = DIE;
+  setup();
   if (ent== SOUTH) {
     //Fall from Level 2
     you->setPosition(enterx,598);

@@ -8,8 +8,8 @@
 #include <iostream>
 
 Level1::Level1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
-  setup();
   me = START;
+  setup();
   if (ent == MISC_1) {
     //Enter through beginning of game
     you->setPosition(enterx,entery);

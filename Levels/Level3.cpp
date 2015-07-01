@@ -9,8 +9,8 @@
 #include "../Platforms/VerticalPlat.h"
 
 Level3::Level3(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
-  setup();
   me = MOVING;
+  setup();
   if (ent== WEST) {
     //Move from room 2
     you->setPosition(-18,entery);
