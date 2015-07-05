@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Reverser.h"
-#include "Level.h"
+#include "../Level.h"
+
 Reverser::Reverser() : Actor(),Death(), You() {
   isVertMirror=true;
 }

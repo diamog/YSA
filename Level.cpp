@@ -3,6 +3,7 @@
 #include "Level.h"
 #ifndef COMPILE_NO_VB
 #include "Switables/Extra.h"
+#include "Switables/Hint.h"
 #else
 #include "Extra.h"
 #include "Hint.h"

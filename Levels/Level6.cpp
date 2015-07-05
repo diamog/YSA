@@ -2,12 +2,10 @@
 #include "Level6.h"
 #include "../Platforms/Platform.h"
 #include "../Platforms/ThinPlat.h"
-#include "../Switables/Hint.h"
 #include "../Switables/Save.h"
 #include "../Enemies/DeathArea.h"
-#include "Follower.h"
-#include "RedSwitch.h"
-#include "Reverser.h"
+#include "../Switables/RedSwitch.h"
+#include "../Enemies/Reverser.h"
 #include <iostream>
 
 Level6::Level6(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {

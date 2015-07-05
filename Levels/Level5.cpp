@@ -5,8 +5,8 @@
 #include "../Switables/Hint.h"
 #include "../Switables/Save.h"
 #include "../Enemies/DeathArea.h"
-#include "Follower.h"
-#include "RedSwitch.h"
+#include "../Enemies/Follower.h"
+#include "../Switables/RedSwitch.h"
 #include <iostream>
 
 Level5::Level5(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
