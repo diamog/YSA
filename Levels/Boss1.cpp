@@ -25,19 +25,26 @@ Boss1::Boss1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   else
     throw THROW_ENTRANCE_ERROR;
 }
-
+template <class Plat,class TPlat>
+void Boss1::makeP() {
+  
+  actors.push_back(new Plat(this,0,0,700,30,you)); //top wall
+  actors.push_back(new Plat(this,0,150,30,500,you)); //left wall
+  actors.push_back(new Plat(this,670,30,30,650,you)); //right wall
+  actors.push_back(new TPlat(this,30,570,740,you));
+  actors.push_back(new TPlat(this,130,290,40,you));
+  actors.push_back(new TPlat(this,220,420,40,you));
+  actors.push_back(new TPlat(this,380,95,40,you));
+  actors.push_back(new TPlat(this,380,370,40,you));
+  actors.push_back(new TPlat(this,550,480,40,you));
+  actors.push_back(new TPlat(this,570,250,40,you));
+}
 
 void Boss1::makePlatforms() {
-  actors.push_back(new ColorPlatform(this,0,0,700,30,you)); //top wall
-  actors.push_back(new ColorPlatform(this,0,150,30,500,you)); //left wall
-  actors.push_back(new ColorPlatform(this,670,30,30,650,you)); //right wall
-  actors.push_back(new ColorPlat(this,30,570,740,you));
-  actors.push_back(new ColorPlat(this,130,290,40,you));
-  actors.push_back(new ColorPlat(this,220,420,40,you));
-  actors.push_back(new ColorPlat(this,380,95,40,you));
-  actors.push_back(new ColorPlat(this,380,370,40,you));
-  actors.push_back(new ColorPlat(this,550,480,40,you));
-  actors.push_back(new ColorPlat(this,570,250,40,you));
+  if (!you->boss1())
+    makeP<ColorPlatform,ColorPlat>();
+  else
+    makeP<Platform,ThinPlat>();
 }
 void Boss1::makeEnemies() {
   if (!you->boss1()) {

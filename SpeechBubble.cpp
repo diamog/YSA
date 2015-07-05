@@ -37,9 +37,15 @@ SpeechBubble::SpeechBubble(Level* l, std::string s,sf::Color c,EVE_CODE e) : Act
   shape.setSize(sf::Vector2f(width,height));
 }
 void SpeechBubble::windowEvent(sf::Event& event) {
-  if (total_tick<400/frame_diff)
-    return;
   if (event.type==sf::Event::KeyPressed) {
+    if (event.key.code==sf::Keyboard::S) {
+      isPaused=true;
+      level->sendEvent(eve,this);
+      
+    }
+    if (total_tick<400/frame_diff)
+      return;
+ 
     if (isPaused) {
       isPaused=false;
       start_index+=index+2;

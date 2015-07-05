@@ -59,7 +59,7 @@ void ColorBoss::act() {
   
   float adx = fabs(dx)/50000*frame_diff*frame_diff;
   float ady = fabs(dy)/50000*frame_diff*frame_diff;
-  float damp = .005*frame_diff;
+  float damp = .005*frame_diff*frame_diff;
   if (dx<0)
     vx+=adx+(vx<0)*damp;
   else
@@ -91,7 +91,7 @@ void ColorBoss::render(sf::RenderWindow& window) {
 	
   float cx,cy;
   getObjectCenter(this,cx,cy);
-  float mag = sqrt(vx*vx+vy*vy);
+  float mag = sqrt(vx*vx+vy*vy)*100/frame_diff;
   float angle = atan2(vy,vx);
   float x2 = cx-mag*cos(angle);
   float y2 = cy-mag*sin(angle);

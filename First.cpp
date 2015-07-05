@@ -65,6 +65,10 @@ int main() {
           you->save(CROSS_ROADS);
           you->beatBoss1();
         }
+        if (event.key.code==sf::Keyboard::Num3) {
+          you->save(ROOM_3);
+        }
+
       }
       level->windowEvent(event);
       

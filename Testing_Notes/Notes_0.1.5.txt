@@ -40,7 +40,7 @@ Color Boss
  --Still a challenge after system changes
  --Stays dead after defeated even if moving back into room
  --color returns to world after boss dies
-   *except in the colorboss room
+   *except in the colorboss room after killing boss and still in room
 
 Follower
  --follows your position starting from your entrance
