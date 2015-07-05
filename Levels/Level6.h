@@ -1,0 +1,35 @@
+#include "../Level.h"
+#include "../Enemies/DeathArea.h"
+#include "../Platforms/Platform.h"
+#include "../Switables/Extra.h"
+
+#ifndef __LEVEL_6_H__
+#define __LEVEL_6_H__
+
+#define THROW_EVENT_ERROR 
+#define THROW_ENTRANCE_ERROR
+class Level6 : public Level {
+ public:
+  Level6() : Level() {};
+  Level6(You* yo, float enterx, float entery, ENT_CODE ent);
+
+  void act();
+  void sendEvent(EVE_CODE eve, Actor* sender);
+  bool isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type);
+ protected:
+  void makePlatforms();
+  void makeEnemies();
+  void makeCollectables();
+  void makeSwitches();
+  DeathArea* falling_skies;
+  DeathArea* floor_block;
+  Platform* room_split;
+  Platform* left_block;
+  Platform* right_block;
+  Extra* extra;
+  Reverser* rev;
+  int count1,count2,count3,count4,count5;
+};
+
+Level* makeLevel6(You* yo, float x, float y, ENT_CODE ent);
+#endif

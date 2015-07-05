@@ -7,18 +7,18 @@ SpeechBubble::SpeechBubble() : Actor() {
   index = 0;
   start_index=0;
   tick=0;
-	total_tick=0;
+  total_tick=0;
 }
 
 SpeechBubble::SpeechBubble(Level* l, std::string s,sf::Color c,EVE_CODE e) : Actor(l,0,500,700,100) {
   message = s;
   index = 0;
   start_index = 0;
-	total_tick=0;
+  total_tick=0;
   col = c;
   eve = e;
   tick=0;
-	isPaused=false;
+  isPaused=false;
   font.loadFromFile("Fonts/arial.ttf");
   text.setFont(font);
   text.setString("");

@@ -1,0 +1,78 @@
+-----------------Features Completed-----------------------
+Room 4-6
+ --all movements between rooms 
+   * Can move back to boss room which is empty if killed.
+ --no way to escape outside of the designated path
+   * by changing rooms
+   * by going through objects
+ --no visible slowdown as moving in and out of rooms many times 
+   * ensures no memory leaks
+ --Crashes when leaving Room 6 (with reverser)
+
+You
+ --Can move up and down slopes correctly
+ --Can jump off slopes providing a push in the normal direction
+ --Can counteract the push by moving in opposite direction
+ --Can move faster in the direction of the push
+ --For conveinence can hit 1 to set save point to the first one
+ --' '' ' ' ' ' ' ' can hit 2 to set save point to the split room
+     * Will also kill the color boss and activate related events
+ --can hit switches
+
+Extras 
+ --stay dissapeared for play session after hit
+
+Hints
+ --stay dissapeared for play session after hit
+
+Platforms
+ --Platforms stop motion in all directions 
+ --Platforms connect with slopes and vice versa
+ --Drop off slopes when moved off of
+ --Cannot walk unbounded off slopes
+ --Platforms still operate correctly when on slopes
+ 
+Color Boss
+ --Color changing platforms change color with boss
+ --Crystals when hit shoot bullet at boss which reduces correct color
+ --Color Boss is not too sadistically chasing you 
+     *basically is within reason of difficulty
+ --Still a challenge after system changes
+ --Stays dead after defeated even if moving back into room
+ --color returns to world after boss dies
+   *except in the colorboss room
+
+Follower
+ --follows your position starting from your entrance
+ --copies your look on slopes and in air
+ --kills you on contact
+
+Reverser
+ --works just like you
+ --moves in opposite horizontal direction
+ --kills you on contact
+ --can hit switches
+ ***Does he save when hitting savepoint????? (needs testing)
+
+Red Switch
+ --changes color when hit
+ --activates some trigger when hit (or when both hit in the reverse room)
+
+----------------------Known Bugs------------------------
+ --Bounce when dropping through vertical platforms that are descending
+
+-----------------------Hidden Bugs-----------------------
+ --These are not fixed but should not appear due to change in orders or other hacks
+ * Landing on vertically stacked platforms
+ * Teleporting if trying to drop through a platform that has the same x,width as a thin platform
+ * while dropping through thin platforms moving through the platform adjacent to the thin platform
+ * 
+-------------------Unfinished Features-------------------------
+ --creature does not come out that is referenced in first story messages
+ --Extras save even if you die before hitting save point
+ --filling of slopes
+ 
+----------------------Final Notes---------------------------
+Any design notes on motion and game style would be best now while its easy to change. If anything is too difficult please note it, its only the first part of the game it shouldn't be that bad (except maybe the boss). Levels should be traversable in both directions (although may be much harder backwards) up to the split path. 
+
+Refer to previous notes for details on features in release 0.1

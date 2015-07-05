@@ -30,8 +30,8 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
 
 
 void Level4::makePlatforms() {
-  actors.push_back(new Platform(this,0,0,30,600,you));
-  actors.push_back(new Platform(this,670,0,30,400,you));
+  actors.push_back(new Platform(this,0,-30,30,630,you));
+  actors.push_back(new Platform(this,670,-30,30,430,you));
   actors.push_back(new Platform(this,30,80,500,40,you));
   actors.push_back(new Platform(this,170,250,500,50,you));
   actors.push_back(new Platform(this,275,380,150,30,you));
@@ -50,8 +50,8 @@ void Level4::makeEnemies() {
   actors.push_back(new DeathArea(this,490,300,30,80,you));
   actors.push_back(new DeathArea(this,570,400,100,30,you));
   actors.push_back(new DeathArea(this,255,530,30,70,you));
-  actors.push_back(new DeathArea(this,420,530,30,70,you));
-  actors.push_back(new DeathArea(this,285,570,135,30,you)); //TO BE REMOVED
+  actors.push_back(new DeathArea(this,425,410,30,190,you));
+  actors.push_back(new DeathArea(this,285,570,140,30,you)); //TO BE REMOVED
 
 }
 void Level4::makeCollectables() {

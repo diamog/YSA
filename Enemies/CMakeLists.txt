@@ -6,8 +6,8 @@ set(ENEMY_SRC
   Death.cpp
   DeathArea.cpp
   ColorBoss.cpp
-  Follower.cpp)
-#Reverser.cpp)
+  Follower.cpp
+  Reverser.cpp)
 
 add_library(enemy ${ENEMY_SRC})
 target_link_libraries(enemy extra)

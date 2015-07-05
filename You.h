@@ -43,8 +43,8 @@ public:
   void land(float y_,float x1, float x2);
   void landSlope(float y_,float x1, float x2, float angle);
   void ceiling(float y_);
-  void hitLeftWall(float x_,float y1, float y2,bool isKick=false);
-  void hitRightWall(float x_,float y1, float y2,bool isKick=false);
+  void hitLeftWall(float x_,bool isKick=false);
+  void hitRightWall(float x_,bool isKick=false);
   
   void save(S_CODE s);
   void die();

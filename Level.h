@@ -19,7 +19,11 @@ class Level {
 
   float getX() {return x;}
   float getY() {return y;}
+  float getWidth() {return width;}
+  float getHeight() {return height;}
   virtual void act();
+
+  bool isBoss() {return isboss;}
 
 #ifndef COMPILE_NO_SF
   void windowEvent(sf::Event& event); 
@@ -33,6 +37,7 @@ class Level {
   
   
 protected:
+  bool isboss;
   void setup();
   virtual void makePlatforms() {};
   virtual void makeEnemies() {};
@@ -42,6 +47,7 @@ protected:
   void buildHint(float x, float y, int code, std::string m);
   void buildExtra(float x,float y);
   float x,y;
+  float width,height;
   std::vector<Actor*> actors;
   std::vector<Actor*> actors2; //to be sent to detectors
   std::vector<Detector*> detectors;

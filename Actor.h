@@ -9,8 +9,8 @@
 #include <iostream>
 #include <vector>
 
-class Level;
 class Reverser;
+class Level;
 
 class Actor {
  public:
@@ -19,14 +19,16 @@ class Actor {
   virtual ~Actor() {}
   virtual S_CODE getSave() {throw "ERROR: is not a save object\n";}
 
-  virtual float getX1() const {return x;}
-  virtual float getX2() const {return x+width;}
-  virtual float getY1() const {return y;}
-  virtual float getY2() const {return y+height;}
+  virtual float getX1() const;
+  virtual float getX2() const;
+  virtual float getY1() const;
+  virtual float getY2() const;
   virtual float getWidth() const {return width;}
   virtual float getHeight() const {return height;}
   virtual void setWidth(float w) {width=w;}
   virtual void setHeight(float h) {height = h;}
+  virtual void shiftX(float dx) {x+=dx;}
+  virtual void shiftY(float dy) {y+=dy;}
   virtual float getLastX1() const {return getX1();}
   virtual float getLastX2() const {return getX2();}
   virtual float getLastY1() const {return getY1();}

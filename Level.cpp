@@ -8,7 +8,7 @@
 #include "Hint.h"
 #endif
 #include "SpeechBubble.h"
-
+#include "Extras/utilities.h"
 Level::Level() {
   you = NULL;
   x=y=0;
@@ -17,7 +17,9 @@ Level::Level() {
 Level::Level(You* yo) {
   you = yo;
   x=y=0;
-  
+  width=700;
+  height=600;
+  isboss=false;
 }
 
 void Level::setup() {
@@ -80,6 +82,46 @@ void Level::act() {
   for (unsigned int i=0;i<detectors.size();i++)
     if (!you->isPauseM()||!actors[i]->doesPause())
       detectors[i]->act();
+  float cx,cy;
+  getObjectCenter(you,cx,cy);
+  if (cx>700*2/3&&x+700<width) {
+    if (x+700<width) {
+      float dx = cx - 700*2/3;
+      x+=dx;
+      you->shiftX(-dx);
+    }
+    else 
+      x = width-700;
+  }
+  else if (cx<700*1/3) {
+    if (x>0) {
+      float dx = cx - 700*1/3;
+      x+=dx;
+      you->shiftX(-dx);
+    }
+    else
+      x=0;
+  }
+  if (cy>600*2/3&&y+600<height) {
+    if (y+600<height) {
+      
+      float dy = cy - 600*2/3;
+      y+=dy;
+      you->shiftY(-dy);
+      
+    }
+    else 
+      y = height-600;
+  }
+  else if (cy<600*1/3) {
+    if (y>0) {
+      float dy = cy - 600*1/3;
+      y+=dy;
+      you->shiftY(-dy);
+    }
+    else
+      y=0;
+  }
 }
 
 #ifndef COMPILE_NO_SF

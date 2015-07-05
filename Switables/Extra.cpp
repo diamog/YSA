@@ -10,7 +10,6 @@ Extra::Extra(Level* l, float x_, float y_, float w, float h, You* yo)
 #ifndef COMPILE_NO_SF
   shape.setRadius(width/2);
   shape.setFillColor(sf::Color(255,0,255));
-  shape.setPosition(x,y);
 #endif
 
 }
@@ -18,6 +17,7 @@ Extra::Extra(Level* l, float x_, float y_, float w, float h, You* yo)
 
 #ifndef COMPILE_NO_SF
 void Extra::render(sf::RenderWindow & window) {
+  shape.setPosition(getX1(),getY1());
   if (!you->boss1())
     shape.setFillColor(sf::Color(180,180,180));
   else

@@ -11,6 +11,7 @@
 
 Boss1::Boss1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   boss=NULL;
+  isboss=true;
   me = COLOR;
   setup();
   if (ent== WEST) {
@@ -28,8 +29,8 @@ Boss1::Boss1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
 
 void Boss1::makePlatforms() {
   actors.push_back(new ColorPlatform(this,0,0,700,30,you)); //top wall
-  actors.push_back(new ColorPlatform(this,0,150,30,450,you)); //left wall
-  actors.push_back(new ColorPlatform(this,670,30,30,570,you)); //right wall
+  actors.push_back(new ColorPlatform(this,0,150,30,500,you)); //left wall
+  actors.push_back(new ColorPlatform(this,670,30,30,650,you)); //right wall
   actors.push_back(new ColorPlat(this,30,570,740,you));
   actors.push_back(new ColorPlat(this,130,290,40,you));
   actors.push_back(new ColorPlat(this,220,420,40,you));

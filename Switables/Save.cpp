@@ -13,7 +13,6 @@ Save::Save(Level* l, float x_, float y_, float w, You* yo,S_CODE save) :
   eve = SAVE;
   identity = save;
 #ifndef COMPILE_NO_SF
-  shape.setPosition(x,y);
   shape.setFillColor(sf::Color(0,0,255));
   shape.setRadius(width/2);
 #endif
@@ -21,6 +20,7 @@ Save::Save(Level* l, float x_, float y_, float w, You* yo,S_CODE save) :
 
 #ifndef COMPILE_NO_SF
 void Save::render(sf::RenderWindow& window) {
+  shape.setPosition(getX1(),getY1());
   if (!you->boss1()) 
     shape.setFillColor(sf::Color(255*.07,255*.07,255*.07));
   else

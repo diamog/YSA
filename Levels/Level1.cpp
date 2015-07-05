@@ -33,8 +33,8 @@ Level1::Level1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
 
 void Level1::makePlatforms() {
   actors.push_back(new Platform(this,0,570,700,30,you));
-  actors.push_back(new Platform(this,0,0,30,570,you));
-  actors.push_back(new Platform(this,670,0,30,570,you));
+  actors.push_back(new Platform(this,0,-30,30,600,you));
+  actors.push_back(new Platform(this,670,-30,30,600,you));
   actors.push_back(new Platform(this,570,500,100,25,you));
   actors.push_back(new Platform(this,470,380,100,25,you));
   actors.push_back(new Platform(this,130,300,100,25,you));

@@ -22,7 +22,7 @@ void Detector::act() {
 #ifndef COMPILE_NO_SF
 void Detector::render(sf::RenderWindow& window) {
   sf::CircleShape shape(width/2);
-  shape.setPosition(x,y);
+  shape.setPosition(getX1(),getY1());
   shape.setFillColor(sf::Color(255,255,255));
   window.draw(shape);
 }

@@ -91,7 +91,7 @@ void ColorBoss::render(sf::RenderWindow& window) {
 	
   float cx,cy;
   getObjectCenter(this,cx,cy);
-  float mag = sqrt(vx*vx+vy*vy)*100;
+  float mag = sqrt(vx*vx+vy*vy);
   float angle = atan2(vy,vx);
   float x2 = cx-mag*cos(angle);
   float y2 = cy-mag*sin(angle);
@@ -102,7 +102,7 @@ void ColorBoss::render(sf::RenderWindow& window) {
   };
 
   window.draw(line, 2, sf::Lines);
-  shape.setPosition(x,y);
+  shape.setPosition(getX1(),getY1());
   window.draw(shape);
 }
 #endif

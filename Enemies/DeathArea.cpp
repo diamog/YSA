@@ -9,12 +9,14 @@ DeathArea::DeathArea(Level* l, float x_,float y_,float w,float h, You* yo) :  Ac
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(255,0,0));
   shape.setSize(sf::Vector2f(width,height));
-  shape.setPosition(x,y);
+  shape.setPosition(getX1(),getY1());
 #endif
 }
 
 #ifndef COMPILE_NO_SF
 void DeathArea::render(sf::RenderWindow& window) {
+  shape.setSize(sf::Vector2f(width,height));
+  shape.setPosition(getX1(),getY1());
   if (!you->boss1())
     shape.setFillColor(sf::Color(0,0,0));
   else

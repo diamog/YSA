@@ -11,7 +11,7 @@ Mover::Mover(Level* l, float x_,float y_,float w,float h) : Actor(l,x_,y_,w,h) {
 }
 
 void Mover::act() {
-  lastx = x;
-  lasty = y;
+  lastx = getX1();
+  lasty = getY1();
 }
 

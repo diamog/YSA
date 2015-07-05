@@ -11,6 +11,7 @@ class Switch : public Actor {
   Switch(Level* l, float x_, float y_, float w, float h, You* yo);
 
   void act();
+  virtual void activate() {};
 protected:
   You* you;
   EVENT_CODE eve;

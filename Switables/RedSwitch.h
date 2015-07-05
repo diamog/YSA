@@ -11,6 +11,7 @@ public:
   RedSwitch(Level* l, float x_, float y_, float w, You* yo, EVE_CODE num);
 
   void act();
+  void activate();
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
 #endif

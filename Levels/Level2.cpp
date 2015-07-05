@@ -29,10 +29,10 @@ Level2::Level2(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
 
 void Level2::makePlatforms() {
   actors.push_back(new Platform(this,0,0,700,30,you));
-  actors.push_back(new ThinPlat(this,30,580,640,you));
-  actors.push_back(new Platform(this,0,30,30,570,you));
-  actors.push_back(new Platform(this,670,150,30,450,you));
+  actors.push_back(new Platform(this,0,30,30,600,you));
+  actors.push_back(new Platform(this,670,150,30,480,you));
   actors.push_back(new Platform(this,30,510,400,30,you));
+  actors.push_back(new ThinPlat(this,30,580,640,you));
   actors.push_back(new ThinPlat(this,30,430,70,you));
   actors.push_back(new ThinPlat(this,30,360,70,you));
   actors.push_back(new ThinPlat(this,30,290,70,you));
@@ -67,15 +67,15 @@ Level* makeLevel2(You* yo, float x, float y, ENT_CODE ent) {
 }
 
 bool Level2::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
-	if (you->getY1()>600) {
-		next_level=START;
-		ent_type=NORTH;
-		return true;
-	}
-	if (you->getX1()>700) {
-		next_level=MOVING;
-		ent_type=WEST;
-		return true;
-	}
-	return false;
+  if (you->getY1()>600) {
+    next_level=START;
+    ent_type=NORTH;
+    return true;
+  }
+  if (you->getX1()>700) {
+    next_level=MOVING;
+    ent_type=WEST;
+    return true;
+  }
+  return false;
 }

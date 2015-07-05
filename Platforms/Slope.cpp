@@ -44,9 +44,9 @@ void Slope::act() {
   if (disable!=0)
     disable--;
 #ifndef COMPILE_NO_SF
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     disable=10;
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
       disable=0;
 #endif
   if (testLines(this,you)&&disable==0) {

@@ -75,7 +75,10 @@ int main() {
       delete level;
       level = makeLevel(you,next_level,ent);
     }
-    window.clear(sf::Color(100,100,100));
+    if (level->isBoss())
+      window.clear();
+    else
+      window.clear(sf::Color(100,100,100));
     level->render(window);
     you->render(window);
     window.display();

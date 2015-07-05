@@ -18,19 +18,18 @@ Crystal::Crystal(Level* l, float x_, float y_, float w, float h, You* yo, std::s
   shape.setScale(1,height/width);
   shape.setFillColor(sf::Color(color*(type=="red"),color*(type=="green"),
                                color*(type=="blue")));
-  shape.setPosition(x,y);
+  shape.setPosition(getX1(),getY1());
 #endif
 
 }
 
 void Crystal::setPosition(float x_, float y_) {
   Actor::setPosition(x_,y_);
-#ifndef COMPILE_NO_SF
-  shape.setPosition(x,y);
-#endif
 }
+
 #ifndef COMPILE_NO_SF
 void Crystal::render(sf::RenderWindow & window) {
+  shape.setPosition(getX1(),getY1());
   window.draw(shape);
 }
 #endif
