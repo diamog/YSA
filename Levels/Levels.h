@@ -12,7 +12,7 @@
 
 Level* loadLevel(You* you, S_CODE save) {
   if (save == GAME_START)
-    return makeLevel1(you,100,500,MISC_1);
+    return makeLevel1(you,100,550,MISC_1);
   else if (save == ROOM_1)
     return makeLevel1(you,0,0,LOAD_1);
   else if (save == ROOM_2) 

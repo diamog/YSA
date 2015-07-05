@@ -22,6 +22,7 @@ public:
   float getAngle() {return 0;}
 #endif
 
+  void setFall() {if (isJump==0) isJump=2;}
   void setPosition(float x_, float y_,bool keepLast=false);
   void act();
 #ifndef COMPILE_NO_SF
