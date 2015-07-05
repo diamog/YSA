@@ -41,7 +41,7 @@ void SpeechBubble::windowEvent(sf::Event& event) {
     if (event.key.code==sf::Keyboard::S) {
       isPaused=true;
       level->sendEvent(eve,this);
-      
+      return;
     }
     if (total_tick<400/frame_diff)
       return;

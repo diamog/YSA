@@ -97,8 +97,8 @@ void ColorBoss::render(sf::RenderWindow& window) {
   float y2 = cy-mag*sin(angle);
   sf::Vertex line[] =
   {
-    sf::Vertex(sf::Vector2f(cx, cy)),
-    sf::Vertex(sf::Vector2f(x2, y2))
+    sf::Vertex(sf::Vector2f(cx, cy),sf::Color(r,g,b)),
+    sf::Vertex(sf::Vector2f(x2, y2),sf::Color(r,g,b))
   };
 
   window.draw(line, 2, sf::Lines);

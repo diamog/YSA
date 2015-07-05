@@ -16,8 +16,10 @@ You
  --Can move faster in the direction of the push
  --For conveinence can hit 1 to set save point to the first one
  --' '' ' ' ' ' ' ' can hit 2 to set save point to the split room
+ --' '' ' ' ' ' ' ' can hit 3 to set save point to right before the color boss
      * Will also kill the color boss and activate related events
  --can hit switches
+ --hitting S will skip the entire speech
 
 Extras 
  --stay dissapeared for play session after hit
@@ -60,6 +62,7 @@ Red Switch
 
 ----------------------Known Bugs------------------------
  --Bounce when dropping through vertical platforms that are descending
+ --Trying to descend through slopes has bad behavior
 
 -----------------------Hidden Bugs-----------------------
  --These are not fixed but should not appear due to change in orders or other hacks

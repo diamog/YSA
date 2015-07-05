@@ -1,7 +1,6 @@
 
 
 #include "stdafx.h"
-
 #include "Actor.h"
 #include "Level.h"
 Actor::Actor() {

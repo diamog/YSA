@@ -59,11 +59,11 @@ void You::act() {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
     if (isJump==0) {
       platx1=platx2=0;
-      float angle = shape.getRotation()*3.1415926535/180;
+      float angle = shape.getRotation()*3.1415926535f/180;
       
 	
-      dy=-.95*frame_diff*cos(angle);
-      vx=.95*frame_diff*sin(angle);
+      dy=-.95f*frame_diff*cos(angle);
+      vx=.95f*frame_diff*sin(angle);
       isJump=1;
       shape.setRotation(0);
     }
@@ -82,12 +82,12 @@ void You::act() {
     platx1=platx2=0;
     if (downLimit==1) {
       if (dy<0)
-	dy=0;
+	      dy=0;
       dy+=.5;
       
     }
     if (isJump==0)
-	isJump=1;
+	    isJump=1;
     downLimit=2;
   }
   else 
@@ -97,27 +97,31 @@ void You::act() {
 #ifndef COMPILE_NO_SF
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) { 
     if (vx>0)
-      vx-=.005*frame_diff;
+      vx-=.005f*frame_diff;
     else {
-      float angle = -shape.getRotation()*3.14/180;
+      float angle = -shape.getRotation()*3.14f/180;
+			while(angle<-3.14/2)
+				angle+=2*3.14;
       temp_dx=-dx*cos(angle);
       if (angle>0)
-	y=base_y-sin(angle)*(getX1()-platx1)-height;
+        y=base_y-sin(angle)*(getX1()-platx1)-height;
       else if (angle<0)
-	y=base_y-sin(angle)*(getX1()-platx2)-height;
+        y=base_y-sin(angle)*(getX1()-platx2)-height;
   
     }
   }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
     if (vx<0)
-      vx+=.005*frame_diff;
+      vx+=.005f*frame_diff;
     else {
-      float angle = -shape.getRotation()*3.14/180;
+      float angle = -shape.getRotation()*3.14f/180;
+			while(angle<-3.14/2)
+				angle+=2*3.14;
       temp_dx=dx*cos(angle);
       if (angle>0)
-	y=base_y-sin(angle)*(getX1()-platx1)-height;
+        y=base_y-sin(angle)*(getX1()-platx1)-height;
       else if (angle<0)
-	y=base_y-sin(angle)*(getX1()-platx2)-height;
+        y=base_y-sin(angle)*(getX1()-platx2)-height;
   
     }
   }
@@ -126,7 +130,7 @@ void You::act() {
     vx=0;
   x+=temp_dx+vx;
   if (fabs(vx)>0)
-    vx-=(vx/fabs(vx))*.005;
+    vx-=(vx/fabs(vx))*.005f;
   if ((getX1()>=platx2 || getX2()<=platx1)&&platx1!=platx2) {
     isJump=2;
     platx1=platx2=0;
@@ -193,7 +197,7 @@ void You::landSlope(float y_,float x1,float x2,float angle) {
     y=y_-sin(angle)*(getX1()-x1)-height;
   else 
     y=y_-sin(angle)*(getX1()-x2)-height;
-  shape.setRotation(-(angle*180/3.14));
+	shape.setRotation(-(angle*180/3.14f));
 }
 
 void You::ceiling(float y_) {
@@ -222,6 +226,7 @@ void You::die() {
 }
 
 void You::reload() {
+  shape.setRotation(0);
   alpha=261;
   isJump=1;
   dy=0;

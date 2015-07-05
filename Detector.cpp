@@ -1,7 +1,6 @@
 
 
 #include "stdafx.h"
-
 #include "Detector.h"
 #include "Extras/utilities.h"
 

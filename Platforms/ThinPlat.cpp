@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ThinPlat.h"
 #include "../Enemies/Reverser.h"
-#include "Level.h"
+#include "../Level.h"
 ThinPlat::ThinPlat() : Actor(),Platform() {
   isLeft=isRight=isUp=false;
 }

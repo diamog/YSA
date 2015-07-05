@@ -22,7 +22,7 @@ int main() {
   int width = 700;
   int height = 600;
 #ifndef COMPILE_NO_SF
-  sf::RenderWindow window(sf::VideoMode(width, height), "YSA Version 0.2.dev");
+  sf::RenderWindow window(sf::VideoMode(width, height), "YSA Version 0.1.5");
   window.setFramerateLimit(60);
 #endif
   
