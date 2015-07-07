@@ -33,7 +33,11 @@ typedef enum EVENT_CODE {
   EYE_1,
   EYE_2,
   EYE_3, 
-  COLLECT, 
+  COLLECT_1,
+  COLLECT_2,
+  COLLECT_3,
+  COLLECT_4,
+  COLLECT_5,
   RED_1,
   RED_2,
   RED_3,
@@ -50,7 +54,8 @@ typedef enum EVENT_CODE {
   MISCE_3,
   MISCE_4,
   MISCE_5,
-  FACTORY
+  FACTORY,
+  KILL
 } EVE_CODE;
 
 typedef enum SAVE_CODE {

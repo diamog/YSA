@@ -10,6 +10,7 @@
 #endif
 #include "SpeechBubble.h"
 #include "Extras/utilities.h"
+#include "Graphics/SaveGraphic.h"
 Level::Level() {
   you = NULL;
   x=y=0;
@@ -55,6 +56,7 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
   if (eve == SAVE) {
     S_CODE s = sender->getSave();
     you->save(s);
+    actors.push_back(new SaveGraphic(this));
   }
   else if (eve == SPEECH) {
     you->getHint(sender->getVal());
@@ -73,6 +75,9 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
     remove(sender);
   }
   else if (eve== FACTORY) {}
+  else if (eve==KILL) {
+    remove(sender);
+  }
   else {
     throw 1;
   }

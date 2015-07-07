@@ -74,6 +74,12 @@ void SpeechBubble::render(sf::RenderWindow& window) {
     }
   }
   text.setString((message.substr(start_index,index)).c_str());
+  unsigned int limit = 60;
+  if (index>limit) {
+    limit = message.find_last_of(' ',start_index+limit);
+    int dist = limit-start_index;
+    text.setString(((message.substr(start_index,dist))+'\n'+message.substr(limit+1,index-dist-1)).c_str());
+  }
   window.draw(shape);
   window.draw(text);
   window.draw(next_text);

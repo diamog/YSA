@@ -14,6 +14,12 @@ Boss1::Boss1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   isboss=true;
   me = COLOR;
   setup();
+  if (boss!=NULL) {
+    
+    fairy = new Fairy(this,30,540);
+    fairy->kill();
+    actors.push_back(fairy);
+  }
   if (ent== WEST) {
     //Move from room 2
     you->setPosition(-18,entery,true);
@@ -81,6 +87,7 @@ void Boss1::act() {
     }
     else  {
       you->beatBoss1();
+      fairy->turnOn(2);
       remove(boss);
       boss=NULL;
       for (unsigned int i=0; i<actors.size();i++) {
@@ -103,6 +110,8 @@ bool Boss1::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
   if (you->getY1()>600) {
     next_level=SPLIT;
     ent_type=NORTH;
+    if (!you->hasSplit())
+      ent_type=MISC_1;
     return true;
   }
   return false;

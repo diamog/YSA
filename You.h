@@ -35,8 +35,8 @@ public:
   bool isPauseM() {return isMessagePaused;}
   
   S_CODE getSave() {return savepoint;}
-  bool hasExtra(L_CODE l) {return extras.find(l)!=extras.end();}
-  void getExtra(L_CODE l) {extras.insert(l);}
+  bool hasExtra(L_CODE l) {return extras.find(l)!=extras.end()||temp_extras.find(l)!=temp_extras.end();}
+  void getExtra(L_CODE l) {temp_extras.insert(l);}
   bool hasHint(int i) {return hints.find(i)!=hints.end();}
   void getHint(int i) {hints.insert(i);}
   
@@ -67,7 +67,9 @@ public:
   void beatBoss4() {isCat=true;}
   void beatBoss5() {isFire=true;}
   void beatBoss6() {isColor2=true;}
-
+  
+  bool hasSplit() {return hasEnterSplit;}
+  void enterSplit() {hasEnterSplit=true;}
   void load(std::istream& in_str);
   void save(std::ostream& out_str);
   void print();
@@ -94,9 +96,11 @@ protected:
   int alpha;
   std::vector<Bullet*> bullets;
   std::set<L_CODE> extras;
+  std::set<L_CODE> temp_extras;
   std::set<int> hints;
   bool isColor,isCloud,isPump,isCat,isFire,isColor2;
   bool isKickLeft,isKickRight;
+  bool hasEnterSplit;
 };
 
 #endif

@@ -5,11 +5,14 @@
 #include "../Switables/Hint.h"
 #include "../Switables/Save.h"
 #include "../Enemies/DeathArea.h"
+#include "../SpeechBubble.h"
 #include <iostream>
 
 Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   me = SPLIT;
   setup();
+  fairy = new Fairy(this,500,100);
+  actors.push_back(fairy);
   if (ent== SOUTH) {
     you->setPosition(enterx,598,true);
   }
@@ -24,6 +27,13 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   else if (ent==NORTH) {
     you->setPosition(enterx,-18,true);
   }
+  else if (ent==MISC_1) {
+    fairy->turnOn(3);
+    you->setPosition(enterx,-18,true);
+    you->messagePause();
+    actors.push_back(new SpeechBubble(this,"Hurrah! You have returned the color to this land and saved me too!; I am one of the 5 protector fairies of this land.; You must be destined to save this entire world or something...;",sf::Color(200,0,200),you->getY1(),MISCE_1)); 
+    you->enterSplit();
+  }
   else
     throw THROW_ENTRANCE_ERROR;
 }
@@ -32,7 +42,7 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
 void Level4::makePlatforms() {
   actors.push_back(new Platform(this,0,-30,30,630,you));
   actors.push_back(new Platform(this,670,-30,30,430,you));
-  actors.push_back(new Platform(this,30,80,500,40,you));
+  actors.push_back(new Platform(this,30,80,400,40,you));
   actors.push_back(new Platform(this,170,250,500,50,you));
   actors.push_back(new Platform(this,275,380,150,30,you));
   actors.push_back(new Platform(this,30,500,225,30,you));
@@ -41,7 +51,7 @@ void Level4::makePlatforms() {
   
 }
 void Level4::makeEnemies() {
-  actors.push_back(new DeathArea(this,480,120,50,50,you));
+  actors.push_back(new DeathArea(this,380,120,50,50,you));
   actors.push_back(new DeathArea(this,170,200,60,50,you));
   actors.push_back(new DeathArea(this,30,120,60,70,you));
   actors.push_back(new DeathArea(this,120,250,50,80,you));
@@ -87,4 +97,19 @@ bool Level4::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
     return true;
   }
   return false;
+}
+
+void Level4::sendEvent(EVE_CODE event,Actor* sender) {
+  if (event==MISCE_1) {
+    remove(sender);
+    actors.push_back(new SpeechBubble(this,"Is there some kind of prophecy dictating that a yellow square will save the world?;",sf::Color(255,255,0),you->getY1(),MISCE_2)); 
+    
+  }
+  else if (event==MISCE_2) {
+    remove(sender);
+    actors.push_back(new SpeechBubble(this,"NOPE!; But I beg you. Please find my fellow fairies.; Together we can stop the deterioration of the world.; I will remain here awaiting your return;",sf::Color(200,0,200),you->getY1())); 
+  }
+  else 
+    Level::sendEvent(event,sender);
+  
 }

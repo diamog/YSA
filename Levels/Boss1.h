@@ -1,4 +1,5 @@
 #include "../Level.h"
+#include "../Fairy.h"
 
 #ifndef __BOSS_1_H__
 #define __BOSS_1_H__
@@ -21,7 +22,7 @@ class Boss1 : public Level {
   void makeEnemies();
   void makeCollectables();
   ColorBoss* boss;
-
+  Fairy* fairy;
 };
 
 Level* makeBoss1(You* yo, float x, float y, ENT_CODE ent);

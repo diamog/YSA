@@ -1,0 +1,13 @@
+SPLIT
+Fairy-"Hurrah! You have returned the color to this land and saved me too!; I am one of the 5 protector fairies of this land.; You must be destined to save this entire world or something...;
+You-Is there some kind of prophecy dictating that I a yellow square will save the world?;
+Fairy-NOPE!; But I beg you. Please find my fellow fairies so that we can together stop the deterioration of the world.; I will remain here awaiting your return;
+
+PUMPKIN P1
+You-Hmmm no way out.
+Stems-(as stems rise from the ground) Weedle. Tweedle. Caught in out trap.; This yellow square is about to be zap zapped.
+
+PUMPKIN P2
+Boss-You there destroying my stems.; I want to have a word with you.;
+(you fall down)
+Boss-Ah you are the one that destroyed the Color Eater huh?; Hah the color may be back but you will not restore the design as easily; Now hold still so I can blast you!;

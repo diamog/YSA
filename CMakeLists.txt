@@ -14,6 +14,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(Levels)
 include_directories(Switables)
 
+add_subdirectory(Graphics)
 add_subdirectory(Extras)
 add_subdirectory(Bullets)
 add_subdirectory(Enemies)
@@ -30,10 +31,12 @@ set(ROOT_SOURCES
   You.cpp
   First.cpp
   SpeechBubble.cpp
+  Fairy.cpp
 )
 
 add_executable(YSA ${ROOT_SOURCES})
 
+target_link_libraries(YSA graphics)
 target_link_libraries(YSA extra)
 target_link_libraries(YSA enemy)
 target_link_libraries(YSA plats)

@@ -11,16 +11,17 @@ public:
   Save(Level* l, float x_, float y_, float w, You* yo, S_CODE num);
 
   S_CODE getSave() {return identity;}
-
+  void act();
+  void activate();
   #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
   #endif
 protected:
-	S_CODE identity;	
+  S_CODE identity;	
 #ifndef COMPILE_NO_SF
-	sf::CircleShape shape;
+  sf::CircleShape shape;
 #endif
-
+  int save_ticks;
 };
 
 #endif

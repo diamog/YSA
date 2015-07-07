@@ -10,6 +10,8 @@
 Level1::Level1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   me = START;
   setup();
+  fairy = new Fairy(this,-30,300);
+  actors.push_back(fairy);
   if (ent == MISC_1) {
     //Enter through beginning of game
     you->setPosition(enterx,entery);
@@ -63,16 +65,11 @@ Level* makeLevel1(You* yo, float x, float y, ENT_CODE ent) {
 
 void Level1::sendEvent(EVE_CODE eve, Actor* sender) {
   if (eve ==MISCE_1) {
-    unsigned int i;
-    for (i=0;i<actors.size();i++)
-      if (*(actors[i])==*sender) {
-	break;
-      }
-    actors.erase(actors.begin()+i);
-    delete sender;
-    sendEvent(MISCE_2,NULL);
+    remove(sender);
+    fairy->turnOn(1);
   }
   else if (eve==MISCE_2) {
+    remove(sender);
 #ifndef COMPILE_NO_SF
     actors.push_back(new SpeechBubble(this,"Woah... What was that?; I guess I should follow it and ask it what is going on.;",sf::Color(255,255,0),you->getY1()));
 #endif

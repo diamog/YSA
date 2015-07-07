@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "You.h"
 #include <cmath>
-
+#include <fstream>
 You::You() : Actor(),Mover() {
   isJump=0;
   platx1=platx2=0;
@@ -9,10 +9,12 @@ You::You() : Actor(),Mover() {
   isPaused=isMessagePaused=false;
   isColor=isCloud=isPump=isCat=isFire=isColor2=false;
   vx =0;deaths=0;
+  hasEnterSplit=false;
 }
 
 You::You(float x_, float y_, float w, float h, bool* isD) :  
   Actor(NULL,x_,y_,w,h), Mover(NULL,x_,y_,w,h) {
+  hasEnterSplit=false;
   deaths=0;
   savepoint = GAME_START;
   isDead = isD;
@@ -175,7 +177,7 @@ void You::act() {
   }
   y+=dy;
   if (isJump!=0)
-    dy+=grav;
+    dy+=grav/(1+3*isKickLeft||isKickRight);
   if (dy>downLimit*frame_diff)
     dy=downLimit*frame_diff;
   isKickLeft=isKickRight=false;
@@ -258,6 +260,12 @@ void You::hitRightWall(float x_,bool isKick) {
 
 void You::save(S_CODE s) {
   savepoint = s;
+  std::set<L_CODE>::iterator itr;
+  for (itr=temp_extras.begin();itr!=temp_extras.end();itr++) 
+    extras.insert(*itr);
+  temp_extras.clear();
+  std::ofstream out_str(".8e91q02a38x74f29d302s");
+  save(out_str);
 }
 
 void You::die() {
@@ -277,6 +285,7 @@ void You::reload() {
   for (unsigned int i=0;i<bullets.size();i++)
     delete bullets[i];
   bullets.clear();
+  temp_extras.clear();
 }
 
 std::vector<Line> You::getLines() {
@@ -313,6 +322,8 @@ void You::load(std::istream& in_str) {
   in_str>>isColor2;
     
   in_str>>deaths;
+
+  in_str>>hasEnterSplit;
 }
 void You::save(std::ostream& out_str) {
   
@@ -337,4 +348,7 @@ void You::save(std::ostream& out_str) {
 
   //Save death count
   out_str<<deaths<<"\n";
+
+  //Entrances
+  out_str<<hasEnterSplit<<"\n";
 }

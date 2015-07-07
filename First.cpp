@@ -50,10 +50,11 @@ int main() {
         window.close();
       if (event.type == sf::Event::KeyPressed) {
         if(event.key.code ==sf::Keyboard::R&&!you->isPause()&& !you->isPauseM()) {
-          delete level;
-          level = loadLevel(you,you->getSave());
           *isDead=false;
           you->reload();
+	  delete level;
+          level = loadLevel(you,you->getSave());
+          
         }
         if (event.key.code ==sf::Keyboard::O) {
           you->print();
@@ -61,6 +62,9 @@ int main() {
         if (event.key.code ==sf::Keyboard::P) {
           you->pause();
         }
+	if (event.key.code == sf::Keyboard::Num0) {
+	  you->save(GAME_START);
+	}
         if (event.key.code == sf::Keyboard::Num1) {
           you->save(ROOM_1);
         }
@@ -92,8 +96,6 @@ int main() {
   }
 #endif
   delete level;
-  std::ofstream out_str(".8e91q02a38x74f29d302s");
-  you->save(out_str);
   delete you;
   delete isDead;
   return 0;

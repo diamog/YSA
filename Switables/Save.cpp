@@ -16,8 +16,18 @@ Save::Save(Level* l, float x_, float y_, float w, You* yo,S_CODE save) :
   shape.setFillColor(sf::Color(0,0,255));
   shape.setRadius(width/2);
 #endif
+  save_ticks=300;
 }
-
+void Save::act() {
+  if (save_ticks>=300) {
+    Switch::act();
+  }
+  else
+    save_ticks++;
+}
+void Save::activate() {
+  save_ticks=0;
+}
 #ifndef COMPILE_NO_SF
 void Save::render(sf::RenderWindow& window) {
   shape.setPosition(getX1(),getY1());

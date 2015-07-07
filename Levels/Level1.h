@@ -1,5 +1,5 @@
 #include "../Level.h"
-
+#include "../Fairy.h"
 #ifndef __LEVEL_1_H__
 #define __LEVEL_1_H__
 
@@ -17,7 +17,7 @@ class Level1 : public Level {
   // void makeEnemies();
   void makeCollectables();
   void makeSwitches();
-  
+  Fairy* fairy;
 
 };
 
