@@ -14,11 +14,11 @@ public:
   void render(sf::RenderWindow& window);
 #endif
 
-	void hitDetector(int dir);
+  void hitDetector(int dir);
 
 private:
-	bool isVert;
-	float vel;
+  bool isVert;
+  float vel;
 };
 
 #endif

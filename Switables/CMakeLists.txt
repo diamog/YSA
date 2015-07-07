@@ -1,9 +1,12 @@
 include_directories(../Extras)
 include_directories(..)
-
+include_directories(../Enemies)
 set (SWITCH_SRC
   Switch.cpp
   Save.cpp
+  RedSwitch.cpp
+  Portal.cpp
+  FollowerFactory.cpp
 )
 
 set (COLLECTABLE_SRC
@@ -11,8 +14,8 @@ set (COLLECTABLE_SRC
   Hint.cpp
   Crystal.cpp
   Extra.cpp
-  RedSwitch.cpp
-  Portal.cpp
+  Coin.cpp
 )
 
 add_library(switable ${SWITCH_SRC} ${COLLECTABLE_SRC})
+target_link_libraries(switable enemy)

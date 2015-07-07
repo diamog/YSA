@@ -10,7 +10,9 @@ SpeechBubble::SpeechBubble() : Actor() {
   total_tick=0;
 }
 
-SpeechBubble::SpeechBubble(Level* l, std::string s,sf::Color c,EVE_CODE e) : Actor(l,0,500,700,100) {
+SpeechBubble::SpeechBubble(Level* l, std::string s,sf::Color c,float y_,EVE_CODE e) : Actor(l,0,500,700,100) {
+  if (y_>300)
+    y=0;
   message = s;
   index = 0;
   start_index = 0;
@@ -41,9 +43,9 @@ void SpeechBubble::windowEvent(sf::Event& event) {
     if (event.key.code==sf::Keyboard::S) {
       isPaused=true;
       level->sendEvent(eve,this);
-      return;
+      return;      
     }
-    if (total_tick<400/frame_diff)
+    if (total_tick<250/frame_diff)
       return;
  
     if (isPaused) {

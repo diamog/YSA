@@ -3,6 +3,7 @@
 #include "stdafx.h"
 
 #include <iostream>
+#include <fstream>
 #ifndef COMPILE_NO_SF
 #include <SFML/Graphics.hpp>
 #endif
@@ -15,14 +16,13 @@
 #include "Extras/utilities.h"
 
 int main() {
-
-
+  
   srand(time(NULL));
   //Definition of Window
   int width = 700;
   int height = 600;
 #ifndef COMPILE_NO_SF
-  sf::RenderWindow window(sf::VideoMode(width, height), "YSA Version 0.1.5");
+  sf::RenderWindow window(sf::VideoMode(width, height), "YSA Version 0.2.dev");
   window.setFramerateLimit(60);
 #endif
   
@@ -30,6 +30,9 @@ int main() {
   bool* isDead = new bool;
   *isDead = false;
   You* you = new You(200,height-400.0f,20,20,isDead);
+  std::ifstream in_str(".8e91q02a38x74f29d302s");
+  if (in_str)
+    you->load(in_str);
   Level* level = loadLevel(you, you->getSave());
   
 #ifndef COMPILE_NO_SF
@@ -89,6 +92,8 @@ int main() {
   }
 #endif
   delete level;
+  std::ofstream out_str(".8e91q02a38x74f29d302s");
+  you->save(out_str);
   delete you;
   delete isDead;
   return 0;

@@ -68,6 +68,8 @@ public:
   void beatBoss5() {isFire=true;}
   void beatBoss6() {isColor2=true;}
 
+  void load(std::istream& in_str);
+  void save(std::ostream& out_str);
   void print();
 protected:
   bool isPaused;
@@ -94,6 +96,7 @@ protected:
   std::set<L_CODE> extras;
   std::set<int> hints;
   bool isColor,isCloud,isPump,isCat,isFire,isColor2;
+  bool isKickLeft,isKickRight;
 };
 
 #endif

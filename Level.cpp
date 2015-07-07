@@ -60,7 +60,7 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
     you->getHint(sender->getVal());
 #ifndef COMPILE_NO_SF
     you->messagePause();
-    actors.push_back(new SpeechBubble(this,sender->getMessage(),sf::Color(0,255,0)));
+    actors.push_back(new SpeechBubble(this,sender->getMessage(),sf::Color(0,255,0),you->getY1()));
 #endif
     remove(sender);
   }
@@ -71,6 +71,10 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
   else if (eve == EXTRA) {
     you->getExtra(me);
     remove(sender);
+  }
+  else if (eve== FACTORY) {}
+  else {
+    throw 1;
   }
 }
 void Level::act() {
@@ -141,10 +145,11 @@ void Level::render(sf::RenderWindow& window) {
     actors[i]->render(window);
   for (unsigned int i=0;i<actors2.size();i++)
     actors2[i]->render(window);
-  /*
-    for (unsigned int i=0;i<detectors.size();i++)
+#ifdef COMPILE_DEBUG
+  for (unsigned int i=0;i<detectors.size();i++)
     detectors[i]->render(window);
-  */
+#endif
+
 }
 #endif
 

@@ -49,7 +49,8 @@ typedef enum EVENT_CODE {
   MISCE_2,
   MISCE_3,
   MISCE_4,
-  MISCE_5
+  MISCE_5,
+  FACTORY
 } EVE_CODE;
 
 typedef enum SAVE_CODE {
@@ -63,6 +64,7 @@ typedef enum SAVE_CODE {
   PRE_BOSS_2,
   REVERSE_ROOM,
   PRE_WALL_KICK,
+  PRE_KICK_HALL,
   WALL_KICK_1,
   WALL_KICK_2,
   WALL_KICK_3,

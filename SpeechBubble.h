@@ -7,10 +7,10 @@
 class SpeechBubble : public Actor{
  public:
   SpeechBubble();
-  SpeechBubble(Level* l,std::string s,sf::Color c,EVE_CODE e = END_SPEECH);
+  SpeechBubble(Level* l,std::string s,sf::Color c,float y_, EVE_CODE e = END_SPEECH);
 
   bool doesPause() {return false;}
-	void act() {};
+  void act() {};
   void windowEvent(sf::Event& event);
   void render(sf::RenderWindow& window);
 

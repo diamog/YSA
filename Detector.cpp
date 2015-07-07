@@ -22,7 +22,7 @@ void Detector::act() {
 void Detector::render(sf::RenderWindow& window) {
   sf::CircleShape shape(width/2);
   shape.setPosition(getX1(),getY1());
-  shape.setFillColor(sf::Color(255,255,255));
+  shape.setFillColor(sf::Color(0,0,0));
   window.draw(shape);
 }
 #endif

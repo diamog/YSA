@@ -15,7 +15,7 @@ class Platform : virtual public Actor {
 #endif
 
 protected:
-	
+  bool kickLeft,kickRight;
   bool isUp,isLeft,isRight,isDown;
   You* you;
 #ifndef COMPILE_NO_SF

@@ -15,7 +15,7 @@ Level1::Level1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
     you->setPosition(enterx,entery);
 #ifndef COMPILE_NO_SF
     you->messagePause();
-    actors.push_back(new SpeechBubble(this,"What? Where am I? Why is the world so bland?; AND WHY AM I A YELLOW SQUARE?!;",sf::Color(255,255,0),MISCE_1));
+    actors.push_back(new SpeechBubble(this,"What? Where am I? Why is the world so bland?; AND WHY AM I A YELLOW SQUARE?!;",sf::Color(255,255,0),you->getY1(),MISCE_1));
 #endif
   }
   else if (ent== NORTH) {
@@ -44,9 +44,9 @@ void Level1::makePlatforms() {
 
 void Level1::makeCollectables() {
   //Make the hints
-  buildHint(340,450,0,"Use the left and right arrow keys to move.;");
-  buildHint(585,470,1,"Use the up arrow key to jump.;");
-  buildHint(540,350,2,"In mid air use the up arrow key to jump again.;");
+  buildHint(340,535,0,"Use the left and right arrow keys to move.;");
+  buildHint(585,465,1,"Use the up arrow key to jump.;");
+  buildHint(540,345,2,"In mid air use the up arrow key to jump again.;");
   buildHint(250,150,3,"The sooner you double jump the higher you will go.;");
   buildExtra(635,10);
 }
@@ -74,7 +74,7 @@ void Level1::sendEvent(EVE_CODE eve, Actor* sender) {
   }
   else if (eve==MISCE_2) {
 #ifndef COMPILE_NO_SF
-    actors.push_back(new SpeechBubble(this,"Woah... What was that?; I guess I should follow it and ask it what is going on.;",sf::Color(255,255,0)));
+    actors.push_back(new SpeechBubble(this,"Woah... What was that?; I guess I should follow it and ask it what is going on.;",sf::Color(255,255,0),you->getY1()));
 #endif
   }
   else

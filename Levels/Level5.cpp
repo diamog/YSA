@@ -5,7 +5,7 @@
 #include "../Switables/Hint.h"
 #include "../Switables/Save.h"
 #include "../Enemies/DeathArea.h"
-#include "../Enemies/Follower.h"
+#include "../Switables/FollowerFactory.h"
 #include "../Switables/RedSwitch.h"
 #include <iostream>
 
@@ -38,11 +38,11 @@ void Level5::makePlatforms() {
 void Level5::makeEnemies() {
   right_wall = new DeathArea(this,670,30,30,150,you);
   actors.push_back(right_wall);
-  actors.push_back(new Follower(this,-10,you->getY1(),you,0,&actors));
+  actors.push_back(new FollowerFactory(this,20,400,30,200,you,1,&actors));
 }
 void Level5::makeCollectables() {
   //Make the hints
-  buildHint(30,500,9,"RUN you FOOL!;");
+  buildHint(60,500,9,"RUN you FOOL!;");
   buildExtra(630,220);
 }
 

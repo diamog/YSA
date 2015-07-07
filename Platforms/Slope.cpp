@@ -13,7 +13,7 @@ Slope::Slope(Level* l, float x_,float y_,float w,float h,You* yo,
              float angle_in_degrees) : Actor(l,x_,y_,w,h), Platform(l,x_,y_,w,h,yo){
   disable=0;
   assert(fabs(angle_in_degrees)<90);
-  angle=angle_in_degrees*3.14f/180;
+  angle=angle_in_degrees*3.14/180;
   
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(0,255,0));
@@ -63,16 +63,16 @@ void Slope::render(sf::RenderWindow& window) {
   if (angle>0) {
     sf::Vertex line[] =
       {
-	sf::Vertex(sf::Vector2f(x, y)),
-	sf::Vertex(sf::Vector2f(getX2(), y-width*sin(angle)))
+	sf::Vertex(sf::Vector2f(getX1(), getY1())),
+	sf::Vertex(sf::Vector2f(getX2(), getY1()-width*sin(angle)))
       };
     window.draw(line,2,sf::Lines);
   }
   else {
     sf::Vertex line[] =
       {
-	sf::Vertex(sf::Vector2f(x, y+width*sin(angle))),
-	sf::Vertex(sf::Vector2f(getX2(), y))
+	sf::Vertex(sf::Vector2f(getX1(), getY1()+width*sin(angle))),
+	sf::Vertex(sf::Vector2f(getX2(), getY1()))
       };
     window.draw(line,2,sf::Lines);
   }

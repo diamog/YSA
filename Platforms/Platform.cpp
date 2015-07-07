@@ -15,6 +15,7 @@ Platform::Platform(Level* l, float x_,float y_,float w,float h,You* yo) : Actor(
   shape.setFillColor(sf::Color(0,255,0));
 #endif
   isLeft = isRight= isUp = isDown = true;
+  kickLeft=kickRight=false;
 }
 
 void Platform::act() {
@@ -23,11 +24,11 @@ void Platform::act() {
     if (dir==0&& isUp)
       you->ceiling(getY2());
     else if (dir==1 && isRight)
-      you->hitRightWall(getX1());
+      you->hitRightWall(getX1(),kickLeft);
     else if (dir==2 && isDown)
       you->land(getY1(),getX1(),getX2());
     else if (dir==3 && isLeft)
-      you->hitLeftWall(getX2());
+      you->hitLeftWall(getX2(),kickRight);
   }
   if (rev!=NULL) {
     if (isRectangularHit(rev,this)) {
@@ -35,11 +36,11 @@ void Platform::act() {
       if (dir==0&& isUp)
 	rev->ceiling(y+height);
       else if (dir==1 && isRight)
-	rev->hitRightWall(x);
+	rev->hitRightWall(x,kickLeft);
       else if (dir==2 && isDown)
 	rev->land(y,x,x+width);
       else if (dir==3 && isLeft)
-	rev->hitLeftWall(x+width);
+	rev->hitLeftWall(x+width,kickRight);
     }
   
   }

@@ -80,7 +80,6 @@ void Boss1::act() {
         actors[i]->setColor(boss->getR(),boss->getG(),boss->getB());
     }
     else  {
-			std::cout<<"MEOW\n";
       you->beatBoss1();
       remove(boss);
       boss=NULL;
@@ -129,7 +128,7 @@ void Boss1::sendEvent(EVE_CODE eve, Actor* sender) {
 #ifndef COMPILE_NO_SF
     you->messagePause();
     actors.push_back(new SpeechBubble(this,"Erk! What is THAT?!;",
-				      sf::Color(255,255,0),MISCE_3));
+				      sf::Color(255,255,0),you->getY1(),MISCE_3));
 #endif
   }
   else if (eve==MISCE_3) {
@@ -137,7 +136,7 @@ void Boss1::sendEvent(EVE_CODE eve, Actor* sender) {
     remove(sender);
 #ifndef COMPILE_NO_SF
     actors.push_back(new SpeechBubble(this,"COLOR!!! MUST EAT COLOR!!!;",
-				      sf::Color(255,255,255)));
+				      sf::Color(255,255,255),you->getY1()));
 #endif
   }
   else
