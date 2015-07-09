@@ -12,7 +12,8 @@ SET(LEVEL_SRC
   Level4.cpp
   Level5.cpp
   Level6.cpp
-  Level7.cpp)
+  Level7.cpp
+  Level8.cpp)
 
 add_library(level ${LEVEL_SRC})
 target_link_libraries(level plats)

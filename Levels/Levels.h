@@ -2,6 +2,7 @@
 #define __LEVELS__H__
 
 #include "../Level.h"
+#include "Level8.h"
 #include "Level7.h"
 #include "Level6.h"
 #include "Level5.h"
@@ -27,7 +28,7 @@ Level* loadLevel(You* you, S_CODE save) {
   else if (save == PRE_WALL_KICK) 
     return makeLevel7(you,0,0,LOAD_1);
   else if (save == PRE_KICK_HALL) 
-    ;//return makeLevel8(you,0,0,LOAD_1);
+    return makeLevel8(you,0,0,LOAD_1);
   else if (save == WALL_KICK_1) 
     ;//return makeLevel9(you,0,0,LOAD_1);
   else if (save == WALL_KICK_2)
@@ -65,7 +66,7 @@ Level* makeLevel(You* you, L_CODE l, ENT_CODE ent) {
     return makeLevel7(you,you->getX1(),you->getY1(),ent);
   }
   else if (l==CLIMB) {
-    //return makeLevel8(you,you->getX1(),you->getY1(),ent);
+    return makeLevel8(you,you->getX1(),you->getY1(),ent);
   }
   else if (l==COLLECTOR) {
     //return makeLevel9(you,you->getX1(),you->getY1(),ent);

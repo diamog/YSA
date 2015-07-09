@@ -94,9 +94,10 @@ void Level::act() {
       detectors[i]->act();
   float cx,cy;
   getObjectCenter(you,cx,cy);
-  if (cx>700*2/3&&x+700<width) {
+  if (cx>700*2/3) {
     if (x+700<width) {
       float dx = cx - 700*2/3;
+      dx = std::min(dx,width-700-y);
       x+=dx;
       you->shiftX(-dx);
     }
@@ -112,10 +113,11 @@ void Level::act() {
     else
       x=0;
   }
-  if (cy>600*2/3&&y+600<height) {
+  if (cy>600*2/3) {
     if (y+600<height) {
       
       float dy = cy - 600*2/3;
+      dy = std::min(dy,height-600-y);
       y+=dy;
       you->shiftY(-dy);
       
