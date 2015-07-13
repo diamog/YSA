@@ -22,6 +22,7 @@ Level::Level(You* yo) {
   width=700;
   height=600;
   isboss=false;
+  canMove=true;
 }
 
 void Level::setup() {
@@ -74,10 +75,10 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
     you->getExtra(me);
     remove(sender);
   }
-  else if (eve== FACTORY) {}
   else if (eve==KILL) {
     remove(sender);
   }
+  else if (eve==NOTHING) {}
   else {
     throw 1;
   }
@@ -92,47 +93,49 @@ void Level::act() {
   for (unsigned int i=0;i<detectors.size();i++)
     if (!you->isPauseM()||!actors[i]->doesPause())
       detectors[i]->act();
-  float cx,cy;
-  getObjectCenter(you,cx,cy);
-  if (cx>700*2/3) {
-    if (x+700<width) {
-      float dx = cx - 700*2/3;
-      dx = std::min(dx,width-700-y);
-      x+=dx;
-      you->shiftX(-dx);
+  if (canMove) {
+    float cx,cy;
+    getObjectCenter(you,cx,cy);
+    if (cx>700*2/3) {
+      if (x+700<width) {
+	float dx = cx - 700*2/3;
+	dx = std::min(dx,width-700-y);
+	x+=dx;
+	you->shiftX(-dx);
+      }
+      else 
+	x = width-700;
     }
-    else 
-      x = width-700;
-  }
-  else if (cx<700*1/3) {
-    if (x>0) {
-      float dx = cx - 700*1/3;
-      x+=dx;
-      you->shiftX(-dx);
+    else if (cx<700*1/3) {
+      if (x>0) {
+	float dx = cx - 700*1/3;
+	x+=dx;
+	you->shiftX(-dx);
+      }
+      else
+	x=0;
     }
-    else
-      x=0;
-  }
-  if (cy>600*2/3) {
-    if (y+600<height) {
+    if (cy>600*2/3) {
+      if (y+600<height) {
       
-      float dy = cy - 600*2/3;
-      dy = std::min(dy,height-600-y);
-      y+=dy;
-      you->shiftY(-dy);
+	float dy = cy - 600*2/3;
+	dy = std::min(dy,height-600-y);
+	y+=dy;
+	you->shiftY(-dy);
       
+      }
+      else 
+	y = height-600;
     }
-    else 
-      y = height-600;
-  }
-  else if (cy<600*1/3) {
-    if (y>0) {
-      float dy = cy - 600*1/3;
-      y+=dy;
-      you->shiftY(-dy);
+    else if (cy<600*1/3) {
+      if (y>0) {
+	float dy = cy - 600*1/3;
+	y+=dy;
+	you->shiftY(-dy);
+      }
+      else
+	y=0;
     }
-    else
-      y=0;
   }
 }
 

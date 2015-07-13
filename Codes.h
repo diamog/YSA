@@ -54,8 +54,9 @@ typedef enum EVENT_CODE {
   MISCE_3,
   MISCE_4,
   MISCE_5,
-  FACTORY,
-  KILL
+  MISCE_6,
+  KILL,
+  NOTHING
 } EVE_CODE;
 
 typedef enum SAVE_CODE {

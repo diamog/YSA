@@ -8,6 +8,7 @@ set(PLATFORM_SRC
   ColorPlat.cpp
   Slope.cpp
   KickPlat.cpp
+  Stem.cpp
 )
 
 add_library(plats ${PLATFORM_SRC})

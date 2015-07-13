@@ -9,7 +9,12 @@ set(ENEMY_SRC
   Follower.cpp
   Reverser.cpp
   Drone.cpp
-  Rider.cpp)
+  Rider.cpp
+  PBullet.cpp
+  PumpkinHead.cpp
+  
+)
 
 add_library(enemy ${ENEMY_SRC})
 target_link_libraries(enemy extra)
+target_link_libraries(enemy plats)

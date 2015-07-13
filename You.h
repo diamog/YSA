@@ -31,8 +31,10 @@ public:
 
   void pause() {isPaused=!isPaused;}
   void messagePause() {isMessagePaused=!isMessagePaused;}
+  void controlPause();
   bool isPause() {return isPaused;}
   bool isPauseM() {return isMessagePaused;}
+  bool isPauseC() {return isControlPaused;}
   
   S_CODE getSave() {return savepoint;}
   bool hasExtra(L_CODE l) {return extras.find(l)!=extras.end()||temp_extras.find(l)!=temp_extras.end();}
@@ -76,6 +78,7 @@ public:
 protected:
   bool isPaused;
   bool isMessagePaused;
+  bool isControlPaused;
   S_CODE savepoint;
   int deaths;
 #ifndef COMPILE_NO_SF

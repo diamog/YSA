@@ -1,6 +1,7 @@
 include_directories(..)
 
 SET(BULLET_SRC
-  ColorBullet.cpp)
+  ColorBullet.cpp
+)
 
 add_library(bullets ${BULLET_SRC})

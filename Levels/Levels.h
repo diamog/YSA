@@ -2,6 +2,7 @@
 #define __LEVELS__H__
 
 #include "../Level.h"
+#include "Boss2.h"
 #include "Level8.h"
 #include "Level7.h"
 #include "Level6.h"
@@ -34,9 +35,10 @@ Level* loadLevel(You* you, S_CODE save) {
   else if (save == WALL_KICK_2)
     ;//return makeLevel9(you,0,0,LOAD_2);
   else if (save == WALL_KICK_3) 
-    ;//return makeLevel9(you,0,0,LOAD_3);
+    return makeBoss2(you,0,0,LOAD_1);
+    //return makeLevel9(you,0,0,LOAD_3);
   else
-    throw "NO SUCH LEVEL!!!";
+    throw "NO SUCH SAVE!!!";
   return NULL;
 }
 

@@ -6,7 +6,7 @@ You::You() : Actor(),Mover() {
   isJump=0;
   platx1=platx2=0;
   alpha=255;
-  isPaused=isMessagePaused=false;
+  isPaused=isMessagePaused=isControlPaused=false;
   isColor=isCloud=isPump=isCat=isFire=isColor2=false;
   vx =0;deaths=0;
   hasEnterSplit=false;
@@ -19,7 +19,7 @@ You::You(float x_, float y_, float w, float h, bool* isD) :
   savepoint = GAME_START;
   isDead = isD;
   alpha=255;
-  isPaused=isMessagePaused=false;
+  isPaused=isMessagePaused=isControlPaused=false;
   isColor=isCloud=isPump=isCat=isFire=isColor2=false;
   //isColor=true;
   vx=0;
@@ -70,98 +70,102 @@ void You::act() {
       shape.setRotation(shape.getRotation()-rate);
   }
 #ifndef COMPILE_NO_SF
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-    if (isJump==0) {
-      platx1=platx2=0;
-      float angle = shape.getRotation()*3.1415926535/180;
+  if (!isControlPaused) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+      if (isJump==0) {
+	platx1=platx2=0;
+	float angle = shape.getRotation()*3.1415926535/180;
 	
-      dy=-.95*frame_diff*cos(angle);
-      vx=2*.95*frame_diff*sin(angle);
-      isJump=1;
+	dy=-.95*frame_diff*cos(angle);
+	vx=2*.95*frame_diff*sin(angle);
+	isJump=1;
+      }
+      else if (isJump==2) {
+	if (dy>0)
+	  dy=0;
+	dy-=.65f*frame_diff;
+	isJump=3;
+	if (isKickLeft) {
+	  vx=-.6*frame_diff;
+	  dy=-.8f*frame_diff;
+	  isJump=1;
+	}
+	if (isKickRight) {
+	  vx=.6*frame_diff;
+	  dy=-.8f*frame_diff;
+	  isJump=1;
+	}
+      }
+      else if (isJump==3) {
+	if (isKickLeft) {
+	  vx=-.6*frame_diff;
+	  dy=-.8f*frame_diff;
+	  isJump=1;
+	}
+	if (isKickRight) {
+	  vx=.6*frame_diff;
+	  dy=-.8f*frame_diff;
+	  isJump=1;
+	}
+      }
     }
-    else if (isJump==2) {
-      if (dy>0)
-	dy=0;
-      dy-=.65f*frame_diff;
-      isJump=3;
-      if (isKickLeft) {
-	vx=-.6*frame_diff;
-	dy=-.8f*frame_diff;
-	isJump=1;
-      }
-      if (isKickRight) {
-	vx=.6*frame_diff;
-	dy=-.8f*frame_diff;
-	isJump=1;
-      }
-    }
-    else if (isJump==3) {
-      if (isKickLeft) {
-	vx=-.6*frame_diff;
-	dy=-.8f*frame_diff;
-	isJump=1;
-      }
-      if (isKickRight) {
-	vx=.6*frame_diff;
-	dy=-.8f*frame_diff;
-	isJump=1;
-      }
-    }
-  }
-  else {
-    if (isJump==1)
-      isJump=2;
+    else {
+      if (isJump==1)
+	isJump=2;
     
-  }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-    platx1=platx2=0;
-    if (downLimit==2) {
-      if (dy<0)
-	dy=0;
-      dy+=.5*frame_diff;
-      
     }
-    if (isJump==0)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+      platx1=platx2=0;
+      if (downLimit==2) {
+	if (dy<0)
+	  dy=0;
+	dy+=.5*frame_diff;
+      
+      }
+      if (isJump==0)
 	isJump=1;
-    downLimit=4;
+      downLimit=4;
+    }
+    else 
+      downLimit=2;
   }
-  else 
-    downLimit=2;
 #endif
   float temp_dx=0;
 #ifndef COMPILE_NO_SF
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) { 
-    if (vx>0)
-      vx-=.005*frame_diff;
-    else {
-      float angle = -shape.getRotation()*3.14/180;
-      while (angle<-3.14/2)
-        angle+=2*3.14;
-      if (isJump!=0)
-	angle=0;
-      temp_dx=-dx*cos(angle);
-      if (angle>0)
-	y=base_y-sin(angle)*(getX1()-platx1)-height;
-      else if (angle<0)
-	y=base_y-sin(angle)*(getX1()-platx2)-height;
+  if (!isControlPaused) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) { 
+      if (vx>0)
+	vx-=.005*frame_diff;
+      else {
+	float angle = -shape.getRotation()*3.14/180;
+	while (angle<-3.14/2)
+	  angle+=2*3.14;
+	if (isJump!=0)
+	  angle=0;
+	temp_dx=-dx*cos(angle);
+	if (angle>0)
+	  y=base_y-sin(angle)*(getX1()-platx1)-height;
+	else if (angle<0)
+	  y=base_y-sin(angle)*(getX1()-platx2)-height;
   
+      }
     }
-  }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-    if (vx<0)
-      vx+=.005*frame_diff;
-    else {
-      float angle = -shape.getRotation()*3.14/180;
-      if (isJump!=0)
-	angle=0;
-      while (angle<-3.14/2)
-        angle+=2*3.14;
-      temp_dx=dx*cos(angle);
-      if (angle>0)
-	y=base_y-sin(angle)*(getX1()-platx1)-height;
-      else if (angle<0)
-	y=base_y-sin(angle)*(getX1()-platx2)-height;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+      if (vx<0)
+	vx+=.005*frame_diff;
+      else {
+	float angle = -shape.getRotation()*3.14/180;
+	if (isJump!=0)
+	  angle=0;
+	while (angle<-3.14/2)
+	  angle+=2*3.14;
+	temp_dx=dx*cos(angle);
+	if (angle>0)
+	  y=base_y-sin(angle)*(getX1()-platx1)-height;
+	else if (angle<0)
+	  y=base_y-sin(angle)*(getX1()-platx2)-height;
   
+      }
     }
   }
 #endif
@@ -352,3 +356,10 @@ void You::save(std::ostream& out_str) {
   //Entrances
   out_str<<hasEnterSplit<<"\n";
 }
+
+void You::controlPause() {
+  isControlPaused=!isControlPaused;
+  if (isJump==0)
+    isJump=1;
+}
+

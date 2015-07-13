@@ -53,6 +53,7 @@ protected:
   std::vector<Detector*> detectors;
   You* you;
   L_CODE me;
+  bool canMove;
 };
 
 #endif

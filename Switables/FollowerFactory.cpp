@@ -10,7 +10,7 @@ FollowerFactory::FollowerFactory() : Switch(){
 
 FollowerFactory::FollowerFactory(Level* l, float x_, float y_, float w, float h,You* yo,int c,
 				 std::vector<Actor*>* a) : Switch(l,x_,y_,w,h,yo) {
-  eve=FACTORY;
+  eve=NOTHING;
   count = c;
   isOn=true;
   actors=a;
