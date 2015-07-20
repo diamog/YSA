@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Fairy.h"
 #include "Level.h"
 #include <cmath>
@@ -6,7 +7,7 @@ Fairy::Fairy(Level* l,float x_,float y_) : Actor(l,x_,y_,20,30) {
   val=0;
   dir=1;
   central_y=y;
-  angle0=atan2((100+30),(470-30))+8*3.1415926535;
+  angle0=atan2((100+30.0),(470-30))+8*3.1415926535;
   angle=angle0;
 #ifndef COMPILE_NO_SF
   texture.loadFromFile("Graphics/fairy1.png");
@@ -36,7 +37,7 @@ void Fairy::act() {
   }
   else if (val==3) {
     angle-=3.1415926535/36;
-    float mag = sqrt(130*130+470*470)/angle0;
+    float mag = sqrt(130*130+470*470.0)/angle0;
     float r = mag*angle;
     x = r*cos(angle)+500;
     y = r*sin(angle)+100;

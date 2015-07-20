@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "KickPlat.h"
 #include "../Enemies/Reverser.h"
-#include "Level.h"
+#include "../Level.h"
 KickPlat::KickPlat() : Actor(),Platform() {}
 
 KickPlat::KickPlat(Level* l, float x_,float y_,float w,float h,You* yo,

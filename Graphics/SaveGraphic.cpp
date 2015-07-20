@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "SaveGraphic.h"
 #include "../Level.h"
 SaveGraphic::SaveGraphic(Level* l) : Actor(l,0,0,700,600) {
