@@ -46,6 +46,8 @@ protected:
   virtual void makeDetectors() {};
   void buildHint(float x, float y, int code, std::string m);
   void buildExtra(float x,float y);
+  int buildCoin(float x,float y,EVE_CODE eve);
+
   float x,y;
   float width,height;
   std::vector<Actor*> actors;

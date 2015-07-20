@@ -11,8 +11,13 @@ set(ENEMY_SRC
   Drone.cpp
   Rider.cpp
   PBullet.cpp
+  PBullet2.cpp
+  PSpawner.cpp
   PumpkinHead.cpp
-  
+  PGhost.cpp
+  Pumpkin.cpp
+  Vine.cpp
+  WallVine.cpp
 )
 
 add_library(enemy ${ENEMY_SRC})

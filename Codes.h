@@ -74,7 +74,7 @@ typedef enum SAVE_CODE {
   WALL_KICK_1,
   WALL_KICK_2,
   WALL_KICK_3,
-  BOSS_SPLIT,
+  BOSS_SPLIT
   
 } S_CODE;
 
@@ -96,6 +96,8 @@ typedef enum LEVEL_CODE {
   KICK,
   CLIMB,
   COLLECTOR,
-  PUMPKIN
+  PUMPKIN,
+  SECRET_1,
+  SECRET_2
 } L_CODE;
 #endif

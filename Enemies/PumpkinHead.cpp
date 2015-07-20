@@ -9,11 +9,13 @@ PumpkinHead::PumpkinHead(Level* l, float x_, You* yo, int health) : Actor(l,x_,6
   numstems=health;
   phase=0;
 #ifndef COMPILE_NO_SF
-  shape.setFillColor(sf::Color(255,165,0));
-  eye.setFillColor(sf::Color(0,0,0));
-  shape.setRadius(height/2);
-  shape.setScale(width/height,1);
-  eye.setRadius(height/6);
+  texture.loadFromFile("Graphics/pumpkin1.png");
+  head.setOrigin(width/2,0);
+  // shape.setFillColor(sf::Color(255,165,0));
+  // eye.setFillColor(sf::Color(0,0,0));
+  // shape.setRadius(height/2);
+  // shape.setScale(width/height,1);
+  // eye.setRadius(height/6);
 #endif
   stem_height=width/2;
   ticks=0;
@@ -53,8 +55,10 @@ void PumpkinHead::act() {
       y-=4;
     else
       y-=3;
-    if (getY1()<600-stem_height*numstems)
+    if (getY1()<600-stem_height*numstems) {
+      texture.loadFromFile("Graphics/pumpkin2.png");
       phase=2;
+    }
   }
   else if (phase==2) {
     if (!you->isPauseC())
@@ -75,6 +79,8 @@ void PumpkinHead::act() {
     if (ticks>150) {
       ticks=0;
       phase=4;
+      texture.loadFromFile("Graphics/pumpkin1.png");
+      
     }
   }
   else if (phase==4) {
@@ -91,6 +97,9 @@ void PumpkinHead::act() {
       
       x = rand()%530+50;
       y=580;
+      if (you->getDead()) {
+	phase=-1;
+      }
     }
   }
   else if (phase==5) {
@@ -119,8 +128,6 @@ void PumpkinHead::act() {
 
 #ifndef COMPILE_NO_SF
 void PumpkinHead::render(sf::RenderWindow& window) {
-  shape.setPosition(getX1(),getY1());
-  window.draw(shape);
   float cx,cy;
   float yx,yy;
   getObjectCenter(this,cx,cy);
@@ -128,14 +135,14 @@ void PumpkinHead::render(sf::RenderWindow& window) {
   int dir=1;
   if (yx>=cx) {
     eyex=getX2()-22;
+    head.setScale(-1,1);
   }
   else {
     dir=-1;
     eyex = getX1()+22;
+    head.setScale(1,1);
   }
   int dir_copy=dir;
-  eye.setPosition(eyex-height/6,getY1()+height/2-height/3);
-  window.draw(eye);
   if (phase==2) {
     sf::Vertex line[] =
     {
@@ -154,6 +161,9 @@ void PumpkinHead::render(sf::RenderWindow& window) {
     dir_copy*=-1;
     stems[i]->render(window);
   }
+  head.setTexture(texture);
+  head.setPosition(getX1()+width/2,getY1());
+  window.draw(head);
   
 }
 #endif

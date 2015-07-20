@@ -4,9 +4,11 @@
 #ifndef COMPILE_NO_VB
 #include "Switables/Extra.h"
 #include "Switables/Hint.h"
+#include "Switables/Coin.h"
 #else
 #include "Extra.h"
 #include "Hint.h"
+#include "Coin.h"
 #endif
 #include "SpeechBubble.h"
 #include "Extras/utilities.h"
@@ -26,10 +28,10 @@ Level::Level(You* yo) {
 }
 
 void Level::setup() {
-  makePlatforms();
-  makeEnemies();
   makeCollectables();
   makeSwitches();
+  makePlatforms();
+  makeEnemies();
   makeDetectors();
 }
 
@@ -170,4 +172,9 @@ void Level::buildExtra(float x,float y) {
 void Level::buildHint(float x,float y,int code,std::string m) {
   if (!you->hasHint(code))
     actors.push_back(new Hint(this,x,y,30,you,m,code));
+}
+
+int Level::buildCoin(float x,float y,EVE_CODE eve) {
+  actors.push_back(new Coin(this,x,y,you,eve));
+  return 1;
 }

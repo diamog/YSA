@@ -9,9 +9,8 @@ Fairy::Fairy(Level* l,float x_,float y_) : Actor(l,x_,y_,20,30) {
   angle0=atan2((100+30),(470-30))+8*3.1415926535;
   angle=angle0;
 #ifndef COMPILE_NO_SF
-  shape.setFillColor(sf::Color(200,0,200));
-  shape.setRadius(width/2);
-  shape.setScale(1,height/width);
+  texture.loadFromFile("Graphics/fairy1.png");
+  fairy.setScale(2,2);
 #endif
 }
 
@@ -21,6 +20,7 @@ void Fairy::act() {
     if (fabs(y-central_y)>=30)
       dir*=-1;
     y+=dir*1;
+    
   }
   else if (val==1) {
     x+=3;
@@ -53,8 +53,10 @@ void Fairy::act() {
 
 #ifndef COMPILE_NO_SF
 void Fairy::render(sf::RenderWindow& window) {
-  shape.setPosition(x,y);
-  window.draw(shape);
+  fairy.setTexture(texture);
+ 
+  fairy.setPosition(x,y);
+  window.draw(fairy);
 }
 #endif
 
@@ -65,5 +67,5 @@ void Fairy::turnOn(int i) {
 
 void Fairy::kill() {
   val=-1;
-  shape.setFillColor(sf::Color(255,255,255));
+  fairy.setColor(sf::Color(50,50,50));
 }

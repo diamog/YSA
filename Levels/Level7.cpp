@@ -50,6 +50,7 @@ void Level7::makeEnemies() {
 }
 void Level7::makeCollectables() {
   //Make the hints
+  buildHint(335,570,10,"You can wall jump off notched walls by pressing the jump button.; You also regain your double jump after wall jumping.;");
   buildExtra(635,35);
 }
 

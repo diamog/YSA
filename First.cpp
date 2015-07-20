@@ -38,23 +38,15 @@ int main() {
 #ifndef COMPILE_NO_SF
   while (window.isOpen()) {
     sf::Event event;
-    if (!you->isPause()) {
-      if (*isDead==false) {
-        if (!you->isPauseM())
-          you->act();
-      }
-      level->act();
-    }
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed)
         window.close();
       if (event.type == sf::Event::KeyPressed) {
         if(event.key.code ==sf::Keyboard::R&&!you->isPause()&& !you->isPauseM()) {
           *isDead=false;
-          you->reload();
+	  you->reload();
 	  delete level;
           level = loadLevel(you,you->getSave());
-          
         }
         if (event.key.code ==sf::Keyboard::O) {
           you->print();
@@ -80,14 +72,28 @@ int main() {
       level->windowEvent(event);
       
     }
+    if (!you->isPause()) {
+      if (*isDead==false) {
+        if (!you->isPauseM())
+          you->act();
+      }
+      level->act();
+    }
+
     L_CODE next_level;
     ENT_CODE ent;
     if (level->isChangeRoom(next_level,ent)) {
-      delete level;
-      level = makeLevel(you,next_level,ent);
+      Level* temp = level;
+      level = makeLevel(you,temp,next_level,ent);
+      delete temp;
+      
     }
+    
     if (level->isBoss())
       window.clear();
+    else if (you->isAntiGravity()) {
+      window.clear(sf::Color(0,200,200));
+    }
     else
       window.clear(sf::Color(100,100,100));
     level->render(window);

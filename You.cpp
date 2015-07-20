@@ -46,6 +46,7 @@ You::You(float x_, float y_, float w, float h, bool* isD) :
   grav = 0.005f*frame_diff*frame_diff;
   platx1=platx2=0;
   base_y=0;
+  isAntiGrav=false;
 }
 
 You::~You() {
@@ -74,8 +75,7 @@ void You::act() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
       if (isJump==0) {
 	platx1=platx2=0;
-	float angle = shape.getRotation()*3.1415926535/180;
-	
+	float angle = shape.getRotation()*3.1415926535/180;	
 	dy=-.95*frame_diff*cos(angle);
 	vx=2*.95*frame_diff*sin(angle);
 	isJump=1;
@@ -180,10 +180,18 @@ void You::act() {
     shape.setRotation(0);
   }
   y+=dy;
-  if (isJump!=0)
-    dy+=grav/(1+3*isKickLeft||isKickRight);
+  if (isJump!=0) {
+    if (!isAntiGrav)
+      dy+=grav/(1+3*isKickLeft||isKickRight);
+    else {
+      dy+=grav/(1+3*isKickLeft||isKickRight)/3;
+      downLimit/=1.5;
+    }
+  }
   if (dy>downLimit*frame_diff)
     dy=downLimit*frame_diff;
+  if (isAntiGrav)
+    downLimit*=1.5;
   isKickLeft=isKickRight=false;
 }
 
@@ -282,6 +290,7 @@ void You::die() {
 void You::reload() {
   shape.setRotation(0);
   vx=0;
+  isAntiGrav=false;
   alpha=261;
   isJump=1;
   dy=0;

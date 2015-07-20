@@ -51,6 +51,7 @@ public:
   
   void save(S_CODE s);
   void die();
+  bool getDead() {return *isDead;}
   void reload();
   void addBullet(Bullet* b) {bullets.push_back(b);}
   const std::vector<Bullet*>& getBullets() {return bullets;}
@@ -70,6 +71,8 @@ public:
   void beatBoss5() {isFire=true;}
   void beatBoss6() {isColor2=true;}
   
+  void antiGravity() {isAntiGrav=!isAntiGrav;}
+  bool isAntiGravity() {return isAntiGrav;}
   bool hasSplit() {return hasEnterSplit;}
   void enterSplit() {hasEnterSplit=true;}
   void load(std::istream& in_str);
@@ -104,6 +107,7 @@ protected:
   bool isColor,isCloud,isPump,isCat,isFire,isColor2;
   bool isKickLeft,isKickRight;
   bool hasEnterSplit;
+  bool isAntiGrav;
 };
 
 #endif

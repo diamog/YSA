@@ -23,7 +23,9 @@ public:
   float angle;
   float angle0;
 #ifndef COMPILE_NO_SF
-  sf::CircleShape shape;
+  sf::Texture texture;
+  sf::Sprite fairy;
+  //sf::CircleShape shape;
 #endif  
 };
 #endif

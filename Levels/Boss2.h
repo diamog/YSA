@@ -1,5 +1,6 @@
 #include "../Level.h"
 #include "../Enemies/PumpkinHead.h"
+#include "../Enemies/Pumpkin.h"
 #ifndef __BOSS_2_H__
 #define __BOSS_2_H__
 
@@ -23,6 +24,7 @@ class Boss2 : public Level {
   PumpkinHead* headL;
   PumpkinHead* headR;
   Platform* plat1;
+  Pumpkin* pumpkin;
 };
 
 Level* makeBoss2(You* yo, float x, float y, ENT_CODE ent);

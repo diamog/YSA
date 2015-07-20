@@ -27,9 +27,11 @@ void PBullet::act() {
   Death::act();
   if (getX1()>700||getX2()<0||getY1()>600||getY2()<0)
     isDead=true;
-  for (unsigned int i=0;i<stems->size();i++) {
-    if (isRectangularHit(this,(*stems)[i])) {
-      (*stems)[i]->setDeath();
+  if (stems!=NULL) {
+    for (unsigned int i=0;i<stems->size();i++) {
+      if (isRectangularHit(this,(*stems)[i])) {
+	(*stems)[i]->setDeath();
+      }
     }
   }
 }

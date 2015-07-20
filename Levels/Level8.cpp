@@ -11,7 +11,7 @@ Level8::Level8(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   me = CLIMB;
   height=1470;
   if (ent==EAST) {
-    you->setPosition(698,entery,true);
+    you->setPosition(698,(entery-800)+30,true);
   } 
   else if(ent==SOUTH) {
     you->setPosition(enterx,height-2,true);
@@ -58,7 +58,7 @@ void Level8::makeCollectables() {
 void Level8::makeSwitches() {
   //Make the save point
   actors.push_back(new Save(this,500,55,40,you,PRE_KICK_HALL));
-  actors.push_back(new Portal(this,255,895,90,30,you,PORTALE_1));
+  actors.push_back(new Portal(this,255,895,60,25,you,PORTALE_1));
 }
 void Level8::makeDetectors() {
   //detectors.push_back(new Detector(this,0,570-30,30,30,&actors2));

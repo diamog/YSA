@@ -7,6 +7,7 @@ set (SWITCH_SRC
   RedSwitch.cpp
   Portal.cpp
   FollowerFactory.cpp
+  AntiGravity.cpp
 )
 
 set (COLLECTABLE_SRC

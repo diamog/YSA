@@ -23,8 +23,10 @@ class PumpkinHead : public Enemy{
   int tempnumstems;
   int numstems;
 #ifndef COMPILE_NO_SF
-  sf::CircleShape shape;
-  sf::CircleShape eye;
+  sf::Texture texture;
+  sf::Sprite head;
+  /* sf::CircleShape shape; */
+  /* sf::CircleShape eye; */
 #endif
   int stem_height;
   float eyex;

@@ -15,7 +15,7 @@ Boss2::Boss2(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   setup();
   headL=headR=NULL;
   if (ent== NORTH) {
-    you->setPosition(enterx,-18,true);
+    you->setPosition((enterx-3420+670),-18,true);
   }
   else if (ent==LOAD_1) {
     you->setPosition(600,-18,true);
@@ -30,12 +30,16 @@ void Boss2::makeP() {
   actors.push_back(new KPlat(this,0,0,30,1200,you,false,true)); //left wall
   actors.push_back(new KPlat(this,670,0,30,1200,you,true,false)); //right wall
   actors.push_back(new Plat(this,0,1170,700,30,you));
+  actors.push_back(new Plat(this,250,600+200,200,30,you));
+
 }
 
 void Boss2::makePlatforms() {
   makeP<Platform,KickPlat>();
 }
 void Boss2::makeEnemies() {
+  pumpkin = new Pumpkin(this,you);
+  actors.push_back(pumpkin);
 }
 void Boss2::makeCollectables() {
   
@@ -57,15 +61,24 @@ void Boss2::act() {
 				      sf::Color(255,255,0),you->getY1(),MISCE_1));
     part=1;
   }
-  else if (part==2&&you->getY1()<550&&y==height-600) {
-    sendEvent(MISCE_4,NULL);
+  else if (part==2&&you->getPlatX1()!=you->getPlatX2()) {
+    sendEvent(MISCE_5,NULL);
     part=3;
     canMove=false;
-    }
-  else if (part==1&&headL!=NULL&&headR!=NULL&&headL->getNumStems()+headR->getNumStems()<=8) {
+  }
+  else if (part==1&&headL!=NULL&&headR!=NULL&&headL->getNumStems()+headR->getNumStems()<=10) { //8
+    you->setPosition(you->getX1(),you->getY1());
     sendEvent(MISCE_3,NULL);
     part=2;
     canMove=true;
+  }
+  else if (part==3) {
+    y+=5;
+    you->shiftY(-5);
+    if (y>=height-600) {
+      part=4;
+      y=height-600;
+    }
   }
 }
 
@@ -107,6 +120,7 @@ void Boss2::sendEvent(EVE_CODE eve, Actor* sender) {
     
   }
   else if (eve==MISCE_4) {
+    remove(sender);
     you->messagePause();
     you->controlPause();
     
@@ -117,6 +131,7 @@ void Boss2::sendEvent(EVE_CODE eve, Actor* sender) {
   else if (eve==MISCE_6) {
     remove(sender);
     you->controlPause();
+    pumpkin->turnOn();
   }
   else
     Level::sendEvent(eve,sender);

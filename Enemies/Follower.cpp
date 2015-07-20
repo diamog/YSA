@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Follower.h"
-
+#include "../Level.h"
 Follower::Follower() : Actor(),Enemy() {
   hp = 0;
 }
@@ -22,10 +22,10 @@ Follower::Follower(Level* l, float x_,float y_, You* yo,int num,
 }
 
 void Follower::act() {
-  pos.push_back(std::make_pair(you->getX1(),you->getY1()));
+  pos.push_back(std::make_pair(you->getX1()+level->getX(),you->getY1()+level->getY()));
   angles.push_back(you->getAngle());
   if (alpha<250) {
-    alpha+=1*frame_diff;
+    alpha+=1.5*frame_diff;
   }
   else if (alpha>=250&&alpha<255) {
     alpha=255;
@@ -49,7 +49,7 @@ void Follower::act() {
 
 #ifndef COMPILE_NO_SF
 void Follower::render(sf::RenderWindow& window) {
-  shape.setPosition(x,y);
+  shape.setPosition(getX1(),getY1());
   shape.setFillColor(sf::Color(180,180,0,alpha));
   window.draw(shape);
 }
