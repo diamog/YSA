@@ -9,6 +9,7 @@ set(ENEMY_SRC
   Follower.cpp
   Reverser.cpp
   Drone.cpp
+  LineDrone.cpp
   Rider.cpp
   PBullet.cpp
   PBullet2.cpp
@@ -18,6 +19,7 @@ set(ENEMY_SRC
   Pumpkin.cpp
   Vine.cpp
   WallVine.cpp
+  SmallEye.cpp
 )
 
 add_library(enemy ${ENEMY_SRC})

@@ -22,7 +22,7 @@ class Level {
   float getWidth() {return width;}
   float getHeight() {return height;}
   virtual void act();
-
+  virtual void resetEye() {}
   bool isBoss() {return isboss;}
 
 #ifndef COMPILE_NO_SF
@@ -31,9 +31,9 @@ class Level {
 #endif
   virtual void sendEvent(EVE_CODE eve, Actor* sender);
   void destroy();
-
+  void warp() {isWarp=true;}
   void remove(Actor* actor);
-  virtual bool isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type)=0;
+  virtual bool isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type);
   
   
 protected:
@@ -56,6 +56,7 @@ protected:
   You* you;
   L_CODE me;
   bool canMove;
+  bool isWarp;
 };
 
 #endif

@@ -19,7 +19,6 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   else if (ent== LOAD_1) {
     //Load into savepoint 1
     you->setPosition(610,120);
-    //you->setPosition(610,500);
   } 
   else if(ent==EAST) {
     you->setPosition(698,entery,true);
@@ -30,9 +29,13 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   else if (ent==MISC_1) {
     fairy->turnOn(3);
     you->setPosition(enterx,-18,true);
-    you->messagePause();
+    you->controlPause();
     actors.push_back(new SpeechBubble(this,"Hurrah! You have returned the color to this land and saved me too!; I am one of the 5 protector fairies of this land.; You must be destined to save this entire world or something...;",sf::Color(200,0,200),you->getY1(),MISCE_1)); 
     you->enterSplit();
+  }
+  else if (ent==PORTAL_1) {
+    you->setPosition(200,20);
+    you->setFall();
   }
   else
     throw THROW_ENTRANCE_ERROR;
@@ -61,7 +64,6 @@ void Level4::makeEnemies() {
   actors.push_back(new DeathArea(this,570,400,100,30,you));
   actors.push_back(new DeathArea(this,255,530,30,70,you));
   actors.push_back(new DeathArea(this,425,410,30,190,you));
-  actors.push_back(new DeathArea(this,285,570,140,30,you)); //TO BE REMOVED
 
 }
 void Level4::makeCollectables() {
@@ -96,7 +98,7 @@ bool Level4::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
     ent_type=WEST;
     return true;
   }
-  return false;
+  return Level::isChangeRoom(next_level,ent_type);
 }
 
 void Level4::sendEvent(EVE_CODE event,Actor* sender) {
@@ -107,7 +109,7 @@ void Level4::sendEvent(EVE_CODE event,Actor* sender) {
   }
   else if (event==MISCE_2) {
     remove(sender);
-    actors.push_back(new SpeechBubble(this,"NOPE!; But I beg you. Please find my fellow fairies.; Together we can stop the deterioration of the world.; I will remain here awaiting your return;",sf::Color(200,0,200),you->getY1())); 
+    actors.push_back(new SpeechBubble(this,"NOPE!; But I beg you. Please find my fellow fairies.; Together we can stop the deterioration of the world.; I will remain here awaiting your return; To the right I sense a profound darkness that has yet to take form.; Below us is a long pit. I will slow your descent so that you can safely make it down.;",sf::Color(200,0,200),you->getY1())); 
   }
   else 
     Level::sendEvent(event,sender);

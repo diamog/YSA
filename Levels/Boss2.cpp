@@ -22,6 +22,19 @@ Boss2::Boss2(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   }
   else
     throw THROW_ENTRANCE_ERROR;
+  if (you->boss3()) {
+    part=5;
+    canMove=true;
+    sendEvent(MISCE_3,NULL);
+    you->messagePause();
+  }
+  else if (you->boss3Half()) {
+    sendEvent(MISCE_3,NULL);
+    sendEvent(MISCE_4,NULL);
+    canMove=true;
+    part=2;
+  }
+  
 }
 template <class Plat,class KPlat>
 void Boss2::makeP() {
@@ -38,8 +51,10 @@ void Boss2::makePlatforms() {
   makeP<Platform,KickPlat>();
 }
 void Boss2::makeEnemies() {
-  pumpkin = new Pumpkin(this,you);
-  actors.push_back(pumpkin);
+  if (!you->boss3()) {
+    pumpkin = new Pumpkin(this,you);
+    actors.push_back(pumpkin);
+  }
 }
 void Boss2::makeCollectables() {
   
@@ -66,11 +81,16 @@ void Boss2::act() {
     part=3;
     canMove=false;
   }
-  else if (part==1&&headL!=NULL&&headR!=NULL&&headL->getNumStems()+headR->getNumStems()<=10) { //8
-    you->setPosition(you->getX1(),you->getY1());
-    sendEvent(MISCE_3,NULL);
-    part=2;
-    canMove=true;
+  else if (part==1&&headL!=NULL&&headR!=NULL&&headL->getNumStems()+headR->getNumStems()<=10) {
+    headL->turnOff();
+    headR->turnOff();
+    if (headL->getY1()>=600&&headR->getY1()>=600) {
+      you->setPosition(you->getX1(),you->getY1());
+      sendEvent(MISCE_3,NULL);
+      part=2;
+      canMove=true;
+      you->beatBoss3Half();
+    }
   }
   else if (part==3) {
     y+=5;
@@ -87,7 +107,7 @@ bool Boss2::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
     next_level=COLLECTOR;
     ent_type=SOUTH;
   }
-  return false;
+  return Level::isChangeRoom(next_level,ent_type);
 }
 
 
@@ -115,7 +135,9 @@ void Boss2::sendEvent(EVE_CODE eve, Actor* sender) {
     remove(headR);
     remove(plat1);
 #ifndef COMPILE_NO_SF
-    actors.push_back(new SpeechBubble(this,"You there destroying my stems.; I want to have a word with you.;",sf::Color(255,165,0),you->getY1(),MISCE_4));
+    if (!you->boss3Half()) 
+      actors.push_back(new SpeechBubble(this,"You there destroying my stems.; I want to have a word with you.;",sf::Color(255,165,0),you->getY1(),MISCE_4));
+
 #endif
     
   }

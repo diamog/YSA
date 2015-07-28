@@ -12,6 +12,9 @@ Stem::Stem(Level* l, float x_,float y_,float cx_,float w,float h,You* yo,int d) 
   cx=cx_;
   setPumpDir(d);
   isDead=false;
+  vine.loadFromFile("Graphics/vines.png");
+  wiltedvine.loadFromFile("Graphics/wiltedvines.png");
+  stem.setOrigin(w/2,h/2);
 }
 
 void Stem::act() {
@@ -26,7 +29,7 @@ void Stem::setPumpDir(int d) {
 }
 #ifndef COMPILE_NO_SF
 void Stem::render(sf::RenderWindow& window) {
-  float x1,x2;
+  /*float x1,x2;
   if (dir==-1) {
     x1=getX1();
     x2=getX2();
@@ -44,6 +47,16 @@ void Stem::render(sf::RenderWindow& window) {
     sf::Vertex(sf::Vector2f(x2,getY2()),c)
   };
   window.draw(line,2,sf::Lines);
-
+  */
+  stem.setPosition(getX1()+width/2,getY1()+height/2);
+  if (isDead)
+    stem.setTexture(wiltedvine);
+  else
+    stem.setTexture(vine);
+  if (dir==-1)
+    stem.setRotation(-90);
+  else
+    stem.setRotation(0);
+  window.draw(stem);
 }
 #endif

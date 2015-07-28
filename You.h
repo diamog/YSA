@@ -48,7 +48,8 @@ public:
   void ceiling(float y_);
   void hitLeftWall(float x_,bool isKick=false);
   void hitRightWall(float x_,bool isKick=false);
-  
+
+  void warp();
   void save(S_CODE s);
   void die();
   bool getDead() {return *isDead;}
@@ -61,16 +62,19 @@ public:
   bool boss1() {return isColor;}
   bool boss2() {return isCloud;}
   bool boss3() {return isPump;}
+  bool boss3Half() {return isPumpHalf;}
   bool boss4() {return isCat;}
   bool boss5() {return isFire;}
   bool boss6() {return isColor2;}
   void beatBoss1() {isColor=true;}
   void beatBoss2() {isCloud=true;}
   void beatBoss3() {isPump=true;}
+  void beatBoss3Half() {isPumpHalf=true;}
   void beatBoss4() {isCat=true;}
   void beatBoss5() {isFire=true;}
   void beatBoss6() {isColor2=true;}
-  
+
+  void setFall(float max) {if (dy>max) dy=max;}
   void antiGravity() {isAntiGrav=!isAntiGrav;}
   bool isAntiGravity() {return isAntiGrav;}
   bool hasSplit() {return hasEnterSplit;}
@@ -104,7 +108,7 @@ protected:
   std::set<L_CODE> extras;
   std::set<L_CODE> temp_extras;
   std::set<int> hints;
-  bool isColor,isCloud,isPump,isCat,isFire,isColor2;
+  bool isColor,isCloud,isPump,isPumpHalf,isCat,isFire,isColor2;
   bool isKickLeft,isKickRight;
   bool hasEnterSplit;
   bool isAntiGrav;

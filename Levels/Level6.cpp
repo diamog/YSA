@@ -173,5 +173,6 @@ bool Level6::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
     ent_type=WEST;
     return true;
   }
-  return false;
+  return Level::isChangeRoom(next_level,ent_type);
+
 }

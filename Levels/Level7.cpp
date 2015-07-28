@@ -50,7 +50,7 @@ void Level7::makeEnemies() {
 }
 void Level7::makeCollectables() {
   //Make the hints
-  buildHint(335,570,10,"You can wall jump off notched walls by pressing the jump button.; You also regain your double jump after wall jumping.;");
+  buildHint(335,540,10,"You can wall jump off notched walls by pressing the jump button.; You also regain your double jump after wall jumping.;");
   buildExtra(635,35);
 }
 
@@ -85,5 +85,6 @@ bool Level7::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
     ent_type=SOUTH;
     return true;
   }
-  return false;
+  return Level::isChangeRoom(next_level,ent_type);
+
 }

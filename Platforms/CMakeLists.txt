@@ -9,6 +9,8 @@ set(PLATFORM_SRC
   Slope.cpp
   KickPlat.cpp
   Stem.cpp
+  Button.cpp
+  InviPlat.cpp
 )
 
 add_library(plats ${PLATFORM_SRC})

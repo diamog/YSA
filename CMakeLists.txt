@@ -20,6 +20,7 @@ add_subdirectory(Bullets)
 add_subdirectory(Enemies)
 add_subdirectory(Platforms)
 add_subdirectory(Switables)
+add_subdirectory(Detectors)
 add_subdirectory(Levels)
 
 set(ROOT_SOURCES
@@ -41,6 +42,7 @@ target_link_libraries(YSA extra)
 target_link_libraries(YSA enemy)
 target_link_libraries(YSA plats)
 target_link_libraries(YSA switable)
+target_link_libraries(YSA detectors)
 target_link_libraries(YSA level)
 
 IF (ENABLE_SF)

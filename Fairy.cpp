@@ -11,7 +11,8 @@ Fairy::Fairy(Level* l,float x_,float y_) : Actor(l,x_,y_,20,30) {
   angle=angle0;
 #ifndef COMPILE_NO_SF
   texture.loadFromFile("Graphics/fairy1.png");
-  fairy.setScale(2,2);
+  fairy.setOrigin(width/2,height/2);
+  fairy.setScale(-1,1);
 #endif
 }
 
@@ -21,19 +22,22 @@ void Fairy::act() {
     if (fabs(y-central_y)>=30)
       dir*=-1;
     y+=dir*1;
-    
   }
   else if (val==1) {
     x+=3;
     y = central_y-(x+width)*(x+width)/400;
+    fairy.setScale(-1,1);
     if (getY2()<0) {
       level->sendEvent(MISCE_2,this);
     }
+    
   }
   else if (val==2) {
     y+=3;
+    fairy.setScale(-1,1);
     if (getY1()>600)
       level->sendEvent(KILL,this);
+    
   }
   else if (val==3) {
     angle-=3.1415926535/36;
@@ -45,6 +49,7 @@ void Fairy::act() {
       central_y=y;
       val=0;
     }
+    fairy.setScale(1,1);
   }
   else {
     std::cerr<<"FAIRY FAIL\n\n";
@@ -55,8 +60,7 @@ void Fairy::act() {
 #ifndef COMPILE_NO_SF
 void Fairy::render(sf::RenderWindow& window) {
   fairy.setTexture(texture);
- 
-  fairy.setPosition(x,y);
+  fairy.setPosition(getX1()+width,getY1()+height);
   window.draw(fairy);
 }
 #endif
@@ -68,5 +72,7 @@ void Fairy::turnOn(int i) {
 
 void Fairy::kill() {
   val=-1;
-  fairy.setColor(sf::Color(50,50,50));
+  texture.loadFromFile("Graphics/grayfairy1.png");
+  fairy.setRotation(-45);
+  //fairy.setScale(-10,10);
 }

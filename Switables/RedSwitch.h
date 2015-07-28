@@ -12,6 +12,7 @@ public:
 
   void act();
   void activate();
+  void setColor(int r,int g,int b) {isOn=false;shape.setFillColor(sf::Color(r,g,b));}
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
 #endif
@@ -19,6 +20,7 @@ protected:
 #ifndef COMPILE_NO_SF
   sf::RectangleShape shape;
 #endif
+  bool isOn;
 
 };
 

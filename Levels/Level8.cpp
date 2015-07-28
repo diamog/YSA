@@ -89,6 +89,5 @@ bool Level8::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
     ent_type=NORTH;
     return true;
   }
-  
-  return false;
+  return Level::isChangeRoom(next_level,ent_type);
 }

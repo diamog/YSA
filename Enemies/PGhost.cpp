@@ -11,7 +11,7 @@ PGhost::PGhost(Level* l, bool isLeft, You* yo) : Actor(l,0,630,70,50), Enemy(l,0
   else
     x=700-150-70;
 #ifndef COMPILE_NO_SF
-  texture.loadFromFile("Graphics/pumpkin1.png");
+  texture.loadFromFile("Graphics/pumpkin_spirit.png");
 #endif
   ticks=0;
 }

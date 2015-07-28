@@ -8,6 +8,7 @@ PumpkinHead::PumpkinHead() : Actor(), Enemy() {
 PumpkinHead::PumpkinHead(Level* l, float x_, You* yo, int health) : Actor(l,x_,600,70,50), Enemy(l,x_,600,70,50,yo,health) {
   numstems=health;
   phase=0;
+  isOn=true;
 #ifndef COMPILE_NO_SF
   texture.loadFromFile("Graphics/pumpkin1.png");
   head.setOrigin(width/2,0);
@@ -96,10 +97,12 @@ void PumpkinHead::act() {
       numstems=tempnumstems;
       
       x = rand()%530+50;
-      y=580;
-      if (you->getDead()) {
+      if (!isOn)
 	phase=-1;
-      }
+      else if (you->getDead()) 
+	phase=-1;
+      else
+	y=580;
     }
   }
   else if (phase==5) {

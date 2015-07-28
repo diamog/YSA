@@ -16,6 +16,7 @@
 Level::Level() {
   you = NULL;
   x=y=0;
+  isWarp=false;
 }
 
 Level::Level(You* yo) {
@@ -25,6 +26,7 @@ Level::Level(You* yo) {
   height=600;
   isboss=false;
   canMove=true;
+  isWarp=false;
 }
 
 void Level::setup() {
@@ -47,6 +49,8 @@ void Level::destroy() {
 }
 
 void Level::remove(Actor* actor) {
+  if (actor==NULL)
+    return;
   unsigned int i;
   for (i=0;i<actors.size();i++) 
     if (*(actors[i])==*actor)
@@ -65,12 +69,16 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
     you->getHint(sender->getVal());
 #ifndef COMPILE_NO_SF
     you->messagePause();
-    actors.push_back(new SpeechBubble(this,sender->getMessage(),sf::Color(0,255,0),you->getY1()));
+    actors.push_back(new SpeechBubble(this,sender->getMessage(),sf::Color(0,255,0),you->getY1(),END_HINT));
 #endif
     remove(sender);
   }
-  else if (eve==END_SPEECH) {
+  else if (eve==END_HINT) {
     you->messagePause();
+    remove(sender);
+  }
+  else if (eve==END_SPEECH) {
+    you->controlPause();
     remove(sender);
   }
   else if (eve == EXTRA) {
@@ -153,17 +161,23 @@ void Level::windowEvent(sf::Event& event) {
   
 }
 void Level::render(sf::RenderWindow& window) {
+  for (unsigned int i=0;i<detectors.size();i++)
+    detectors[i]->render(window);
   for (unsigned int i=0;i<actors.size();i++)
     actors[i]->render(window);
   for (unsigned int i=0;i<actors2.size();i++)
     actors2[i]->render(window);
-#ifdef COMPILE_DEBUG
-  for (unsigned int i=0;i<detectors.size();i++)
-    detectors[i]->render(window);
-#endif
-
 }
 #endif
+
+bool Level::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
+  if (isWarp) {
+    next_level=SPLIT;
+    ent_type=PORTAL_1;
+    return true;
+  }
+  return false;
+}
 
 void Level::buildExtra(float x,float y) {
   if (!you->hasExtra(me))

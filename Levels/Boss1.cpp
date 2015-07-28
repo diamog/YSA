@@ -16,7 +16,7 @@ Boss1::Boss1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   setup();
   if (boss!=NULL) {
     
-    fairy = new Fairy(this,30,540);
+    fairy = new Fairy(this,30,515);
     fairy->kill();
     actors.push_back(fairy);
   }
@@ -114,7 +114,7 @@ bool Boss1::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
       ent_type=MISC_1;
     return true;
   }
-  return false;
+  return Level::isChangeRoom(next_level,ent_type);
 }
 
 
@@ -145,7 +145,7 @@ void Boss1::sendEvent(EVE_CODE eve, Actor* sender) {
     remove(sender);
 #ifndef COMPILE_NO_SF
     actors.push_back(new SpeechBubble(this,"COLOR!!! MUST EAT COLOR!!!;",
-				      sf::Color(255,255,255),you->getY1()));
+				      sf::Color(255,255,255),you->getY1(),END_HINT));
 #endif
   }
   else

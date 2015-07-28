@@ -54,7 +54,7 @@ void Platform::render(sf::RenderWindow& window) {
     if (!you->boss1())
       shape.setFillColor(sf::Color(255,255,255));
     else
-      shape.setFillColor(sf::Color(0,255,0));
+      shape.setFillColor(sf::Color(0,230,0));
   }
   window.draw(shape);
 }

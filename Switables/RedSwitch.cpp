@@ -8,6 +8,7 @@ RedSwitch::RedSwitch() : Switch(){
 
 RedSwitch::RedSwitch(Level* l, float x_, float y_, float w, You* yo,EVE_CODE num) : 
   Switch(l,x_,y_,w,w,yo) {
+  isOn=true;
   eve = num;
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(255,0,0));
@@ -37,6 +38,7 @@ void RedSwitch::activate() {
 void RedSwitch::render(sf::RenderWindow& window) {
   shape.setPosition(getX1(),getY1());
   window.draw(shape);
-  shape.setFillColor(sf::Color(255,0,0));
+  if (isOn)
+    shape.setFillColor(sf::Color(255,0,0));
 } 
 #endif

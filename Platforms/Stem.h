@@ -20,6 +20,9 @@ class Stem : public Platform {
   int dir;
   float cx;
   bool isDead;
+  sf::Texture vine;
+  sf::Texture wiltedvine;
+  sf::Sprite stem;
 };
 
 #endif

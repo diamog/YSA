@@ -12,18 +12,18 @@ Pumpkin::Pumpkin() : Actor(),Enemy() {
 }
 
 Pumpkin::Pumpkin(Level* l, You* yo) 
-  : Actor(l,100,870,500,300), Enemy(l,100,870,500,300,yo,5) {
+  : Actor(l,120,870,500,300), Enemy(l,120,870,500,300,yo,5) {
   ticks=0;
+  r=0;
+  dir=1;
   part=-1;
   ghostL=NULL;
   ghostR=NULL;
 #ifndef COMPILE_NO_SF
-  shape.setFillColor(sf::Color(255,165,0,150));
-  shape.setRadius(height/2);
-  shape.setScale(width/height,1);
+  pumpkin1.loadFromFile("Graphics/GreatPumpkin1.png");
 #endif
-  shotx=x+width/2;
-  shoty=y+height/2;
+  shotx=x+width/2-20;
+  shoty=y+height/2+30;
   delay=20;
 }
 
@@ -190,14 +190,38 @@ void Pumpkin::act() {
     if (ticks>45*20) {
       //dies
       part=12;
+      you->beatBoss3();
     }
   }
 }
 
 #ifndef COMPILE_NO_SF
 void Pumpkin::render(sf::RenderWindow& window) {
-  shape.setPosition(getX1(),getY1());
-  window.draw(shape);
+  pumpkin.setPosition(getX1(),getY1());
+  pumpkin.setTexture(pumpkin1);
+  window.draw(pumpkin);
+  if (part==12) {
+    r-=2;
+    if (r<-180)
+      r=-180;
+  }
+  else if (part>=4) {
+    r+=dir/2.0;
+    if (part>=7)
+      r+=dir/2.0;
+    if (part>=9)
+      r+=dir;
+    if (part>=11)
+      r+=dir*2;
+    if (r>53)
+      dir=-1;
+    if (r<0)
+      dir=1;
+  }
+  if (part==12) 
+    pumpkin.setColor(sf::Color(200+r,200+r,200+r,180+r));
+  else
+    pumpkin.setColor(sf::Color(200+r,200,200,180));
   for (unsigned int i=0;i<bullets.size();i++)
     bullets[i]->render(window);
   

@@ -2,6 +2,11 @@
 #define __LEVELS__H__
 
 #include "../Level.h"
+#include "Level14.h"
+#include "Level13.h"
+#include "Level12.h"
+#include "Level11.h"
+#include "Level10.h"
 #include "Boss2.h"
 #include "Level9.h"
 #include "Level8.h"
@@ -37,6 +42,12 @@ Level* loadLevel(You* you, S_CODE save) {
     return makeLevel9(you,0,0,LOAD_2);
   else if (save == WALL_KICK_3)
     return makeLevel9(you,0,0,LOAD_3);
+  else if (save == BOTTOM_PIT)
+    return makeLevel11(you,0,0,LOAD_1);
+  else if (save == THIN_EYE)
+    return makeLevel12(you,0,0,LOAD_1);
+  else if (save == PRE_BOSS_2)
+    return makeLevel14(you,0,0,LOAD_1);
   else
     throw "NO SUCH SAVE!!!";
   return NULL;
@@ -75,6 +86,21 @@ Level* makeLevel(You* you, Level* level, L_CODE l, ENT_CODE ent) {
   }
   else if (l==PUMPKIN) {
     return makeBoss2(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
+  }
+  else if (l==FALL) {
+    return makeLevel10(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
+  }
+  else if (l==EYE) {
+    return makeLevel11(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
+  }
+  else if (l==RISING_EYE) {
+    return makeLevel12(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
+  }
+  else if (l==PUZZLE) {
+    return makeLevel13(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
+  }
+  else if (l==PREBOSS2) {
+    return makeLevel14(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
   }
   return NULL;
 }

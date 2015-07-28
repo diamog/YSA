@@ -19,6 +19,9 @@ Save::Save(Level* l, float x_, float y_, float w, You* yo,S_CODE save) :
   save_ticks=300;
 }
 void Save::act() {
+  rev=NULL;
+  if (you->getDead())
+    save_ticks=0;
   if (save_ticks>=300) {
     Switch::act();
   }

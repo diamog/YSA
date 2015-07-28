@@ -16,6 +16,11 @@ SET(LEVEL_SRC
   Level8.cpp
   Level9.cpp
   Boss2.cpp
+  Level10.cpp
+  Level11.cpp
+  Level12.cpp
+  Level13.cpp
+  Level14.cpp
 )
 
 add_library(level ${LEVEL_SRC})
@@ -23,3 +28,4 @@ target_link_libraries(level plats)
 target_link_libraries(level enemy)
 target_link_libraries(level switable)
 target_link_libraries(level bullets)
+target_link_libraries(level detectors)

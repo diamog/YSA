@@ -4,7 +4,7 @@
 #include <vector>
 #include "Actor.h"
 
-class Detector : public Actor{
+class Detector : public virtual Actor{
  public:
   Detector();
   Detector(Level* l,float x_,float y_,float w,float h,std::vector<Actor*>* acts);

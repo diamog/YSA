@@ -10,13 +10,13 @@
 Level1::Level1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   me = START;
   setup();
-  fairy = new Fairy(this,-30,300);
+  fairy = new Fairy(this,-50,300);
   actors.push_back(fairy);
   if (ent == MISC_1) {
     //Enter through beginning of game
     you->setPosition(enterx,entery);
 #ifndef COMPILE_NO_SF
-    you->messagePause();
+    you->controlPause();
     actors.push_back(new SpeechBubble(this,"What? Where am I? Why is the world so bland?; AND WHY AM I A YELLOW SQUARE?!;",sf::Color(255,255,0),you->getY1(),MISCE_1));
 #endif
   }
@@ -83,5 +83,6 @@ bool Level1::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
     ent_type=SOUTH;
     return true;
   }
-  return false;
+  return Level::isChangeRoom(next_level,ent_type);
+  
 }

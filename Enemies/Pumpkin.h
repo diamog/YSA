@@ -25,8 +25,11 @@ class Pumpkin : public Enemy {
   int delay;
   unsigned int ticks;
 #ifndef COMPILE_NO_SF
-  sf::CircleShape shape;
+  sf::Texture pumpkin1;
+  sf::Sprite pumpkin;
 #endif
+  float r;
+  int dir;
   float shotx,shoty;
   PGhost* ghostL;
   PGhost* ghostR;

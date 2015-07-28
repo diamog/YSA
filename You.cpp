@@ -20,7 +20,7 @@ You::You(float x_, float y_, float w, float h, bool* isD) :
   isDead = isD;
   alpha=255;
   isPaused=isMessagePaused=isControlPaused=false;
-  isColor=isCloud=isPump=isCat=isFire=isColor2=false;
+  isColor=isCloud=isPump=isPumpHalf=isCat=isFire=isColor2=false;
   //isColor=true;
   vx=0;
 #ifndef COMPILE_NO_SF
@@ -96,7 +96,8 @@ void You::act() {
 	  isJump=1;
 	}
       }
-      else if (isJump==3) {
+      else if (isJump==4) {
+	isJump=3;
 	if (isKickLeft) {
 	  vx=-.6*frame_diff;
 	  dy=-.8f*frame_diff;
@@ -112,6 +113,8 @@ void You::act() {
     else {
       if (isJump==1)
 	isJump=2;
+      else if (isJump==3)
+	isJump=4;
     
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
@@ -270,13 +273,25 @@ void You::hitRightWall(float x_,bool isKick) {
   vx=0;
 }
 
+void You::warp() {
+  temp_extras.clear();
+  platx1=platx2;
+  isJump=1;
+  dy=0;
+  vx=0;
+  isAntiGrav=false;
+  for (unsigned int i=0;i<bullets.size();i++)
+    delete bullets[i];
+  bullets.clear();
+}
+
 void You::save(S_CODE s) {
   savepoint = s;
   std::set<L_CODE>::iterator itr;
   for (itr=temp_extras.begin();itr!=temp_extras.end();itr++) 
     extras.insert(*itr);
   temp_extras.clear();
-  std::ofstream out_str(".8e91q02a38x74f29d302s");
+  std::ofstream out_str(".7sdf43sdf2ds0598dsf432odhj");
   save(out_str);
 }
 
@@ -289,6 +304,8 @@ void You::die() {
 
 void You::reload() {
   shape.setRotation(0);
+  if (isPauseC())
+    controlPause();
   vx=0;
   isAntiGrav=false;
   alpha=261;
@@ -311,6 +328,9 @@ std::vector<Line> You::getLines() {
 }
 
 void You::load(std::istream& in_str) {
+  float ver;
+  in_str>>ver;
+  
   int val=0;
   in_str>>val;
   savepoint=static_cast<S_CODE>(val);
@@ -330,6 +350,7 @@ void You::load(std::istream& in_str) {
   in_str>>isColor;
   in_str>>isCloud;
   in_str>>isPump;
+  in_str>>isPumpHalf;
   in_str>>isCat;
   in_str>>isFire;
   in_str>>isColor2;
@@ -339,7 +360,7 @@ void You::load(std::istream& in_str) {
   in_str>>hasEnterSplit;
 }
 void You::save(std::ostream& out_str) {
-  
+  out_str<<0.25<<"\n\n";
   //Save current savepoint
   out_str<<savepoint<<"\n\n";
 
@@ -357,7 +378,7 @@ void You::save(std::ostream& out_str) {
   out_str<<"\n\n";
   
   //Save boss completition
-  out_str<<isColor<<" "<<isCloud<<" "<<isPump<<" "<<isCat<<" "<<isFire<<" "<<isColor2<<"\n\n";
+  out_str<<isColor<<" "<<isCloud<<" "<<isPump<<" "<<isPumpHalf<<" "<<isCat<<" "<<isFire<<" "<<isColor2<<"\n\n";
 
   //Save death count
   out_str<<deaths<<"\n";

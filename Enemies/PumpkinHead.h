@@ -16,6 +16,7 @@ class PumpkinHead : public Enemy{
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
 #endif
+  void turnOff() {isOn=false;}
   void connect(PumpkinHead* other) {other_stems=&(other->stems);}
  protected:
   unsigned int ticks;
@@ -33,6 +34,7 @@ class PumpkinHead : public Enemy{
   std::vector<PBullet*> bullets;
   std::vector<Stem*> stems;
   std::vector<Stem*>* other_stems;
+  bool isOn;
 };
 
 #endif

@@ -30,7 +30,7 @@ int main() {
   bool* isDead = new bool;
   *isDead = false;
   You* you = new You(200,height-400.0f,20,20,isDead);
-  std::ifstream in_str(".8e91q02a38x74f29d302s");
+  std::ifstream in_str(".7sdf43sdf2ds0598dsf432odhj");
   if (in_str)
     you->load(in_str);
   Level* level = loadLevel(you, you->getSave());
@@ -48,6 +48,10 @@ int main() {
 	  delete level;
           level = loadLevel(you,you->getSave());
         }
+	if (event.key.code == sf::Keyboard::W&&*isDead==false&&!you->isPause()&& !you->isPauseM()) {
+	  you->warp();
+	  level->warp();
+	}
         if (event.key.code ==sf::Keyboard::O) {
           you->print();
         }
@@ -66,6 +70,12 @@ int main() {
         }
         if (event.key.code==sf::Keyboard::Num3) {
           you->save(ROOM_3);
+        }
+        if (event.key.code==sf::Keyboard::Num5) {
+          you->save(WALL_KICK_3);
+        }
+	if (event.key.code==sf::Keyboard::Num4) {
+          you->save(PRE_BOSS_2);
         }
 
       }

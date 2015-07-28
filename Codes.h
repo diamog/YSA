@@ -45,6 +45,7 @@ typedef enum EVENT_CODE {
   RED_5,
   SPEECH,
   END_SPEECH,
+  END_HINT,
   EXTRA,
   PORTALE_1, 
   PORTALE_2,
