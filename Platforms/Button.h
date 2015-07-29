@@ -9,7 +9,6 @@ class Button : public ThinPlat {
   Button(Level* l, float x_,float y_,You* yo,EVE_CODE e);
 
   void act();
-
   void render(sf::RenderWindow& window);
  protected:
   bool isOn;

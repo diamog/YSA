@@ -22,9 +22,7 @@ public:
 
 protected:
   void makePlatforms();
-  void makeEnemies();
   void makeCollectables();
-  void makeSwitches();
   void makeDetectors();
   
   Platform* ceiling;

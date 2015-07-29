@@ -13,7 +13,7 @@ SmallEye::SmallEye(Level* l, float x_,float y_, You* yo, int d)
   dir=d;
   orig_dir=d;
   isOn=false;
-  accel=.05;
+  accel=.02;
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(0,0,255));
   shape.setRadius(width/2);
@@ -29,8 +29,8 @@ void SmallEye::act() {
   Enemy::act();
   if (isOn) {
     vel+=accel;
-    if (vel>10)
-      vel=10;
+    if (vel>7)
+      vel=7;
   }
   else
     vel=0;

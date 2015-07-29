@@ -3,6 +3,7 @@
 #include "Level13.h"
 #include "../Platforms/Platform.h"
 #include "../Platforms/ThinPlat.h"
+#include "../Platforms/Button.h"
 #include "../Switables/Save.h"
 #include "../Enemies/Drone.h"
 #include "../Enemies/LineDrone.h"
@@ -40,17 +41,15 @@ void Level13::makePlatforms() {
   actors.push_back(ceiling);
   actors.push_back(new Platform(this,530,450,170,30,you));
   actors.push_back(new Platform(this,670,0,30,450,you));
-}
-void Level13::makeEnemies() {
-  
-}
-void Level13::makeCollectables() {
-  //Make the hints
-  buildExtra(700+380,50);
+
+  actors.push_back(new Button(this,520,430,you,PURPLE));
+  actors.push_back(new Button(this,600,430,you,ORANGE));
+  actors.push_back(new Button(this,200,430,you,GREEN));
 }
 
-void Level13::makeSwitches() {
-  
+void Level13::makeCollectables() {
+  //Make the hints
+  buildExtra(530,40);
 }
 
 void Level13::makeDetectors() {
@@ -58,14 +57,25 @@ void Level13::makeDetectors() {
   detectors.push_back(b1);
   b2 = new BigEye(this,680-35,70,EYE_2,eye);
   detectors.push_back(b2);
-
-  pblock1 = new Block(this,40,360,0,eye,you,0);
+  pblock1 = new Block(this,40,360,0,eye,you,3);
+  gblock1 = new Block(this,40,70,1,eye,you,3);
+  pblock2 = new Block(this,300,70,0,eye,you,2);
+  gblock2 = new Block(this,300,250,1,eye,you,3);
+  pblock3 = new Block(this,500,70,0,eye,you,2);
+  gblock3 = new Block(this,500,250,1,eye,you,2);
   detectors.push_back(pblock1);
-  gblock1 = new Block(this,40,70,1,eye,you,1);
   detectors.push_back(gblock1);
-
-  owall1 = new Wall(this,30,200,150,50,eye,you,true);
+  detectors.push_back(pblock2);
+  detectors.push_back(gblock2);
+  detectors.push_back(pblock3);
+  detectors.push_back(gblock3);
+  
+  owall1 = new Wall(this,30,250,150,30,eye,you,true);
+  owall2 = new Wall(this,200,30,30,150,eye,you,false);
+  owall3 = new Wall(this,425,30,30,150,eye,you,true);
   detectors.push_back(owall1);
+  detectors.push_back(owall2);
+  detectors.push_back(owall3);
 }
 
 void Level13::act() {

@@ -11,7 +11,7 @@ class Block : public BigEye, public Platform{
   Block(Level* l,float x_,float y_,int blockType, 
 	SmallEye* e, You* yo, int d);
   void act();
-  void rotate(int d) {dir+=d;dir%=4;}
+  void rotate(int d) {dir+=d;dir=(dir+4)%4;}
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
 #endif

@@ -38,14 +38,6 @@ void Level14::makePlatforms() {
   for (int i=1;i<=numPlats;i++) 
     actors.push_back(new Platform(this,130+(i-1)*w,590-h*i,w,h*i+30,you));
   actors.push_back(new ThinPlat(this,30,590,100,you));
-  /*actors.push_back(new Platform(this,130+w,590-h*2,w,30+h*2,you));
-  actors.push_back(new Platform(this,130+w*2,590-h*3,w,30+h*3,you));
-  actors.push_back(new Platform(this,130+w*3,590-h*4,w,30+h*4,you));
-  actors.push_back(new Platform(this,130+w*4,590-h*5,w,30+h*5,you));
-  */
-  
-}
-void Level14::makeEnemies() {
   
 }
 void Level14::makeCollectables() {
