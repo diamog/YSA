@@ -27,8 +27,9 @@ class ColorBoss : public Enemy{
   int  r,g,b;
   int hit_amount;
 #ifndef COMPILE_NO_SF
-	sf::CircleShape shape;
+  sf::CircleShape shape;
 #endif
+  bool isRed,isGreen,isBlue;     
 };
 
 #endif

@@ -6,6 +6,7 @@
 #include "../Bullets/ColorBullet.h"
 #include "../Extras/utilities.h"
 #include "../SpeechBubble.h"
+#include "../Graphics/ColorRemove.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -147,6 +148,21 @@ void Boss1::sendEvent(EVE_CODE eve, Actor* sender) {
     actors.push_back(new SpeechBubble(this,"COLOR!!! MUST EAT COLOR!!!;",
 				      sf::Color(255,255,255),you->getY1(),END_HINT));
 #endif
+  }
+  else if (eve==MISCE_4) {
+    float bx,by;
+    getObjectCenter(boss,bx,by);
+    actors.push_back(new ColorRemove(this,sf::Color(255,0,0),bx,by));
+  }
+  else if (eve==MISCE_5) {
+    float bx,by;
+    getObjectCenter(boss,bx,by);
+    actors.push_back(new ColorRemove(this,sf::Color(0,255,0),bx,by));
+  }
+  else if (eve==MISCE_6) {
+    float bx,by;
+    getObjectCenter(boss,bx,by);
+    actors.push_back(new ColorRemove(this,sf::Color(0,0,255),bx,by));
   }
   else
     Level::sendEvent(eve,sender);

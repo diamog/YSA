@@ -10,6 +10,7 @@ ColorBoss::ColorBoss() : Actor(),Enemy() {
 
 ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) : 
   Actor(l,x_,y_,w,h), Enemy(l,x_,y_,w,h,yo,16*3) {
+  isRed=isGreen=isBlue=true;
   r=g=b=255;
   accel=.001f*frame_diff*frame_diff;
   vx=vy=0;
@@ -59,6 +60,14 @@ void ColorBoss::act() {
   
   float adx = fabs(dx)/50000*frame_diff*frame_diff;
   float ady = fabs(dy)/50000*frame_diff*frame_diff;
+  float mag = 0.08;
+  float val = sqrt(pow(adx,2)+pow(ady,2));
+  if (val!=0&&val<=.08) {
+    adx/=val;
+    ady/=val;
+    adx*=mag;
+    ady*=mag;
+  }
   float damp = .005*frame_diff*frame_diff;
   if (dx<0)
     vx+=adx+(vx<0)*damp;
@@ -111,12 +120,21 @@ void ColorBoss::hit() {
   r-=hit_amount/3;
   g-=hit_amount/3;
   b-=hit_amount/3;
-  if (r<0)
+  if (r<=0&&isRed) {
     r=0;
-  if (g<0)
+    isRed=false;
+    level->sendEvent(MISCE_4,NULL);
+  }
+  if (g<=0&&isGreen) {
     g=0;
-  if (b<0)
+    isGreen=false;
+    level->sendEvent(MISCE_5,NULL);
+  }
+  if (b<=0&&isBlue) {
     b=0;
+    isBlue=false;
+    level->sendEvent(MISCE_6,NULL);
+  }
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(r,g,b));
 #endif
@@ -125,6 +143,21 @@ void ColorBoss::color_hit(int& color) {
   color-=hit_amount;
   if (color<0)
     color=0;
+  if (r<=0&&isRed) {
+    r=0;
+    isRed=false;
+    level->sendEvent(MISCE_4,NULL);
+  }
+  if (g<=0&&isGreen) {
+    g=0;
+    isGreen=false;
+    level->sendEvent(MISCE_5,NULL);
+  }
+  if (b<=0&&isBlue) {
+    b=0;
+    isBlue=false;
+    level->sendEvent(MISCE_6,NULL);
+  }
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(r,g,b));
 #endif

@@ -296,9 +296,11 @@ void You::save(S_CODE s) {
 }
 
 void You::die() {
-  deaths++;
-  platx1=platx2;
-  *isDead = true;
+  if (!*isDead) {
+    deaths++;
+    platx1=platx2;
+    *isDead = true;
+  }
   //begin death animation
 }
 
@@ -381,7 +383,7 @@ void You::save(std::ostream& out_str) {
   out_str<<isColor<<" "<<isCloud<<" "<<isPump<<" "<<isPumpHalf<<" "<<isCat<<" "<<isFire<<" "<<isColor2<<"\n\n";
 
   //Save death count
-  out_str<<deaths<<"\n";
+  out_str<<deaths<<"\n\n";
 
   //Entrances
   out_str<<hasEnterSplit<<"\n";
