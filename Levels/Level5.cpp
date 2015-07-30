@@ -17,6 +17,7 @@ Level5::Level5(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   } 
   else if(ent==EAST) {
     you->setPosition(698,entery,true);
+    sendEvent(RED_1,NULL);
   }
   else
     throw THROW_ENTRANCE_ERROR;
@@ -38,7 +39,7 @@ void Level5::makePlatforms() {
 void Level5::makeEnemies() {
   right_wall = new DeathArea(this,670,30,30,150,you);
   actors.push_back(right_wall);
-  actors.push_back(new FollowerFactory(this,20,400,30,200,you,1,&actors));
+  actors.push_back(new FollowerFactory(this,20,0,660,600,you,1,&actors));
 }
 void Level5::makeCollectables() {
   //Make the hints
