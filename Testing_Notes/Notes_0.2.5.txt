@@ -1,0 +1,81 @@
+-----------------Features Completed-----------------------
+All Rooms through right path and down path up to Cloud boss
+ --all movements between rooms 
+ --no way to escape outside of the designated path
+   * by changing rooms
+   * by going through objects
+   * by dropping through thin platforms and moving through the platform next to it
+   * by hitting a hint and using the single frame difference to move through a platform
+ --Crashes when entering Cloud boss or secret 1
+
+You
+ -- For conveinence can hit 1 to set save point to the first one
+ -- ' '' ' ' ' ' ' ' can hit 2 to set save point to the split room
+ -- ' '' ' ' ' ' ' ' can hit 3 to set save point to right before the color boss
+     * Will also kill the color boss and activate related events
+ -- hit 4 to set the save point to before the cloud boss
+ -- hit 5 to set the save point to before the pumpkin boss
+ -- hit W to return to the split room
+    * this will be a warp feature you get after rescuing the second fairy
+ -- hitting S will skip the entire speech
+
+Save files
+ -- Progress is saved when hitting save points
+    * location
+    * boss defeats
+    * extras
+    * hints
+    * deaths (not visible to user yet)
+ 
+ 
+Color Boss
+ -- when a color is depleted a circle from them shoots out
+ -- movement is more fluid now when close to you
+ -- gray fairy is on the bottom platform
+ -- when boss is beaten gray fairy falls
+ -- in next room cutscene with gray fairy occurs
+
+Pumpkin Boss
+ -- blinks red as death approaches
+ -- dissapears and bullets stop when he is dead
+ 
+Small Eye
+ -- shoots out when hitting red switches
+ -- turns when hitting arrow blocks
+ -- stops on big eyes
+ -- resets when off screen
+ -- resets when hit orange block
+
+Color Switch
+ -- rotates green and purple arrow blocks
+ -- turns orange blocks visible and invisible 
+
+Enemies
+ -- drones either move in one direction and reverse or rotate around in a rectangle
+ -- drivers on the ground move left and right
+
+Detectors
+ -- are invisible (there should not be any black circles randomly on screen)
+
+Invisible platforms
+ -- are invisible (not that you could tell the difference I guess)
+
+ 
+----------------------Known Bugs------------------------
+ -- Bounce when dropping through vertical platforms that are descending
+ -- If holding down when landing on a color switch the switch does not activate
+ -- if on a platform when color boss dies you stay there
+
+-----------------------Hidden Bugs-----------------------
+ --These are not fixed but should not appear due to change in orders or other hacks
+ * Landing on vertically stacked platforms
+ * Teleporting if trying to drop through a platform that has the same x,width as a thin platform
+ * while dropping through thin platforms moving through the platform adjacent to the thin platform
+
+-------------------Unfinished Features-------------------------
+ -- filling of slopes
+
+----------------------Final Notes---------------------------
+I want feedback on ratings of the bosses. If there are 4 difficulties, easy, medium, hard, impossible, how would you rate them. There will most likely be 2-3 versions per boss based on difficulty setting.
+
+Refer to previous notes for details on features in release 0.1 and 0.1.5
