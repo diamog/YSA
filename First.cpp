@@ -42,7 +42,7 @@ int main() {
       if (event.type == sf::Event::Closed)
         window.close();
       if (event.type == sf::Event::KeyPressed) {
-        if(event.key.code ==sf::Keyboard::R&&!you->isPause()&& !you->isPauseM()) {
+        if(event.key.code ==sf::Keyboard::R&&((!you->isPause()&& !you->isPauseM())||*isDead)) {
           *isDead=false;
 	  you->reload();
 	  delete level;
@@ -55,7 +55,7 @@ int main() {
         if (event.key.code ==sf::Keyboard::O) {
           you->print();
         }
-        if (event.key.code ==sf::Keyboard::P) {
+        if (event.key.code ==sf::Keyboard::P&&!*isDead) {
           you->pause();
         }
 	if (event.key.code == sf::Keyboard::Num0) {
@@ -102,7 +102,7 @@ int main() {
     if (level->isBoss())
       window.clear();
     else if (you->isAntiGravity()) {
-      window.clear(sf::Color(0,200,200));
+      window.clear(sf::Color(0,180,180));
     }
     else
       window.clear(sf::Color(100,100,100));

@@ -21,7 +21,6 @@ You::You(float x_, float y_, float w, float h, bool* isD) :
   alpha=255;
   isPaused=isMessagePaused=isControlPaused=false;
   isColor=isCloud=isPump=isPumpHalf=isCat=isFire=isColor2=false;
-  //isColor=true;
   vx=0;
 #ifndef COMPILE_NO_SF
   shape.setSize(sf::Vector2f(width,height));
@@ -308,6 +307,8 @@ void You::reload() {
   shape.setRotation(0);
   if (isPauseC())
     controlPause();
+  if (isPauseM())
+    messagePause();
   vx=0;
   isAntiGrav=false;
   alpha=261;
@@ -386,7 +387,7 @@ void You::save(std::ostream& out_str) {
   out_str<<deaths<<"\n\n";
 
   //Entrances
-  out_str<<hasEnterSplit<<"\n";
+  out_str<<hasEnterSplit<<"\n\n";
 }
 
 void You::controlPause() {

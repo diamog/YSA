@@ -89,10 +89,12 @@ void Pumpkin::act() {
       i--;
     }
   }
-  if (ghostL)
-    ghostL->act();
-  if (ghostR)
-    ghostR->act();
+  if (!you->getDead()) {
+    if (ghostL)
+      ghostL->act();
+    if (ghostR)
+      ghostR->act();
+  }
   if (part!=-1)
     ticks++;
   if (part!=-1&&delay) {
@@ -169,8 +171,8 @@ void Pumpkin::act() {
       ticks=0;
       part=10;
       delay=90;
-      ghostL = new PGhost(level,true,you);
-      ghostR = new PGhost(level,false,you);
+      ghostL = new PGhost(level,true,you,&bullets);
+      ghostR = new PGhost(level,false,you,&bullets);
       
     }
   }
@@ -191,6 +193,9 @@ void Pumpkin::act() {
       //dies
       part=12;
       you->beatBoss3();
+      delete ghostL;
+      delete ghostR;
+      ghostL=ghostR=NULL;
     }
   }
 }

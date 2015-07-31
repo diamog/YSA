@@ -6,7 +6,7 @@
 class PGhost : public Enemy{
  public:
   PGhost();
-  PGhost(Level* l, bool isLeft, You* yo);
+  PGhost(Level* l, bool isLeft, You* yo,std::vector<PBullet*>* b);
 
   void act();
 
@@ -20,7 +20,7 @@ protected:
   sf::Texture texture;
   sf::Sprite head;
 #endif
-  std::vector<PBullet*> bullets;
+  std::vector<PBullet*>* bullets;
 };
 
 #endif

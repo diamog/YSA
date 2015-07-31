@@ -1,11 +1,14 @@
 #include "stdafx.h"
 #include "PGhost.h"
+#include "PBullet2.h"
 #include "../Extras/utilities.h"
 #include "../Level.h"
 PGhost::PGhost() : Actor(), Enemy() {
 }
 
-PGhost::PGhost(Level* l, bool isLeft, You* yo) : Actor(l,0,630,70,50), Enemy(l,0,630,70,50,yo,1000) {
+PGhost::PGhost(Level* l, bool isLeft, You* yo,std::vector<PBullet*>* b) : 
+  Actor(l,0,630,70,50), Enemy(l,0,630,70,50,yo,1000) {
+  bullets=b;
   if (isLeft)
     x=150;
   else
@@ -18,14 +21,6 @@ PGhost::PGhost(Level* l, bool isLeft, You* yo) : Actor(l,0,630,70,50), Enemy(l,0
 
 void PGhost::act() {
   Enemy::act();
-  for (unsigned int i=0;i<bullets.size();i++) {
-    bullets[i]->act();
-    if (bullets[i]->isGone()) {
-      delete bullets[i];
-      bullets.erase(bullets.begin()+i);
-      i--;
-    }
-  }
   ticks++;
   if (ticks>60) {
     ticks=0;
@@ -35,16 +30,12 @@ void PGhost::act() {
     float shotx = x+width/2;
     float shoty = y+height/2+height/6;
     float angle = atan2(yy-shoty,yx-shotx);
-    bullets.push_back(new PBullet(level,shotx,shoty,you,angle,NULL));
+    bullets->push_back(new PBullet2(level,shotx,shoty,you,angle));
   }
 }
 
 #ifndef COMPILE_NO_SF
-void PGhost::render(sf::RenderWindow& window) {
-  for (unsigned int i=0;i<bullets.size();i++) {
-    bullets[i]->render(window);
-  }
-  
+void PGhost::render(sf::RenderWindow& window) {  
   head.setTexture(texture);
   head.setPosition(getX1(),getY1());
   window.draw(head);

@@ -90,6 +90,7 @@ void Boss1::act() {
       you->beatBoss1();
       fairy->turnOn(2);
       remove(boss);
+      you->setFall();
       boss=NULL;
       for (unsigned int i=0; i<actors.size();i++) {
         if (dynamic_cast<ThinPlat*>(actors[i])) {

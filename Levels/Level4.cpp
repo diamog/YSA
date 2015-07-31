@@ -37,6 +37,12 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
     you->setPosition(200,20);
     you->setFall();
   }
+  else if (ent==PORTAL_2) {
+    //Coming from the Cat Virus
+  }
+  else if (ent==PORTAL_3) {
+    //Coming from the Fire Wall
+  }
   else
     throw THROW_ENTRANCE_ERROR;
 }
