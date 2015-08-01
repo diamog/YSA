@@ -1,5 +1,6 @@
 #ifndef COMPILE_NO_SF
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #endif
 #include <vector>
 #include "Actor.h"
@@ -57,6 +58,7 @@ protected:
   L_CODE me;
   bool canMove;
   bool isWarp;
+	sf::Music music;
 };
 
 #endif

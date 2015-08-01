@@ -28,6 +28,7 @@ class SmallEye : public Enemy {
 #ifndef COMPILE_NO_SF
   sf::CircleShape shape;
 #endif
+	int count;
 };
 
 #endif

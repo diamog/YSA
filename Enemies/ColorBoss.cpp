@@ -10,6 +10,7 @@ ColorBoss::ColorBoss() : Actor(),Enemy() {
 
 ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) : 
   Actor(l,x_,y_,w,h), Enemy(l,x_,y_,w,h,yo,16*3) {
+	isOCD=true;target=0;
   isRed=isGreen=isBlue=true;
   r=g=b=255;
   accel=.001f*frame_diff*frame_diff;
@@ -34,12 +35,24 @@ void ColorBoss::act() {
   //check if hit by color bullets
   for (unsigned int i=0;i<you->getBullets().size();i++) {
     if (isRectangularHit(this,you->getBullets()[i])) {
-      if (you->getBullets()[i]->getType()=="red")
+      if (you->getBullets()[i]->getType()=="red") {
+				if (target!=0&&target!=1)
+					isOCD=false;
+				target=1;
         color_hit(r);
-      else if (you->getBullets()[i]->getType()=="green")
+			}
+      else if (you->getBullets()[i]->getType()=="green") {
+        if (target!=0&&target!=2)
+					isOCD=false;
+				target=2;
         color_hit(g);
-      else if (you->getBullets()[i]->getType()=="blue")
+			}
+      else if (you->getBullets()[i]->getType()=="blue") {
+        if (target!=0&&target!=3)
+					isOCD=false;
+				target=3;
         color_hit(b);
+			}
       else
         continue;
       you->removeBullet(i);
@@ -141,9 +154,11 @@ void ColorBoss::hit() {
 }
 void ColorBoss::color_hit(int& color) {
   color-=hit_amount;
-  if (color<0)
+  if (color<0) {
     color=0;
-  if (r<=0&&isRed) {
+		target=0;
+	}
+	if (r<=0&&isRed) {
     r=0;
     isRed=false;
     level->sendEvent(MISCE_4,NULL);
@@ -158,6 +173,8 @@ void ColorBoss::color_hit(int& color) {
     isBlue=false;
     level->sendEvent(MISCE_6,NULL);
   }
+	if (r<=0&&g<=0&&b<=0&&isOCD)
+		buildAchievement(OCD);
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(r,g,b));
 #endif

@@ -60,11 +60,37 @@ Detectors
 Invisible platforms
  -- are invisible (not that you could tell the difference I guess)
 
- 
+Achievements 
+ 	***(were not meant to be implemented now but I had time)
+	*** therefore they are not graphically pleasing at all
+ -- Green box appears when achievement gotten
+ -- Only get achievements once
+ -- Not necessarily need to save to save achievements
+ -- I will list achievement names here and see which ones you can figure out and get. They do have descriptions too but I want to challenge you all.
+1. You Saved!
+2. The first of many
+3. A few corpses
+4. Minor sacrifices
+5. One hundred versus the world
+6. This is SPARTA!
+7. We are running out of yellow paint here
+8. All out of paint
+9. Game over
+10. Refuse the save
+11. Can the dark square save too?
+12. Infinite loops!
+13. Got 1!
+14. Got 5!
+15. Got 10!
+16. Color Restored!
+17. OCD
+	***Hint: This is a color boss achievement
+
 ----------------------Known Bugs------------------------
  -- Bounce when dropping through vertical platforms that are descending
  -- If holding down when landing on a color switch the switch does not activate
  -- if on a platform when color boss dies you stay there
+ -- wall kick platforms sometime flash at the bottom when moving the level
 
 -----------------------Hidden Bugs-----------------------
  --These are not fixed but should not appear due to change in orders or other hacks
@@ -74,6 +100,10 @@ Invisible platforms
 
 -------------------Unfinished Features-------------------------
  -- filling of slopes
+ -- hints throughout the bottom path
+ -- hint for wall kicking and moving against the motion
+ -- achievements are only a template for now
+ -- orange boxes will fade in and out instead of just appearing
 
 ----------------------Final Notes---------------------------
 I want feedback on ratings of the bosses. If there are 4 difficulties, easy, medium, hard, impossible, how would you rate them. There will most likely be 2-3 versions per boss based on difficulty setting.

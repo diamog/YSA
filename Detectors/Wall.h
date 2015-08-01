@@ -2,7 +2,6 @@
 #define __WALL__H__
 
 #include <vector>
-#include "Actor.h"
 #include "BigEye.h"
 #include "../Platforms/Platform.h"
 class Wall : public BigEye, public Platform{

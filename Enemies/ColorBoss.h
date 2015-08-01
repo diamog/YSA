@@ -29,7 +29,9 @@ class ColorBoss : public Enemy{
 #ifndef COMPILE_NO_SF
   sf::CircleShape shape;
 #endif
-  bool isRed,isGreen,isBlue;     
+  bool isRed,isGreen,isBlue;
+	int target;
+	bool isOCD;
 };
 
 #endif

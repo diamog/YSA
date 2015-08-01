@@ -13,6 +13,7 @@
 #include "SpeechBubble.h"
 #include "Extras/utilities.h"
 #include "Graphics/SaveGraphic.h"
+
 Level::Level() {
   you = NULL;
   x=y=0;
@@ -27,6 +28,7 @@ Level::Level(You* yo) {
   isboss=false;
   canMove=true;
   isWarp=false;
+	music.openFromFile("Music/save.wav");
 }
 
 void Level::setup() {
@@ -62,11 +64,17 @@ void Level::remove(Actor* actor) {
 void Level::sendEvent(EVE_CODE eve, Actor* sender) {
   if (eve == SAVE) {
     S_CODE s = sender->getSave();
-    if (s==CROSS_ROADS&&you->getSave()==GAME_START)
+    if (you->boss1()&&you->getSave()==GAME_START)
       buildAchievement(NO_SAVE);
     you->save(s);
     buildAchievement(SAVE_1);
     actors.push_back(new SaveGraphic(this,you->boss1()));
+		// Load a music to play
+    
+    
+        
+    // Play the music
+    music.play();
   }
   else if (eve == SPEECH) {
     you->getHint(sender->getVal());

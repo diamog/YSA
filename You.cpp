@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "Extras/utilities.h"
 #include "You.h"
 #include <cmath>
 #include <fstream>
@@ -291,6 +290,14 @@ void You::save(S_CODE s) {
   for (itr=temp_extras.begin();itr!=temp_extras.end();itr++) 
     extras.insert(*itr);
   temp_extras.clear();
+	if (extras.size()>=1)
+		buildAchievement(EXTRA_1);
+  if (extras.size()>=5)
+		buildAchievement(EXTRA_5);
+  if (extras.size()>=10)
+		buildAchievement(EXTRA_10);
+  if (extras.size()>=20)
+		buildAchievement(EXTRA_20);
   std::ofstream out_str(".7sdf43sdf2ds0598dsf432odhj");
   save(out_str);
 }
@@ -306,10 +313,14 @@ void You::die() {
       buildAchievement(DIE_50);
     if (deaths>=100)
       buildAchievement(DIE_100);
+		if (deaths>=300)
+      buildAchievement(DIE_300);
     if (deaths>=500)
       buildAchievement(DIE_500);
     if (deaths>=1000)
       buildAchievement(DIE_1000);
+    if (deaths>=999)
+      buildAchievement(DIE_999);
     platx1=platx2;
     *isDead = true;
   }

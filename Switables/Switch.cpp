@@ -20,8 +20,12 @@ void Switch::act() {
   }
   if (rev!=NULL) {
     if (isRectangularHit(rev,this)) {
-      activate();
-      level->sendEvent(eve,this);
+			if (eve==SAVE)
+				buildAchievement(EVIL_SAVE);
+			else {
+				activate();
+				level->sendEvent(eve,this);
+			}
     }
   }
 }

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Wall.h"
-#include "Extras/utilities.h"
+#include "../Extras/utilities.h"
 #include "../Level.h"
 Wall::Wall() : Actor(),BigEye(),Platform() {
 

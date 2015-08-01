@@ -1,6 +1,6 @@
 #ifndef __YOU__H__
 #define __YOU__H__
-
+#include "Extras\utilities.h"
 #include "Mover.h"
 #include "Bullet.h"
 #include <vector>
@@ -66,7 +66,7 @@ public:
   bool boss4() {return isCat;}
   bool boss5() {return isFire;}
   bool boss6() {return isColor2;}
-  void beatBoss1() {isColor=true;}
+  void beatBoss1() {isColor=true;buildAchievement(BEAT_COLOR);}
   void beatBoss2() {isCloud=true;}
   void beatBoss3() {isPump=true;}
   void beatBoss3Half() {isPumpHalf=true;}

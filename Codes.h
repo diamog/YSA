@@ -109,9 +109,11 @@ typedef enum ACHIEVEMENT_CODES {
   SAVE_1, //save the game
   DIE_1, //die 1 time
   DIE_10, //die 10 times
-  DIE_50,  //die 50 times
-  DIE_100, //die 100 times
+	DIE_50, //die 50 times
+  DIE_100,  //die 100 times
+  DIE_300, //die 300 times
   DIE_500, //die 500 times
+	DIE_999, //die 999 times
   DIE_1000, //die 1000 times
   KILL_1, //Kill an enemy
   KILL_EVERY, //Kill each type of enemy at least once

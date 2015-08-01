@@ -2,7 +2,6 @@
 #define __BIGEYE__H__
 
 #include <vector>
-#include "Actor.h"
 #include "../Enemies/SmallEye.h"
 #include "../Detector.h"
 

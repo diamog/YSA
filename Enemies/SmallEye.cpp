@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SmallEye.h"
 #include "../Extras/utilities.h"
-#include "Level.h"
+#include "../Level.h"
 #include <cmath>
 SmallEye::SmallEye() : Actor(),Enemy() {
   dir=0;vel=0;
@@ -10,6 +10,7 @@ SmallEye::SmallEye() : Actor(),Enemy() {
 SmallEye::SmallEye(Level* l, float x_,float y_, You* yo, int d) 
   : Actor(l,x_,y_,70,20), Enemy(l,x_,y_,70,20,yo,-1) {
   vel=0;
+	count=0;
   dir=d;
   orig_dir=d;
   isOn=false;
@@ -54,7 +55,8 @@ void SmallEye::render(sf::RenderWindow& window) {
 #endif
 
 void SmallEye::hitDetector(int adir) {
-  if (adir==-1) {
+  count++;
+	if (adir==-1) {
     isOn=false;
     vel=0;
     orig_dir=dir;
@@ -68,7 +70,8 @@ void SmallEye::hitDetector(int adir) {
       shape.setRotation(90);
     //rotate();
   }
-  
+  if (count>10)
+		buildAchievement(LOOP_EYE);
 }
 
 void SmallEye::reset() {
@@ -79,5 +82,5 @@ void SmallEye::reset() {
   isOn=false;
   level->resetEye();
   dir=orig_dir;
-
+	count=0;
 }

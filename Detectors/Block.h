@@ -2,7 +2,6 @@
 #define __BLOCK__H__
 
 #include <vector>
-#include "Actor.h"
 #include "BigEye.h"
 #include "../Platforms/Platform.h"
 class Block : public BigEye, public Platform{

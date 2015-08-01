@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "BigEye.h"
-#include "Extras/utilities.h"
+#include "../Extras/utilities.h"
 #include "../Level.h"
 #include <cmath>
 BigEye::BigEye() : Actor(),Detector() {
