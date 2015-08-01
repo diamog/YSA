@@ -6,7 +6,7 @@
 class SaveGraphic : public Actor {
  public:
   SaveGraphic() : Actor() {};
-  SaveGraphic(Level* l);
+  SaveGraphic(Level* l,bool isC);
   void act() {};
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
@@ -14,6 +14,7 @@ class SaveGraphic : public Actor {
  private:
   int alpha;
   Level* mylevel;
+  bool isColor;
 #ifndef COMPILE_NO_SF
   sf::RectangleShape shape;
 #endif

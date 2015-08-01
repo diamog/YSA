@@ -117,6 +117,8 @@ typedef enum ACHIEVEMENT_CODES {
   KILL_EVERY, //Kill each type of enemy at least once
   NO_HINTS, //Dont grab a single hint
   NO_SAVE, //Dont save up to boss1
+  EVIL_SAVE, //Have the reverser hit the save point
+  LOOP_EYE, //Have the eye in an infinite loop 
   GET_SECRET_1, //get first secret
   GET_SECRET_2, //get second secret
   //Difficulties
@@ -181,5 +183,5 @@ typedef enum ACHIEVEMENT_CODES {
   HARD_HALL,
   IMPOSSIBLE_HALL,
   //END_ACHIEVEMENTS
-} A_CODES;
+} A_CODE;
 #endif

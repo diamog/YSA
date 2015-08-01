@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "utilities.h"
-
+#include <fstream>
 
 bool isRectangularHit(Actor* a1,Actor* a2) {
   return a1->getX1()<=a2->getX2() && 
@@ -73,4 +73,56 @@ int getApproachDirection(Actor* a1, Actor* a2) {
 void getObjectCenter(Actor* a,float& cx,float& cy) {
   cx = (a->getX1()+a->getX2())/2;
   cy = (a->getY1()+a->getY2())/2;
+}
+
+Achievements achieves;
+std::list<Achievement*> achievements;
+
+void loadAchievements() {
+  std::ifstream in_str(".ach32948880225704");
+  if (!in_str)
+    return;
+  float ver;
+  in_str>>ver;
+  
+  size_t num;
+  in_str>>num;
+  for (size_t i=0;i<num;i++) {
+    int val;
+    in_str>>val;
+    achieves.insert(static_cast<A_CODE>(val));
+  }
+}
+void saveAchievements() {
+  std::ofstream out_str(".ach32948880225704");
+  out_str<<0.25<<"\n\n";
+  
+  out_str<<achieves.size()<<"\n\n";
+  Achievements::iterator itr;
+  for (itr=achieves.begin();itr!=achieves.end();itr++) {
+    out_str<<*itr<<" ";
+  }
+
+}
+bool hasAchievement(A_CODE ach) {
+  return achieves.find(ach)!=achieves.end();
+}
+
+void buildAchievement(A_CODE ach) {
+  if (hasAchievement(ach))
+    return;
+  achieves.insert(ach);
+  achievements.push_back(new Achievement(ach));
+}
+
+void renderAchievements(sf::RenderWindow& window) {
+  while(achievements.size()>0&&(*achievements.begin())->getAlpha()<=0) {
+    delete *achievements.begin();
+    achievements.pop_front();
+  }
+  if (achievements.size()==0)
+    return;
+  std::list<Achievement*>::iterator itr;
+  for (itr=achievements.begin();itr!=achievements.end();itr++)
+    (*itr)->render(window);
 }

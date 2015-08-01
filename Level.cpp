@@ -62,8 +62,11 @@ void Level::remove(Actor* actor) {
 void Level::sendEvent(EVE_CODE eve, Actor* sender) {
   if (eve == SAVE) {
     S_CODE s = sender->getSave();
+    if (s==CROSS_ROADS&&you->getSave()==GAME_START)
+      buildAchievement(NO_SAVE);
     you->save(s);
-    actors.push_back(new SaveGraphic(this));
+    buildAchievement(SAVE_1);
+    actors.push_back(new SaveGraphic(this,you->boss1()));
   }
   else if (eve == SPEECH) {
     you->getHint(sender->getVal());

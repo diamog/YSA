@@ -21,6 +21,7 @@ int main() {
   //Definition of Window
   int width = 700;
   int height = 600;
+  loadAchievements();
 #ifndef COMPILE_NO_SF
   sf::RenderWindow window(sf::VideoMode(width, height), "YSA Version 0.2.5dev");
   window.setFramerateLimit(60);
@@ -108,9 +109,11 @@ int main() {
       window.clear(sf::Color(100,100,100));
     level->render(window);
     you->render(window);
+    renderAchievements(window);
     window.display();
   }
 #endif
+  saveAchievements();
   delete level;
   delete you;
   delete isDead;

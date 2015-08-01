@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Extras/utilities.h"
 #include "You.h"
 #include <cmath>
 #include <fstream>
@@ -297,6 +298,18 @@ void You::save(S_CODE s) {
 void You::die() {
   if (!*isDead) {
     deaths++;
+    buildAchievement(DIE_1);
+    if (deaths>=10) {
+      buildAchievement(DIE_10);
+    }
+    if (deaths>=50)
+      buildAchievement(DIE_50);
+    if (deaths>=100)
+      buildAchievement(DIE_100);
+    if (deaths>=500)
+      buildAchievement(DIE_500);
+    if (deaths>=1000)
+      buildAchievement(DIE_1000);
     platx1=platx2;
     *isDead = true;
   }
