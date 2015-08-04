@@ -35,7 +35,7 @@ void Level3::makePlatforms() {
   actors.push_back(new Platform(this,670,150,30,450,you)); //right wall
   actors2.push_back(new VertPlat(this,80,300,40,you,true));
   actors2.push_back(new VertPlat(this,250,500,40,you,true));
-  actors2.push_back(new VertPlat(this,590,200,40,you,false));
+  actors2.push_back(new VertPlat(this,590,200,40,you,true,-1));
   
   
 }

@@ -14,6 +14,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(Levels)
 include_directories(Switables)
 
+add_subdirectory(Music)
 add_subdirectory(Graphics)
 add_subdirectory(Extras)
 add_subdirectory(Bullets)

@@ -2,9 +2,10 @@
 #include "You.h"
 #include <cmath>
 #include <fstream>
+#include "Platforms/Platform.h"
 You::You() : Actor(),Mover() {
   isJump=0;
-  platx1=platx2=0;
+  plat=NULL;
   alpha=255;
   isPaused=isMessagePaused=isControlPaused=false;
   isColor=isCloud=isPump=isCat=isFire=isColor2=false;
@@ -43,9 +44,8 @@ You::You(float x_, float y_, float w, float h, bool* isD) :
   dy=0;
   downLimit = 2;
   grav = 0.005f*frame_diff*frame_diff;
-  platx1=platx2=0;
-  base_y=0;
   isAntiGrav=false;
+  plat=NULL;
 }
 
 You::~You() {
@@ -73,10 +73,13 @@ void You::act() {
   if (!isControlPaused) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
       if (isJump==0) {
-	platx1=platx2=0;
+	
 	float angle = shape.getRotation()*3.1415926535/180;	
 	dy=-.95*frame_diff*cos(angle);
 	vx=2*.95*frame_diff*sin(angle);
+	if (plat)
+	  dy+=plat->getVal();
+	plat=NULL;
 	isJump=1;
       }
       else if (isJump==2) {
@@ -117,7 +120,7 @@ void You::act() {
     
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-      platx1=platx2=0;
+      plat=NULL;
       if (downLimit==2) {
 	if (dy<0)
 	  dy=0;
@@ -146,9 +149,9 @@ void You::act() {
 	  angle=0;
 	temp_dx=-dx*cos(angle);
 	if (angle>0)
-	  y=base_y-sin(angle)*(getX1()-platx1)-height;
+	  y=plat->getY1()-sin(angle)*(getX1()-plat->getX1())-height;
 	else if (angle<0)
-	  y=base_y-sin(angle)*(getX1()-platx2)-height;
+	  y=plat->getY1()-sin(angle)*(getX1()-plat->getX2())-height;
   
       }
     }
@@ -163,9 +166,9 @@ void You::act() {
 	  angle+=2*3.14;
 	temp_dx=dx*cos(angle);
 	if (angle>0)
-	  y=base_y-sin(angle)*(getX1()-platx1)-height;
+	  y=plat->getY1()-sin(angle)*(getX1()-plat->getX1())-height;
 	else if (angle<0)
-	  y=base_y-sin(angle)*(getX1()-platx2)-height;
+	  y=plat->getY1()-sin(angle)*(getX1()-plat->getX2())-height;
   
       }
     }
@@ -176,9 +179,10 @@ void You::act() {
   x+=temp_dx+vx;
   if (fabs(vx)>0)
     vx-=(vx/fabs(vx))*.005*frame_diff;
-  if ((getX1()>=platx2 || getX2()<=platx1)&&platx1!=platx2) {
+  if (plat&&(getX1()>=plat->getX2() || getX2()<=plat->getX1())) {
     isJump=2;
-    platx1=platx2=0;
+    dy = plat->getVal();
+    plat=NULL;
     shape.setRotation(0);
   }
   y+=dy;
@@ -195,6 +199,13 @@ void You::act() {
   if (isAntiGrav)
     downLimit*=1.5;
   isKickLeft=isKickRight=false;
+}
+
+void You::setFall(float max) {
+  if (isJump==0) 
+    isJump=2;
+  dy=max;
+  plat=NULL;
 }
 
 #ifndef COMPILE_NO_SF
@@ -228,29 +239,26 @@ void You::setPosition(float x_, float y_,bool keepLast) {
     lastx=x_;
     lasty=y_;
   }
-  platx1=platx2=0;
+  plat=NULL;
 }
-void You::land(float y_,float x1, float x2) {
-  y = y_-height;
+void You::land(Platform* p) {
+  plat=p;
+  y = plat->getY1()-height;
   dy=0;
   isJump=0;
   vx=0;
-  platx1 = x1;
-  platx2 = x2;
   shape.setRotation(0);
 }
 
-void You::landSlope(float y_,float x1,float x2,float angle) {
-  platx1=x1;
-  platx2=x2;
+void You::landSlope(Platform* p,float angle) {
+  plat=p;
   dy=0;
   vx=0;
   isJump=0;
-  base_y=y_;
   if (angle>0)
-    y=y_-sin(angle)*(getX1()-x1)-height;
+    y=p->getY1()-sin(angle)*(getX1()-p->getX1())-height;
   else 
-    y=y_-sin(angle)*(getX1()-x2)-height;
+    y=p->getY1()-sin(angle)*(getX1()-p->getX2())-height;
   shape.setRotation(-(angle*180/3.14));
 }
 
@@ -274,7 +282,7 @@ void You::hitRightWall(float x_,bool isKick) {
 
 void You::warp() {
   temp_extras.clear();
-  platx1=platx2;
+  plat=NULL;
   isJump=1;
   dy=0;
   vx=0;
@@ -321,7 +329,7 @@ void You::die() {
       buildAchievement(DIE_1000);
     if (deaths>=999)
       buildAchievement(DIE_999);
-    platx1=platx2;
+    plat=NULL;
     *isDead = true;
   }
   //begin death animation
@@ -338,7 +346,7 @@ void You::reload() {
   alpha=261;
   isJump=1;
   dy=0;
-  platx1=platx2=0;
+  plat=NULL;
   for (unsigned int i=0;i<bullets.size();i++)
     delete bullets[i];
   bullets.clear();

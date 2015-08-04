@@ -3,7 +3,7 @@
 
 #include "ThinPlat.h"
 
-class Button : public ThinPlat {
+class Button : public Platform {
  public:
   Button();
   Button(Level* l, float x_,float y_,You* yo,EVE_CODE e);

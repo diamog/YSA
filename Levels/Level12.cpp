@@ -20,11 +20,24 @@ Level12::Level12(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) 
   else if (ent==SOUTH) {
     you->setPosition(enterx,598,true);
   }
+  else if (ent==WEST) {
+    you->setPosition(-18,entery,true);
+    isMove=false;
+    b1->shiftY(30);
+  }
   else if (ent==LOAD_1) {
     you->setPosition(380,460);
   }
+  else if (ent==PORTAL_1) {
+    you->setPosition(380,460);
+  }
+  else if (ent==PORTAL_2) {
+    you->setPosition(380,460);
+    //DO stuff with fairy
+  }
   else
     throw THROW_ENTRANCE_ERROR;
+  sendEvent(EYE_1,NULL);
 }
 
 void Level12::makePlatforms() {
@@ -42,7 +55,8 @@ void Level12::makePlatforms() {
   actors.push_back(new ThinPlat(this,280,30,220,you));
 
   actors.push_back(new InviPlat(this,0,150,250,30,you));
-  actors.push_back(new InviPlat(this,0,400,250,30,you));
+  actors.push_back(new InviPlat(this,0,370,250,30,you));
+  actors.push_back(new InviPlat(this,0,570,250,30,you));
 }
 void Level12::makeEnemies() {
   
@@ -53,7 +67,7 @@ void Level12::makeEnemies() {
 }
 void Level12::makeCollectables() {
   //Make the hints
-  buildExtra(700+380,50);
+  buildExtra(220,500);
 }
 
 void Level12::makeSwitches() {
@@ -67,7 +81,7 @@ void Level12::makeDetectors() {
   detectors.push_back(new Detector(this,280,580,300,30,&actors2));
 
 
-  b1 = new BigEye(this,680-35,580,EYE_3,eye);
+  b1 = new BigEye(this,680-35,580,NOTHING,eye);
   detectors.push_back(b1);
 
 }
@@ -91,10 +105,9 @@ void Level12::sendEvent(EVE_CODE eve, Actor* sender) {
   if (eve==EYE_1) {
     isMove=false;
     remove(middle);
-    actors.push_back(new Platform(this,250,400,30,230,you));
+    actors.push_back(new Platform(this,250,370,30,230,you));
     actors.push_back(new Platform(this,250,-30,30,210,you));
   }
-  else if (eve==EYE_3);
   else {
     Level::sendEvent(eve,sender);
   }

@@ -2,6 +2,8 @@
 #define __LEVELS__H__
 
 #include "../Level.h"
+#include "Secret1.h"
+#include "Boss3_1.h"
 #include "Level14.h"
 #include "Level13.h"
 #include "Level12.h"
@@ -102,6 +104,13 @@ Level* makeLevel(You* you, Level* level, L_CODE l, ENT_CODE ent) {
   else if (l==PREBOSS2) {
     return makeLevel14(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
   }
+  else if (l==CLOUD) {
+    return makeBoss3_1(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
+  }
+  else if (l==SECRET_1) {
+    return makeSecret1(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
+  }
+
   return NULL;
 }
 #endif 

@@ -1,11 +1,12 @@
 #ifndef __YOU__H__
 #define __YOU__H__
-#include "Extras\utilities.h"
+#include "./Extras/utilities.h"
 #include "Mover.h"
 #include "Bullet.h"
 #include <vector>
 #include <set>
 class Level;
+class Platform;
 
 class You  : public Mover{
 public:
@@ -13,8 +14,7 @@ public:
   You(float x_, float y, float w, float h, bool* isD);
   ~You();
 
-  float getPlatX1() {return platx1;}	
-  float getPlatX2() {return platx2;}		
+  Platform* getPlat() const {return plat;}
   std::vector<Line> getLines();
 #ifndef COMPILE_NO_SF
   float getAngle() {return shape.getRotation();}
@@ -22,7 +22,7 @@ public:
   float getAngle() {return 0;}
 #endif
 
-  void setFall() {if (isJump==0) isJump=2;}
+  void setFall(float max=0.0);
   void setPosition(float x_, float y_,bool keepLast=false);
   void act();
 #ifndef COMPILE_NO_SF
@@ -43,8 +43,8 @@ public:
   void getHint(int i) {hints.insert(i);}
   
 
-  void land(float y_,float x1, float x2);
-  void landSlope(float y_,float x1, float x2, float angle);
+  void land(Platform* p);
+  void landSlope(Platform* p,float angle);
   void ceiling(float y_);
   void hitLeftWall(float x_,bool isKick=false);
   void hitRightWall(float x_,bool isKick=false);
@@ -74,7 +74,6 @@ public:
   void beatBoss5() {isFire=true;}
   void beatBoss6() {isColor2=true;}
 
-  void setFall(float max) {if (dy>max) dy=max;}
   void antiGravity() {isAntiGrav=!isAntiGrav;}
   bool isAntiGravity() {return isAntiGrav;}
   bool hasSplit() {return hasEnterSplit;}
@@ -100,8 +99,7 @@ protected:
   float dy;
   float downLimit;
   float grav;
-  float platx1,platx2;
-  float base_y;
+  Platform* plat;
   bool* isDead;
   int alpha;
   std::vector<Bullet*> bullets;

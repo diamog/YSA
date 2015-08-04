@@ -14,13 +14,17 @@ void ThinPlat::act() {
   
   Platform::act();
   #ifndef COMPILE_NO_SF
-  if (you->getPlatX1()==getX1()&& you->getPlatX2()==getX2())
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+  if (you->getPlat()==this)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
       you->setPosition(you->getX1(),getY1()+3-you->getHeight());
+      you->setFall(getVal());
+    }
   if (rev!=NULL)
-    if (rev->getPlatX1()==getX1()&& rev->getPlatX2()==getX2())
-      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	rev->setPosition(rev->getX1(),getY2()-(rev->getY2()-rev->getY1())+level->getY());
+    if (rev->getPlat()==this)
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+	rev->setPosition(rev->getX1(),getY2()-rev->getHeight()+level->getY());
+	rev->setFall(getVal());
+      }
 #endif
 
 }

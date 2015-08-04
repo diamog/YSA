@@ -26,7 +26,7 @@ void Platform::act() {
     else if (dir==1 && isRight)
       you->hitRightWall(getX1(),kickLeft);
     else if (dir==2 && isDown)
-      you->land(getY1(),getX1(),getX2());
+      you->land(this);
     else if (dir==3 && isLeft)
       you->hitLeftWall(getX2(),kickRight);
   }
@@ -38,7 +38,7 @@ void Platform::act() {
       else if (dir==1 && isRight)
 	rev->hitRightWall(x,kickLeft);
       else if (dir==2 && isDown)
-	rev->land(y,x,x+width);
+	rev->land(this);
       else if (dir==3 && isLeft)
 	rev->hitLeftWall(x+width,kickRight);
     }

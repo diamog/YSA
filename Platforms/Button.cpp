@@ -2,13 +2,13 @@
 #include "Button.h"
 #include "../Enemies/Reverser.h"
 #include "../Level.h"
-Button::Button() : Actor(),ThinPlat() {
+Button::Button() : Actor(),Platform() {
   isOn=false;
 }
 
 Button::Button(Level* l, float x_,float y_,You* yo,EVE_CODE e) 
    : Actor(l,x_,y_,40,20),
-     ThinPlat(l,x_,y_,40,yo) {
+     Platform(l,x_,y_,40,20,yo) {
   eve=e;
   isOn=false;
   if (eve==GREEN)
@@ -22,8 +22,8 @@ Button::Button(Level* l, float x_,float y_,You* yo,EVE_CODE e)
 }
 
 void Button::act() {
-  ThinPlat::act();
-  if (you->getPlatX1()==getX1()&& you->getPlatX2()==getX2()) {
+  Platform::act();
+  if (you->getPlat()==this) {
     if (!isOn) {
       level->sendEvent(eve,NULL);
       isOn=true;

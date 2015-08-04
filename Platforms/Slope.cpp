@@ -50,7 +50,7 @@ void Slope::act() {
       disable=0;
 #endif
   if (testLines(this,you)&&disable==0) {
-    you->landSlope(getY1(),getX1(),getX2(),angle);
+    you->landSlope(this,angle);
   }
   else {
     Platform::act();

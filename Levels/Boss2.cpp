@@ -76,7 +76,7 @@ void Boss2::act() {
 				      sf::Color(255,255,0),you->getY1(),MISCE_1));
     part=1;
   }
-  else if (part==2&&you->getPlatX1()!=you->getPlatX2()) {
+  else if (part==2&&you->getPlat()) {
     sendEvent(MISCE_5,NULL);
     part=3;
     canMove=false;
