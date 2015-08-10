@@ -9,7 +9,7 @@ class SmallEye : public Enemy {
   SmallEye(Level* l, float x_,float y_, You* yo,int d);
   
   void act();
-  void start() {isOn=true;}
+  void start(float v=0.5) {isOn=true;vel=v;}
   void stop() {isOn=false;}
   void hitDetector(int adir);
   void setReset(float x_,float y_) {resetx = x_;resety=y_;}

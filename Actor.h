@@ -5,7 +5,9 @@
 #include <SFML/Graphics.hpp>
 #endif
 #include "Extras/Line.h"
+#include "Extras/Circle.h"
 #include "Codes.h"
+#include <stdexcept>
 #include <iostream>
 #include <vector>
 
@@ -33,7 +35,10 @@ class Actor {
   virtual float getLastX2() const {return getX2();}
   virtual float getLastY1() const {return getY1();}
   virtual float getLastY2() const {return getY2();}
-  virtual std::vector<Line> getLines() {return std::vector<Line>();}
+  virtual std::vector<Line> getLines() 
+    {throw std::runtime_error("NOT IMPLEMENTED");}
+  virtual std::vector<Circle> getCircles() 
+    {throw std::runtime_error("NOT IMPLEMENTED");}
 	
   friend bool operator==(const Actor& a1, const Actor& a2) {
     return a1.x==a2.x && a1.y == a2.y && a1.width==a2.width && a1.height==a2.height; 

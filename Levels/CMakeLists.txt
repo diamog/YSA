@@ -22,6 +22,7 @@ SET(LEVEL_SRC
   Level13.cpp
   Level14.cpp
   Boss3_1.cpp
+  Boss3_2.cpp
   Secret1.cpp
 )
 

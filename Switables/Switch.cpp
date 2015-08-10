@@ -14,18 +14,20 @@ Switch::Switch(Level* l, float x_, float y_, float w, float h, You* yo) :
 }
 
 void Switch::act() {
+  if (you->getDead())
+    return;
   if (isRectangularHit(you,this)) {
     activate();
     level->sendEvent(eve,this);
   }
   if (rev!=NULL) {
     if (isRectangularHit(rev,this)) {
-			if (eve==SAVE)
-				buildAchievement(EVIL_SAVE);
-			else {
-				activate();
-				level->sendEvent(eve,this);
-			}
+      if (eve==SAVE)
+	buildAchievement(EVIL_SAVE);
+      else {
+	activate();
+	level->sendEvent(eve,this);
+      }
     }
   }
 }

@@ -61,6 +61,7 @@ public:
 
   bool boss1() {return isColor;}
   bool boss2() {return isCloud;}
+  bool boss2Half() {return isCloudHalf;}
   bool boss3() {return isPump;}
   bool boss3Half() {return isPumpHalf;}
   bool boss4() {return isCat;}
@@ -68,6 +69,7 @@ public:
   bool boss6() {return isColor2;}
   void beatBoss1() {isColor=true;buildAchievement(BEAT_COLOR);}
   void beatBoss2() {isCloud=true;}
+  void beatBoss2Half() {isCloudHalf=true;}
   void beatBoss3() {isPump=true;}
   void beatBoss3Half() {isPumpHalf=true;}
   void beatBoss4() {isCat=true;}
@@ -106,7 +108,7 @@ protected:
   std::set<L_CODE> extras;
   std::set<L_CODE> temp_extras;
   std::set<int> hints;
-  bool isColor,isCloud,isPump,isPumpHalf,isCat,isFire,isColor2;
+  bool isColor,isCloud,isCloudHalf,isPump,isPumpHalf,isCat,isFire,isColor2;
   bool isKickLeft,isKickRight;
   bool hasEnterSplit;
   bool isAntiGrav;

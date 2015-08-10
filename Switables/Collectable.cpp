@@ -13,6 +13,8 @@ Collectable::Collectable(Level* l, float x_, float y_, float w, float h, You* yo
 }
 
 void Collectable::act() {
+  if (you->getDead())
+    return;
   if (isRectangularHit(you,this)) {
     activate();
     level->sendEvent(eve,this);

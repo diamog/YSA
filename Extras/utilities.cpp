@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "utilities.h"
 #include <fstream>
+#include <cmath>
 
 bool isRectangularHit(Actor* a1,Actor* a2) {
   return a1->getX1()<=a2->getX2() && 
@@ -47,12 +48,46 @@ bool isLineHit(Line l1, Line l2) {
   return l1.isOn(x,y)&&l2.isOn(x,y);
 }
 
+bool isCircleLineHit(Circle c1, Line l) {
+  float x1 = l.p1.first;
+  float x2 = l.p2.first;
+  float y1 = l.p1.second;
+  float y2 = l.p2.second;
+  float cx = c1.p.first;
+  float cy = c1.p.second;
+  float cr = c1.rad;
+ 
+  float a = pow(x2-x1,2)+pow(y2-y1,2);
+  float b = 2*((x2-x1)*(x1-cx) + (y2-y1)*(y1-cy));
+  float c = pow(x1-cx,2)+pow(y1-cy,2)-pow(cr,2);
+
+  float disc = b*b-4*a*c;
+
+  if (disc<0)
+    return false;
+  disc = sqrt(disc);
+  float t1 = (-b-disc)/(2*a);
+  float t2 = (-b+disc)/(2*a);
+  
+  return (t1>=0&&t1<=1)||(t2>=0&&t2<=1);
+}
+
 bool testLines(Actor* a1,Actor* a2) {
   std::vector<Line> l1 = a1->getLines();
   std::vector<Line> l2 = a2->getLines();
   for (unsigned int i=0;i<l1.size();i++)
     for (unsigned int j=0;j<l2.size();j++)
       if (isLineHit(l1[i],l2[j]))
+        return true;
+  return false;
+}
+
+bool testCircles(Actor* circle,Actor* lines) {
+  std::vector<Circle> cs = circle->getCircles();
+  std::vector<Line> ls = lines->getLines();
+  for (unsigned int i=0;i<cs.size();i++)
+    for (unsigned int j=0;j<ls.size();j++)
+      if (isCircleLineHit(cs[i],ls[j]))
         return true;
   return false;
 }

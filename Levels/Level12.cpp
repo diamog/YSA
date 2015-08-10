@@ -37,7 +37,6 @@ Level12::Level12(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) 
   }
   else
     throw THROW_ENTRANCE_ERROR;
-  sendEvent(EYE_1,NULL);
 }
 
 void Level12::makePlatforms() {

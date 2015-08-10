@@ -311,6 +311,8 @@ void You::save(S_CODE s) {
 }
 
 void You::die() {
+  if (isMessagePaused||isControlPaused)
+    return;
   if (!*isDead) {
     deaths++;
     buildAchievement(DIE_1);
@@ -384,6 +386,8 @@ void You::load(std::istream& in_str) {
   
   in_str>>isColor;
   in_str>>isCloud;
+  if (ver>=0.3)
+    in_str>>isCloudHalf;
   in_str>>isPump;
   in_str>>isPumpHalf;
   in_str>>isCat;
@@ -395,7 +399,11 @@ void You::load(std::istream& in_str) {
   in_str>>hasEnterSplit;
 }
 void You::save(std::ostream& out_str) {
+#ifndef PREVERSION
+  out_str<<0.3<<"\n\n";
+#else
   out_str<<0.25<<"\n\n";
+#endif
   //Save current savepoint
   out_str<<savepoint<<"\n\n";
 
@@ -413,7 +421,11 @@ void You::save(std::ostream& out_str) {
   out_str<<"\n\n";
   
   //Save boss completition
-  out_str<<isColor<<" "<<isCloud<<" "<<isPump<<" "<<isPumpHalf<<" "<<isCat<<" "<<isFire<<" "<<isColor2<<"\n\n";
+  out_str<<isColor<<" "<<isCloud<<" ";
+#ifndef PREVERSION
+  out_str<<isCloudHalf<<" ";
+#endif
+  out_str<<isPump<<" "<<isPumpHalf<<" "<<isCat<<" "<<isFire<<" "<<isColor2<<"\n\n";
 
   //Save death count
   out_str<<deaths<<"\n\n";

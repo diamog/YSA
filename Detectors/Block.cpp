@@ -2,6 +2,7 @@
 #include "Block.h"
 #include "../Extras/utilities.h"
 #include "../Level.h"
+#include <cmath>
 Block::Block() : Actor(),BigEye(),Platform() {
 
 }
@@ -22,6 +23,14 @@ Block::Block(Level* l, float x_,float y_,int blockType,
   arrow.setFillColor(sf::Color(180,180,180));
 }
 
+bool Block::isInside() {
+  float ex,ey;
+  float cx,cy;
+  getObjectCenter(this,cx,cy);
+  getObjectCenter(eye,ex,ey);
+  return (sqrt(pow(cx-ex,2)+pow(cy-ey,2))<8);
+
+}
 void Block::act() {
   Platform::act();
   BigEye::act();

@@ -3,6 +3,7 @@
 
 #include "../Level.h"
 #include "Secret1.h"
+#include "Boss3_2.h"
 #include "Boss3_1.h"
 #include "Level14.h"
 #include "Level13.h"
@@ -107,6 +108,10 @@ Level* makeLevel(You* you, Level* level, L_CODE l, ENT_CODE ent) {
   else if (l==CLOUD) {
     return makeBoss3_1(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
   }
+  else if (l==CLOUD2) {
+    return makeBoss3_2(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
+  }
+
   else if (l==SECRET_1) {
     return makeSecret1(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
   }

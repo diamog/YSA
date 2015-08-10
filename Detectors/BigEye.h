@@ -21,8 +21,6 @@ class BigEye : public Detector{
   SmallEye* eye;
   int dir;
   sf::CircleShape shape2;
-
- private:
   bool isInside();
 };
 

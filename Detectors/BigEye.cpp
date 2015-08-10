@@ -17,12 +17,9 @@ BigEye::BigEye(Level* l, float x_,float y_,EVE_CODE eve_, SmallEye* e) :
 }
 
 bool BigEye::isInside() {
-  float ex,ey;
-  float cx,cy;
-  getObjectCenter(this,cx,cy);
-  getObjectCenter(eye,ex,ey);
-  return (sqrt(pow(cx-ex,2)+pow(cy-ey,2))<8);
+  return true;
 }
+
 void BigEye::act() {
   if (isRectangularHit(this,eye)) {
     if (!isHit) {
@@ -34,6 +31,9 @@ void BigEye::act() {
 	if (isInside()) {
 	  if (dir==-1)
 	    eye->setReset(x+width/2,y+height/2);
+	  float cx,cy;
+	  getObjectCenter(this,cx,cy);
+	  eye->setPosition(cx-eye->getWidth()/2,cy-eye->getHeight()/2);
 	  eye->hitDetector(dir);
 	  level->sendEvent(eve,NULL);
 	  isHit=true;

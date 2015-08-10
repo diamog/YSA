@@ -1,4 +1,4 @@
 include_directories(..)
 
-add_library(extra utilities.cpp Line.cpp achievements.cpp)
+add_library(extra utilities.cpp Line.cpp Circle.cpp achievements.cpp)
 

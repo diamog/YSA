@@ -4,6 +4,7 @@
 #include "../Actor.h"
 #include "../Mover.h"
 #include "Line.h"
+#include "Circle.h"
 #include "achievements.h"
 #include "../Codes.h"
 #include <iostream>
@@ -14,7 +15,11 @@ bool isRectangularHit(Actor* a1,Actor* a2);
 
 bool isLineHit(Line l1, Line l2);
 
+bool isCircleLineHit(Circle c1,Line l1);
+
 bool testLines(Actor* a1,Actor* a2);
+
+bool testCircles(Actor* circle,Actor* lines);
 
 int getApproachDirection(Actor* a1, Actor* a2);
 

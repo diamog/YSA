@@ -20,6 +20,11 @@ set(ENEMY_SRC
   Vine.cpp
   WallVine.cpp
   SmallEye.cpp
+  CloudBoss1.cpp
+  CloudBoss2.cpp
+  Cloud.cpp
+  CBullet.cpp
+  Storm.cpp
 )
 
 add_library(enemy ${ENEMY_SRC})

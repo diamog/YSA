@@ -16,6 +16,7 @@ class Block : public BigEye, public Platform{
 #endif
  protected:
   sf::CircleShape arrow;
+  bool isInside();
 };
 
 #endif

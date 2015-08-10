@@ -110,7 +110,7 @@ void ColorBoss::act() {
 }
 #ifndef COMPILE_NO_SF
 void ColorBoss::render(sf::RenderWindow& window) {
-	
+  
   float cx,cy;
   getObjectCenter(this,cx,cy);
   float mag = sqrt(vx*vx+vy*vy)*100/frame_diff;
