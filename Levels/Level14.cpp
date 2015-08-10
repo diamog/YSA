@@ -20,7 +20,6 @@ Level14::Level14(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) 
   }
   else if (ent==LOAD_1) {
     you->setPosition(90,460);
-    you->setPosition(500,50);
   }
   else
     throw THROW_ENTRANCE_ERROR;
