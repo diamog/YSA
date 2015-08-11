@@ -29,7 +29,6 @@ int main() {
 #endif
   int menu=0;
   StartMenu start_menu; 
-  FileMenu file_menu;
 
   // Definition of you
   bool* isDead = new bool;
@@ -40,9 +39,10 @@ int main() {
   you2->load(".9sdf43sdf2ds0598dsf432odhj");
   You* you3 = new You(200,height-400.0f,20,20,isDead);
   you3->load(".8sdf43sdf2ds0598dsf432odhj");
-  
-  You* you;
-  Level* level;
+  FileMenu file_menu(you1,you2,you3);
+
+  You* you = NULL;
+  Level* level = NULL;
 #ifndef COMPILE_NO_SF
   while (window.isOpen()) {
     sf::Event event;
@@ -153,8 +153,10 @@ int main() {
   }
 #endif
   saveAchievements();
-  delete level;
-  delete you;
+  if (level) delete level;
+  delete you1;
+  delete you2;
+  delete you3;
   delete isDead;
   return 0;
 }

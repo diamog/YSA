@@ -2,17 +2,43 @@
 #include <iostream>
 #include "FileMenu.h"
 #include "../Extras/utilities.h"
+#include "stdio.h"
+#include "../Codes.h"
 
-FileMenu::FileMenu() {
+void setupRect(sf::RectangleShape& shape,float x1, float y1, float x2, float y2,
+	       sf::Color col,sf::Color out, int out_size) {
+  shape.setPosition(x1,y1);
+  shape.setSize(sf::Vector2f(x2-x1,y2-y1));
+  shape.setFillColor(col);
+  shape.setOutlineColor(out);
+  shape.setOutlineThickness(out_size);
+}
+
+void FileMenu::setupFileMenu(int index,float x1, You* you) {
+  char f_name[9];
+  sprintf(f_name,"File %d",index+1);
+  setupText(f[index],font,std::string(f_name),60,sf::Color(0,0,0),x1+100,220);
+  setupRect(b[index],x1,210,x1+200,490,sf::Color(100,75,50),sf::Color(0,0,0),5);
+  if (you->getSave()==GAME_START)
+    return;
+  setupText(diff[index],font,"Normal",40,sf::Color(0,0,0),x1+100,360);
+  char deaths[15];
+  sprintf(deaths,"Deaths: %d",you->getDeaths());
+  setupText(death[index],font,std::string(deaths),30,sf::Color(0,0,0),x1+100,440,6);
+
+}
+
+FileMenu::FileMenu(You* you1, You* you2, You* you3) {
   choice=0;
   font.loadFromFile("Fonts/arial.ttf");
   setupText(title,font,"Yellow Square\n   Adventure",82,sf::Color(255,255,0),
 	    350,20,7);
-  setupText(f1,font,"File 1",60,sf::Color(0,0,0),130,220);
-  setupText(f2,font,"File 2",60,sf::Color(0,0,0),350,220);
-  setupText(f3,font,"File 3",60,sf::Color(0,0,0),570,220);
+  setupFileMenu(0,30,you1);
+  setupFileMenu(1,250,you2);
+  setupFileMenu(2,470,you3);
+
   setupText(back,font,"Back",60,sf::Color(0,0,0),350,510);
-  setRectPos(select,f1);
+  setRectPos(select,f[0]);
   select.setFillColor(sf::Color(0,0,0,0));
   select.setOutlineColor(sf::Color(255,255,0));
   select.setOutlineThickness(5);
@@ -22,12 +48,8 @@ FileMenu::FileMenu() {
 void FileMenu::setChoice() {
   
   choice%=6;
-  if (choice==0)
-    setRectPos(select,f1);
-  else if (choice==1)
-    setRectPos(select,f2);
-  else if (choice==2)
-    setRectPos(select,f3);
+  if (choice<3)
+    setRectPos(select,f[choice]);
   else
     setRectPos(select,back);
 }
@@ -90,10 +112,14 @@ void FileMenu::act() {
 
 void FileMenu::render(sf::RenderWindow& window) {
   window.draw(title);
+
+  for (int i=0;i<3;i++) {
+    window.draw(b[i]);
+    window.draw(f[i]);
+    window.draw(diff[i]);
+    window.draw(death[i]);
+  }
   window.draw(select);
-  window.draw(f1);
-  window.draw(f2);
-  window.draw(f3);
   window.draw(back);
 }
 
