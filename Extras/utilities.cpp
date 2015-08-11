@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cmath>
 #include "MersenneTwister.h"
+#include "ReaderClass.h"
 
 bool isRectangularHit(Actor* a1,Actor* a2) {
   return a1->getX1()<=a2->getX2() && 
@@ -192,4 +193,26 @@ int getRandInt(int low, int high) {
 
 float getRand(float low, float high) {
   return mtr.rand(high-low)+low;
+}
+
+Reader reader;
+
+void addGraphic(std::string name,std::string file_name) {
+  reader.registerGraphics(name,file_name);
+}
+void addFont(std::string name,std::string file_name) {
+  reader.registerFont(name,file_name);
+}
+void addSong(std::string name,std::string file_name, bool repeat) {
+  reader.registerSong(name,file_name,repeat);
+}
+
+const sf::Texture& getGraphic(std::string name) {
+  return reader.getGraphics(name);
+}
+const sf::Font& getFont(std::string name) {
+  return reader.getFont(name);
+}
+sf::Music* getSong(std::string name) {
+  return reader.getSong(name);
 }

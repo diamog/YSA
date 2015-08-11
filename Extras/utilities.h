@@ -10,7 +10,8 @@
 #include <iostream>
 #include <vector>
 #include <list>
-
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 bool isRectangularHit(Actor* a1,Actor* a2);
 
 bool isLineHit(Line l1, Line l2);
@@ -43,5 +44,17 @@ void setRectPos(sf::RectangleShape& s, sf::Text& t);
 int getRandInt(int low, int high);
 
 float getRand(float low,float high);
+
+void addGraphic(std::string name,std::string file_name);
+
+const sf::Texture& getGraphic(std::string name);
+
+void addFont(std::string name,std::string file_name);
+
+const sf::Font& getFont(std::string name);
+
+void addSong(std::string name,std::string file_name, bool repeat);
+
+sf::Music* getSong(std::string name);
 
 #endif

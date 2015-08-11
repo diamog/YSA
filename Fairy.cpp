@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Fairy.h"
 #include "Level.h"
+#include "Extras/utilities.h"
 #include <cmath>
 
 Fairy::Fairy(Level* l,float x_,float y_) : Actor(l,x_,y_,20,30) {
@@ -10,7 +11,7 @@ Fairy::Fairy(Level* l,float x_,float y_) : Actor(l,x_,y_,20,30) {
   angle0=atan2((100+30.0),(470-30))+8*3.1415926535;
   angle=angle0;
 #ifndef COMPILE_NO_SF
-  texture.loadFromFile("Graphics/fairy1.png");
+  texture=getGraphic("Fairy1");
   fairy.setOrigin(width/2,height/2);
   fairy.setScale(-1,1);
 #endif
@@ -72,7 +73,6 @@ void Fairy::turnOn(int i) {
 
 void Fairy::kill() {
   val=-1;
-  texture.loadFromFile("Graphics/grayfairy1.png");
+  texture=getGraphic("GrayFairy");
   fairy.setRotation(-45);
-  //fairy.setScale(-10,10);
 }

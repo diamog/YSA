@@ -16,6 +16,9 @@
 #include "Extras/utilities.h"
 #include "Menus/StartMenu.h"
 #include "Menus/FileMenu.h"
+
+void loadInFiles();
+
 int main() {
   
   srand(time(NULL));
@@ -27,6 +30,7 @@ int main() {
   sf::RenderWindow window(sf::VideoMode(width, height), "YSA Version 0.2.5");
   window.setFramerateLimit(60);
 #endif
+  loadInFiles();
   int menu=0;
   StartMenu start_menu; 
 
@@ -161,3 +165,21 @@ int main() {
   return 0;
 }
 
+void loadInFiles() {
+  addGraphic("Pumpkin","Graphics/GreatPumpkin1.png");
+  addGraphic("Fairy1","Graphics/fairy1.png");
+  addGraphic("GrayFairy","Graphics/grayfairy1.png");
+  addGraphic("PumpkinHead","Graphics/pumpkin1.png");
+  addGraphic("PumpkinHeadTurn","Graphics/pumpkin2.png");
+  addGraphic("GhostPumpkin","Graphics/pumpkin_spirit.png");
+  addGraphic("Vine","Graphics/vines.png");
+  addGraphic("DeadVine","Graphics/wiltedvines.png");
+  
+  addFont("Arial","Fonts/arial.ttf");
+
+  //Songs
+  addSong("Colorless","Music/Colorless.wav",true);
+  
+  //Sfx
+  addSong("Save","Music/save.wav",false);
+}

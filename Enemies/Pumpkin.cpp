@@ -20,7 +20,7 @@ Pumpkin::Pumpkin(Level* l, You* yo)
   ghostL=NULL;
   ghostR=NULL;
 #ifndef COMPILE_NO_SF
-  pumpkin1.loadFromFile("Graphics/GreatPumpkin1.png");
+  pumpkin1 = getGraphic("Pumpkin");
 #endif
   shotx=x+width/2-20;
   shoty=y+height/2+30;

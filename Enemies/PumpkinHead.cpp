@@ -10,7 +10,7 @@ PumpkinHead::PumpkinHead(Level* l, float x_, You* yo, int health) : Actor(l,x_,6
   phase=0;
   isOn=true;
 #ifndef COMPILE_NO_SF
-  texture.loadFromFile("Graphics/pumpkin1.png");
+  texture=getGraphic("PumpkinHead");
   head.setOrigin(width/2,0);
   // shape.setFillColor(sf::Color(255,165,0));
   // eye.setFillColor(sf::Color(0,0,0));
@@ -57,7 +57,7 @@ void PumpkinHead::act() {
     else
       y-=3;
     if (getY1()<600-stem_height*numstems) {
-      texture.loadFromFile("Graphics/pumpkin2.png");
+      texture=getGraphic("PumpkinHeadTurn");
       phase=2;
     }
   }
@@ -80,8 +80,7 @@ void PumpkinHead::act() {
     if (ticks>150) {
       ticks=0;
       phase=4;
-      texture.loadFromFile("Graphics/pumpkin1.png");
-      
+      texture = getGraphic("PumpkinHead");
     }
   }
   else if (phase==4) {

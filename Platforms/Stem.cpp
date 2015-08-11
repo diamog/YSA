@@ -12,8 +12,8 @@ Stem::Stem(Level* l, float x_,float y_,float cx_,float w,float h,You* yo,int d) 
   cx=cx_;
   setPumpDir(d);
   isDead=false;
-  vine.loadFromFile("Graphics/vines.png");
-  wiltedvine.loadFromFile("Graphics/wiltedvines.png");
+  vine = getGraphic("Vine");
+  wiltedvine = getGraphic("DeadVine"); 
   stem.setOrigin(w/2,h/2);
 }
 

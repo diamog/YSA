@@ -14,7 +14,7 @@ PGhost::PGhost(Level* l, bool isLeft, You* yo,std::vector<PBullet*>* b) :
   else
     x=700-150-70;
 #ifndef COMPILE_NO_SF
-  texture.loadFromFile("Graphics/pumpkin_spirit.png");
+  texture = getGraphic("GhostPumpkin");
 #endif
   ticks=0;
 }

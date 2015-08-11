@@ -58,7 +58,7 @@ protected:
   L_CODE me;
   bool canMove;
   bool isWarp;
-	sf::Music music;
+  sf::Music* save_sfx;
 };
 
 #endif

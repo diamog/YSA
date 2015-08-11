@@ -28,7 +28,7 @@ Level::Level(You* yo) {
   isboss=false;
   canMove=true;
   isWarp=false;
-	music.openFromFile("Music/save.wav");
+  save_sfx = getSong("Save");
 }
 
 void Level::setup() {
@@ -68,13 +68,9 @@ void Level::sendEvent(EVE_CODE eve, Actor* sender) {
       buildAchievement(NO_SAVE);
     you->save(s);
     buildAchievement(SAVE_1);
-    actors.push_back(new SaveGraphic(this,you->boss1()));
-		// Load a music to play
-    
-    
-        
+    actors.push_back(new SaveGraphic(this,you->boss1()));		
     // Play the music
-    music.play();
+    save_sfx->play();
   }
   else if (eve == SPEECH) {
     you->getHint(sender->getVal());
