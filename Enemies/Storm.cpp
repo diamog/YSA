@@ -13,7 +13,7 @@ Storm::Storm(Level* l, float x_,float y_, You* yo)
   for (int i=0;i<25;i++) {
     sf::CircleShape cloud(20);
     cloud.setFillColor(sf::Color(120,120,120));
-    cloud.setPosition(getX1()+rand()%(static_cast<int>(width)-40),getY1()+rand()%(static_cast<int>(height)-40));
+    cloud.setPosition(getX1()+getRand(0,width-40),getY1()+getRand(0,height-40));
     shape.push_back(cloud);
   }
 #endif

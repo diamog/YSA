@@ -96,7 +96,7 @@ void PumpkinHead::act() {
       stems.clear();
       numstems=tempnumstems;
       
-      x = rand()%530+50;
+      x = getRand(50,580);
       if (!isOn)
 	phase=-1;
       else if (you->getDead()) 

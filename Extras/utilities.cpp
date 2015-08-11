@@ -2,6 +2,7 @@
 #include "utilities.h"
 #include <fstream>
 #include <cmath>
+#include "MersenneTwister.h"
 
 bool isRectangularHit(Actor* a1,Actor* a2) {
   return a1->getX1()<=a2->getX2() && 
@@ -181,4 +182,14 @@ void setRectPos(sf::RectangleShape& s, sf::Text& t) {
   s.setSize(t.findCharacterPos(t.getString().getSize())-t.findCharacterPos(0)+
 	    sf::Vector2f(10,t.getCharacterSize()+10));
   
+}
+
+MTRand mtr;
+
+int getRandInt(int low, int high) {
+  return mtr.randInt(high-low)+low;
+}
+
+float getRand(float low, float high) {
+  return mtr.rand(high-low)+low;
 }

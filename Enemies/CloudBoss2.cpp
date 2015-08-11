@@ -154,7 +154,7 @@ void CloudBoss2::act() {
   ticks+=rate;
   if (ticks>=max_ticks) {
     ticks=0;
-    storms.push_back(new Storm(level,rand()%480+50,40,you));
+    storms.push_back(new Storm(level,getRand(50,480+50),40,you));
   }
   if (testCircles(this,you)) {
     you->die();
@@ -163,7 +163,7 @@ void CloudBoss2::act() {
     //make rain
     bullet_tick++;
     if (bullet_tick>25) { 
-      bullets.push_back(new CBullet(level,rand()%600+50,-40,you,NULL));
+      bullets.push_back(new CBullet(level,getRand(50,650),-40,you,NULL));
       bullet_tick=0;
     }
   }

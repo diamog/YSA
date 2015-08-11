@@ -67,7 +67,7 @@ void Pumpkin::attack3() {
 }
 void Pumpkin::attack4() {
   if (ticks%45==0) {
-    float x = rand()%600 + 40;
+    float x = getRand(40,640);
     bullets.push_back(new Vine(level,x,you));
   }
 }

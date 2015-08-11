@@ -32,16 +32,16 @@ public:
   void pause() {isPaused=!isPaused;}
   void messagePause() {isMessagePaused=!isMessagePaused;}
   void controlPause();
-  bool isPause() {return isPaused;}
-  bool isPauseM() {return isMessagePaused;}
-  bool isPauseC() {return isControlPaused;}
+  bool isPause() const {return isPaused;}
+  bool isPauseM() const {return isMessagePaused;}
+  bool isPauseC() const {return isControlPaused;}
   
-  S_CODE getSave() {return savepoint;}
-  bool hasExtra(L_CODE l) {return extras.find(l)!=extras.end()||temp_extras.find(l)!=temp_extras.end();}
+  S_CODE getSave() const {return savepoint;}
+  bool hasExtra(L_CODE l) const {return extras.find(l)!=extras.end()||temp_extras.find(l)!=temp_extras.end();}
   void getExtra(L_CODE l) {temp_extras.insert(l);}
-  bool hasHint(int i) {return hints.find(i)!=hints.end();}
+  bool hasHint(int i) const {return hints.find(i)!=hints.end();}
   void getHint(int i) {hints.insert(i);}
-  
+  int getDeaths() const {return deaths;} 
 
   void land(Platform* p);
   void landSlope(Platform* p,float angle);

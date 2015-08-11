@@ -40,5 +40,8 @@ void setupText(sf::Text& text,sf::Font& f,std::string s,int size, sf::Color c,
 
 void setRectPos(sf::RectangleShape& s, sf::Text& t);
 
+int getRandInt(int low, int high);
+
+float getRand(float low,float high);
 
 #endif

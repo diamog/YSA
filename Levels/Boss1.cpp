@@ -128,8 +128,8 @@ void Boss1::sendEvent(EVE_CODE eve, Actor* sender) {
     getObjectCenter(sender,cx,cy);
     you->addBullet(new ColorBullet(this,cx,cy,5,5,sender->getMessage(),
 				   boss,sender->getVal()));
-    float xnew = rand()%600+50;
-    float ynew = rand()%400+100;
+    float xnew = getRand(50,650);
+    float ynew = getRand(100,500);
     sender->setPosition(xnew,ynew);
     if (sender->getVal()<=0)
       remove(sender);
