@@ -80,8 +80,8 @@ public:
   bool isAntiGravity() {return isAntiGrav;}
   bool hasSplit() {return hasEnterSplit;}
   void enterSplit() {hasEnterSplit=true;}
-  void load(std::istream& in_str);
-  void save(std::ostream& out_str);
+  void load(std::string file_name);
+  void save();
   void print();
 protected:
   bool isPaused;
@@ -112,6 +112,8 @@ protected:
   bool isKickLeft,isKickRight;
   bool hasEnterSplit;
   bool isAntiGrav;
+
+  std::string file;
 };
 
 #endif

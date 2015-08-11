@@ -35,4 +35,10 @@ void buildAchievement(A_CODE ach);
 
 void renderAchievements(sf::RenderWindow& window);
 
+void setupText(sf::Text& text,sf::Font& f,std::string s,int size, sf::Color c,
+	       double x, double y, int num_chars=-1);
+
+void setRectPos(sf::RectangleShape& s, sf::Text& t);
+
+
 #endif

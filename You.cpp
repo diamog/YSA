@@ -306,8 +306,8 @@ void You::save(S_CODE s) {
 		buildAchievement(EXTRA_10);
   if (extras.size()>=20)
 		buildAchievement(EXTRA_20);
-  std::ofstream out_str(".7sdf43sdf2ds0598dsf432odhj");
-  save(out_str);
+  
+  save();
 }
 
 void You::die() {
@@ -364,7 +364,12 @@ std::vector<Line> You::getLines() {
   return lines;
 }
 
-void You::load(std::istream& in_str) {
+void You::load(std::string file_name) {
+  std::ifstream in_str(file_name.c_str());
+  file = file_name;
+  if (!in_str)
+    return;
+
   float ver;
   in_str>>ver;
   
@@ -398,7 +403,8 @@ void You::load(std::istream& in_str) {
 
   in_str>>hasEnterSplit;
 }
-void You::save(std::ostream& out_str) {
+void You::save() {
+  std::ofstream out_str(file.c_str());
 #ifndef PREVERSION
   out_str<<0.3<<"\n\n";
 #else

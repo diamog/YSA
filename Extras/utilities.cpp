@@ -161,3 +161,24 @@ void renderAchievements(sf::RenderWindow& window) {
   for (itr=achievements.begin();itr!=achievements.end();itr++)
     (*itr)->render(window);
 }
+
+void setupText(sf::Text& text,sf::Font& f,std::string s,int size, sf::Color c,
+	       double x, double y, int num_chars) {
+  text.setFont(f);
+  text.setString(s);
+  text.setCharacterSize(size);
+  text.setColor(c);
+  text.setPosition(0,0);
+  if (num_chars==-1)
+    text.setOrigin(text.findCharacterPos(s.size()/2).x,0);
+  else
+    text.setOrigin(text.findCharacterPos(num_chars).x,0);
+  text.setPosition(x,y);
+}
+
+void setRectPos(sf::RectangleShape& s, sf::Text& t) {
+  s.setPosition(t.findCharacterPos(0)-sf::Vector2f(5,0));
+  s.setSize(t.findCharacterPos(t.getString().getSize())-t.findCharacterPos(0)+
+	    sf::Vector2f(10,t.getCharacterSize()+10));
+  
+}

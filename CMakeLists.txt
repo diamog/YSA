@@ -21,6 +21,7 @@ include_directories(Switables)
 add_subdirectory(Music)
 add_subdirectory(Graphics)
 add_subdirectory(Extras)
+add_subdirectory(Menus)
 add_subdirectory(Bullets)
 add_subdirectory(Enemies)
 add_subdirectory(Platforms)
@@ -42,6 +43,7 @@ set(ROOT_SOURCES
 
 add_executable(YSA ${ROOT_SOURCES})
 
+target_link_libraries(YSA menus)
 target_link_libraries(YSA graphics)
 target_link_libraries(YSA extra)
 target_link_libraries(YSA enemy)

@@ -14,7 +14,8 @@
 #include <time.h>
 #include "Extras/Line.h"
 #include "Extras/utilities.h"
-
+#include "Menus/StartMenu.h"
+#include "Menus/FileMenu.h"
 int main() {
   
   srand(time(NULL));
@@ -26,90 +27,128 @@ int main() {
   sf::RenderWindow window(sf::VideoMode(width, height), "YSA Version 0.2.5");
   window.setFramerateLimit(60);
 #endif
-  
+  int menu=0;
+  StartMenu start_menu; 
+  FileMenu file_menu;
+
   // Definition of you
   bool* isDead = new bool;
   *isDead = false;
-  You* you = new You(200,height-400.0f,20,20,isDead);
-  std::ifstream in_str(".7sdf43sdf2ds0598dsf432odhj");
-  if (in_str)
-    you->load(in_str);
-  Level* level = loadLevel(you, you->getSave());
+  You* you1 = new You(200,height-400.0f,20,20,isDead);
+  you1->load(".7sdf43sdf2ds0598dsf432odhj");
+  You* you2 = new You(200,height-400.0f,20,20,isDead);
+  you2->load(".9sdf43sdf2ds0598dsf432odhj");
+  You* you3 = new You(200,height-400.0f,20,20,isDead);
+  you3->load(".8sdf43sdf2ds0598dsf432odhj");
   
+  You* you;
+  Level* level;
 #ifndef COMPILE_NO_SF
   while (window.isOpen()) {
     sf::Event event;
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed)
         window.close();
-      if (event.type == sf::Event::KeyPressed) {
-        if(event.key.code ==sf::Keyboard::R&&((!you->isPause()&& !you->isPauseM())||*isDead)) {
-          *isDead=false;
-	  you->reload();
-	  delete level;
-          level = loadLevel(you,you->getSave());
-        }
-	if (event.key.code == sf::Keyboard::W&&*isDead==false&&!you->isPause()&& !you->isPauseM()) {
-	  you->warp();
-	  level->warp();
-	}
-        if (event.key.code ==sf::Keyboard::O) {
-          you->print();
-        }
-        if (event.key.code ==sf::Keyboard::P&&!*isDead) {
-          you->pause();
-        }
-	if (event.key.code == sf::Keyboard::Num0) {
-	  you->save(GAME_START);
-	}
-        if (event.key.code == sf::Keyboard::Num1) {
-          you->save(ROOM_1);
-        }
-        if (event.key.code==sf::Keyboard::Num2) {
-          you->save(CROSS_ROADS);
-          you->beatBoss1();
-        }
-        if (event.key.code==sf::Keyboard::Num3) {
-          you->save(ROOM_3);
-        }
-        if (event.key.code==sf::Keyboard::Num5) {
-          you->save(WALL_KICK_3);
-        }
-	if (event.key.code==sf::Keyboard::Num4) {
-          you->save(PRE_BOSS_2);
-        }
-
-      }
-      level->windowEvent(event);
-      
-    }
-    if (!you->isPause()) {
-      if (*isDead==false) {
-        if (!you->isPauseM())
-          you->act();
-      }
-      level->act();
-    }
-
-    L_CODE next_level;
-    ENT_CODE ent;
-    if (level->isChangeRoom(next_level,ent)) {
-      Level* temp = level;
-      level = makeLevel(you,temp,next_level,ent);
-      delete temp;
-      
-    }
     
-    if (level->isBoss())
-      window.clear();
-    else if (you->isAntiGravity()) {
-      window.clear(sf::Color(0,180,180));
+      if (menu==-1) {
+	if (event.type == sf::Event::KeyPressed) {
+	  if(event.key.code ==sf::Keyboard::R&&((!you->isPause()&& !you->isPauseM())||*isDead)) {
+	    *isDead=false;
+	    you->reload();
+	    delete level;
+	    level = loadLevel(you,you->getSave());
+	  }
+	  if (event.key.code == sf::Keyboard::W&&*isDead==false&&!you->isPause()&& !you->isPauseM()) {
+	    you->warp();
+	    level->warp();
+	  }
+	  if (event.key.code ==sf::Keyboard::O) {
+	    you->print();
+	  }
+	  if (event.key.code ==sf::Keyboard::P&&!*isDead) {
+	    you->pause();
+	  }
+	  if (event.key.code == sf::Keyboard::Num0) {
+	    you->save(GAME_START);
+	  }
+	  if (event.key.code == sf::Keyboard::Num1) {
+	    you->save(ROOM_1);
+	  }
+	  if (event.key.code==sf::Keyboard::Num2) {
+	    you->save(CROSS_ROADS);
+	    you->beatBoss1();
+	  }
+	  if (event.key.code==sf::Keyboard::Num3) {
+	    you->save(ROOM_3);
+	  }
+	  if (event.key.code==sf::Keyboard::Num5) {
+	    you->save(WALL_KICK_3);
+	  }
+	  if (event.key.code==sf::Keyboard::Num4) {
+	    you->save(PRE_BOSS_2);
+	  }
+
+	}
+	level->windowEvent(event);
+	
+      }
     }
-    else
+    if (menu==-1) {
+      if (!you->isPause()) {
+	if (*isDead==false) {
+	  if (!you->isPauseM())
+	    you->act();
+	}
+	level->act();
+      }
+
+      L_CODE next_level;
+      ENT_CODE ent;
+      if (level->isChangeRoom(next_level,ent)) {
+	Level* temp = level;
+	level = makeLevel(you,temp,next_level,ent);
+	delete temp;
+      
+      }
+    
+      if (level->isBoss())
+	window.clear();
+      else if (you->isAntiGravity()) {
+	window.clear(sf::Color(0,180,180));
+      }
+      else
+	window.clear(sf::Color(100,100,100));
+      level->render(window);
+      you->render(window);
+      renderAchievements(window);
+    }
+    else if (menu==0) {
+      start_menu.act();
+      if (start_menu.isChangeMenu(menu)) {
+      }
       window.clear(sf::Color(100,100,100));
-    level->render(window);
-    you->render(window);
-    renderAchievements(window);
+      start_menu.render(window);
+    }
+    else if (menu==1) {
+      file_menu.act();
+      if (file_menu.isChangeMenu(menu)) {
+	if (menu!=0) {
+	  if (menu==-2)
+	    you=you1;
+	  else if (menu==-3)
+	    you=you2;
+	  else if (menu==-4)
+	    you=you3;
+	  menu=-1;
+	  level = loadLevel(you, you->getSave());
+	}
+      }
+ 
+      window.clear(sf::Color(100,100,100));
+ 
+      file_menu.render(window);
+ 
+    }
     window.display();
   }
 #endif
