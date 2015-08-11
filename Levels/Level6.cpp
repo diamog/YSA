@@ -145,7 +145,6 @@ void Level6::sendEvent(EVE_CODE eve, Actor* sender) {
   if (count2==2) {
     left_block->setPosition(60,690);
     right_block->setWidth(275);
-    you->setFall();
   }
   if (count1==2) {
     floor_block->setWidth(1);

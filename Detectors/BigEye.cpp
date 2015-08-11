@@ -31,9 +31,7 @@ void BigEye::act() {
 	if (isInside()) {
 	  if (dir==-1)
 	    eye->setReset(x+width/2,y+height/2);
-	  float cx,cy;
-	  getObjectCenter(this,cx,cy);
-	  eye->setPosition(cx-eye->getWidth()/2,cy-eye->getHeight()/2);
+	  eye->setPosition(x+width/2-eye->getWidth()/2,y+height/2-eye->getHeight()/2);
 	  eye->hitDetector(dir);
 	  level->sendEvent(eve,NULL);
 	  isHit=true;

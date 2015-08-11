@@ -33,6 +33,7 @@ Level11::Level11(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) 
     throw THROW_ENTRANCE_ERROR;
   isMove=false;
   isR1=isR2=isR3=false;
+  canMove=true;
 }
 
 void Level11::makePlatforms() {

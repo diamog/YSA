@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "You.h"
+#include "Level.h"
 #include <cmath>
 #include <fstream>
 #include "Platforms/Platform.h"
@@ -244,6 +245,8 @@ void You::setPosition(float x_, float y_,bool keepLast) {
 void You::land(Platform* p) {
   plat=p;
   y = plat->getY1()-height;
+  if (level)
+    y+=level->getY();
   dy=0;
   isJump=0;
   vx=0;
