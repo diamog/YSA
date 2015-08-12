@@ -7,9 +7,9 @@ StartMenu::StartMenu() {
   font.loadFromFile("Fonts/arial.ttf");
   setupText(title,font,"Yellow Square\n   Adventure",82,sf::Color(255,255,0),
 	    350,20,7);
-  setupText(start,font,"Start",60,sf::Color(0,0,0),350,300);
-  setupText(options,font,"Options",60,sf::Color(0,0,0),350,400);
-  setupText(achieves,font,"Achievements",60,sf::Color(0,0,0),350,500);
+  setupText(start,font,"Start",60,sf::Color(255,255,0),350,300);
+  setupText(options,font,"Options",60,sf::Color(230,230,230),350,400);
+  setupText(achieves,font,"Achievements",60,sf::Color(230,230,230),350,500);
   setRectPos(select,start);
   select.setFillColor(sf::Color(0,0,0,0));
   select.setOutlineColor(sf::Color(255,255,0));

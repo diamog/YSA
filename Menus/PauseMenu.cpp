@@ -7,8 +7,8 @@ PauseMenu::PauseMenu() {
   choice=0;
   font= getFont("Arial");
   setupText(cont,font,"Continue",60,sf::Color(255,255,0),350,40);
-  setupText(options,font,"Options",60,sf::Color(255,255,0),350,120);
-  setupText(achieves,font,"Achievements",60,sf::Color(255,255,0),350,200);
+  setupText(options,font,"Options",60,sf::Color(230,230,230),350,120);
+  setupText(achieves,font,"Achievements",60,sf::Color(230,230,230),350,200);
   setupText(quit,font,"Quit",60,sf::Color(255,255,0),350,500);
   setRectPos(select,cont);
   background.setPosition(0,0);

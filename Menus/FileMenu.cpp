@@ -17,7 +17,7 @@ void setupRect(sf::RectangleShape& shape,float x1, float y1, float x2, float y2,
 void FileMenu::setupFileMenu(int index,float x1, You* you) {
   char f_name[9];
   sprintf(f_name,"File %d",index+1);
-  setupText(f[index],font,std::string(f_name),60,sf::Color(0,0,0),x1+100,220);
+  setupText(f[index],font,std::string(f_name),60,sf::Color(255,255,0),x1+100,220);
   setupRect(b[index],x1,210,x1+200,490,sf::Color(100,75,50),sf::Color(0,0,0),5);
   if (you->getSave()==GAME_START)
     return;
@@ -37,7 +37,7 @@ FileMenu::FileMenu(You* you1, You* you2, You* you3) {
   setupFileMenu(1,250,you2);
   setupFileMenu(2,470,you3);
 
-  setupText(back,font,"Back",60,sf::Color(0,0,0),350,510);
+  setupText(back,font,"Back",60,sf::Color(255,255,0),350,510);
   setRectPos(select,f[0]);
   select.setFillColor(sf::Color(0,0,0,0));
   select.setOutlineColor(sf::Color(255,255,0));
