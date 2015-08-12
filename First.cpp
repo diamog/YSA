@@ -16,6 +16,7 @@
 #include "Extras/utilities.h"
 #include "Menus/StartMenu.h"
 #include "Menus/FileMenu.h"
+#include "Menus/PauseMenu.h"
 
 void loadInFiles();
 
@@ -44,7 +45,7 @@ int main() {
   You* you3 = new You(200,height-400.0f,20,20,isDead);
   you3->load(".8sdf43sdf2ds0598dsf432odhj");
   FileMenu file_menu(you1,you2,you3);
-
+  PauseMenu pause_menu;
   You* you = NULL;
   Level* level = NULL;
 #ifndef COMPILE_NO_SF
@@ -53,7 +54,9 @@ int main() {
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed)
         window.close();
-    
+      if (event.type==sf::Event::KeyPressed&&
+	  event.key.code == sf::Keyboard::Escape)
+	window.close();
       if (menu==-1) {
 	if (event.type == sf::Event::KeyPressed) {
 	  if(event.key.code ==sf::Keyboard::R&&((!you->isPause()&& !you->isPauseM())||*isDead)) {
@@ -69,7 +72,8 @@ int main() {
 	  if (event.key.code ==sf::Keyboard::O) {
 	    you->print();
 	  }
-	  if (event.key.code ==sf::Keyboard::P&&!*isDead) {
+	  if (event.key.code ==sf::Keyboard::P&&!*isDead&&!you->isPauseM()&&!you->isPauseC()) {
+	    pause_menu.setYou(you);
 	    you->pause();
 	  }
 	  if (event.key.code == sf::Keyboard::Num0) {
@@ -128,6 +132,7 @@ int main() {
       if (you->isPause()){
 	pause_menu.act();
 	pause_menu.render(window);
+	pause_menu.isChangeMenu(menu);
       }
     }
     else if (menu==0) {

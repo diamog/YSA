@@ -7,17 +7,19 @@
 class PauseMenu {
  public:
   PauseMenu();
-
+  
+  void setYou(You* yo) {you=yo;choice=0;setRectPos(select,cont);}
   bool isChangeMenu(int& menu);
-  void act(You* you);
+  void act();
   void render(sf::RenderWindow& window);
  private:
+  You* you;
   void setChoice();
   sf::Font font;
-  sf::Text c;
-  sf::Text start;
+  sf::Text cont;
   sf::Text options;
   sf::Text achieves;
+  sf::Text quit;
   sf::RectangleShape background;
   sf::RectangleShape select;
   int choice;

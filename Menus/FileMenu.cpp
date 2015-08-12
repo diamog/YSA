@@ -54,7 +54,7 @@ void FileMenu::setChoice() {
     setRectPos(select,back);
 }
 void FileMenu::act() {
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
     isLeave=false;
     if (isEnter)
       isLeave=true;

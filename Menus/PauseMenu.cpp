@@ -1,35 +1,40 @@
 #include "stdafx.h"
 #include <iostream>
-#include "StartMenu.h"
+#include "PauseMenu.h"
 #include "../Extras/utilities.h"
-StartMenu::StartMenu() {
+
+PauseMenu::PauseMenu() {
   choice=0;
-  font.loadFromFile("Fonts/arial.ttf");
-  setupText(title,font,"Yellow Square\n   Adventure",82,sf::Color(255,255,0),
-	    350,20,7);
-  setupText(start,font,"Start",60,sf::Color(0,0,0),350,300);
-  setupText(options,font,"Options",60,sf::Color(0,0,0),350,400);
-  setupText(achieves,font,"Achievements",60,sf::Color(0,0,0),350,500);
-  setRectPos(select,start);
+  font= getFont("Arial");
+  setupText(cont,font,"Continue",60,sf::Color(255,255,0),350,40);
+  setupText(options,font,"Options",60,sf::Color(255,255,0),350,120);
+  setupText(achieves,font,"Achievements",60,sf::Color(255,255,0),350,200);
+  setupText(quit,font,"Quit",60,sf::Color(255,255,0),350,500);
+  setRectPos(select,cont);
+  background.setPosition(0,0);
+  background.setSize(sf::Vector2f(700,600));
+  background.setFillColor(sf::Color(0,0,0,180));
   select.setFillColor(sf::Color(0,0,0,0));
   select.setOutlineColor(sf::Color(255,255,0));
   select.setOutlineThickness(5);
   isLeave=false;
   isDown=isUp=isEnter=false;
-}
-void StartMenu::setChoice() {
-  choice+=3;
-  choice%=3;
+} 
+void PauseMenu::setChoice() {
+  choice+=4;
+  choice%=4;
   if (choice==0)
-    setRectPos(select,start);
+    setRectPos(select,cont);
   else if (choice==1)
     setRectPos(select,options);
-  else
+  else if (choice==2)
     setRectPos(select,achieves);
+  else 
+    setRectPos(select,quit);
 }
-void StartMenu::act() {
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-    isLeave=false;
+void PauseMenu::act() {
+  isLeave=false;
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
     if (isEnter)
       isLeave=true;
     isEnter=false;
@@ -60,18 +65,25 @@ void StartMenu::act() {
 
 }
 
-void StartMenu::render(sf::RenderWindow& window) {
-  window.draw(title);
+void PauseMenu::render(sf::RenderWindow& window) {
+  window.draw(background);
   window.draw(select);
-  window.draw(start);
+  window.draw(cont);
+  window.draw(quit);
   window.draw(options);
   window.draw(achieves);
 }
 
-bool StartMenu::isChangeMenu(int& menu) {
+bool PauseMenu::isChangeMenu(int& menu) {
   if (isLeave) {
-    if (choice==0)
-      menu=1;
+    if (choice==0) {
+      menu=-1;
+      you->pause();
+    }
+    else if (choice==3) {
+      menu=0;
+      you->pause();
+    }
     else
       return false;
     return true;

@@ -28,7 +28,7 @@ void StartMenu::setChoice() {
     setRectPos(select,achieves);
 }
 void StartMenu::act() {
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
     isLeave=false;
     if (isEnter)
       isLeave=true;
