@@ -101,9 +101,6 @@ void Boss3_1::act() {
       you->shiftX(-7);
     }
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::G)) {
-    sendEvent(EYE_1,NULL);
-  }
 }
 
 bool Boss3_1::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
