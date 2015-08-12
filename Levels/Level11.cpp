@@ -93,7 +93,8 @@ void Level11::makeCollectables() {
 }
 
 void Level11::makeSwitches() {
-  actors.push_back(new Save(this,1040,350,40,you,BOTTOM_PIT));
+  buildSave(1040,350,BOTTOM_PIT,MEDIUM);
+  //Wuss save point on left side
   r1= new RedSwitch(this,730,45,30,you,RED_1);
   actors.push_back(r1);
   r2=new RedSwitch(this,1335,45,30,you,RED_2);

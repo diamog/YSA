@@ -22,6 +22,9 @@ public:
   float getAngle() {return 0;}
 #endif
 
+  DIFF_CODE getDifficulty() {return difficulty;}
+  void setDifficulty(DIFF_CODE diff) {difficulty=diff;}
+
   void setFall(float max=0.0);
   void setPosition(float x_, float y_,bool keepLast=false);
   void act();
@@ -118,6 +121,7 @@ protected:
   bool isAntiGrav;
 
   std::string file;
+  DIFF_CODE difficulty;
 };
 
 #endif

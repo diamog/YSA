@@ -57,8 +57,8 @@ void Level2::makeCollectables() {
 }
 
 void Level2::makeSwitches() {
-  //Make the save point 
-  actors.push_back(new Save(this,50,100,40,you,ROOM_2));
+  //Make the save point
+  buildSave(50,100,ROOM_2,MEDIUM);
 }
 
 

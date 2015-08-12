@@ -48,6 +48,7 @@ protected:
   void buildHint(float x, float y, int code, std::string m);
   void buildExtra(float x,float y);
   int buildCoin(float x,float y,EVE_CODE eve);
+  void buildSave(float x, float y, SAVE_CODE s,DIFF_CODE d);
 
   float x,y;
   float width,height;

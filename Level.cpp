@@ -13,7 +13,7 @@
 #include "SpeechBubble.h"
 #include "Extras/utilities.h"
 #include "Graphics/SaveGraphic.h"
-
+#include "Switables/Save.h"
 Level::Level() {
   you = NULL;
   x=y=0;
@@ -198,4 +198,10 @@ void Level::buildHint(float x,float y,int code,std::string m) {
 int Level::buildCoin(float x,float y,EVE_CODE eve) {
   actors.push_back(new Coin(this,x,y,you,eve));
   return 1;
+}
+
+void Level::buildSave(float x, float y, SAVE_CODE s,DIFF_CODE d) {
+  if (you->getDifficulty()<=d) {
+    actors.push_back(new Save(this,x,y,40,you,s));
+  }
 }

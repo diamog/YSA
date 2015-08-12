@@ -20,6 +20,9 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
     //Load into savepoint 1
     you->setPosition(610,120);
   } 
+  else if (ent==LOAD_2) {
+    you->setPosition(500,410);
+  }
   else if(ent==EAST) {
     you->setPosition(698,entery,true);
   }
@@ -79,8 +82,9 @@ void Level4::makeCollectables() {
 }
 
 void Level4::makeSwitches() {
-  //Make the save point 
-  actors.push_back(new Save(this,600,110,40,you,CROSS_ROADS));
+  //Make the save point
+  buildSave(600,110,CROSS_ROADS,HARD);
+  buildSave(490,400,SPLIT_EASY,EASY);
 }
 
 

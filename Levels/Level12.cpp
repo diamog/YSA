@@ -70,7 +70,7 @@ void Level12::makeCollectables() {
 }
 
 void Level12::makeSwitches() {
-  actors.push_back(new Save(this,370,450,40,you,THIN_EYE));
+  buildSave(370,450,THIN_EYE,MEDIUM);
   
 }
 

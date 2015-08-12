@@ -56,7 +56,7 @@ void Level7::makeCollectables() {
 
 void Level7::makeSwitches() {
   //Make the save point
-  actors.push_back(new Save(this,330,400,40,you,PRE_WALL_KICK));  
+  buildSave(330,400,PRE_WALL_KICK,HARD);
 }
 void Level7::makeDetectors() {
   detectors.push_back(new Detector(this,470,20,30,30,&actors2));

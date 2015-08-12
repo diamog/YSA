@@ -31,8 +31,12 @@ Level* loadLevel(You* you, S_CODE save) {
     return makeLevel2(you,0,0,LOAD_1);
   else if (save == ROOM_3) 
     return makeLevel3(you,0,0,LOAD_1);
+  else if (save == VERT_EASY) 
+    return makeLevel3(you,0,0,LOAD_2);
   else if (save == CROSS_ROADS) 
     return makeLevel4(you,0,0,LOAD_1);
+  else if (save == SPLIT_EASY)
+    return makeLevel4(you,0,0,LOAD_2);
   else if (save == REVERSE_ROOM) 
     return makeLevel6(you,0,0,LOAD_1);
   else if (save == PRE_WALL_KICK) 

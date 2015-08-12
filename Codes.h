@@ -4,6 +4,13 @@
 #ifndef __CODES__H__
 #define __CODES__H__
 
+typedef enum DIFFICULTY_CODE {
+  EASY,
+  MEDIUM,
+  HARD,
+  IMPOSSIBLE
+} DIFF_CODE;
+
 typedef enum ENTRANCE_CODE {
   LOAD_4, 
   LOAD_3, 
@@ -61,22 +68,39 @@ typedef enum EVENT_CODE {
 } EVE_CODE;
 
 typedef enum SAVE_CODE {
-  GAME_START,
-  ROOM_1,
-  ROOM_2,
-  ROOM_3,
-  CROSS_ROADS,
-  BOTTOM_PIT,
-  THIN_EYE,
-  PRE_BOSS_2,
-  REVERSE_ROOM,
-  PRE_WALL_KICK,
-  PRE_KICK_HALL,
-  WALL_KICK_1,
-  WALL_KICK_2,
-  WALL_KICK_3,
-  BOSS_SPLIT,
-  NOT_SAVE
+  GAME_START,      //IMPOSSIBLE
+  ROOM_1,          //MEDIUM
+  ROOM_2,          //MEDIUM
+  ROOM_3,          //HARD
+  CROSS_ROADS,     //HARD
+  BOTTOM_PIT,      //MEDIUM
+  THIN_EYE,        //MEDIUM
+  PRE_BOSS_2,      //HARD
+  REVERSE_ROOM,    //MEDIUM
+  PRE_WALL_KICK,   //HARD
+  PRE_KICK_HALL,   //MEDIUM
+  WALL_KICK_1,     //MEDIUM
+  WALL_KICK_2,     //MEDIUM
+  WALL_KICK_3,     //HARD
+  //Easy save points
+  VERT_EASY,       //EASY
+  SPLIT_EASY,      //EASY
+  WALL_EASY,       //EASY
+  COLLECT_EASY,    //EASY
+  EYE_EASY,        //EASY
+  PUZZLE_EASY,     //EASY
+  TOWER_START,     //HARD
+  TOWER_EASY,      //EASY
+  TOWER_MIDDLE,    //MEDIUM
+  TOWER_EASY2,     //EASY
+  TOWER_TOP,       //HARD
+  CHALLENGE_1,     //HARD
+  DARK_1,          //HARD
+  PRE_COLOR_2,     //HARD
+  KICK_1,          //HARD
+  BACKGROUND_1,    //HARD
+  PRE_FINAL,       //HARD
+  NOT_SAVE         //Achievement
   
 } S_CODE;
 

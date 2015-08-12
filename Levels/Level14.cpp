@@ -46,7 +46,7 @@ void Level14::makeCollectables() {
 }
 
 void Level14::makeSwitches() {
-  actors.push_back(new Save(this,80,450,40,you,PRE_BOSS_2));
+  buildSave(80,450,PRE_BOSS_2,HARD);
 }
 
 void Level14::makeDetectors() {

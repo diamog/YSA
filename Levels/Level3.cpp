@@ -24,6 +24,9 @@ Level3::Level3(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
     //Load into savepoint 2
     you->setPosition(600,60);
   }  
+  else if (ent==LOAD_2) {
+    you->setPosition(250,60);
+  }
   else
     throw THROW_ENTRANCE_ERROR;
 }
@@ -55,7 +58,8 @@ void Level3::makeCollectables() {
 
 void Level3::makeSwitches() {
   //Make the save point 
-  actors.push_back(new Save(this,590,50,40,you,ROOM_3));
+  buildSave(240,50,VERT_EASY,EASY);
+  buildSave(590,50,ROOM_3,HARD);
 }
 
 void Level3::makeDetectors() {

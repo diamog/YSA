@@ -57,7 +57,7 @@ void Level8::makeCollectables() {
 
 void Level8::makeSwitches() {
   //Make the save point
-  actors.push_back(new Save(this,500,55,40,you,PRE_KICK_HALL));
+  buildSave(500,55,PRE_KICK_HALL,MEDIUM);
   actors.push_back(new Portal(this,255,895,60,25,you,PORTALE_1));
 }
 void Level8::makeDetectors() {

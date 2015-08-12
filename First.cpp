@@ -40,10 +40,13 @@ int main() {
   bool* isDead = new bool;
   *isDead = false;
   You* you1 = new You(200,height-400.0f,20,20,isDead);
+  you1->setDifficulty(MEDIUM);
   you1->load(".7sdf43sdf2ds0598dsf432odhj");
   You* you2 = new You(200,height-400.0f,20,20,isDead);
+  you2->setDifficulty(HARD);
   you2->load(".9sdf43sdf2ds0598dsf432odhj");
   You* you3 = new You(200,height-400.0f,20,20,isDead);
+  you3->setDifficulty(EASY);
   you3->load(".8sdf43sdf2ds0598dsf432odhj");
   FileMenu file_menu(you1,you2,you3);
   FileMenu2 file_menu2;

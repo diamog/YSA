@@ -169,9 +169,10 @@ buildHint(2500,90,16,"Hah! Got You!;Okay that's the last one.;");
 
 void Level9::makeSwitches() {
   //Make the save point
-  actors.push_back(new Save(this,1300,700,40,you,WALL_KICK_1));
-  actors.push_back(new Save(this,2380,780,40,you,WALL_KICK_2));
-  actors.push_back(new Save(this,3300,200,40,you,WALL_KICK_3));
+  //Wuss save point after first half of first room
+  buildSave(1300,700,WALL_KICK_1,MEDIUM);
+  buildSave(2280,780,WALL_KICK_2,MEDIUM);
+  buildSave(3300,200,WALL_KICK_3,HARD);
   actors.push_back(new AntiGravity(this,1215,30,300,900,you));
   actors.push_back(new AntiGravity(this,2260,800,20,100,you));
   actors.push_back(new FollowerFactory(this,2300,700,200,50,you,10,&actors));

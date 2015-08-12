@@ -87,7 +87,7 @@ void Level6::makeCollectables() {
 
 void Level6::makeSwitches() {
   //Make the save point
-  actors.push_back(new Save(this,100,80,40,you,REVERSE_ROOM));
+  buildSave(100,80,REVERSE_ROOM,MEDIUM);
   actors.push_back(new RedSwitch(this,300,35,30,you,RED_1));
   actors.push_back(new RedSwitch(this,370,35,30,you,RED_1));
   actors.push_back(new RedSwitch(this,35,655,30,you,RED_2));
