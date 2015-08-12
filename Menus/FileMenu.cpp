@@ -10,12 +10,16 @@ void FileMenu::setupFileMenu(int index,float x1, You* you) {
   sprintf(f_name,"File %d",index+1);
   setupText(f[index],font,std::string(f_name),60,sf::Color(255,255,0),x1+100,220);
   setupRect(b[index],x1,210,x1+200,490,sf::Color(100,75,50),sf::Color(0,0,0),5);
-  if (you->getSave()==GAME_START)
-    return;
-  setupText(diff[index],font,"Normal",40,sf::Color(0,0,0),x1+100,360);
-  char deaths[15];
-  sprintf(deaths,"Deaths: %d",you->getDeaths());
-  setupText(death[index],font,std::string(deaths),30,sf::Color(0,0,0),x1+100,440,6);
+  if (you->getSave()==GAME_START) {
+    diff[index].setColor(sf::Color(0,0,0,0));
+    death[index].setColor(sf::Color(0,0,0,0));
+  }
+  else {
+    setupText(diff[index],font,"Normal",40,sf::Color(0,0,0),x1+100,360);
+    char deaths[15];
+    sprintf(deaths,"Deaths: %d",you->getDeaths());
+    setupText(death[index],font,std::string(deaths),30,sf::Color(0,0,0),x1+100,440,6);
+  }
 
 }
 
@@ -24,10 +28,7 @@ FileMenu::FileMenu(You* you1, You* you2, You* you3) {
   font.loadFromFile("Fonts/arial.ttf");
   setupText(title,font,"Yellow Square\n   Adventure",82,sf::Color(255,255,0),
 	    350,20,7);
-  setupFileMenu(0,30,you1);
-  setupFileMenu(1,250,you2);
-  setupFileMenu(2,470,you3);
-
+  restart(you1,you2,you3);
   setupText(back,font,"Back",60,sf::Color(255,255,0),350,510);
   setRectPos(select,f[0]);
   select.setFillColor(sf::Color(0,0,0,0));
@@ -35,6 +36,13 @@ FileMenu::FileMenu(You* you1, You* you2, You* you3) {
   select.setOutlineThickness(5);
   isLeave=false;
   isDown=isUp=isLeft=isRight=isEnter=false;
+}
+
+void FileMenu::restart(You* you1, You* you2, You* you3) {
+  setupFileMenu(0,30,you1);
+  setupFileMenu(1,250,you2);
+  setupFileMenu(2,470,you3);
+
 }
 void FileMenu::setChoice() {
   

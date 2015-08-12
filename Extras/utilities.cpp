@@ -170,10 +170,13 @@ void setupText(sf::Text& text,sf::Font& f,std::string s,int size, sf::Color c,
   text.setString(s);
   text.setCharacterSize(size);
   text.setColor(c);
+  text.setOrigin(0,0);
   text.setPosition(0,0);
-  if (num_chars==-1)
-    text.setOrigin(text.findCharacterPos(s.size()/2).x,0);
-  else
+  if (num_chars==-1) {
+    float width = text.findCharacterPos(s.size()).x-text.findCharacterPos(0).x;
+    text.setOrigin(width/2,0);
+  }
+  else 
     text.setOrigin(text.findCharacterPos(num_chars).x,0);
   text.setPosition(x,y);
 }

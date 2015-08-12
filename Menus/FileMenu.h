@@ -11,6 +11,7 @@ class FileMenu {
   bool isChangeMenu(int& menu);
   void act();
   void render(sf::RenderWindow& window);
+  void restart(You* you1, You* you2, You* you3);
  private:
   void setupFileMenu(int index, float x1, You* you);
   void setChoice();

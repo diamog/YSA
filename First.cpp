@@ -140,6 +140,8 @@ int main() {
     else if (menu==0) {
       start_menu.act();
       if (start_menu.isChangeMenu(menu)) {
+	if (menu==1)
+	  file_menu.restart(you1,you2,you3);
       }
       window.clear(sf::Color(100,100,100));
       start_menu.render(window);
@@ -156,7 +158,6 @@ int main() {
 	    you=you3;
 	  menu=2;
 	  file_menu2.setYou(you);
-	  //level = loadLevel(you, you->getSave());
 	}
       }
  
@@ -171,6 +172,8 @@ int main() {
 	if (menu==-1) {
 	  level = loadLevel(you, you->getSave());
 	}
+	else if (menu==1)
+	  file_menu.restart(you1,you2,you3);
       }
  
       window.clear(sf::Color(100,100,100));
