@@ -443,6 +443,23 @@ void You::save() {
   out_str<<hasEnterSplit<<"\n\n";
 }
 
+void You::reset() {
+  //delete file_name
+  hasEnterSplit=false;
+  deaths=0;
+  savepoint = GAME_START;
+  alpha=255;
+  isPaused=isMessagePaused=isControlPaused=false;
+  isColor=isCloud=isPump=isPumpHalf=isCat=isFire=isColor2=false;
+  vx=0;
+  isJump = 2;
+  dx = .7f*frame_diff;
+  dy=0;
+  downLimit = 2;
+  isAntiGrav=false;
+  plat=NULL;
+}
+
 void You::controlPause() {
   isControlPaused=!isControlPaused;
   if (isJump==0)

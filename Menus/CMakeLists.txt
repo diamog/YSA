@@ -4,6 +4,7 @@ include_directories(..)
 set(MENU_SRC 
   StartMenu.cpp
   FileMenu.cpp
+  FileMenu2.cpp
   PauseMenu.cpp
 )
 

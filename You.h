@@ -80,9 +80,13 @@ public:
   bool isAntiGravity() {return isAntiGrav;}
   bool hasSplit() {return hasEnterSplit;}
   void enterSplit() {hasEnterSplit=true;}
+  
   void load(std::string file_name);
   void save();
+  void reset();
+  
   void print();
+  
 protected:
   bool isPaused;
   bool isMessagePaused;

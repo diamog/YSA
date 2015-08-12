@@ -178,6 +178,15 @@ void setupText(sf::Text& text,sf::Font& f,std::string s,int size, sf::Color c,
   text.setPosition(x,y);
 }
 
+void setupRect(sf::RectangleShape& shape,float x1, float y1, float x2, float y2,
+	       sf::Color col,sf::Color out, int out_size) {
+  shape.setPosition(x1,y1);
+  shape.setSize(sf::Vector2f(x2-x1,y2-y1));
+  shape.setFillColor(col);
+  shape.setOutlineColor(out);
+  shape.setOutlineThickness(out_size);
+}
+
 void setRectPos(sf::RectangleShape& s, sf::Text& t) {
   s.setPosition(t.findCharacterPos(0)-sf::Vector2f(5,0));
   s.setSize(t.findCharacterPos(t.getString().getSize())-t.findCharacterPos(0)+

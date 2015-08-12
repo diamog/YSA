@@ -16,6 +16,7 @@
 #include "Extras/utilities.h"
 #include "Menus/StartMenu.h"
 #include "Menus/FileMenu.h"
+#include "Menus/FileMenu2.h"
 #include "Menus/PauseMenu.h"
 
 void loadInFiles();
@@ -45,6 +46,7 @@ int main() {
   You* you3 = new You(200,height-400.0f,20,20,isDead);
   you3->load(".8sdf43sdf2ds0598dsf432odhj");
   FileMenu file_menu(you1,you2,you3);
+  FileMenu2 file_menu2;
   PauseMenu pause_menu;
   You* you = NULL;
   Level* level = NULL;
@@ -152,8 +154,9 @@ int main() {
 	    you=you2;
 	  else if (menu==-4)
 	    you=you3;
-	  menu=-1;
-	  level = loadLevel(you, you->getSave());
+	  menu=2;
+	  file_menu2.setYou(you);
+	  //level = loadLevel(you, you->getSave());
 	}
       }
  
@@ -161,6 +164,19 @@ int main() {
  
       file_menu.render(window);
  
+    }
+    else if (menu==2) {
+      file_menu2.act();
+      if (file_menu2.isChangeMenu(menu)) {
+	if (menu==-1) {
+	  level = loadLevel(you, you->getSave());
+	}
+      }
+ 
+      window.clear(sf::Color(100,100,100));
+ 
+      file_menu2.render(window);
+      
     }
     window.display();
   }

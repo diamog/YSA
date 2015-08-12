@@ -5,15 +5,6 @@
 #include "stdio.h"
 #include "../Codes.h"
 
-void setupRect(sf::RectangleShape& shape,float x1, float y1, float x2, float y2,
-	       sf::Color col,sf::Color out, int out_size) {
-  shape.setPosition(x1,y1);
-  shape.setSize(sf::Vector2f(x2-x1,y2-y1));
-  shape.setFillColor(col);
-  shape.setOutlineColor(out);
-  shape.setOutlineThickness(out_size);
-}
-
 void FileMenu::setupFileMenu(int index,float x1, You* you) {
   char f_name[9];
   sprintf(f_name,"File %d",index+1);
