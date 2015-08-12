@@ -125,6 +125,10 @@ int main() {
       level->render(window);
       you->render(window);
       renderAchievements(window);
+      if (you->isPause()){
+	pause_menu.act();
+	pause_menu.render(window);
+      }
     }
     else if (menu==0) {
       start_menu.act();
