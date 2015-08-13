@@ -18,12 +18,12 @@ class Level9 : public Level {
   void makeCollectables();
   void makeSwitches();
   void makeDetectors();
-
+  Platform* floor;
   KickPlat* wall1;
   KickPlat* wall2;
   DeathArea* wall3;
   
-  int collect1,collect2,collect3;
+  int collect1,collect2,collect3,collect4;
 };
 
 Level* makeLevel9(You* yo, float x, float y, ENT_CODE ent);

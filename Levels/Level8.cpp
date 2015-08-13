@@ -19,6 +19,9 @@ Level8::Level8(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   else if (ent==LOAD_1) {
     you->setPosition(510,65);
   }
+  else if (ent==LOAD_2) {
+    you->setPosition(390,890);
+  }
   else
     throw THROW_ENTRANCE_ERROR;
   setup();
@@ -57,6 +60,7 @@ void Level8::makeCollectables() {
 
 void Level8::makeSwitches() {
   //Make the save point
+  buildSave(380,880,WALL_EASY,EASY);
   buildSave(500,55,PRE_KICK_HALL,MEDIUM);
   actors.push_back(new Portal(this,255,895,60,25,you,PORTALE_1));
 }

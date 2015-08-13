@@ -15,6 +15,7 @@ Level9::Level9(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   me = COLLECTOR;
   height=930;
   width=3450;
+  floor=NULL;
   setup();
   if (ent==EAST) {
     you->setPosition(width-2,entery,true);
@@ -35,6 +36,8 @@ Level9::Level9(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
     you->setPosition(3310,210);
 
   }
+  else if (ent==LOAD_4) 
+    you->setPosition(765,790);
   else
     throw THROW_ENTRANCE_ERROR;
 }
@@ -52,6 +55,8 @@ void Level9::makePlatforms() {
   actors.push_back(new KickPlat(this,560,200,40,50,you,true,true));
   actors.push_back(new KickPlat(this,750,30,50,720,you,true,true));
   actors.push_back(new KickPlat(this,900,290,30,60,you,false,true));
+  floor = new Platform(this,600,700,150,50,you);
+  actors.push_back(floor);
   actors.push_back(new KickPlat(this,900,80,30,50,you,false,true));
   
   wall1 = new KickPlat(this,1200,30,50,870,you,true,true);
@@ -115,19 +120,20 @@ void Level9::makeEnemies() {
 void Level9::makeCollectables() {
   //Make the hints
   buildExtra(2300+465,35);
-  collect1=collect2=collect3=0;
-  collect1+=buildCoin(35,35,COLLECT_1);
-  collect1+=buildCoin(185-15/2.0,190,COLLECT_1);
-  collect1+=buildCoin(345,35,COLLECT_1);
-  collect1+=buildCoin(210,870,COLLECT_1);
-  collect1+=buildCoin(365+15-15/2.0,640,COLLECT_1);
-  collect1+=buildCoin(535,870,COLLECT_1);
-  collect1+=buildCoin(560-7.5,325-7.5,COLLECT_1);
-  collect1+=buildCoin(560-7.5,225-7.5,COLLECT_1);
-  collect1+=buildCoin(535,40,COLLECT_1);
-  collect1+=buildCoin(600-7.5,325-7.5,COLLECT_1);
-  collect1+=buildCoin(600-7.5,225-7.5,COLLECT_1);
-  collect1+=buildCoin(610,40,COLLECT_1);
+  collect1=collect2=collect3=collect4=0;
+  collect4+=buildCoin(35,35,COLLECT_4);
+  collect4+=buildCoin(185-15/2.0,190,COLLECT_4);
+  collect4+=buildCoin(345,35,COLLECT_4);
+  collect4+=buildCoin(210,870,COLLECT_4);
+  collect4+=buildCoin(365+15-15/2.0,640,COLLECT_4);
+  collect4+=buildCoin(535,870,COLLECT_4);
+  collect4+=buildCoin(560-7.5,325-7.5,COLLECT_4);
+  collect4+=buildCoin(560-7.5,225-7.5,COLLECT_4);
+  collect4+=buildCoin(535,40,COLLECT_4);
+  collect4+=buildCoin(600-7.5,325-7.5,COLLECT_4);
+  collect4+=buildCoin(600-7.5,225-7.5,COLLECT_4);
+  collect4+=buildCoin(610,40,COLLECT_4);
+  
   collect1+=buildCoin(880,40,COLLECT_1);
   collect1+=buildCoin(1175,40,COLLECT_1);
   collect1+=buildCoin(930-7.5,320-7.5,COLLECT_1);
@@ -170,6 +176,7 @@ buildHint(2500,90,16,"Hah! Got You!;Okay that's the last one.;");
 void Level9::makeSwitches() {
   //Make the save point
   //Wuss save point after first half of first room
+  buildSave(755,780,COLLECT_EASY,EASY);
   buildSave(1300,700,WALL_KICK_1,MEDIUM);
   buildSave(2280,780,WALL_KICK_2,MEDIUM);
   buildSave(3300,200,WALL_KICK_3,HARD);
@@ -218,14 +225,23 @@ void Level9::sendEvent(EVE_CODE eve, Actor* sender) {
     remove(sender);
     collect3--;
   }
+  else if (eve==COLLECT_4) {
+    remove(sender);
+    collect4--;
+  }
   else
     Level::sendEvent(eve,sender);
   if (collect1<=0)
     wall1->setHeight(800);
   if (collect2<=0)
-    wall2->setHeight(800);;
+    wall2->setHeight(800);
   if (collect3<=0)
     wall3->setHeight(800);
+  if (collect4<=0&&floor) {
+    remove(floor);
+    floor = NULL;
+  }
+    
 }
 
 bool Level9::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {

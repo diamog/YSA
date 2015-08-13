@@ -61,4 +61,5 @@ void addSong(std::string name,std::string file_name, bool repeat);
 
 sf::Music* getSong(std::string name);
 
+void destroySongs();
 #endif

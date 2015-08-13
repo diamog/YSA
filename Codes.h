@@ -82,11 +82,11 @@ typedef enum SAVE_CODE {
   WALL_KICK_1,     //MEDIUM
   WALL_KICK_2,     //MEDIUM
   WALL_KICK_3,     //HARD
-  //Easy save points
   VERT_EASY,       //EASY
   SPLIT_EASY,      //EASY
   WALL_EASY,       //EASY
   COLLECT_EASY,    //EASY
+  FALL_EASY,       //EASY
   EYE_EASY,        //EASY
   PUZZLE_EASY,     //EASY
   TOWER_START,     //HARD

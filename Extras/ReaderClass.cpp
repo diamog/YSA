@@ -37,7 +37,7 @@ sf::Music* Reader::getSong(std::string name) {
   return itr->second;
 }
 
-Reader::~Reader() {
+void Reader::destroy() {
   std::map<std::string,sf::Music*>::iterator itr;
   for (itr=songs.begin();itr!=songs.end();itr++)
     delete itr->second;

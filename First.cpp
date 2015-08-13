@@ -193,6 +193,7 @@ int main() {
   delete you2;
   delete you3;
   delete isDead;
+  destroySongs();
   return 0;
 }
 

@@ -228,3 +228,7 @@ const sf::Font& getFont(std::string name) {
 sf::Music* getSong(std::string name) {
   return reader.getSong(name);
 }
+
+void destroySongs() {
+  reader.destroy();
+}

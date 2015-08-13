@@ -29,11 +29,14 @@ Level11::Level11(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) 
     
     x=700;
   }
+  else if (ent==LOAD_2) {
+    you->setPosition(380,360);
+    eye->setPosition(0,490+b2->getHeight()-eye->getHeight());
+  }
   else
     throw THROW_ENTRANCE_ERROR;
   isMove=false;
   isR1=isR2=isR3=false;
-  canMove=true;
 }
 
 void Level11::makePlatforms() {
@@ -94,7 +97,7 @@ void Level11::makeCollectables() {
 
 void Level11::makeSwitches() {
   buildSave(1040,350,BOTTOM_PIT,MEDIUM);
-  //Wuss save point on left side
+  buildSave(370,350,EYE_EASY,EASY);
   r1= new RedSwitch(this,730,45,30,you,RED_1);
   actors.push_back(r1);
   r2=new RedSwitch(this,1335,45,30,you,RED_2);

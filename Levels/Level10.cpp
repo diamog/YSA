@@ -13,6 +13,9 @@ Level10::Level10(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) 
   else if (ent==NORTH) {
     you->setPosition(enterx,-18,true);
   }
+  else if (ent==LOAD_1) {
+    you->setPosition((370+425)/2.0-10,810);
+  }
   else
     throw THROW_ENTRANCE_ERROR;
 }
@@ -41,6 +44,7 @@ void Level10::makeEnemies() {
 
 }
 void Level10::makeCollectables() {
+  buildSave((370+425)/2.0-20,800,FALL_EASY,EASY);
   buildExtra(395,1320);
 }
 

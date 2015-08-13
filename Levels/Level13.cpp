@@ -24,9 +24,11 @@ Level13::Level13(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) 
   else if (ent==SOUTH) {
     you->setPosition(enterx,598,true);
   }
+  else if (ent==LOAD_1) {
+    you->setPosition(370,410);
+  }
   else
     throw THROW_ENTRANCE_ERROR;
-  //sendEvent(EYE_2,NULL);
 }
 
 void Level13::makePlatforms() {
@@ -49,6 +51,7 @@ void Level13::makePlatforms() {
 
 void Level13::makeCollectables() {
   //Make the hints
+  buildSave(360,400,PUZZLE_EASY,EASY);
   buildExtra(530,40);
 }
 
