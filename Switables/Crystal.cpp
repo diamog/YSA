@@ -35,7 +35,12 @@ void Crystal::render(sf::RenderWindow & window) {
 #endif
 
 void Crystal::activate() {
-  color-=20;
+  if (you->getDifficulty()==EASY)
+    color-=26;
+  else if (you->getDifficulty()==MEDIUM)
+    color-=20;
+  else
+    color-=15;
   if (color<0)
     color=0;
 #ifndef COMPILE_NO_SF

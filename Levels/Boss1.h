@@ -21,6 +21,7 @@ class Boss1 : public Level {
   void makePlatforms();
   void makeEnemies();
   void makeCollectables();
+  Platform* bottom;
   ColorBoss* boss;
   Fairy* fairy;
 };

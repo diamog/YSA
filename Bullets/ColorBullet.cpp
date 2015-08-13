@@ -17,6 +17,8 @@ ColorBullet::ColorBullet(Level* l,float x_, float y_, float w, float h,
 }
 
 void ColorBullet::act() {
+  if (target->getDifficulty()==HARD)
+    return;
   float cx,cy;
   getObjectCenter(this,cx,cy);
   float bx,by;

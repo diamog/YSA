@@ -38,7 +38,14 @@ void Boss1::makeP() {
   actors.push_back(new Plat(this,0,0,700,30,you)); //top wall
   actors.push_back(new Plat(this,0,150,30,500,you)); //left wall
   actors.push_back(new Plat(this,670,30,30,650,you)); //right wall
-  actors.push_back(new TPlat(this,30,570,740,you));
+  bottom=NULL;
+  if (!you->boss1()) {
+    //capture for deletion
+    bottom = new Plat(this,30,570,740,30,you);
+    actors.push_back(bottom); //bottom
+  }
+  else
+    actors.push_back(new TPlat(this,30,570,740,you)); //bottom
   actors.push_back(new TPlat(this,130,290,40,you));
   actors.push_back(new TPlat(this,220,420,40,you));
   actors.push_back(new TPlat(this,380,95,40,you));
@@ -99,6 +106,7 @@ void Boss1::act() {
           i--;
         }
       }
+      remove(bottom);
     }
   }
 }

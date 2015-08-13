@@ -15,7 +15,18 @@ ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) :
   r=g=b=255;
   accel=.001f*frame_diff*frame_diff;
   vx=vy=0;
-  hit_amount=20;
+  if (you->getDifficulty()==EASY) {
+    hit_amount=26;
+    accel/=1.2;
+  }
+  else if (you->getDifficulty()==MEDIUM) {
+    hit_amount=20;
+  }
+  else {
+    hit_amount=15;
+    accel*=1.5;
+  }
+
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(r,g,b));
   shape.setRadius(width/2);
@@ -36,23 +47,23 @@ void ColorBoss::act() {
   for (unsigned int i=0;i<you->getBullets().size();i++) {
     if (isRectangularHit(this,you->getBullets()[i])) {
       if (you->getBullets()[i]->getType()=="red") {
-				if (target!=0&&target!=1)
-					isOCD=false;
-				target=1;
+	if (target!=0&&target!=1)
+	  isOCD=false;
+	target=1;
         color_hit(r);
-			}
+      }
       else if (you->getBullets()[i]->getType()=="green") {
         if (target!=0&&target!=2)
-					isOCD=false;
-				target=2;
+	  isOCD=false;
+	target=2;
         color_hit(g);
-			}
+      }
       else if (you->getBullets()[i]->getType()=="blue") {
         if (target!=0&&target!=3)
-					isOCD=false;
-				target=3;
+	  isOCD=false;
+	target=3;
         color_hit(b);
-			}
+      }
       else
         continue;
       you->removeBullet(i);
@@ -74,14 +85,22 @@ void ColorBoss::act() {
   float adx = fabs(dx)/50000*frame_diff*frame_diff;
   float ady = fabs(dy)/50000*frame_diff*frame_diff;
   float mag = 0.08;
+  float damp = .005*frame_diff*frame_diff;
+  if (you->getDifficulty()==EASY) {
+    mag/=1.1;
+    damp/=1.1;
+  }
+  else if (you->getDifficulty()>=HARD) {
+    mag*=2;
+    damp*=2;
+  }
   float val = sqrt(pow(adx,2)+pow(ady,2));
-  if (val!=0&&val<=.08) {
+  if (val!=0&&val<=mag) {
     adx/=val;
     ady/=val;
     adx*=mag;
     ady*=mag;
   }
-  float damp = .005*frame_diff*frame_diff;
   if (dx<0)
     vx+=adx+(vx<0)*damp;
   else
@@ -156,9 +175,9 @@ void ColorBoss::color_hit(int& color) {
   color-=hit_amount;
   if (color<0) {
     color=0;
-		target=0;
-	}
-	if (r<=0&&isRed) {
+    target=0;
+  }
+  if (r<=0&&isRed) {
     r=0;
     isRed=false;
     level->sendEvent(MISCE_4,NULL);
@@ -173,8 +192,8 @@ void ColorBoss::color_hit(int& color) {
     isBlue=false;
     level->sendEvent(MISCE_6,NULL);
   }
-	if (r<=0&&g<=0&&b<=0&&isOCD)
-		buildAchievement(OCD);
+  if (r<=0&&g<=0&&b<=0&&isOCD)
+    buildAchievement(OCD);
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(r,g,b));
 #endif

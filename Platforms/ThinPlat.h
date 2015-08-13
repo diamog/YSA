@@ -9,6 +9,8 @@ class ThinPlat : public Platform {
   ThinPlat(Level* l, float x_,float y_,float w,You* yo);
 
   void act();
+ protected:
+  bool isYDown,isRDown;
 };
 
 #endif
