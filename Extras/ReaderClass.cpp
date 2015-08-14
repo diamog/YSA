@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "ReaderClass.h"
 #include <stdexcept>
 

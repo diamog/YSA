@@ -3,7 +3,7 @@
 #include "PauseMenu.h"
 #include "../Extras/utilities.h"
 
-PauseMenu::PauseMenu() {
+PauseMenu::PauseMenu() : board(30,400){
   choice=0;
   font= getFont("Arial");
   setupText(cont,font,"Continue",60,sf::Color(255,255,0),350,40);
@@ -72,6 +72,7 @@ void PauseMenu::render(sf::RenderWindow& window) {
   window.draw(quit);
   window.draw(options);
   window.draw(achieves);
+  board.render(window);
 }
 
 bool PauseMenu::isChangeMenu(int& menu) {

@@ -1,6 +1,6 @@
 include_directories(..)
 
-add_library(graphics SaveGraphic.cpp ColorRemove.cpp)
+add_library(graphics SaveGraphic.cpp ColorRemove.cpp ExtraBoard.cpp)
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/fairy1.png DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/grayfairy1.png DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pumpkin1.png DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

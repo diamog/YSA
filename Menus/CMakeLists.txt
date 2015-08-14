@@ -9,4 +9,5 @@ set(MENU_SRC
 )
 
 add_library(menus ${MENU_SRC})
+target_link_libraries(menus graphics)
 target_link_libraries(menus extra)

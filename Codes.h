@@ -127,6 +127,7 @@ typedef enum LEVEL_CODE {
   SECRET_1,
   SECRET_2,
   BOSSROOM,
+  FINALROOM
 } L_CODE;
 
 typedef enum ACHIEVEMENT_CODES {

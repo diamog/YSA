@@ -5,7 +5,7 @@
 #include "stdio.h"
 #include "../Codes.h"
 
-FileMenu2::FileMenu2() {
+FileMenu2::FileMenu2() : board(40,600-125-90) {
   choice=0;
   font = getFont("Arial");
   setupText(title,font,"Yellow Square\n   Adventure",82,
@@ -31,6 +31,7 @@ FileMenu2::FileMenu2() {
   you_ = NULL;
 }
 void FileMenu2::setYou(You* you) {
+  board.reset(you);
   choice=0;
   you_ = you;
   if (you->getSave()==GAME_START) {
@@ -138,6 +139,7 @@ void FileMenu2::render(sf::RenderWindow& window) {
     window.draw(death);
     window.draw(cont);
     window.draw(erase);
+    board.render(window);
   }
   else
     window.draw(new_game);

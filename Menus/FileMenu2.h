@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "../You.h"
-
+#include "../Graphics/ExtraBoard.h"
 #ifndef __FILE_MENU2_H__
 #define __FILE_MENU2_H__
 
@@ -28,6 +28,7 @@ class FileMenu2 {
   sf::RectangleShape b;
   sf::RectangleShape btop;
   sf::RectangleShape select;
+  ExtraBoard board;
   int choice;
   bool isLeave;
   bool isDown,isUp,isLeft,isRight,isEnter;
