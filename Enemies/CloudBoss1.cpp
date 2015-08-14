@@ -147,9 +147,6 @@ void CloudBoss1::act() {
     ticks=0;
     storms.push_back(new Storm(level,you->getX1()+you->getWidth()/2-60,40,you));
   }
-  
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-    clouds.clear();
 }
 
 #ifndef COMPILE_NO_SF
