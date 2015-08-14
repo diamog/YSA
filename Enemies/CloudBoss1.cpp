@@ -4,6 +4,12 @@
 #include "../Level.h"
 #include <cmath>
 
+/* Difficulty changes
+   rate of fire
+   movement speed in part 2
+   lightning spawn rate
+   hard has random rates of rain fire
+ */
 CloudBoss1::CloudBoss1() : Actor(),Enemy() {}
 
 void makeCloud(sf::CircleShape& shape) {
@@ -23,6 +29,14 @@ CloudBoss1::CloudBoss1(Level* l, You* yo,SmallEye* e)
   nose.setFillColor(sf::Color(0,255,255));
   for (int i=0;i<3;i++) {
     clouds.push_back(new Cloud(level,x+i*40,y+40,you,e,&bullets));
+  }
+  if (you->getDifficulty()==EASY) {
+    max_ticks=200;
+  }
+  else if (you->getDifficulty()>=HARD) {
+    max_ticks=120;
+    clouds.push_back(new Cloud(level,x-20,y+20,you,e,&bullets));
+    clouds.push_back(new Cloud(level,x+100,y+20,you,e,&bullets));
   }
   makeCloud(top);
   makeCloud(left);
@@ -72,6 +86,14 @@ void CloudBoss1::act() {
   }
   float vel=4;
   float amp=50;
+  if (!clouds.size()) {
+    if (you->getDifficulty()==EASY) {
+      vel=3;
+    }
+    else if (you->getDifficulty()>=HARD) {
+      vel=5;
+    }
+  }
   x+=dir*vel;
   eye->shiftX(dir*vel);
     
@@ -116,11 +138,18 @@ void CloudBoss1::act() {
   if (you->getDead()) {
     return;
   }
+  if (testCircles(this,you)) {
+    you->die();
+  }
+  
   ticks+=rate;
   if (ticks>=max_ticks) {
     ticks=0;
     storms.push_back(new Storm(level,you->getX1()+you->getWidth()/2-60,40,you));
   }
+  
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    clouds.clear();
 }
 
 #ifndef COMPILE_NO_SF

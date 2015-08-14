@@ -15,11 +15,11 @@ class Cloud : public Enemy {
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
 #endif
-  void speedup() {rate++;}
+  void speedup() {rate+=.5;}
  protected:
-  int ticks;
+  float ticks;
   int max_tick;
-  int rate;
+  float rate;
   std::vector<CBullet*>* bullets;
 #ifndef COMPILE_NO_SF
   sf::CircleShape shape;

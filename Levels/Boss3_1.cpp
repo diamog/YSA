@@ -83,8 +83,12 @@ void Boss3_1::act() {
   if (boss) {
     if (boss->isPart2()) {
       b1->shiftY(dir*2);
+      if (you->getDifficulty()>=HARD)
+	b1->shiftY(dir*2);
       if (b1->isOn()) {
 	eye->shiftY(dir*2);
+	if (you->getDifficulty()>=HARD)
+	  eye->shiftY(dir*2);
       }
       else {
 	float bx,by;

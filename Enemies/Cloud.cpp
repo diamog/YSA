@@ -31,9 +31,17 @@ void Cloud::act() {
     ticks=0;
   }
   for (size_t i=0;i<bullets->size();i++) {
-    if (isRectangularHit((*bullets)[i],this)&&(*bullets)[i]->getVal()<0) {
+    if (!(*bullets)[i]->isGone() &&
+	isRectangularHit((*bullets)[i],this)&&(*bullets)[i]->getVal()<0) {
       isDead=true;
       (*bullets)[i]->setDead();
+    }
+  }
+  if (isDead&&you->getDifficulty()>=HARD) {
+    for (size_t i=0;i<bullets->size();i++) {
+      if ((*bullets)[i]->getVal()<0) {
+	(*bullets)[i]->setDead();
+      }
     }
   }
 }
