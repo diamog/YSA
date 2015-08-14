@@ -15,7 +15,16 @@ void FileMenu::setupFileMenu(int index,float x1, You* you) {
     death[index].setColor(sf::Color(0,0,0,0));
   }
   else {
-    setupText(diff[index],font,"Normal",40,sf::Color(0,0,0),x1+100,360);
+    std::string diff_text;
+    if (you->getDifficulty()==EASY)
+      diff_text="Easy";
+    else if (you->getDifficulty()==MEDIUM)
+      diff_text="Normal";
+    else if (you->getDifficulty()==HARD)
+      diff_text="Hard";
+    else
+      diff_text="Impossible";
+    setupText(diff[index],font,diff_text,40,sf::Color(0,0,0),x1+100,360);
     char deaths[15];
     sprintf(deaths,"Deaths: %d",you->getDeaths());
     setupText(death[index],font,std::string(deaths),30,sf::Color(0,0,0),x1+100,440,6);

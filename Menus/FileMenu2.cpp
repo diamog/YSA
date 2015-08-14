@@ -38,7 +38,16 @@ void FileMenu2::setYou(You* you) {
   }
   else {
     choice=1;
-    setupText(diff,font,"Normal",40,sf::Color(0,0,0),50,265,0);
+    std::string diff_text;
+    if (you->getDifficulty()==EASY)
+      diff_text="Easy";
+    else if (you->getDifficulty()==MEDIUM)
+      diff_text="Normal";
+    else if (you->getDifficulty()==HARD)
+      diff_text="Hard";
+    else
+      diff_text="Impossible";
+    setupText(diff,font,diff_text,40,sf::Color(0,0,0),50,265,0);
     char deaths[15];
     sprintf(deaths,"Deaths: %d",you->getDeaths());
     setupText(death,font,std::string(deaths),30,sf::Color(0,0,0),
