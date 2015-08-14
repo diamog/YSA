@@ -22,7 +22,7 @@ You::You(float x_, float y_, float w, float h, bool* isD) :
   isDead = isD;
   alpha=255;
   isPaused=isMessagePaused=isControlPaused=false;
-  isColor=isCloud=isPump=isPumpHalf=isCat=isFire=isColor2=false;
+  isColor=isCloud=isCloudHalf=isPump=isPumpHalf=isCat=isFire=isColor2=false;
   vx=0;
 #ifndef COMPILE_NO_SF
   shape.setSize(sf::Vector2f(width,height));

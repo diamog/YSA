@@ -10,7 +10,6 @@
 #include <cstdlib>
 
 Boss3_1::Boss3_1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
-  
   if (!you->boss2Half())
     isboss=true;
   me = CLOUD;
@@ -34,8 +33,9 @@ Boss3_1::Boss3_1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) 
   }
   else
     throw THROW_ENTRANCE_ERROR;
-  if (you->boss2Half())
+  if (you->boss2Half()) {
     sendEvent(EYE_1,NULL);
+  }
 }
 
 void Boss3_1::makePlatforms() {

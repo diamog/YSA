@@ -6,6 +6,7 @@
 #include <fstream>
 #ifndef COMPILE_NO_SF
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #endif
 #include "You.h"
 #include "Codes.h"
@@ -30,6 +31,7 @@ int main() {
   loadAchievements();
 #ifndef COMPILE_NO_SF
   sf::RenderWindow window(sf::VideoMode(width, height), "YSA Version 0.2.5");
+  sf::Music* song = NULL;
   window.setFramerateLimit(60);
 #endif
   loadInFiles();
@@ -107,6 +109,17 @@ int main() {
       }
     }
     if (menu==-1) {
+      if (!you->boss1()&&!level->isBoss())  {
+	if (!song) {
+	  song=getSong("Colorless");
+	  song->play();
+	}
+      }
+      else {
+	if (song)
+	  song->stop();
+	song=NULL;
+      }
       if (!you->isPause()) {
 	if (*isDead==false) {
 	  if (!you->isPauseM())
@@ -138,6 +151,10 @@ int main() {
 	pause_menu.act();
 	pause_menu.render(window);
 	pause_menu.isChangeMenu(menu);
+	if (menu!=-1&&song) {
+	  song->stop();
+	  song=NULL;
+	}
       }
     }
     else if (menu==0) {
@@ -188,6 +205,8 @@ int main() {
   }
 #endif
   saveAchievements();
+  if (song)
+    song->stop();
   if (level) delete level;
   delete you1;
   delete you2;
