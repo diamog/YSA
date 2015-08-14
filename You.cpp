@@ -444,7 +444,7 @@ void You::save() {
 }
 
 void You::reset() {
-  //delete file_name
+  std::remove(file.c_str());
   hasEnterSplit=false;
   deaths=0;
   savepoint = GAME_START;
