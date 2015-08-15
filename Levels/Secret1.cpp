@@ -9,6 +9,7 @@
 #include "../Platforms/InviPlat.h"
 #include "../Switables/Portal.h"
 #include "../Switables/Coin.h"
+#include "../Switables/Secret.h"
 #include <iostream>
 
 Secret1::Secret1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
@@ -71,7 +72,11 @@ void Secret1::makeCollectables() {
   collect1+=buildCoin(640,530,COLLECT_1);
   collect1+=buildCoin(230,260,COLLECT_1);
   collect1+=buildCoin(60,320,COLLECT_1);
-
+#ifdef COMPILE_DEBUG
+  collect1=1;
+#endif
+  if (!you->hasSecret1()&&!you->holdingSecret1())
+    actors.push_back(new Fairy5(this,35,155,you));
 }
 
 void Secret1::makeSwitches() {
@@ -97,6 +102,15 @@ void Secret1::sendEvent(EVE_CODE eve, Actor* sender) {
   else if (eve==PORTALE_1) {
     isPortal=true;
   }
+  else if (eve==MISCE_1) {
+    you->holdSecret1(static_cast<Fairy5*>(sender));
+    for (size_t i=0;i<actors.size();i++) {
+      if (actors[i]==sender) {
+	actors.erase(actors.begin()+i);
+	break;
+      }
+    }
+  }
   else {
     Level::sendEvent(eve,sender);
   }
@@ -113,8 +127,7 @@ bool Secret1::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
   if (isPortal) {
     next_level=RISING_EYE;
     ent_type=PORTAL_1;
-    //GFD better keep track of fairy (across rooms)
-    if (gotFairy)
+    if (you->holdingSecret1())
       ent_type=PORTAL_2;
     return true;
   }

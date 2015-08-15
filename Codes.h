@@ -134,39 +134,39 @@ typedef enum LEVEL_CODE {
 typedef enum ACHIEVEMENT_CODES {
   //General 
   START_ACHIEVE,
-  SAVE_1, //save the game
-  DIE_1, //die 1 time
-  DIE_10, //die 10 times
-  DIE_50, //die 50 times
-  DIE_100,  //die 100 times
-  DIE_300, //die 300 times
-  DIE_500, //die 500 times
-  DIE_999, //die 999 times
-  DIE_1000, //die 1000 times
+  SAVE_1, //save the game                               IN
+  DIE_1, //die 1 time                                   IN
+  DIE_10, //die 10 times                                IN
+  DIE_50, //die 50 times                                IN
+  DIE_100,  //die 100 times                             IN
+  DIE_300, //die 300 times                              IN
+  DIE_500, //die 500 times                              IN
+  DIE_999, //die 999 times                              IN
+  DIE_1000, //die 1000 times                            IN
   KILL_1, //Kill an enemy
   KILL_EVERY, //Kill each type of enemy at least once
   NO_HINTS, //Dont grab a single hint
-  NO_SAVE, //Dont save up to boss1
-  EVIL_SAVE, //Have the reverser hit the save point
-  LOOP_EYE, //Have the eye in an infinite loop 
-  GET_SECRET_1, //get first secret
+  NO_SAVE, //Dont save up to boss1                      IN
+  EVIL_SAVE, //Have the reverser hit the save point     IN
+  LOOP_EYE, //Have the eye in an infinite loop          IN
+  GET_SECRET_1, //get first secret                      IN
   GET_SECRET_2, //get second secret
   //Difficulties
   BEAT_EASY, //beat easy mode
   BEAT_MEDIUM, //beat medium mode
   BEAT_HARD, //beat hard mode
-  BEAT_IMPOSSIBLE, //beat impossible mode you crazy lunatic
+  BEAT_IMPOSSIBLE, //beat impossible mode
   //Extras
-  EXTRA_1, //collect 1 extra
-  EXTRA_5, //collect 5 extras
-  EXTRA_10, //collect 10 extras
-  EXTRA_20, //collect 20 extras
+  EXTRA_1, //collect 1 extra                            IN
+  EXTRA_5, //collect 5 extras                           IN
+  EXTRA_10, //collect 10 extras                         IN
+  EXTRA_20, //collect 20 extras                         IN
   EXTRA_ALL, //collect all the extras
   //Color Boss 1
-  BEAT_COLOR, //beat the color boss
+  BEAT_COLOR, //beat the color boss                     IN
   HARD_COLOR, //beat the color boss on hard
   TIME_COLOR, //beat the color boss in a certain time
-  OCD, //beat the color boss by depleting one color at a time
+  OCD, //beat the color boss by depleting one color at a time    IN
   //Cloud Boss
   BEAT_CLOUD,
   HARD_CLOUD,

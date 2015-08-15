@@ -5,9 +5,11 @@
 #include "Bullet.h"
 #include <vector>
 #include <set>
+
 class Level;
 class Platform;
-
+class Fairy5;
+//class Fairy4;
 class You  : public Mover{
 public:
   You();
@@ -83,6 +85,11 @@ public:
   bool isAntiGravity() {return isAntiGrav;}
   bool hasEntered(int i) {return enters[i];}
   void enter(int i) {enters[i]=true;}
+
+  void holdSecret1(Fairy5* f) {fairy1 = f;}
+  bool holdingSecret1() const {return fairy1;}
+  void getSecret1();
+  bool hasSecret1() const {return secret1;}
   
   void load(std::string file_name);
   void save();
@@ -120,6 +127,9 @@ protected:
   std::vector<bool> enters;
   bool isAntiGrav;
 
+  bool secret1,secret2;
+  Fairy5* fairy1;
+  //Fairy4* fairy2;
   std::string file;
   DIFF_CODE difficulty;
 };

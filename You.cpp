@@ -4,6 +4,7 @@
 #include <cmath>
 #include <fstream>
 #include "Platforms/Platform.h"
+#include "Switables/Secret.h"
 You::You() : Actor(),Mover() {
   isJump=0;
   plat=NULL;
@@ -16,7 +17,9 @@ You::You() : Actor(),Mover() {
 
 You::You(float x_, float y_, float w, float h, bool* isD) :  
   Actor(NULL,x_,y_,w,h), Mover(NULL,x_,y_,w,h) {
-
+  secret1=secret2=false;
+  fairy1=NULL;
+  //fairy2=NULL;
   deaths=0;
   savepoint = GAME_START;
   isDead = isD;
@@ -47,7 +50,7 @@ You::You(float x_, float y_, float w, float h, bool* isD) :
   grav = 0.005f*frame_diff*frame_diff;
   isAntiGrav=false;
   plat=NULL;
-  int num_enters=6;
+  int num_enters=7;
   for (int i=0;i<num_enters;i++)
     enters.push_back(false);
 }
@@ -202,6 +205,8 @@ void You::act() {
     dy=downLimit*frame_diff;
   if (isAntiGrav)
     downLimit*=1.5;
+  if (fairy1)
+    fairy1->act();
   isKickLeft=isKickRight=false;
 }
 
@@ -217,6 +222,8 @@ void You::render(sf::RenderWindow& window) {
   for (unsigned int i=0;i<bullets.size();i++)
     bullets[i]->render(window);
   shape.setPosition(getX1(),getY1());
+  if (fairy1)
+    fairy1->render(window);
   if ((*isDead&&alpha>0)||alpha==261) {
     alpha-=6;
     shape.setFillColor(sf::Color(255,255,0,alpha));
@@ -304,14 +311,14 @@ void You::save(S_CODE s) {
   for (itr=temp_extras.begin();itr!=temp_extras.end();itr++) 
     extras.insert(*itr);
   temp_extras.clear();
-	if (extras.size()>=1)
-		buildAchievement(EXTRA_1);
+  if (extras.size()>=1)
+    buildAchievement(EXTRA_1);
   if (extras.size()>=5)
-		buildAchievement(EXTRA_5);
+    buildAchievement(EXTRA_5);
   if (extras.size()>=10)
-		buildAchievement(EXTRA_10);
+    buildAchievement(EXTRA_10);
   if (extras.size()>=20)
-		buildAchievement(EXTRA_20);
+    buildAchievement(EXTRA_20);
   
   save();
 }
@@ -329,7 +336,7 @@ void You::die() {
       buildAchievement(DIE_50);
     if (deaths>=100)
       buildAchievement(DIE_100);
-		if (deaths>=300)
+    if (deaths>=300)
       buildAchievement(DIE_300);
     if (deaths>=500)
       buildAchievement(DIE_500);
@@ -359,6 +366,14 @@ void You::reload() {
     delete bullets[i];
   bullets.clear();
   temp_extras.clear();
+  if (fairy1) {
+    delete fairy1;
+    fairy1=NULL;
+  }
+  // if (fairy2) {
+  //   delete fairy2;
+  //   fairy2=NULL;
+  // }
 }
 
 std::vector<Line> You::getLines() {
@@ -369,6 +384,14 @@ std::vector<Line> You::getLines() {
   lines.push_back(Line(getX2(),getX2(),getY1(),getY2()));
   return lines;
 }
+
+void You::getSecret1() {
+  secret1=true;
+  delete fairy1;
+  fairy1=NULL;
+  buildAchievement(GET_SECRET_1);
+}
+
 
 void You::load(std::string file_name) {
   std::ifstream in_str(file_name.c_str());
@@ -404,7 +427,10 @@ void You::load(std::string file_name) {
   in_str>>isCat;
   in_str>>isFire;
   in_str>>isColor2;
-    
+
+  if (ver>=.3) {
+    in_str>>secret1>>secret2;
+  }
   in_str>>deaths;
   if (ver<.3) {
     bool hasEnterSplit;
@@ -412,7 +438,7 @@ void You::load(std::string file_name) {
     enters[2]=hasEnterSplit;
   }
   else {
-    int num_enters=6;
+    int num_enters=7;
     for (int i=0;i<num_enters;i++) {
       bool enter;in_str>>enter;
       enters[i] = enter;
@@ -450,8 +476,14 @@ void You::save() {
 #endif
   out_str<<isPump<<" "<<isPumpHalf<<" "<<isCat<<" "<<isFire<<" "<<isColor2<<"\n\n";
 
+#ifndef PREVERSION
+  //The secrets
+  out_str<<secret1<<" "<<secret2<<"\n\n";
+#endif
+
   //Save death count
   out_str<<deaths<<"\n\n";
+
 
   //Entrances
 #ifndef PREVERSION
@@ -471,6 +503,7 @@ void You::reset() {
   alpha=255;
   isPaused=isMessagePaused=isControlPaused=false;
   isColor=isCloud=isPump=isPumpHalf=isCat=isFire=isColor2=false;
+  secret1=secret2=false;
   vx=0;
   isJump = 2;
   dx = .7f*frame_diff;

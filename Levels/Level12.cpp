@@ -10,8 +10,8 @@
 
 Level12::Level12(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   me = RISING_EYE;
-  setup();
   isMove=true;
+  setup();
   if (ent==NORTH) {
     you->setPosition(enterx,-18,true);
     isMove=false;
@@ -24,6 +24,7 @@ Level12::Level12(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) 
     you->setPosition(-18,entery,true);
     isMove=false;
     b1->shiftY(30);
+    middle->setHeight(660);
   }
   else if (ent==LOAD_1) {
     you->setPosition(380,460);
@@ -33,6 +34,7 @@ Level12::Level12(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) 
   }
   else if (ent==PORTAL_2) {
     you->setPosition(380,460);
+    you->getSecret1();
     //DO stuff with fairy
   }
   else
@@ -82,6 +84,10 @@ void Level12::makeDetectors() {
 
   b1 = new BigEye(this,680-35,580,NOTHING,eye);
   detectors.push_back(b1);
+  if (you->hasEntered(6)) {
+    sendEvent(EYE_1,NULL);
+    b1->shiftY(b1->getHeight());
+  }
 
 }
 
@@ -104,8 +110,10 @@ void Level12::sendEvent(EVE_CODE eve, Actor* sender) {
   if (eve==EYE_1) {
     isMove=false;
     remove(middle);
+    middle=new Platform(this,250,-30,30,210,you);
     actors.push_back(new Platform(this,250,370,30,230,you));
-    actors.push_back(new Platform(this,250,-30,30,210,you));
+    actors.push_back(middle);
+    you->enter(6);
   }
   else {
     Level::sendEvent(eve,sender);
