@@ -14,6 +14,7 @@ pause menu (hit p)
 more achievements (mostly just for beating the bosses and difficulties)
 only reading input when active window and pauses game when losing focus
 Slopes are filled in
+Arcs used for color boss
 
 Known bugs:
  FIXED -- Bounce when dropping through vertical platforms that are descending
@@ -21,6 +22,7 @@ Known bugs:
  FIXED -- If holding down when landing on a color switch the switch does not activate
  FIXED -- if on a platform when color boss dies you stay there
  FIXED?-- wall kick platforms sometime flash at the bottom when moving the level
+ 	  * I didnt notice in my last run of testing but I dont remember doing anything about it either.
  FIXED -- if you grab an extra and then quit you have the extra when returning
 
 -------------------Unfinished Features-------------------------
@@ -30,3 +32,6 @@ Known bugs:
 
 
 Final Notes:
+I started to work on some smoothing and fluidity in the animation at least for non graphic states. If you have any suggestions are parts that could use better animation like those seen in the blocks and walls of the puzzle rooms and the color boss please add to reports.
+
+Once again any stylish notes or balancing that needs to be done would be great to add in. Now that there are difficulties I can better describe how the game should be. In my opinion EASY is doable by your average gamer, MEDIUM is doable by me, HARD is possible but likely I may not be able to beat it.
