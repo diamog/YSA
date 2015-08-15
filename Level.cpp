@@ -186,9 +186,13 @@ bool Level::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
   return false;
 }
 
-void Level::buildExtra(float x,float y) {
-  if (!you->hasExtra(me))
-    actors.push_back(new Extra(this,x,y,25,25,you));
+Extra* Level::buildExtra(float x,float y) {
+  if (!you->hasExtra(me)) {
+    Extra* temp = new Extra(this,x,y,25,25,you); 
+    actors.push_back(temp);
+    return temp;
+  }
+  return NULL;
 }
 void Level::buildHint(float x,float y,int code,std::string m) {
   if (!you->hasHint(code))

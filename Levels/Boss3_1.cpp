@@ -6,12 +6,14 @@
 #include "../Enemies/CloudBoss.h"
 #include "../Extras/utilities.h"
 #include "../SpeechBubble.h"
+#include "../Switables/Extra.h"
 #include <iostream>
 #include <cstdlib>
 
 Boss3_1::Boss3_1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   if (!you->boss2Half())
     isboss=true;
+  extra=NULL;
   me = CLOUD;
   eye=NULL;
   b1=NULL;
@@ -62,7 +64,9 @@ void Boss3_1::makeEnemies() {
   }
 }
 void Boss3_1::makeCollectables() {
-  //buildExtra(635,35);
+  if (!you->boss2Half()) {
+    extra = buildExtra(0,0);
+  }
 }
 
 void Boss3_1::makeSwitches() {
@@ -86,6 +90,11 @@ Level* makeBoss3_1(You* yo, float x, float y, ENT_CODE ent) {
 void Boss3_1::act() {
   Level::act();
   if (boss) {
+    if (extra&&you->hasExtra(me))
+      extra=NULL;
+    if (extra) {
+      extra->setPosition(boss->getX1()+boss->getWidth()/2-12.5,boss->getY1()+55);
+    }
     if (boss->isPart2()) {
       b1->shiftY(dir*2);
       if (you->getDifficulty()>=HARD)

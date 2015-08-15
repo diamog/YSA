@@ -27,6 +27,7 @@ class Boss3_1 : public Level {
   void makeDetectors();
   int dir;
 
+  Extra* extra;
   Platform* left;
   CloudBoss1* boss;
   SmallEye* eye;

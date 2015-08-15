@@ -12,6 +12,8 @@
 #ifndef __LEVEL_H__
 #define __LEVEL_H__
 
+class Extra;
+
 class Level {
  public:
   Level();
@@ -33,20 +35,20 @@ class Level {
   virtual void sendEvent(EVE_CODE eve, Actor* sender);
   void destroy();
   void warp() {isWarp=true;}
-  void remove(Actor* actor);
   virtual bool isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type);
-  
+  void remove(Actor* actor);  
   
 protected:
   bool isboss;
   void setup();
+
   virtual void makePlatforms() {};
   virtual void makeEnemies() {};
   virtual void makeCollectables() {};
   virtual void makeSwitches() {};
   virtual void makeDetectors() {};
   void buildHint(float x, float y, int code, std::string m);
-  void buildExtra(float x,float y);
+  Extra* buildExtra(float x,float y);
   int buildCoin(float x,float y,EVE_CODE eve);
   void buildSave(float x, float y, SAVE_CODE s,DIFF_CODE d);
 
