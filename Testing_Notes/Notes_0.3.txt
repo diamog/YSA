@@ -1,0 +1,34 @@
+Because I am lazy I am just going to write out new feature list instead of a list of things that should work with them
+
+Cloud Boss both parts
+Entrance to tower after cloud boss
+Secret room 1 (down path)
+Difficulties (save points)
+Color boss difficulty differences
+Cloud boss part 1 difficulty differences
+Main menu 
+File selection menu
+Three save files one for each difficulty
+File open menu
+pause menu (hit p)
+more achievements (mostly just for beating the bosses and difficulties)
+only reading input when active window and pauses game when losing focus
+
+
+Known bugs:
+ FIXED -- Bounce when dropping through vertical platforms that are descending
+    
+ FIXED -- If holding down when landing on a color switch the switch does not activate
+ FIXED -- if on a platform when color boss dies you stay there
+ FIXED?-- wall kick platforms sometime flash at the bottom when moving the level
+ FIXED -- if you grab an extra and then quit you have the extra when returning
+
+-------------------Unfinished Features-------------------------
+ -- filling of slopes
+ -- hints throughout the bottom path
+ -- hint for wall kicking and moving against the motion
+ -- achievements are only a template for now
+ -- orange boxes will fade in and out instead of just appearing
+
+
+Final Notes:
