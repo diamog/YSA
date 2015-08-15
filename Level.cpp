@@ -117,6 +117,8 @@ void Level::act() {
       if (x+700<width) {
 	float dx = cx - 700*2/3;
 	dx = std::min(dx,width-700-y);
+	dx = std::min(dx,5.0f);
+	std::cout<<dx<<"\n";
 	x+=dx;
 	you->shiftX(-dx);
       }
@@ -126,6 +128,7 @@ void Level::act() {
     else if (cx<700*1/3) {
       if (x>0) {
 	float dx = cx - 700*1/3;
+	dx = std::max(dx,-5.0f);
 	x+=dx;
 	you->shiftX(-dx);
       }

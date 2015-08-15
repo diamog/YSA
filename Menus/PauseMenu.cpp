@@ -84,6 +84,7 @@ bool PauseMenu::isChangeMenu(int& menu) {
     else if (choice==3) {
       menu=0;
       you->pause();
+      you->reload();
     }
     else
       return false;
