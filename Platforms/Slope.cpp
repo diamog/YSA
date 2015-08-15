@@ -19,6 +19,8 @@ Slope::Slope(Level* l, float x_,float y_,float w,float h,You* yo,
   shape.setFillColor(sf::Color(0,255,0));
   shape.setSize(sf::Vector2f(width,height));
   shape.setPosition(x,y);
+  slope.setPointCount(3);
+  slope.setFillColor(shape.getFillColor());
 #endif
   isLeft = isRight= isUp = true;
   isDown=false;
@@ -60,21 +62,16 @@ void Slope::act() {
 #ifndef COMPILE_NO_SF
 void Slope::render(sf::RenderWindow& window) {
   Platform::render(window);
+  slope.setFillColor(shape.getFillColor());
+  slope.setPoint(0,sf::Vector2f(getX1(),getY1()));
+  slope.setPoint(1,sf::Vector2f(getX2(),getY1()));
   if (angle>0) {
-    sf::Vertex line[] =
-      {
-	sf::Vertex(sf::Vector2f(getX1(), getY1())),
-	sf::Vertex(sf::Vector2f(getX2(), getY1()-width*sin(angle)))
-      };
-    window.draw(line,2,sf::Lines);
+    slope.setPoint(2,sf::Vector2f(getX2(),getY1()-width*sin(angle)));
   }
   else {
-    sf::Vertex line[] =
-      {
-	sf::Vertex(sf::Vector2f(getX1(), getY1()+width*sin(angle))),
-	sf::Vertex(sf::Vector2f(getX2(), getY1()))
-      };
-    window.draw(line,2,sf::Lines);
+    slope.setPoint(2,sf::Vector2f(getX1(),getY1()+width*sin(angle)));
   }
+
+  window.draw(slope);
 }
 #endif

@@ -24,7 +24,6 @@ Known bugs:
  FIXED -- if you grab an extra and then quit you have the extra when returning
 
 -------------------Unfinished Features-------------------------
- -- filling of slopes
  -- hints throughout the bottom path
  -- hint for wall kicking and moving against the motion
  -- achievements are only a template for now

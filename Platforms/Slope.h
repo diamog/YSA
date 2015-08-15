@@ -17,6 +17,7 @@ class Slope : public Platform {
 protected:
   float angle;
   unsigned int disable;
+  sf::ConvexShape slope;
 };
 
 #endif
