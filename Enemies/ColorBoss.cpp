@@ -37,6 +37,11 @@ ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) :
   hasMessaged=false;
 }
 
+std::vector<Circle> ColorBoss::getCircles() {
+  std::vector<Circle> cs;
+  cs.push_back(Circle(getX1()+width/2,getY1()+height/2,width/2));
+  return cs;
+}
 void ColorBoss::act() {
   x+=vx;
   y+=vy;

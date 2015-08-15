@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include "../Extras/Arc.h"
-
+#include "../Extras/Circle.h"
 #ifndef __COLORBOSS__H__
 #define __COLORBOSS__H__
 
@@ -17,9 +17,13 @@ class ColorBoss : public Enemy{
 
   DIFF_CODE getDifficulty() {return you->getDifficulty();}
   void act();  
+
+  std::vector<Circle> getCircles();
+
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
 #endif
+
   bool isAlive() {return r>0||g>0||b>0;}
   int getR() {return r;}
   int getG() {return g;}
