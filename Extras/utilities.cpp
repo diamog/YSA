@@ -121,25 +121,58 @@ void loadAchievements() {
     return;
   float ver;
   in_str>>ver;
-  
   size_t num;
   in_str>>num;
   for (size_t i=0;i<num;i++) {
     int val;
     in_str>>val;
+    if (ver<.3) {
+      int diff=0;
+      if (val>START_ACHIEVE)
+	diff++;
+      if (val>DIE_1000-diff)
+	diff+=6;
+      if (val>KILL_EVERY-diff)
+	diff++;
+      if (val>LOOP_EYE-diff)
+	diff+=2;
+      if (val>PERFECT_CLOUD)
+	diff--;
+      val+=diff;
+    }
+    
     achieves.insert(static_cast<A_CODE>(val));
   }
 }
 void saveAchievements() {
   std::ofstream out_str(".ach32948880225704");
+#ifndef PREVERSION
+  out_str<<0.3<<"\n\n";
+#else
   out_str<<0.25<<"\n\n";
-  
+#endif
+
   out_str<<achieves.size()<<"\n\n";
   Achievements::iterator itr;
   for (itr=achieves.begin();itr!=achieves.end();itr++) {
-    out_str<<*itr<<" ";
+    int val = *itr;
+#ifdef PREVERSION
+    int diff=0;
+    if (val>START_ACHIEVE)
+      diff++;
+    if (val>DIE_1000-diff)
+      diff+=6;
+    if (val>KILL_EVERY-diff)
+      diff++;
+    if (val>LOOP_EYE-diff)
+      diff+=2;
+    if (val>PERFECT_CLOUD)
+      diff--;
+    val-=diff;
+    
+#endif
+    out_str<<val<<" ";
   }
-
 }
 bool hasAchievement(A_CODE ach) {
   return achieves.find(ach)!=achieves.end();

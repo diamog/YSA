@@ -72,10 +72,13 @@ public:
   bool boss4() {return isCat;}
   bool boss5() {return isFire;}
   bool boss6() {return isColor2;}
-  void beatBoss1() {isColor=true;buildAchievement(BEAT_COLOR);}
-  void beatBoss2() {isCloud=true;}
+  void beatBoss1() {isColor=true;buildAchievement(BEAT_COLOR);
+    if (getDifficulty()>=HARD) buildAchievement(HARD_COLOR);}
+  void beatBoss2() {isCloud=true;buildAchievement(BEAT_CLOUD);
+    if (getDifficulty()>=HARD) buildAchievement(HARD_CLOUD);}
   void beatBoss2Half() {isCloudHalf=true;}
-  void beatBoss3() {isPump=true;}
+    void beatBoss3() {isPump=true;buildAchievement(BEAT_PUMPKIN);
+      if (getDifficulty()>=HARD) buildAchievement(HARD_PUMPKIN);}
   void beatBoss3Half() {isPumpHalf=true;}
   void beatBoss4() {isCat=true;}
   void beatBoss5() {isFire=true;}

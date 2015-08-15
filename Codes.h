@@ -134,6 +134,7 @@ typedef enum LEVEL_CODE {
 typedef enum ACHIEVEMENT_CODES {
   //General 
   START_ACHIEVE,
+  BUY,    //Get the game Thanks You!
   SAVE_1, //save the game                               IN
   DIE_1, //die 1 time                                   IN
   DIE_10, //die 10 times                                IN
@@ -143,8 +144,15 @@ typedef enum ACHIEVEMENT_CODES {
   DIE_500, //die 500 times                              IN
   DIE_999, //die 999 times                              IN
   DIE_1000, //die 1000 times                            IN
+  TIME_1, //Play the game for one minute
+  TIME_5, //Play the game for five minutes
+  TIME_30, //Play the game for half an hour
+  TIME_60, //Play the game for one hour
+  TIME_120, //Play the game for two hours
+  TIME_360, //Play the game for six hours
   KILL_1, //Kill an enemy
   KILL_EVERY, //Kill each type of enemy at least once
+  RAGE_QUIT, //Load up the game within five minutes of turning it off
   NO_HINTS, //Dont grab a single hint
   NO_SAVE, //Dont save up to boss1                      IN
   EVIL_SAVE, //Have the reverser hit the save point     IN
@@ -164,20 +172,19 @@ typedef enum ACHIEVEMENT_CODES {
   EXTRA_ALL, //collect all the extras
   //Color Boss 1
   BEAT_COLOR, //beat the color boss                     IN
-  HARD_COLOR, //beat the color boss on hard
+  HARD_COLOR, //beat the color boss on hard             IN
   TIME_COLOR, //beat the color boss in a certain time
   OCD, //beat the color boss by depleting one color at a time    IN
   //Cloud Boss
-  BEAT_CLOUD,
-  HARD_CLOUD,
+  BEAT_CLOUD, //                                        IN
+  HARD_CLOUD, //                                        IN
   TIME_CLOUD,
   PERFECT_CLOUD, //beat the first phase of the cloud without ever missing the small eye
   //Pumpkin Boss
-  BEAT_HEADS,
-  TIME_HEADS,
+  TIME_HEADS, 
   MURDER_HEADS, //remove 5 or more stems in one hit on the heads
-  BEAT_PUMPKIN,
-  HARD_PUMPKIN,
+  BEAT_PUMPKIN, //                                      IN
+  HARD_PUMPKIN, //                                      IN
   END_ACHIEVEMENTS,
   //Cat Virus
   BEAT_CAT,
