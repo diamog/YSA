@@ -239,6 +239,7 @@ int main() {
 void loadInFiles() {
   addGraphic("Pumpkin","Graphics/GreatPumpkin1.png");
   addGraphic("Fairy1","Graphics/fairy1.png");
+  addGraphic("Fairy5","Graphics/fairy5.png");
   addGraphic("GrayFairy","Graphics/grayfairy1.png");
   addGraphic("PumpkinHead","Graphics/pumpkin1.png");
   addGraphic("PumpkinHeadTurn","Graphics/pumpkin2.png");
