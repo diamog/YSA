@@ -25,10 +25,15 @@ Boss3_1::Boss3_1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) 
   else if (ent==SOUTH) {
     you->setPosition(enterx,598,true);
     if (!you->boss2Half()) {
-      you->controlPause();
-      actors.push_back(new SpeechBubble(this,"You... You are not welcome here. You destroyed my dear friend.; You removed the gray and brought this.; I will show you the gray!;",
-					sf::Color(140,140,140),
-					you->getY1(),MISCE_1));
+      if (!you->hasEntered(5)) {
+	you->controlPause();
+	actors.push_back(new SpeechBubble(this,"You... You are not welcome here. You destroyed my dear friend.; You removed the gray and brought this.; I will show you the gray!;",
+					  sf::Color(140,140,140),
+					  you->getY1(),MISCE_1));
+	you->enter(5);
+      }
+      else
+	boss->start();
     }
   }
   else

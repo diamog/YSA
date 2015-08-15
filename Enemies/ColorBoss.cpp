@@ -38,7 +38,10 @@ void ColorBoss::act() {
   x+=vx;
   y+=vy;
   if (getX2()<640&&getY1()>30&&!hasMessaged) {
-    level->sendEvent(MISCE_2,NULL);
+    if (!you->hasEntered(1)) {
+      level->sendEvent(MISCE_2,NULL);
+      you->enter(1);
+    }
     hasMessaged=true;
   }
   Enemy::act();

@@ -11,12 +11,12 @@ You::You() : Actor(),Mover() {
   isPaused=isMessagePaused=isControlPaused=false;
   isColor=isCloud=isPump=isCat=isFire=isColor2=false;
   vx =0;deaths=0;
-  hasEnterSplit=false;
+
 }
 
 You::You(float x_, float y_, float w, float h, bool* isD) :  
   Actor(NULL,x_,y_,w,h), Mover(NULL,x_,y_,w,h) {
-  hasEnterSplit=false;
+
   deaths=0;
   savepoint = GAME_START;
   isDead = isD;
@@ -47,6 +47,9 @@ You::You(float x_, float y_, float w, float h, bool* isD) :
   grav = 0.005f*frame_diff*frame_diff;
   isAntiGrav=false;
   plat=NULL;
+  int num_enters=6;
+  for (int i=0;i<num_enters;i++)
+    enters.push_back(false);
 }
 
 You::~You() {
@@ -403,8 +406,18 @@ void You::load(std::string file_name) {
   in_str>>isColor2;
     
   in_str>>deaths;
-
-  in_str>>hasEnterSplit;
+  if (ver<.3) {
+    bool hasEnterSplit;
+    in_str>>hasEnterSplit;
+    enters[2]=hasEnterSplit;
+  }
+  else {
+    int num_enters=6;
+    for (int i=0;i<num_enters;i++) {
+      bool enter;in_str>>enter;
+      enters[i] = enter;
+    }
+  }
 }
 void You::save() {
   std::ofstream out_str(file.c_str());
@@ -422,6 +435,7 @@ void You::save() {
   for (itr=extras.begin();itr!=extras.end();itr++)
     out_str<<*itr<<" ";
   out_str<<"\n\n";
+
   //Save all hints
   out_str<<hints.size()<<"\n";
   std::set<int>::iterator itr2;
@@ -440,12 +454,18 @@ void You::save() {
   out_str<<deaths<<"\n\n";
 
   //Entrances
-  out_str<<hasEnterSplit<<"\n\n";
+#ifndef PREVERSION
+  for (size_t i =0;i<enters.size();i++) {
+    out_str<<enters[i]<<" ";
+  }
+  out_str<<"\n\n";
+#else
+  out_str<<enters[2]<<"\n\n";
+#endif
 }
 
 void You::reset() {
   std::remove(file.c_str());
-  hasEnterSplit=false;
   deaths=0;
   savepoint = GAME_START;
   alpha=255;
@@ -458,6 +478,11 @@ void You::reset() {
   downLimit = 2;
   isAntiGrav=false;
   plat=NULL;
+  extras.clear();
+  hints.clear();
+  temp_extras.clear();
+  for (size_t i=0;i<enters.size();i++)
+    enters[i]=false;
 }
 
 void You::controlPause() {

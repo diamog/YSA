@@ -120,8 +120,10 @@ bool Boss1::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
   if (you->getY1()>600) {
     next_level=SPLIT;
     ent_type=NORTH;
-    if (!you->hasSplit())
+    if (!you->hasEntered(3)) {
       ent_type=MISC_1;
+      you->enter(3);
+    }
     return true;
   }
   return Level::isChangeRoom(next_level,ent_type);

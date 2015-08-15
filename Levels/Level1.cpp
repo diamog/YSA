@@ -16,8 +16,11 @@ Level1::Level1(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
     //Enter through beginning of game
     you->setPosition(enterx,entery);
 #ifndef COMPILE_NO_SF
-    you->controlPause();
-    actors.push_back(new SpeechBubble(this,"What? Where am I? Why is the world so bland?; AND WHY AM I A YELLOW SQUARE?!;",sf::Color(255,255,0),you->getY1(),MISCE_1));
+    if (!you->hasEntered(0)) {
+      you->controlPause();
+      actors.push_back(new SpeechBubble(this,"What? Where am I? Why is the world so bland?; AND WHY AM I A YELLOW SQUARE?!;",sf::Color(255,255,0),you->getY1(),MISCE_1));
+      you->enter(0);
+    }
 #endif
   }
   else if (ent== NORTH) {

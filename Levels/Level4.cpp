@@ -34,7 +34,6 @@ Level4::Level4(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
     you->setPosition(enterx,-18,true);
     you->controlPause();
     actors.push_back(new SpeechBubble(this,"Hurrah! You have returned the color to this land and saved me too!; I am one of the 5 protector fairies of this land.; You must be destined to save this entire world or something...;",sf::Color(200,0,200),you->getY1(),MISCE_1)); 
-    you->enterSplit();
   }
   else if (ent==PORTAL_1) {
     you->setPosition(200,20);

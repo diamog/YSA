@@ -34,7 +34,6 @@ Level9::Level9(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   }
   else if (ent==LOAD_3) {
     you->setPosition(3310,210);
-
   }
   else if (ent==LOAD_4) 
     you->setPosition(765,790);

@@ -81,8 +81,8 @@ public:
 
   void antiGravity() {isAntiGrav=!isAntiGrav;}
   bool isAntiGravity() {return isAntiGrav;}
-  bool hasSplit() {return hasEnterSplit;}
-  void enterSplit() {hasEnterSplit=true;}
+  bool hasEntered(int i) {return enters[i];}
+  void enter(int i) {enters[i]=true;}
   
   void load(std::string file_name);
   void save();
@@ -117,7 +117,7 @@ protected:
   std::set<int> hints;
   bool isColor,isCloud,isCloudHalf,isPump,isPumpHalf,isCat,isFire,isColor2;
   bool isKickLeft,isKickRight;
-  bool hasEnterSplit;
+  std::vector<bool> enters;
   bool isAntiGrav;
 
   std::string file;

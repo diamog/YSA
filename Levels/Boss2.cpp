@@ -15,10 +15,7 @@ Boss2::Boss2(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   setup();
   headL=headR=NULL;
   if (ent== NORTH) {
-    you->setPosition((enterx-3420+670),-18,true);
-  }
-  else if (ent==LOAD_1) {
-    you->setPosition(600,-18,true);
+    you->setPosition((enterx-3420+670),1,true);
   }
   else
     throw THROW_ENTRANCE_ERROR;
@@ -58,7 +55,7 @@ void Boss2::makeEnemies() {
 }
 void Boss2::makeCollectables() {
   
-  buildExtra(635,35);
+  buildExtra(350-25/2,835);
 }
 
 
@@ -68,12 +65,19 @@ Level* makeBoss2(You* yo, float x, float y, ENT_CODE ent) {
 
 void Boss2::act() {
   Level::act();
-  if (you->getY1()<0)
+  if (you->getY1()<0) {
     you->setPosition(you->getX1(),0);
+    you->setFall();
+  }
   if (you->getX1()<=340&&part==0) {
-    you->controlPause();
-    actors.push_back(new SpeechBubble(this,"Hmmm no way out.;",
-				      sf::Color(255,255,0),you->getY1(),MISCE_1));
+
+    if (!you->hasEntered(3)) {
+      you->controlPause();    
+      actors.push_back(new SpeechBubble(this,"Hmmm no way out.;",
+					sf::Color(255,255,0),you->getY1(),MISCE_1));
+    }
+    else
+      sendEvent(MISCE_1,NULL);
     part=1;
   }
   else if (part==2&&you->getPlat()) {
@@ -98,6 +102,7 @@ void Boss2::act() {
     if (y>=height-600) {
       part=4;
       y=height-600;
+      you->setPosition(you->getX1(),you->getPlat()->getY1()-you->getHeight());
     }
   }
 }
@@ -114,7 +119,9 @@ bool Boss2::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
 void Boss2::sendEvent(EVE_CODE eve, Actor* sender) {
   if (eve==MISCE_1) {
     remove(sender);
-    actors.push_back(new SpeechBubble(this,"Weedle. Tweedle. Caught in our trap!; This yellow square is about to be zap zapped.;",sf::Color(255,165,0),you->getY1(),MISCE_2));
+    if (!you->hasEntered(3)) {
+      actors.push_back(new SpeechBubble(this,"Weedle. Tweedle. Caught in our trap!; This yellow square is about to be zap zapped.;",sf::Color(255,165,0),you->getY1(),MISCE_2));
+    }
     headL = new PumpkinHead(this,150,you,14);
     actors.push_back(headL);
     headR = new PumpkinHead(this,480,you,14);
@@ -123,11 +130,9 @@ void Boss2::sendEvent(EVE_CODE eve, Actor* sender) {
     headR->connect(headL);
   }
   else if (eve==MISCE_2) {
-#ifndef COMPILE_NO_SF
+    you->enter(3);
     remove(sender);
     you->controlPause();
-    
-#endif
   }
   else if (eve==MISCE_3) {
     you->messagePause();
@@ -148,11 +153,19 @@ void Boss2::sendEvent(EVE_CODE eve, Actor* sender) {
     
   }
   else if (eve==MISCE_5) {
-    actors.push_back(new SpeechBubble(this,"Ah you are the pesky square that destroyed the Color Eater huh?; Hah the color may be back but you will not restore the design as easily; Now hold still so I can blast you!;",sf::Color(255,165,0),you->getY1(),MISCE_6));
+    you->land(you->getPlat());
+    if (!you->hasEntered(4)) {
+      actors.push_back(new SpeechBubble(this,"Ah you are the pesky square that destroyed the Color Eater huh?; Hah the color may be back but you will not restore the design as easily; Now hold still so I can blast you!;",sf::Color(255,165,0),you->getY1(),MISCE_6));
+      you->enter(4);
+    }
+    else
+      sendEvent(MISCE_6,NULL);
+    
   }
   else if (eve==MISCE_6) {
     remove(sender);
     you->controlPause();
+    you->setFall();
     pumpkin->turnOn();
   }
   else
