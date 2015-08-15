@@ -92,7 +92,10 @@ void FileMenu2::act() {
     isUp=true;
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
     if (isLeft&&choice<3&&you_->getSave()!=GAME_START) {
-      choice--;
+      if (choice==1)
+	choice=2;
+      else
+	choice=1;
       if (choice<0)
 	choice+=3;
       setChoice();
@@ -104,7 +107,11 @@ void FileMenu2::act() {
     isLeft=true;
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
     if (isRight&&choice<3&&you_->getSave()!=GAME_START) {
-      choice++;
+      if (choice==1)
+	choice=2;
+      else
+	choice=1;
+      
       if (choice>2)
 	choice-=3;
       setChoice();

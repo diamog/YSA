@@ -46,7 +46,8 @@ void Level2::makePlatforms() {
 }
 void Level2::makeEnemies() {
   actors.push_back(new DeathArea(this,30,540,400,40,you));
-  actors.push_back(new DeathArea(this,200,300,470,40,you));
+  actors.push_back(new DeathArea(this,180,300,490,40,you));
+  actors.push_back(new DeathArea(this,180,190,50,110,you));
 }
 void Level2::makeCollectables() {
   //Make the hints
