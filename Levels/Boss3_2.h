@@ -32,6 +32,7 @@ class Boss3_2 : public Level {
   SmallEye* eye;
   BigEye* b1;
   BigEye* b2;
+  bool isPortal;
 };
 
 Level* makeBoss3_2(You* yo, float x, float y, ENT_CODE ent);

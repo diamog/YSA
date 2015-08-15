@@ -6,7 +6,7 @@
 #include "../Enemies/CloudBoss.h"
 #include "../Extras/utilities.h"
 #include "../SpeechBubble.h"
-#include "../Switables/Save.h"
+#include "../Switables/Portal.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -15,6 +15,7 @@ Boss3_2::Boss3_2(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) 
   if (!you->boss2()) {
     isboss=true;
   }
+  isPortal=false;
   top=NULL;
   movePlat=false;
   boss=NULL;
@@ -69,7 +70,6 @@ void Boss3_2::makeCollectables() {
 
 void Boss3_2::makeSwitches() {
   //Make the save point 
-  //actors.push_back(new Save(this,130,230,40,you,NOT_SAVE));
 }
 
 void Boss3_2::makeDetectors() {
@@ -126,6 +126,11 @@ bool Boss3_2::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
     ent_type=WEST;
     return true;
   }
+  else if (isPortal) {
+    next_level=ELEVATOR;
+    ent_type=PORTAL_1;
+    return true;
+  }
   return Level::isChangeRoom(next_level,ent_type);
 }
 
@@ -146,8 +151,13 @@ void Boss3_2::sendEvent(EVE_CODE eve, Actor* sender) {
     }
   }
   else if (eve==MISCE_1) {
+    remove(sender);
     you->messagePause();
     actors.push_back(boss->kill());
+    actors.push_back(new Portal(this,300,40,100,100,you,PORTALE_1));
+  }
+  else if (eve==PORTALE_1) {
+    isPortal=true;
   }
   else
     Level::sendEvent(eve,sender);

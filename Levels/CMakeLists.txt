@@ -24,6 +24,7 @@ SET(LEVEL_SRC
   Boss3_1.cpp
   Boss3_2.cpp
   Secret1.cpp
+  Level15.cpp
 )
 
 add_library(level ${LEVEL_SRC})
