@@ -9,7 +9,7 @@
 #include <iostream>
 
 Level14::Level14(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
-  me = RISING_EYE;
+  me = PREBOSS2;
   setup();
   if (ent==NORTH) {
     isMove=false;
