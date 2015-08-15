@@ -28,7 +28,6 @@ Known bugs:
  -- hints throughout the bottom path
  -- hint for wall kicking and moving against the motion
  -- achievements are only a template for now
- -- orange boxes will fade in and out instead of just appearing
 
 
 Final Notes:

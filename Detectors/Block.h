@@ -4,6 +4,7 @@
 #include <vector>
 #include "BigEye.h"
 #include "../Platforms/Platform.h"
+
 class Block : public BigEye, public Platform{
  public:
   Block();
@@ -17,6 +18,7 @@ class Block : public BigEye, public Platform{
  protected:
   sf::CircleShape arrow;
   bool isInside();
+  float angle;
 };
 
 #endif

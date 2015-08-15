@@ -4,6 +4,7 @@
 #include <vector>
 #include "BigEye.h"
 #include "../Platforms/Platform.h"
+
 class Wall : public BigEye, public Platform{
  public:
   Wall();
@@ -16,6 +17,7 @@ class Wall : public BigEye, public Platform{
 #endif
  protected:
   bool isVis;
+  int alpha;
 };
 
 #endif

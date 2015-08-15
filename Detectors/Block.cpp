@@ -3,8 +3,28 @@
 #include "../Extras/utilities.h"
 #include "../Level.h"
 #include <cmath>
-Block::Block() : Actor(),BigEye(),Platform() {
-
+Block::Block() : Actor(),BigEye(),Platform() {}
+float getTargetAngle(int dir) {
+  if (dir==0)
+    return 270;
+  else if (dir==1)
+    return 0;
+  else if (dir==2)
+    return 90;
+  else
+    return 180;
+}
+float getDir(float ang1,float target) {
+  if (target>ang1) {
+    if (target-ang1>180)
+      return -1;
+    return 1;
+  }
+  else {
+    if (ang1-target>180)
+      return 1;
+    return -1;
+  }
 }
 Block::Block(Level* l, float x_,float y_,int blockType, 
 	     SmallEye* e,You* yo, int d) : 
@@ -17,6 +37,7 @@ Block::Block(Level* l, float x_,float y_,int blockType,
   shape.setSize(sf::Vector2f(width,height));
   int amm=6;
   float size = (amm-1)/2*width/amm;
+  angle=getTargetAngle(dir);
   arrow.setRadius(size);
   arrow.setPointCount(3);
   arrow.setOrigin(size,size);
@@ -32,6 +53,15 @@ bool Block::isInside() {
 
 }
 void Block::act() {
+  if (fabs(angle-getTargetAngle(dir))<8) {
+    angle=getTargetAngle(dir);
+  }
+  else if (getTargetAngle(dir)==0&&fabs(angle-360)<8)
+    angle=0;
+  else 
+    angle+=8*getDir(angle,getTargetAngle(dir));
+  if (angle<0)
+    angle+=360;
   Platform::act();
   BigEye::act();
 }
@@ -39,7 +69,7 @@ void Block::act() {
 void Block::render(sf::RenderWindow& window) {
   shape.setPosition(getX1(),getY1());
   window.draw(shape);
-  arrow.setRotation(dir*90);
+  arrow.setRotation(angle);
   arrow.setPosition(getX1()+width/2,getY1()+height/2);
   window.draw(arrow);
    
