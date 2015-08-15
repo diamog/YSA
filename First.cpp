@@ -55,12 +55,23 @@ int main() {
   PauseMenu pause_menu;
   You* you = NULL;
   Level* level = NULL;
+  bool isInFocus=true;
 #ifndef COMPILE_NO_SF
   while (window.isOpen()) {
     sf::Event event;
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed)
         window.close();
+      if (event.type == sf::Event::LostFocus) {
+	isInFocus=false;
+	if (menu==-1&&!you->isPause()) {
+	  you->pause();
+	  pause_menu.setYou(you);
+	}
+      }
+      if (event.type== sf::Event::GainedFocus) {
+	isInFocus=true;
+      }
       if (event.type==sf::Event::KeyPressed&&
 	  event.key.code == sf::Keyboard::Escape)
 	window.close();
@@ -147,8 +158,12 @@ int main() {
       level->render(window);
       you->render(window);
       renderAchievements(window);
+      
       if (you->isPause()){
-	pause_menu.act();
+	if (song)
+	  song->setVolume(50);
+	if (isInFocus)
+	  pause_menu.act();
 	pause_menu.render(window);
 	pause_menu.isChangeMenu(menu);
 	if (menu!=-1&&song) {
@@ -156,9 +171,12 @@ int main() {
 	  song=NULL;
 	}
       }
+      else if (song)
+	song->setVolume(100);
     }
     else if (menu==0) {
-      start_menu.act();
+      if (isInFocus)
+	start_menu.act();
       if (start_menu.isChangeMenu(menu)) {
 	if (menu==1)
 	  file_menu.restart(you1,you2,you3);
@@ -167,7 +185,8 @@ int main() {
       start_menu.render(window);
     }
     else if (menu==1) {
-      file_menu.act();
+      if (isInFocus)
+	file_menu.act();
       if (file_menu.isChangeMenu(menu)) {
 	if (menu!=0) {
 	  if (menu==-2)
@@ -187,7 +206,8 @@ int main() {
  
     }
     else if (menu==2) {
-      file_menu2.act();
+      if (isInFocus)
+	file_menu2.act();
       if (file_menu2.isChangeMenu(menu)) {
 	if (menu==-1) {
 	  level = loadLevel(you, you->getSave());
