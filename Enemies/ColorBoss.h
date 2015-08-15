@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "../Extras/Arc.h"
 
 #ifndef __COLORBOSS__H__
 #define __COLORBOSS__H__
@@ -33,11 +34,14 @@ class ColorBoss : public Enemy{
   int  r,g,b;
   int hit_amount;
 #ifndef COMPILE_NO_SF
-  sf::CircleShape shape;
+  Arc shape;
+  float ang;
+  int ang_dir;
+  //sf::CircleShape shape;
 #endif
   bool isRed,isGreen,isBlue;
-	int target;
-	bool isOCD;
+  int target;
+  bool isOCD;
 };
 
 #endif

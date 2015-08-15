@@ -13,7 +13,7 @@ File open menu
 pause menu (hit p)
 more achievements (mostly just for beating the bosses and difficulties)
 only reading input when active window and pauses game when losing focus
-
+Slopes are filled in
 
 Known bugs:
  FIXED -- Bounce when dropping through vertical platforms that are descending

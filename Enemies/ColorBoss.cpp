@@ -3,6 +3,7 @@
 #include "../Extras/utilities.h"
 #include <cmath>
 #include "../Level.h"
+
 ColorBoss::ColorBoss() : Actor(),Enemy() {
   vx=vy=accel=0.0f;
   r=g=b=hit_amount=0;
@@ -26,10 +27,12 @@ ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) :
     hit_amount=15;
     accel*=1.5;
   }
-
+  
 #ifndef COMPILE_NO_SF
   shape.setFillColor(sf::Color(r,g,b));
   shape.setRadius(width/2);
+  ang=60;ang_dir=-1;
+  shape.setBounds(ang,360-ang);
 #endif
   hasMessaged=false;
 }
@@ -37,6 +40,13 @@ ColorBoss::ColorBoss(Level* l, float x_,float y_,float w,float h, You* yo) :
 void ColorBoss::act() {
   x+=vx;
   y+=vy;
+  shape.setRotation(atan2(vy,vx)*180/3.1415926535);
+  ang+=ang_dir*2;
+  if (ang<=0)
+    ang_dir=1;
+  else if (ang>=60)
+    ang_dir=-1;
+  shape.setBounds(ang,360-ang);
   if (getX2()<640&&getY1()>30&&!hasMessaged) {
     if (!you->hasEntered(1)) {
       level->sendEvent(MISCE_2,NULL);
@@ -146,8 +156,8 @@ void ColorBoss::render(sf::RenderWindow& window) {
   };
 
   window.draw(line, 2, sf::Lines);
-  shape.setPosition(getX1(),getY1());
-  window.draw(shape);
+  shape.setPosition(getX1()+width/2,getY1()+height/2);
+  shape.render(window);
 }
 #endif
 
