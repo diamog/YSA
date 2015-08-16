@@ -42,6 +42,7 @@ protected:
   bool isboss;
   void setup();
 
+  void centerLevel();
   virtual void makePlatforms() {};
   virtual void makeEnemies() {};
   virtual void makeCollectables() {};

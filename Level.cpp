@@ -118,7 +118,6 @@ void Level::act() {
 	float dx = cx - 700*2/3;
 	dx = std::min(dx,width-700-y);
 	dx = std::min(dx,5.0f);
-	std::cout<<dx<<"\n";
 	x+=dx;
 	you->shiftX(-dx);
       }
@@ -189,6 +188,24 @@ bool Level::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
   return false;
 }
 
+void Level::centerLevel() {
+  float cx,cy;
+  getObjectCenter(you,cx,cy);
+  float newx,newy;
+  if(cx>700)
+    newx=cx-350;
+
+  if (newx>width-700)
+    newx=width-700;
+  you->shiftX(x-newx);
+  x=newx;
+  if(cy>600)
+    newy=cy-300;
+  if (newy>height-600)
+    newy=height-600;
+  you->shiftY(y-newy);
+  y=newy;
+}
 Extra* Level::buildExtra(float x,float y) {
   if (!you->hasExtra(me)) {
     Extra* temp = new Extra(this,x,y,25,25,you); 

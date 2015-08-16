@@ -37,8 +37,11 @@ Level9::Level9(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
   }
   else if (ent==LOAD_4) 
     you->setPosition(765,790);
-  else
+  else {
     throw THROW_ENTRANCE_ERROR;
+  }
+  centerLevel();
+  std::cout<<x<<" "<<y<<"\n";
 }
 
 
@@ -228,8 +231,9 @@ void Level9::sendEvent(EVE_CODE eve, Actor* sender) {
     remove(sender);
     collect4--;
   }
-  else
+  else {
     Level::sendEvent(eve,sender);
+  }
   if (collect1<=0)
     wall1->setHeight(800);
   if (collect2<=0)
@@ -245,7 +249,7 @@ void Level9::sendEvent(EVE_CODE eve, Actor* sender) {
 
 bool Level9::isChangeRoom(L_CODE& next_level, ENT_CODE& ent_type) {
   if (you->getX1()>700) {
-    next_level=SECRET_1;
+    next_level=SECRET_2;
     ent_type=WEST;
     return true;
   }

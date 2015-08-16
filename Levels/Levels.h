@@ -48,7 +48,7 @@ Level* loadLevel(You* you, S_CODE save) {
     return makeLevel8(you,0,0,LOAD_2);
   else if (save == COLLECT_EASY) 
     return makeLevel9(you,0,0,LOAD_4);
-  else if (save == WALL_KICK_1) 
+  else if (save == WALL_KICK_1)
     return makeLevel9(you,0,0,LOAD_1);
   else if (save == WALL_KICK_2)
     return makeLevel9(you,0,0,LOAD_2);

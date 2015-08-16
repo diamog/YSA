@@ -8,7 +8,7 @@ Level10::Level10(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) 
   height=1800;
   setup();
   if (ent== SOUTH) {
-    you->setPosition(enterx-700,598,true);
+    you->setPosition(enterx-700,height-2,true);
   }
   else if (ent==NORTH) {
     you->setPosition(enterx,-18,true);

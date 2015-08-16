@@ -6,13 +6,13 @@
 Block::Block() : Actor(),BigEye(),Platform() {}
 float getTargetAngle(int dir) {
   if (dir==0)
-    return 270;
-  else if (dir==1)
     return 0;
-  else if (dir==2)
+  else if (dir==1)
     return 90;
-  else
+  else if (dir==2)
     return 180;
+  else
+    return 270;
 }
 float getDir(float ang1,float target) {
   if (target>ang1) {
