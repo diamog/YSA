@@ -16,7 +16,7 @@ set (COLLECTABLE_SRC
   Crystal.cpp
   Extra.cpp
   Coin.cpp
-  Secret1.cpp
+  Fairy5.cpp
 )
 
 add_library(switable ${SWITCH_SRC} ${COLLECTABLE_SRC})

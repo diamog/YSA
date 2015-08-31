@@ -15,6 +15,7 @@ You
      * Will also kill the color boss and activate related events
  -- hit 4 to set the save point to before the cloud boss
  -- hit 5 to set the save point to before the pumpkin boss
+ -- hit 0 to set the save point back to the beginning
  -- hit W to return to the split room
     * this will be a warp feature you get after rescuing the second fairy
  -- hitting S will skip the entire speech

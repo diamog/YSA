@@ -53,8 +53,14 @@ target_link_libraries(YSA detectors)
 target_link_libraries(YSA level)
 
 IF (ENABLE_SF)
-  set(SFML_ROOT /home/diamog)
+  IF (CYGWIN)
+    set(SFML_ROOT E:/)
+    MESSAGE(${SFML_ROOT})
+  ELSE()
+    set(SFML_ROOT /home/diamog)
+  ENDIF()
   set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/modules")
+  
   find_package(SFML REQUIRED system window graphics audio)
 
   if (SFML_FOUND)
