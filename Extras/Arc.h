@@ -10,6 +10,7 @@ class Arc {
   
   void setFillColor(sf::Color col);
   void setPosition(float x_, float y_);
+  void setScale(float xs, float ys);
   void setRotation(float angle);
   void setBounds(float lower,float upper);
   void render(sf::RenderWindow& window);

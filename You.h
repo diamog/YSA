@@ -53,6 +53,7 @@ public:
   void ceiling(float y_);
   void hitLeftWall(float x_,bool isKick=false);
   void hitRightWall(float x_,bool isKick=false);
+  void hitCat();
 
   void warp();
   void save(S_CODE s);

@@ -25,9 +25,15 @@ void Arc::setPosition(float x_, float y_) {
 void Arc::setRadius(float r) {
   rad=r;
 }
+
 void Arc::setRotation(float angle) {
   for (int i=0;i<4;i++)
     quadrants[i].setRotation(angle);
+}
+
+void Arc::setScale(float xs, float ys) {
+  for (int i=0;i<4;i++)
+    quadrants[i].setScale(xs,ys);
 }
 
 std::pair<float,float> getBounds(float l1,float u1, float l2, float u2) {

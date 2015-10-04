@@ -5,6 +5,8 @@
 #include "MersenneTwister.h"
 #include "ReaderClass.h"
 
+float getPI() {return 3.1415926535;}
+
 bool isRectangularHit(Actor* a1,Actor* a2) {
   return a1->getX1()<=a2->getX2() && 
     a1->getX2()>=a2->getX1() &&

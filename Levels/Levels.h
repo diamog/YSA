@@ -2,6 +2,8 @@
 #define __LEVELS__H__
 
 #include "../Level.h"
+#include "Boss_cat.h"
+#include "Level16.h"
 #include "Level15.h"
 #include "Secret1.h"
 #include "Boss3_2.h"
@@ -68,6 +70,8 @@ Level* loadLevel(You* you, S_CODE save) {
     return makeLevel14(you,0,0,LOAD_1);
   else if (save == TOWER_START)
     return makeLevel15(you,0,0,LOAD_1);
+  else if (save == TOWER_TOP)
+    return makeLevel16(you,0,0,LOAD_1);
   else
     throw "NO SUCH SAVE!!!";
   return NULL;
@@ -133,6 +137,12 @@ Level* makeLevel(You* you, Level* level, L_CODE l, ENT_CODE ent) {
   }
   else if (l==ELEVATOR) {
     return makeLevel15(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
+  }
+  else if (l==TOWEREND) {
+    return makeLevel16(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
+  }
+    else if (l==CAT_1) {
+    return makeBossCat(you,you->getX1()+level->getX(),you->getY1()+level->getY(),ent);
   }
 
   return NULL;

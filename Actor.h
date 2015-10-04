@@ -49,11 +49,11 @@ class Actor {
   virtual std::string getMessage() {return "";}
   virtual int getVal() {return 0;}
   virtual bool doesPause() {return true;}
-  virtual void act() = 0;
+  virtual void act() {}
   
 #ifndef COMPILE_NO_SF
   virtual void windowEvent(sf::Event& event) {}
-  virtual void render(sf::RenderWindow& window) = 0;
+  virtual void render(sf::RenderWindow& window) {}
 #endif
   void addReverser(Reverser* r) {rev=r;}
 protected:

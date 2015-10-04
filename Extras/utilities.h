@@ -12,6 +12,9 @@
 #include <list>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+
+float getPI();
+
 bool isRectangularHit(Actor* a1,Actor* a2);
 
 bool isLineHit(Line l1, Line l2);

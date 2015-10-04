@@ -9,6 +9,7 @@ class Bullet : public Mover {
 public:
   Bullet();
   Bullet(Level* l,float x_, float y_, float w, float h,std::string t);
+  virtual bool isGone() const {return false;}
   std::string getType() {return type;}
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);

@@ -128,6 +128,8 @@ typedef enum LEVEL_CODE {
   SECRET_2,
   ELEVATOR,
   TOWEREND,
+  CAT_1,
+  FIRE_1,
   FINALROOM
 } L_CODE;
 

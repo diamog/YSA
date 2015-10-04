@@ -25,6 +25,10 @@ set(ENEMY_SRC
   Cloud.cpp
   CBullet.cpp
   Storm.cpp
+  CatBoss.cpp
+  CatBullet.cpp
+  CatRocket.cpp
+  CatLaser.cpp
 )
 
 add_library(enemy ${ENEMY_SRC})

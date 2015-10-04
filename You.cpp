@@ -262,6 +262,10 @@ void You::land(Platform* p) {
   vx=0;
   shape.setRotation(0);
 }
+void You::hitCat() {
+  dy=-2;
+  isJump=1;
+}
 
 void You::landSlope(Platform* p,float angle) {
   plat=p;

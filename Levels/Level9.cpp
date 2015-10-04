@@ -41,7 +41,6 @@ Level9::Level9(You* yo, float enterx, float entery, ENT_CODE ent) : Level(yo) {
     throw THROW_ENTRANCE_ERROR;
   }
   centerLevel();
-  std::cout<<x<<" "<<y<<"\n";
 }
 
 
