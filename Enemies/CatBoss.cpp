@@ -31,7 +31,10 @@ CatBoss::CatBoss(Level* l, You* yo) :
   spawner.setFillColor(sf::Color(col,col,0));
   part=0;
   ticks=0;
-
+  ticks2=0;
+  isHit=false;
+  dir = 1;
+  
   numRockets=7;
   if (you->getDifficulty()==HARD)
     numRockets=10;
@@ -56,7 +59,7 @@ void CatBoss::act() {
   if (part==0) {
     y+=2;
     if (y>150)
-      part=1;
+      part=6;
   }
   if (part==1) {
     ticks++;
@@ -97,7 +100,8 @@ void CatBoss::act() {
       int max = std::min(4,-(skip-numRockets));
       skip+=getRandInt(min,max);
     }
-    if (ticks>60*6+40) part=5;
+    if (ticks>60*6+40) 
+      part=5;
   }
   else if (part==5) {
     if (col<200)
@@ -109,17 +113,37 @@ void CatBoss::act() {
   }
   else if (part==6) {
     ticks++;
-    col--;
     if (ticks>=100) {
       ticks=0;
       part=7;
       bullets.clear();
       plats.clear();
       bullets.push_back(new CatLaser(level,spawner.getPosition().x,
-				     spawner.getPosition().y,you));
+				     spawner.getPosition().y,you,this));
     }
   }
-  
+  else if (part==7) {
+    x+=dir*4;
+    if (getX2()>700)
+      dir=-1;
+    if (getX1()<0)
+      dir=1;
+    ticks++;
+    if (ticks>50) {
+      ticks=0;
+      bullets.push_back(new CatBullet(level,spawner.getPosition().x,
+				      spawner.getPosition().y,
+				      spawner.getRadius(),you,NULL));
+    }
+    if (isHit) {
+      ticks2++;
+      col = 200+int(ticks2)%2;
+      if (ticks2>=100) {
+	ticks2=0;
+	isHit=false;
+      }
+    }
+  }
   Actor temp(level,cat_head.getPosition().x,cat_head.getPosition().y,
 	     cat_head.getSize().x,cat_head.getSize().y);
   if (part==1&&isRectangularHit(you,&temp)) {
@@ -136,6 +160,15 @@ void CatBoss::act() {
     }
     else
       you->die();
+  }
+}
+void CatBoss::hit() {
+  Enemy::hit();
+  isHit=true;
+  if (hp<=maxhp/3) {
+    part=8;
+    bullets.clear();
+    std::cout<<hp<<"\n";
   }
 }
 #ifndef COMPILE_NO_SF

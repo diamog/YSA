@@ -65,7 +65,8 @@ void CatBullet::act() {
   while (angle>2*getPI()) angle-=2*getPI();
   if (tick>7*30) {
     isDead=true;
-    plats->push_back(new ThinPlat(level,x,y+height/2,width,you));
+    if (plats!=NULL)
+      plats->push_back(new ThinPlat(level,x,y+height/2,width,you));
   }
 }
 

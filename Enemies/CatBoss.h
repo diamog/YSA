@@ -20,7 +20,7 @@ class CatBoss : public Enemy{
 #ifndef COMPILE_NO_SF
   void render(sf::RenderWindow& window);
 #endif
-
+  void hit();
  protected:
   int maxhp;
 #ifndef COMPILE_NO_SF
@@ -35,6 +35,9 @@ class CatBoss : public Enemy{
   int col;
   int skip;
   int numRockets;
+  int dir;
+  bool isHit;
+  int ticks2;
   std::vector<Bullet*> bullets;
   std::vector<ThinPlat*> plats;
 };
